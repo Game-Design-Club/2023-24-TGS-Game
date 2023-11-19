@@ -12,6 +12,6 @@ public class LoadSceneTester : MonoBehaviour
     
     private IEnumerator LoadScene() {
         yield return new WaitForSeconds(1f);
-        App.Instance.SceneManager.LoadScene(Constants.SceneConstants.TestScene2);
+        App.Instance.SceneManager.ReloadScene();
     }
 }
