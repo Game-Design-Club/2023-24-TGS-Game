@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace App.Input {
+namespace AppCore.InputManager {
     public class InputManager : MonoBehaviour{
         
     }
