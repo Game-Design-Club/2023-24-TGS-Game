@@ -12,7 +12,7 @@ namespace Game.LevelManagement {
         public Level CurrentLevel { get; private set; }
         private GameObject _levelGameObject;
 
-        private bool _currentlySwitching = false;
+        private bool _currentlySwitching;
         
         // Unity functions
         private void Awake() {
