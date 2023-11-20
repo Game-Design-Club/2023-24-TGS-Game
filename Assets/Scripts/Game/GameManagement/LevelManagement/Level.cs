@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Game.LevelManagement {
+namespace Game.GameManagement.LevelManagement {
     [CreateAssetMenu(fileName = "Level", menuName = "Level", order = 1)]
     public class Level : ScriptableObject {
         [SerializeField] public string levelName = "Unnamed Level";

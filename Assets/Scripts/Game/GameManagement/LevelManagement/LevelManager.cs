@@ -1,18 +1,21 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 
 using AppCore;
 
 using UnityEngine;
 
-namespace Game.LevelManagement {
+namespace Game.GameManagement.LevelManagement {
     public class LevelManager : MonoBehaviour {
         [SerializeField] private Level firstLevel;
         [SerializeField] private Level customFirstLevel;
-        public Level CurrentLevel { get; private set; }
+
+        private Level CurrentLevel;
         private GameObject _levelGameObject;
 
         private bool _currentlySwitching;
+        
+        public event Action OnLevelLoaded;
         
         // Unity functions
         private void Awake() {
@@ -23,7 +26,7 @@ namespace Game.LevelManagement {
 
         // Public functions
         public void LoadFirstLevel() {
-            StartCoroutine(LoadLevel(firstLevel));
+            StartCoroutine(LoadLevel(firstLevel, false));
         }
         
         public void LoadNextLevel() {
@@ -48,12 +51,14 @@ namespace Game.LevelManagement {
                 Debug.LogWarning("Tried to load a null level");
                 yield break;
             }
-            
-            App.Instance.fadeManager.FadeIn();
-            _currentlySwitching = true;
-            yield return new WaitForSeconds(App.Instance.fadeManager.transitionPeriod);
-            _currentlySwitching = false;
-            App.Instance.fadeManager.FadeOut();
+
+            if (fade) {
+                App.Instance.fadeManager.FadeIn();
+                _currentlySwitching = true;
+                yield return new WaitForSeconds(App.Instance.fadeManager.transitionPeriod);
+                _currentlySwitching = false;
+                App.Instance.fadeManager.FadeOut();
+            }
             
             ChangeCurrentLevel(level);
         }
@@ -67,6 +72,7 @@ namespace Game.LevelManagement {
 
             _levelGameObject = Instantiate(level.gameObject);
             CurrentLevel = level;
+            OnLevelLoaded?.Invoke();
         }
     }
 }

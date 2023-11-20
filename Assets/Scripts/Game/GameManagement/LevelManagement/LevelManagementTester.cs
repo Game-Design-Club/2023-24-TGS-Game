@@ -1,10 +1,8 @@
-using AppCore;
-
 using TesterScript;
 
 using UnityEngine;
 
-namespace Game.LevelManagement {
+namespace Game.GameManagement.LevelManagement {
     public class LevelManagementTester : Tester{
         [SerializeField] private LevelManager levelManager;
         

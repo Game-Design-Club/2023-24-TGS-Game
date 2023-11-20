@@ -7,24 +7,24 @@ using UnityEngine;
 namespace Game.GameManagement {
     public class GameManagementTester : Tester{
         private void OnEnable() {
-            GameManager.Instance.OnGameEnd += GameEndCalled;
-            GameManager.Instance.OnGameStart += GameStartCalled;
+            GameManager.Instance.OnLevelOver += LevelOverCalled;
+            GameManager.Instance.OnLevelStart += LevelStartCalled;
             GameManager.Instance.OnGamePause += GamePauseCalled;
             GameManager.Instance.OnGameResume += GameResumeCalled;
         }
 
         private void OnDisable() {
-            GameManager.Instance.OnGameEnd -= GameEndCalled;
-            GameManager.Instance.OnGameStart -= GameStartCalled;
+            GameManager.Instance.OnLevelOver -= LevelOverCalled;
+            GameManager.Instance.OnLevelStart -= LevelStartCalled;
             GameManager.Instance.OnGamePause -= GamePauseCalled;
             GameManager.Instance.OnGameResume -= GameResumeCalled;
         }
 
-        private void GameEndCalled() {
+        private void LevelOverCalled() {
             DebugLog("Game End Called");
         }
         
-        private void GameStartCalled() {
+        private void LevelStartCalled() {
             DebugLog("Game Start Called");
         }
         
@@ -41,9 +41,14 @@ namespace Game.GameManagement {
             GameManager.Instance.GameStart();
         }
         
-        [ContextMenu(itemName: "Game End")]
+        [ContextMenu(itemName: "Player Died")]
         public void GameEnd() {
-            GameManager.Instance.GameEnd();
+            GameManager.Instance.PlayerDied();
+        }
+        
+        [ContextMenu(itemName: "Level Finished")]
+        public void PlayerWon() {
+            GameManager.Instance.LevelFinished();
         }
         
         [ContextMenu(itemName: "Game Pause")]
