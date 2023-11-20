@@ -60,5 +60,17 @@ public class tester : MonoBehaviour
         m.FadeMusicOut("piano", 5);
     }
     
+    [ContextMenu("Fade to piano")]
+    public void FadeToPiano()
+    {
+        m.TransitionMusic("music", "piano", 5);
+    }
+    
+    [ContextMenu("Fade to music")]
+    public void FadeToMusic()
+    {
+        m.TransitionMusic("piano", "music", 5);
+    }
+    
     
 }

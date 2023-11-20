@@ -132,6 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 227405821}
+  - component: {fileID: 227405822}
   m_Layer: 0
   m_Name: Test
   m_TagString: Untagged
@@ -154,6 +155,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &227405822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227405819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da35a567daa074305a9993a9197a6a0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m: {fileID: 720806169}
 --- !u!1 &486765974
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,6 +358,7 @@ MonoBehaviour:
   - {fileID: -6503487167736853835, guid: 8956fd7b59b984e9288875aea0daad40, type: 2}
   - {fileID: -2353549686153223025, guid: 8956fd7b59b984e9288875aea0daad40, type: 2}
   - {fileID: -7624873118883205710, guid: 8956fd7b59b984e9288875aea0daad40, type: 2}
+  trackVolume: []
   masterVolume: 1
   musicVolume: 1
   sfxVolume: 1
@@ -365,8 +380,8 @@ MonoBehaviour:
   sfx:
   - name: 
     clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+    volume: 2.7
+    pitch: 1.14
     loop: 0
     mute: 0
     source: {fileID: 0}

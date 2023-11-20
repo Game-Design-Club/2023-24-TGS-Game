@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class AudioManager : MonoBehaviour
 {
@@ -20,11 +21,15 @@ public class AudioManager : MonoBehaviour
     //variables for dealing with music tracks
     private bool[] _trackInUse;
     private string[] _userOfTrack;
+    // [HideInInspector]
     public float[] trackVolume;
 
-    //Volume of groups in decibles
+    //Volume of groups
+    [Range(0f, 1f)]
     public float masterVolume = 1;
+    [Range(0f, 1f)]
     public float musicVolume = 1;
+    [Range(0f, 1f)]
     public float sfxVolume = 1;
     
     public Sound[] music;
@@ -54,13 +59,19 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    private float ConvertToDecibels(float volume)
+    {
+        volume = Mathf.Clamp(volume, 0.0001f, 1f);
+        return Mathf.Log10(volume) * 20;
+    }
+    
     //***** Master *****
     
     public void MuteMaster(bool mute)
     {
         if (mute)
         {
-            mixer.SetFloat(MASTER_VOLUME, -80f);
+            mixer.SetFloat(MASTER_VOLUME, ConvertToDecibels(0f));
         }
         else
         {
@@ -68,10 +79,10 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void SetMasterVolume(float decibels)
+    public void SetMasterVolume(float volume)
     {
-        masterVolume = decibels;
-        mixer.SetFloat(MASTER_VOLUME, masterVolume);
+        masterVolume = ConvertToDecibels(volume);
+        mixer.SetFloat(MASTER_VOLUME, ConvertToDecibels(masterVolume));
     }
     
     //****** SFX ********
@@ -110,7 +121,7 @@ public class AudioManager : MonoBehaviour
     {
         if (mute)
         {
-            mixer.SetFloat(SFX_VOLUME, -80f);
+            mixer.SetFloat(SFX_VOLUME, ConvertToDecibels(0f));
         }
         else
         {
@@ -125,10 +136,10 @@ public class AudioManager : MonoBehaviour
         s.MuteTemp(mute);
     }
     
-    public void SetSFXVolume(float decibels)
+    public void SetSFXVolume(float volume)
     {
-        sfxVolume = decibels;
-        mixer.SetFloat(SFX_VOLUME, sfxVolume);
+        sfxVolume = ConvertToDecibels(volume);
+        mixer.SetFloat(SFX_VOLUME, ConvertToDecibels(sfxVolume));
     }
 
     //resets all SFX to their original values
@@ -141,9 +152,22 @@ public class AudioManager : MonoBehaviour
     }
     
     //***** Music *****
+    //fades from currentMusic to newMusic over a specified time
+    public void TransitionMusic(string currentMusic, string newMusic, float duration)
+    {
+        FadeMusicOut(currentMusic, duration);
+        FadeMusicIn(newMusic, duration);
+    }
     
     public void PlayMusic(string name)
     {
+        //checking if the music is already playing
+        if (FindTrackOf(name) != -1)
+        {
+            Debug.LogWarning("Music " + name + " was already playing and you tried to play it again");
+            return;
+        }
+        
         //finds music
         Sound s = Array.Find(music, sound => sound.name == name);
         if (s == null)
@@ -157,6 +181,7 @@ public class AudioManager : MonoBehaviour
         
         if (track == -1)
         {
+            Debug.LogWarning("Music " + name + " unable to find open track");
             return;
         }
 
@@ -171,6 +196,13 @@ public class AudioManager : MonoBehaviour
 
     public void FadeMusicIn(string name, float duration)
     {
+        //checking if the music is already playing
+        if (FindTrackOf(name) != -1)
+        {
+            Debug.LogWarning("Music " + name + " was already playing and you tried to play it again");
+            return;
+        }
+        
         //finds music
         Sound s = Array.Find(music, sound => sound.name == name);
         if (s == null)
@@ -184,6 +216,7 @@ public class AudioManager : MonoBehaviour
         
         if (track == -1)
         {
+            Debug.LogWarning("Music " + name + " unable to find open track");
             return;
         }
 
@@ -213,13 +246,15 @@ public class AudioManager : MonoBehaviour
         int track = FindTrackOf(name);
         if (track == -1)
         {
+            
+            Debug.LogWarning("Tried to stop music: " + name + " but music was not playing");
             return;
         }
         
         s.source.outputAudioMixerGroup = musicGroup;
         _trackInUse[track] = false;
         _userOfTrack[track] = "None";
-        trackVolume[track] = musicVolume;
+        SetTrackVolume(track, 1);
         
         s.source.Stop();
     }
@@ -236,6 +271,7 @@ public class AudioManager : MonoBehaviour
         int track = FindTrackOf(name);
         if (track == -1)
         {
+            Debug.LogWarning("Tried to fade out music: " + name + " but music was not playing");
             return;
         }
         
@@ -248,7 +284,7 @@ public class AudioManager : MonoBehaviour
         string trackName = GetTrackExposedParam(track);
         if (mute)
         {
-            mixer.SetFloat(trackName, -80f);
+            mixer.SetFloat(trackName, ConvertToDecibels(0f));
         }
         else
         {
@@ -260,7 +296,7 @@ public class AudioManager : MonoBehaviour
     {
         if (mute)
         {
-            mixer.SetFloat(MUSIC_VOLUME, -80f);
+            mixer.SetFloat(MUSIC_VOLUME, ConvertToDecibels(0f));
         }
         else
         {
@@ -268,10 +304,16 @@ public class AudioManager : MonoBehaviour
         }
     }
     
-    public void SetMusicVolume(float decibels)
+    public void SetMusicVolume(float volume)
     {
-        musicVolume = decibels;
-        mixer.SetFloat(MUSIC_VOLUME, musicVolume);
+        musicVolume = ConvertToDecibels(volume);
+        mixer.SetFloat(MUSIC_VOLUME, ConvertToDecibels(musicVolume));
+    }
+    public void SetTrackVolume(int track, float volume)
+    {
+        string trackName = GetTrackExposedParam(track);
+        trackVolume[track] = volume;
+        mixer.SetFloat(trackName, ConvertToDecibels(trackVolume[track]));
     }
 
     //returns the string of the exposed volume parameter of given track
@@ -292,11 +334,6 @@ public class AudioManager : MonoBehaviour
             }
         }
 
-        if (track == -1)
-        {
-            Debug.LogWarning("Music " + name + " unable to find open track");
-        }
-
         return track;
     }
 
@@ -312,14 +349,9 @@ public class AudioManager : MonoBehaviour
             }
         }
         
-        if (track == -1)
-        {
-            Debug.LogWarning("Tried to stop music: " + name + " but music was not playing");
-        }
-
         return track;
     }
-    
+
     //Fades a mixer group to a specified volume in a specified time
     //IMPORTANT: call must be wrapped in StartCoroutine(FadeMixerGroup(ex, 1, 1))
     //Edited from source: https://johnleonardfrench.com/how-to-fade-audio-in-unity-i-tested-every-method-this-ones-the-best/
@@ -350,7 +382,7 @@ public class AudioManager : MonoBehaviour
         float currentVol;
         mixer.GetFloat(trackParam, out currentVol);
         currentVol = Mathf.Pow(10, currentVol / 20);
-        float targetValue = Mathf.Clamp(-80f, 0.0001f, 1);
+        float targetValue = Mathf.Clamp(ConvertToDecibels(0f), 0.0001f, 1);
         while (currentTime < duration)
         {
             currentTime += Time.deltaTime;
@@ -362,8 +394,8 @@ public class AudioManager : MonoBehaviour
         music.source.outputAudioMixerGroup = musicGroup;
         _trackInUse[track] = false;
         _userOfTrack[track] = "None";
-        trackVolume[track] = musicVolume;
-        
+        SetTrackVolume(track, 1f);
+
         music.source.Stop();
         yield break;
     }
