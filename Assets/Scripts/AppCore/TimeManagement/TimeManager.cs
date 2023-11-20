@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace App.Time {
+namespace AppCore.TimeManagement {
     public class TimeManager : MonoBehaviour{
         
     }
