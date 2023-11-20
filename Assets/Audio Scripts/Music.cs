@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Serialization;
+using UnityEngine.UIElements;
 
 namespace Audio_Scripts
 {
@@ -145,6 +146,11 @@ namespace Audio_Scripts
 
         internal float GetTime()
         {
+            if (Sources.Count == 0)
+            {
+                Debug.LogWarning("There are currently no sources");
+                return 0f;
+            }
             return Sources[0].time;
         }
 
