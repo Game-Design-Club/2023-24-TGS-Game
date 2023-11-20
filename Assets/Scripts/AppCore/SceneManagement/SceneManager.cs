@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 
 namespace AppCore.SceneManagement {
     public class SceneManager : MonoBehaviour {
-        [SerializeField] private float transitionPeriod;
         
         public void ReloadScene(bool fade = true) {
             LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name, fade);
@@ -28,7 +27,7 @@ namespace AppCore.SceneManagement {
             AsyncOperation asyncLoad = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName);
             asyncLoad.allowSceneActivation = false;
             
-            yield return new WaitForSeconds(transitionPeriod);
+            yield return new WaitForSeconds(App.Instance.fadeManager.transitionPeriod);
             
             asyncLoad.allowSceneActivation = true;
             

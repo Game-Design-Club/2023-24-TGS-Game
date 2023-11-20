@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace AppCore.FadeManagement {
     public class FadeManager : MonoBehaviour {
+        [SerializeField] public float transitionPeriod;
+        
         private Animator _animator;
         private void Awake() {
             _animator = GetComponent<Animator>();

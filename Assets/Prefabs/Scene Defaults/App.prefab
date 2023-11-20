@@ -267,6 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50aa6d680e5944f88ccefb5b3b4169a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transitionPeriod: 2
 --- !u!95 &9007641925216518637
 Animator:
   serializedVersion: 5
@@ -332,7 +333,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47cdae10abd24b2693d4f87fd6a21538, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionPeriod: 2
 --- !u!1 &5984797482541189428
 GameObject:
   m_ObjectHideFlags: 0
