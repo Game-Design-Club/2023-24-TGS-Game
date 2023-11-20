@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace AppCore.AudioManager {
+namespace AppCore.AudioManagement {
     public class AudioManager : MonoBehaviour {
         
     }
