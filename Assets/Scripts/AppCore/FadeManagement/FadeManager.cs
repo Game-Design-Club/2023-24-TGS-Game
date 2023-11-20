@@ -11,10 +11,12 @@ namespace AppCore.FadeManagement {
 
         public void FadeIn() {
             _animator.SetTrigger(Constants.AnimationConstants.FadeInOut.FadeIn);
+            Debug.Log("FadeIn");
         }
         
         public void FadeOut() {
             _animator.SetTrigger(Constants.AnimationConstants.FadeInOut.FadeOut);
+            Debug.Log("FadeOut");
         }
     }
 }
