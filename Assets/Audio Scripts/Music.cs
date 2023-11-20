@@ -20,80 +20,70 @@ namespace Audio_Scripts
 
         private void OnValidate()
         {
-            if (Application.isPlaying && sourcesAdded)
+            //Check to make sure the music is currently activated
+            if (!Application.isPlaying || !sourcesAdded) return;
+            
+            if (Sources.Count < tracks.Length)
             {
-                if (Sources.Count < tracks.Length)
-                {
-                    for (int i = 0; i < tracks.Length ; i++)
-                    {
-                        Track track = tracks[i];
-                        
-                        if (track.clip == null) continue;
-                        
-                        bool found = false;
-                        foreach (AudioSource source in Sources)
-                        {
-                            if (source.clip == track.clip)
-                            {
-                                found = true;
-                                break;
-                            }
-                        }
-
-                        if (found) continue;
-                        
-                        AudioSource newSource = CreateSource(track);
-                        Sources.Insert(i, newSource);
-                        newSource.outputAudioMixerGroup = CurrentGroup;
-                        newSource.Play();
-                    }
-                    ReSink();
-                }else if (Sources.Count > tracks.Length)
-                {
-                    for (int i = 0; i < Sources.Count ; i++)
-                    {
-                        AudioSource source = Sources[i];
-
-                        bool found = false;
-                        foreach (Track track in tracks)
-                        {
-                            if (source.clip == track.clip)
-                            {
-                                found = true;
-                                break;
-                            }
-                        }
-
-                        if (found) continue;
-                        
-                        AudioManager.Instance.music.RemoveSource(source);
-                        Sources.RemoveAt(i);
-                    }
-                    ReSink();
-                }
-                
-                for (int i = 0; i < tracks.Length && i < Sources.Count; i++)
+                for (int i = 0; i < tracks.Length ; i++)
                 {
                     Track track = tracks[i];
-                    AudioSource source = Sources[i];
-                    source.volume = track.clipVolume;
-                    if (source.clip != track.clip)
+                    
+                    if (track.clip == null) continue;
+                    
+                    bool found = false;
+                    foreach (AudioSource source in Sources)
                     {
-                        source.Stop();
-                        source.clip = track.clip;
-                        if (track.clip.length != LengthOfTracks())
-                        {
-                            Debug.LogWarning("Track loaded was not the same length as other tracks");
-                        }
-                        else
-                        {
-                            ReSink();
-                        }
-
-                        source.Play();
+                        if (source.clip != track.clip) continue;
+                        
+                        found = true;
+                        break;
                     }
+
+                    if (found) continue;
+                    
+                    AudioSource newSource = CreateSource(track);
+                    Sources.Insert(i, newSource);
+                    newSource.outputAudioMixerGroup = CurrentGroup;
+                    newSource.Play();
                 }
+                ReSink();
+            }else if (Sources.Count > tracks.Length)
+            {
+                for (int i = 0; i < Sources.Count ; i++)
+                {
+                    AudioSource source = Sources[i];
+
+                    bool found = false;
+                    foreach (Track track in tracks)
+                    {
+                        if (source.clip != track.clip) continue;
+                        
+                        found = true;
+                        break;
+                    }
+
+                    if (found) continue;
+                    
+                    AudioManager.Instance.music.RemoveSource(source);
+                    Sources.RemoveAt(i);
+                }
+                ReSink();
             }
+            
+            for (int i = 0; i < tracks.Length && i < Sources.Count; i++)
+            {
+                Track track = tracks[i];
+                AudioSource source = Sources[i];
+                source.volume = track.clipVolume;
+                
+                if (source.clip == track.clip) continue;
+                source.Stop();
+                source.clip = track.clip;
+                ReSink();
+                source.Play();
+            }
+            
         }
 
         internal void AddSources()
@@ -155,46 +145,7 @@ namespace Audio_Scripts
 
         internal float GetTime()
         {
-            if (Sources.Count == 0)
-            {
-                Debug.LogWarning("There are currently no sources");
-                return 0f;
-            }
-            
             return Sources[0].time;
-        }
-
-        private float LengthOfTracks()
-        {
-            
-            //Calculating mode
-            Dictionary<float, int> countDictionary = new Dictionary<float, int>();
-
-            foreach (Track track in tracks)
-            {
-                if (countDictionary.ContainsKey(track.clip.length))
-                {
-                    countDictionary[track.clip.length]++;
-                }
-                else
-                {
-                    countDictionary[track.clip.length] = 1;
-                }
-            }
-
-            float mode = tracks[0].clip.length;
-            int maxCount = 1;
-
-            foreach (var keyValuePair in countDictionary)
-            {
-                if (keyValuePair.Value > maxCount)
-                {
-                    mode = keyValuePair.Key;
-                    maxCount = keyValuePair.Value;
-                }
-            }
-
-            return mode;
         }
 
         private void ReSink()
