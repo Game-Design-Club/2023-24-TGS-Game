@@ -44,6 +44,11 @@ namespace Audio_Scripts
         {
             return gameObject.AddComponent<AudioSource>();
         }
+        
+        internal void RemoveSource(AudioSource source)
+        {
+            Destroy(source);
+        }
 
         //converts a volume level from 0f-1f to corresponding value in decibels
         private float ConvertToDecibels(float volume)
@@ -63,7 +68,7 @@ namespace Audio_Scripts
         {
             if (FindTrackOf(music) != -1)
             {
-                Debug.LogWarning($"Tried to play Music: {music.name} but it was already playing");
+                Debug.LogWarning($"Tried to play Music: {music.musicName} but it was already playing");
                 return;
             }
             int track = FindNextOpenTrack();
@@ -84,7 +89,7 @@ namespace Audio_Scripts
             int track = FindTrackOf(music);
             if (track == -1)
             {
-                Debug.LogWarning($"Tried to stop Music: {music.name} but it wasn't playing");
+                Debug.LogWarning($"Tried to stop Music: {music.musicName} but it wasn't playing");
                 return;
             }
             
@@ -181,6 +186,8 @@ namespace Audio_Scripts
 
         private void MoveOntoTrack(int track, Music music)
         {
+            music.AddSources();
+            music.CurrentGroup = musicTrackGroups[track];
             _userOfTrack[track] = music;
             foreach (AudioSource source in music.Sources)
             {
@@ -198,7 +205,9 @@ namespace Audio_Scripts
                 source.outputAudioMixerGroup = deactivatedGroup;
             }
             SetTrackVolume(track, 0f);
+            music.CurrentGroup = null;
             music.Stop();
+            music.RemoveSources();
         }
         
         //returns the string of the exposed volume parameter of given track (gives access to the volume of the track)

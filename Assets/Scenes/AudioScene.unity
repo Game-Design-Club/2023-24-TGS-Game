@@ -169,28 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m: {fileID: 536161207}
   ooga: {fileID: 8300000, guid: 37536e8509b6a4bf09b199b665e3f039, type: 3}
-  merica:
-    name: Merica 1
-    tracks:
-    - clip: {fileID: 8300000, guid: 8a9b6a390fcca470897e2f7a08cdd448, type: 3}
-      clipVolume: 1
-    - clip: {fileID: 8300000, guid: 88eca867d87ab4e659bfd3d32878c8b2, type: 3}
-      clipVolume: 1
-    - clip: {fileID: 8300000, guid: fb711c002db774ab3b5146ddb2d3470e, type: 3}
-      clipVolume: 1
-    - clip: {fileID: 8300000, guid: 76ef568554d834d36b2957c8d90b23e6, type: 3}
-      clipVolume: 1
-    - clip: {fileID: 8300000, guid: f55363337ae884e0893cf1387a4a1b39, type: 3}
-      clipVolume: 1
-    - clip: {fileID: 8300000, guid: 2a9e3209275d948f8b0809650ff3d160, type: 3}
-      clipVolume: 1
-  merica2:
-    name: Merica 2
-    tracks:
-    - clip: {fileID: 8300000, guid: 8a9b6a390fcca470897e2f7a08cdd448, type: 3}
-      clipVolume: 1
-    - clip: {fileID: 8300000, guid: f55363337ae884e0893cf1387a4a1b39, type: 3}
-      clipVolume: 1
+  merica: {fileID: 11400000, guid: 1f337e2eaa43d434eacfb484df81103d, type: 2}
 --- !u!1 &486765974
 GameObject:
   m_ObjectHideFlags: 0
