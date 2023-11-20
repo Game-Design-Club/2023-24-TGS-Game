@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Serialization;
@@ -40,10 +41,10 @@ namespace Audio_Scripts
                         }
 
                         if (found) continue;
+                        
                         AudioSource newSource = CreateSource(track);
                         Sources.Insert(i, newSource);
                         newSource.outputAudioMixerGroup = CurrentGroup;
-                        newSource.time = GetTime();
                         newSource.Play();
                     }
                     ReSink();
@@ -80,7 +81,15 @@ namespace Audio_Scripts
                     {
                         source.Stop();
                         source.clip = track.clip;
-                        ReSink();
+                        if (track.clip.length != LengthOfTracks())
+                        {
+                            Debug.LogWarning("Track loaded was not the same length as other tracks");
+                        }
+                        else
+                        {
+                            ReSink();
+                        }
+
                         source.Play();
                     }
                 }
@@ -151,7 +160,41 @@ namespace Audio_Scripts
                 Debug.LogWarning("There are currently no sources");
                 return 0f;
             }
+            
             return Sources[0].time;
+        }
+
+        private float LengthOfTracks()
+        {
+            
+            //Calculating mode
+            Dictionary<float, int> countDictionary = new Dictionary<float, int>();
+
+            foreach (Track track in tracks)
+            {
+                if (countDictionary.ContainsKey(track.clip.length))
+                {
+                    countDictionary[track.clip.length]++;
+                }
+                else
+                {
+                    countDictionary[track.clip.length] = 1;
+                }
+            }
+
+            float mode = tracks[0].clip.length;
+            int maxCount = 1;
+
+            foreach (var keyValuePair in countDictionary)
+            {
+                if (keyValuePair.Value > maxCount)
+                {
+                    mode = keyValuePair.Key;
+                    maxCount = keyValuePair.Value;
+                }
+            }
+
+            return mode;
         }
 
         private void ReSink()
