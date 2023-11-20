@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -11,14 +12,15 @@ namespace Audio_Scripts
     {
         [SerializeField] public string musicName = "Unnamed Music";
         [SerializeField] private Track[] tracks;
-        internal AudioSource[] Sources = Array.Empty<AudioSource>();
+        internal List<AudioSource> Sources = new List<AudioSource>();
         internal AudioMixerGroup CurrentGroup = null;
+        private bool sourcesAdded = false;
 
         private void OnValidate()
         {
-            if (Application.isPlaying && CurrentGroup != null)
+            if (Application.isPlaying && sourcesAdded)
             {
-                if (Sources.Length < tracks.Length)
+                if (Sources.Count < tracks.Length)
                 {
                     for (int i = 0; i < tracks.Length ; i++)
                     {
@@ -38,15 +40,15 @@ namespace Audio_Scripts
 
                         if (found) continue;
                         AudioSource newSource = CreateSource(track);
-                        Sources = InsertAudioSourceAtIndex(Sources, newSource, i);
+                        Sources.Insert(i, newSource);
                         newSource.outputAudioMixerGroup = CurrentGroup;
                         newSource.time = GetTime();
                         newSource.Play();
                     }
                     ReSink();
-                }else if (Sources.Length > tracks.Length)
+                }else if (Sources.Count > tracks.Length)
                 {
-                    for (int i = 0; i < Sources.Length ; i++)
+                    for (int i = 0; i < Sources.Count ; i++)
                     {
                         AudioSource source = Sources[i];
 
@@ -63,20 +65,22 @@ namespace Audio_Scripts
                         if (found) continue;
                         
                         AudioManager.Instance.music.RemoveSource(source);
-                        Sources = RemoveAudioSourceAtIndex(Sources, i);
+                        Sources.RemoveAt(i);
                     }
                     ReSink();
                 }
                 
-                for (int i = 0; i < tracks.Length && i < Sources.Length; i++)
+                for (int i = 0; i < tracks.Length && i < Sources.Count; i++)
                 {
                     Track track = tracks[i];
                     AudioSource source = Sources[i];
                     source.volume = track.clipVolume;
                     if (source.clip != track.clip)
                     {
+                        source.Stop();
                         source.clip = track.clip;
                         ReSink();
+                        source.Play();
                     }
                 }
             }
@@ -84,13 +88,15 @@ namespace Audio_Scripts
 
         internal void AddSources()
         {
-            Sources = new AudioSource[tracks.Length];
+            Sources.Clear();
             for (int i = 0; i < tracks.Length; i++)
             {
                 Track track = tracks[i];
                 AudioSource source = CreateSource(track);
-                Sources[i] = source;
+                Sources.Add(source);
             }
+
+            sourcesAdded = true;
         }
 
         private AudioSource CreateSource(Track track)
@@ -109,6 +115,8 @@ namespace Audio_Scripts
             {
                 AudioManager.Instance.music.RemoveSource(source);
             }
+
+            sourcesAdded = false;
         }
 
         internal void Play()
@@ -147,62 +155,6 @@ namespace Audio_Scripts
             {
                 source.time = time;
             }
-        }
-        
-        private AudioSource[] InsertAudioSourceAtIndex(AudioSource[] originalArray, AudioSource newAudioSource, int index)
-        {
-            // Check if the index is within valid bounds
-            if (index < 0 || index > originalArray.Length)
-            {
-                Debug.LogError("Index out of bounds!");
-                return originalArray;
-            }
-
-            // Create a new array with increased size
-            AudioSource[] newArray = new AudioSource[originalArray.Length + 1];
-
-            // Copy elements before the specified index
-            for (int i = 0; i < index; i++)
-            {
-                newArray[i] = originalArray[i];
-            }
-
-            // Insert the new AudioSource
-            newArray[index] = newAudioSource;
-
-            // Copy elements after the specified index
-            for (int i = index + 1; i < newArray.Length; i++)
-            {
-                newArray[i] = originalArray[i - 1];
-            }
-
-            return newArray;
-        }
-        AudioSource[] RemoveAudioSourceAtIndex(AudioSource[] originalArray, int index)
-        {
-            // Check if the index is within valid bounds
-            if (index < 0 || index >= originalArray.Length)
-            {
-                Debug.LogError("Index out of bounds!");
-                return originalArray;
-            }
-
-            // Create a new array with reduced size
-            AudioSource[] newArray = new AudioSource[originalArray.Length - 1];
-
-            // Copy elements before the specified index
-            for (int i = 0; i < index; i++)
-            {
-                newArray[i] = originalArray[i];
-            }
-
-            // Copy elements after the specified index
-            for (int i = index; i < newArray.Length; i++)
-            {
-                newArray[i] = originalArray[i + 1];
-            }
-
-            return newArray;
         }
     }
 }

@@ -187,7 +187,6 @@ namespace Audio_Scripts
         private void MoveOntoTrack(int track, Music music)
         {
             music.AddSources();
-            music.CurrentGroup = musicTrackGroups[track];
             _userOfTrack[track] = music;
             foreach (AudioSource source in music.Sources)
             {
@@ -205,7 +204,6 @@ namespace Audio_Scripts
                 source.outputAudioMixerGroup = deactivatedGroup;
             }
             SetTrackVolume(track, 0f);
-            music.CurrentGroup = null;
             music.Stop();
             music.RemoveSources();
         }
