@@ -18,9 +18,10 @@ namespace Audio_Scripts
     
         //Volume of groups
         [Range(0f, 1f)] public float masterVolume = 1;
-
+        public static AudioManager Instance;
         private void Awake()
         {
+            Instance = this;
             mixer.SetFloat(MASTER_VOLUME, ConvertToDecibels(masterVolume));
         }
 
@@ -41,7 +42,7 @@ namespace Audio_Scripts
             }
             else
             {
-                mixer.SetFloat(MASTER_VOLUME, masterVolume);
+                mixer.SetFloat(MASTER_VOLUME, ConvertToDecibels(masterVolume));
             }
         }
 

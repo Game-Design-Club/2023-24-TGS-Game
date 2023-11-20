@@ -25,8 +25,8 @@ namespace Audio_Scripts
         //Volume of groups
         [Range(0f, 1f)]
         public float musicVolume = 1;
-    
-    
+
+
         //Setting up all systems
         void Awake()
         {
@@ -37,7 +37,12 @@ namespace Audio_Scripts
             _userOfTrack = new Music[musicTrackGroups.Length];
             Array.Fill(_userOfTrack, null);
             _trackVolume = new float[musicTrackGroups.Length];
-            Array.Fill(_trackVolume, 1f);
+            Array.Fill(_trackVolume, 0f);
+        }
+
+        internal AudioSource AddClip(AudioClip clip)
+        {
+            return gameObject.AddComponent<AudioSource>();
         }
 
         //converts a volume level from 0f-1f to corresponding value in decibels
@@ -54,8 +59,13 @@ namespace Audio_Scripts
         /// <param name="music">Music to fade in.</param>
         /// <param name="startTime">Starting time of the music.</param>
         /// <param name="duration">How long the it takes for the music to fade in.</param>
-        public void FadeIn(Music music, float startTime, float duration)
+        public void FadeIn(Music music, float duration, float startTime = 0f)
         {
+            if (FindTrackOf(music) != -1)
+            {
+                Debug.LogWarning($"Tried to play Music: {music.name} but it was already playing");
+                return;
+            }
             int track = FindNextOpenTrack();
             
             MoveOntoTrack(track, music);
@@ -72,9 +82,13 @@ namespace Audio_Scripts
         public void FadeOut(Music music, float duration)
         {
             int track = FindTrackOf(music);
+            if (track == -1)
+            {
+                Debug.LogWarning($"Tried to stop Music: {music.name} but it wasn't playing");
+                return;
+            }
             
             StartCoroutine(FadeOutAndEmptyTrack(track, duration));
-            music.Stop();
         }
 
         /// <summary>
@@ -86,7 +100,7 @@ namespace Audio_Scripts
         public void FadeIntoStart(Music currentMusic, Music newMusic, float duration)
         {
             FadeOut(currentMusic, duration);
-            FadeIn(newMusic, 0f, duration);
+            FadeIn(newMusic, duration);
         }
         
         /// <summary>
@@ -97,7 +111,7 @@ namespace Audio_Scripts
         /// <param name="duration">How long the it takes for the music to fully change.</param>
         public void FadeIntoCurrentTime(Music currentMusic, Music newMusic, float duration)
         {
-            FadeIn(newMusic, currentMusic.GetTime(), duration);
+            FadeIn(newMusic, duration, currentMusic.GetTime());
             FadeOut(currentMusic, duration);
         }
 
@@ -109,19 +123,18 @@ namespace Audio_Scripts
         /// <param name="outDuration">How long the it takes for the currentMusic to fade out.</param>
         /// <param name="pause">Length of the pause between currentMusic fading out and new music fading in.</param>
         /// <param name="inDuration">How long the it takes for the newMusic to fade in.</param>
-        /// <param name="startTime">Start time of new music while fading in.</param>
         public void FadeIntoAfterPause(Music currentMusic, Music newMusic, float outDuration, float pause,
-            float inDuration, float startTime)
+            float inDuration)
         {
-            StartCoroutine(FadeIntoAfterPause2(currentMusic, newMusic, outDuration, pause, inDuration, startTime));
+            StartCoroutine(FadeIntoAfterPauseCoroutine(currentMusic, newMusic, outDuration, pause, inDuration));
         }
 
-        private IEnumerator FadeIntoAfterPause2(Music currentMusic, Music newMusic, float outDuration, float pause,
-            float inDuration, float startTime)
+        private IEnumerator FadeIntoAfterPauseCoroutine(Music currentMusic, Music newMusic, float outDuration, float pause,
+            float inDuration)
         {
             FadeOut(currentMusic, outDuration);
             yield return new WaitForSeconds(outDuration + pause);
-            FadeIn(newMusic, startTime, inDuration);
+            FadeIn(newMusic, inDuration);
         }
 
         //mutes the music audio group
@@ -133,7 +146,7 @@ namespace Audio_Scripts
             }
             else
             {
-                mixer.SetFloat(MUSIC_VOLUME, musicVolume);
+                mixer.SetFloat(MUSIC_VOLUME, ConvertToDecibels(musicVolume));
             }
         }
     
@@ -147,7 +160,7 @@ namespace Audio_Scripts
             }
             else
             {
-                mixer.SetFloat(trackName, _trackVolume[track]);
+                mixer.SetFloat(trackName, ConvertToDecibels(_trackVolume[track]));
             }
         }
     
@@ -169,22 +182,23 @@ namespace Audio_Scripts
         private void MoveOntoTrack(int track, Music music)
         {
             _userOfTrack[track] = music;
-            foreach (AudioSource source in music.sources)
+            foreach (AudioSource source in music.Sources)
             {
                 source.outputAudioMixerGroup = musicTrackGroups[track];
             }
-            SetTrackVolume(track, 1f);
+            SetTrackVolume(track, 0f);
         }
         
         private void ClearTrack(int track)
         {
             Music music = _userOfTrack[track];
             _userOfTrack[track] = null;
-            foreach (AudioSource source in music.sources)
+            foreach (AudioSource source in music.Sources)
             {
                 source.outputAudioMixerGroup = deactivatedGroup;
             }
-            SetTrackVolume(track, 1f);
+            SetTrackVolume(track, 0f);
+            music.Stop();
         }
         
         //returns the string of the exposed volume parameter of given track (gives access to the volume of the track)
@@ -228,12 +242,13 @@ namespace Audio_Scripts
         private IEnumerator FadeTrackIn(int track, float duration)
         {
             string trackParam = GetTrackExposedParam(track);
+            MuteTrack(true, track);
             
             float currentTime = 0;
             float currentVol;
             mixer.GetFloat(trackParam, out currentVol);
             currentVol = Mathf.Pow(10, currentVol / 20);
-            float targetValue = Mathf.Clamp(ConvertToDecibels(1f), 0.0001f, 1);
+            float targetValue = 1f;
             while (currentTime < duration)
             {
                 currentTime += Time.deltaTime;
@@ -254,7 +269,7 @@ namespace Audio_Scripts
             float currentVol;
             mixer.GetFloat(trackParam, out currentVol);
             currentVol = Mathf.Pow(10, currentVol / 20);
-            float targetValue = Mathf.Clamp(ConvertToDecibels(0f), 0.0001f, 1);
+            float targetValue = 0f;
             while (currentTime < duration)
             {
                 currentTime += Time.deltaTime;

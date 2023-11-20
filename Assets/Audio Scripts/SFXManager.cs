@@ -37,8 +37,10 @@ namespace Audio_Scripts
 
         //****** SFX ********
 
-        public void Play(AudioSource source)
+        public void Play(AudioClip clip)
         {
+            AudioSource source = gameObject.AddComponent<AudioSource>();
+            source.clip = clip;
             source.outputAudioMixerGroup = sfxGroup;
             
             _currentSoundEffects.AddLast(source);
@@ -51,6 +53,7 @@ namespace Audio_Scripts
             source.Play();
             yield return new WaitForSeconds(source.clip.length);
             _currentSoundEffects.Remove(source);
+            Destroy(source, 1);
         }
 
         //Mutes or un-mutes the sfx audio group
@@ -62,7 +65,7 @@ namespace Audio_Scripts
             }
             else
             {
-                mixer.SetFloat(SFX_VOLUME, sfxVolume);
+                mixer.SetFloat(SFX_VOLUME, ConvertToDecibels(sfxVolume));
             }
         }
 
