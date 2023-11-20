@@ -1,18 +1,29 @@
 using UnityEngine;
-
 namespace Audio_Scripts
 {
+    [System.Serializable]
     public class Music
     {
+        [SerializeField]
+        private GameObject gameObject;
         public AudioClip[] clips;
         internal AudioSource[] sources;
 
-        Music(AudioClip[] clips)
+        Music()
         {
+            if (clips == null)
+            {
+                Debug.LogError("clips is null");
+            }
+            if (gameObject == null)
+            {
+                Debug.LogError("gameObject is null");
+            }
+            int p = 0;
             sources = new AudioSource[clips.Length];
             for (int i = 0 ; i < clips.Length ; i++)
             {
-                AudioSource source = new AudioSource();
+                AudioSource source = gameObject.AddComponent<AudioSource>();
                 source.clip = clips[i];
                 sources[i] = source;
             }

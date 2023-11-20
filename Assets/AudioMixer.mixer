@@ -184,6 +184,8 @@ AudioMixerController:
     name: MusicVolume
   - guid: c757c5a7c0bca40828e63497e8a630f2
     name: SFXVolume
+  - guid: ef6540f6ff0c642208d234244e6ba585
+    name: Track0Volume
   - guid: 26999184dc06e4b12b6731febb95ef2d
     name: Track1Volume
   - guid: 86c53a8f30ce148948921530b83f4d3d
@@ -192,8 +194,6 @@ AudioMixerController:
     name: Track3Volume
   - guid: e1b73a773fac74a2facacaf5196aa71d
     name: Track4Volume
-  - guid: ef6540f6ff0c642208d234244e6ba585
-    name: Track0Volume
   m_AudioMixerGroupViews:
   - guids:
     - 636784e9d400b4793b30b2424467df84
@@ -257,6 +257,7 @@ AudioMixerSnapshotController:
     ef6540f6ff0c642208d234244e6ba585: 0.04171297
     0038e1181d7204452971cfb9e92ebd94: -0.02577656
     2bb6cf7832ba8420faafdce188f51c08: -0.0024418721
+    d6e07cb9612de4efa9d4b174eabd43d2: -80
   m_TransitionOverrides: {}
 --- !u!244 &267087514678150497
 AudioMixerEffectController:

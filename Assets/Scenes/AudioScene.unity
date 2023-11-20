@@ -132,8 +132,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 227405821}
-  - component: {fileID: 227405822}
   - component: {fileID: 227405823}
+  - component: {fileID: 227405822}
   m_Layer: 0
   m_Name: Test
   m_TagString: Untagged
@@ -156,20 +156,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &227405822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 227405819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da35a567daa074305a9993a9197a6a0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m: {fileID: 0}
---- !u!82 &227405823
+--- !u!82 &227405822
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -178,9 +165,9 @@ AudioSource:
   m_GameObject: {fileID: 227405819}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  OutputAudioMixerGroup: {fileID: 7124472715387518926, guid: 8956fd7b59b984e9288875aea0daad40, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 37536e8509b6a4bf09b199b665e3f039, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -265,6 +252,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &227405823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227405819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da35a567daa074305a9993a9197a6a0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m: {fileID: 536161207}
+  ooga: {fileID: 227405822}
+  piano:
+    gameObject: {fileID: 227405819}
+    clips:
+    - {fileID: 8300000, guid: 3ea4d977691cc44d8b7123a6b1df9631, type: 3}
 --- !u!1 &486765974
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,10 +486,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b49ca65ed679f4701b5d4f6408831208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mixer: {fileID: 0}
-  sfxGroup: {fileID: 0}
+  sfxGroup: {fileID: 1970814278512185952, guid: 8956fd7b59b984e9288875aea0daad40, type: 2}
   sfxVolume: 1
-  sfx: []
 --- !u!4 &2082309687
 Transform:
   m_ObjectHideFlags: 0
@@ -529,17 +532,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78132aa1e65984e9db6971b79e5b41da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mixer: {fileID: 24100000, guid: 8956fd7b59b984e9288875aea0daad40, type: 2}
   musicGroup: {fileID: -6148185287971383011, guid: 8956fd7b59b984e9288875aea0daad40, type: 2}
+  deactivatedGroup: {fileID: 7124472715387518926, guid: 8956fd7b59b984e9288875aea0daad40, type: 2}
   musicTrackGroups:
   - {fileID: -2578199984728580395, guid: 8956fd7b59b984e9288875aea0daad40, type: 2}
   - {fileID: -2547246783034430168, guid: 8956fd7b59b984e9288875aea0daad40, type: 2}
   - {fileID: -6503487167736853835, guid: 8956fd7b59b984e9288875aea0daad40, type: 2}
   - {fileID: -2353549686153223025, guid: 8956fd7b59b984e9288875aea0daad40, type: 2}
   - {fileID: -7624873118883205710, guid: 8956fd7b59b984e9288875aea0daad40, type: 2}
-  trackVolume: []
   musicVolume: 1
-  music: []
 --- !u!4 &2126237806
 Transform:
   m_ObjectHideFlags: 0

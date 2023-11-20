@@ -37,11 +37,8 @@ namespace Audio_Scripts
 
         //****** SFX ********
 
-        public void Play(AudioClip clip)
+        public void Play(AudioSource source)
         {
-            AudioSource source = new AudioSource();
-            source.clip = clip;
-
             source.outputAudioMixerGroup = sfxGroup;
             
             _currentSoundEffects.AddLast(source);
@@ -54,7 +51,6 @@ namespace Audio_Scripts
             source.Play();
             yield return new WaitForSeconds(source.clip.length);
             _currentSoundEffects.Remove(source);
-            Destroy(source);
         }
 
         //Mutes or un-mutes the sfx audio group
