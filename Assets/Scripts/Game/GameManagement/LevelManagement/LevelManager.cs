@@ -10,15 +10,23 @@ namespace Game.GameManagement.LevelManagement {
         [SerializeField] private Level firstLevel;
         [SerializeField] private Level customFirstLevel;
 
-        private Level CurrentLevel;
+        private Level _currentLevel;
         private GameObject _levelGameObject;
 
         private bool _currentlySwitching;
         
         public event Action OnLevelLoaded;
+        public static LevelManager Instance { get; private set; }
         
         // Unity functions
         private void Awake() {
+            if (Instance is null) {
+                Instance = this;
+            } else {
+                Debug.LogWarning("Duplicate LevelManager found and deleted.");
+                Destroy(gameObject);
+            }
+            
             if (customFirstLevel != null) {
                 firstLevel = customFirstLevel;
             }
@@ -30,15 +38,15 @@ namespace Game.GameManagement.LevelManagement {
         }
         
         public void LoadNextLevel() {
-            if (CurrentLevel.nextLevel is null) {
-                Debug.LogWarning($"Next level for '{CurrentLevel}' is not assigned");
+            if (_currentLevel.nextLevel is null) {
+                Debug.LogWarning($"Next level for '{_currentLevel}' is not assigned");
                 return;
             }
-            StartCoroutine(LoadLevel(CurrentLevel.nextLevel));
+            StartCoroutine(LoadLevel(_currentLevel.nextLevel));
         }
         
         public void RestartLevel() {
-            StartCoroutine(LoadLevel(CurrentLevel));
+            StartCoroutine(LoadLevel(_currentLevel));
         }
         
         public IEnumerator LoadLevel(Level level, bool fade = true) {
@@ -51,27 +59,23 @@ namespace Game.GameManagement.LevelManagement {
                 Debug.LogWarning("Tried to load a null level");
                 yield break;
             }
-
             if (fade) {
                 App.Instance.fadeManager.FadeIn();
                 _currentlySwitching = true;
-                yield return new WaitForSeconds(App.Instance.fadeManager.transitionPeriod);
+                yield return new WaitForSecondsRealtime(App.Instance.fadeManager.transitionPeriod);
                 _currentlySwitching = false;
                 App.Instance.fadeManager.FadeOut();
             }
-            
             ChangeCurrentLevel(level);
         }
 
-        private void ChangeCurrentLevel(Level level)
-        {
-            if (CurrentLevel is not null)
-            {
+        private void ChangeCurrentLevel(Level level) {
+            if (_currentLevel is not null) {
                 Destroy(_levelGameObject);
             }
 
             _levelGameObject = Instantiate(level.gameObject);
-            CurrentLevel = level;
+            _currentLevel = level;
             OnLevelLoaded?.Invoke();
         }
     }

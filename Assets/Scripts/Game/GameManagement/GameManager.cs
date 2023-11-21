@@ -10,29 +10,29 @@ namespace Game.GameManagement {
     public class GameManager : MonoBehaviour{
         public static GameManager Instance { get; private set; }
         
-        public event Action OnLevelStart;
-        public event Action OnLevelOver;
-        public event Action OnGamePause;
-        public event Action OnGameResume;
-
-        private LevelManager _levelManager;
+        public event Action OnLevelStart; // LevelStart is called when the level is loaded
+        public event Action OnLevelOver; // LevelOver is called when the player dies or finishes the level
         
-        public bool IsPaused { get; private set; } // isPaused should only be true if isPlaying is true
+        private LevelManager _levelManager;
+        private PauseManager _pauseManager;
         
         // Unity functions
         private void Awake() {
             if (Instance is null) {
                 Instance = this;
-                Debug.Log("GameManager initialized.");
             } else {
                 Debug.LogWarning("Duplicate GameManager found and deleted.");
                 Destroy(gameObject);
             }
             
             _levelManager = GetComponentInChildren<LevelManager>();
+            _pauseManager = GetComponentInChildren<PauseManager>();
             
             if (_levelManager is null) {
                 Debug.LogError("LevelManager not found.");
+            }
+            if (_pauseManager is null) {
+                Debug.LogError("PauseManager not found.");
             }
         }
 
@@ -54,6 +54,10 @@ namespace Game.GameManagement {
         }
         
         public void PlayerDied() {
+            RestartLevel();
+        }
+        
+        public void RestartLevel() {
             _levelManager.RestartLevel();
             OnLevelOver?.Invoke();
         }
@@ -61,26 +65,6 @@ namespace Game.GameManagement {
         public void LevelFinished() {
             _levelManager.LoadNextLevel();
             OnLevelOver?.Invoke();
-        }
-        
-        public void GamePause() {
-            if (IsPaused) {
-                Debug.LogWarning("Tried to pause game while already paused.");
-                return;
-            }
-            OnGamePause?.Invoke();
-            IsPaused = true;
-            Time.timeScale = 0;
-        }
-        
-        public void GameResume() {
-            if (!IsPaused) {
-                Debug.LogWarning("Tried to resume game while not paused.");
-                return;
-            }
-            OnGameResume?.Invoke();
-            IsPaused = false;
-            Time.timeScale = 1;
         }
         
         public void LoadMainMenu() {

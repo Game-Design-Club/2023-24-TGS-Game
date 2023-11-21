@@ -2,13 +2,8 @@ Scene open
     Start()
         First level load
         End of first level load --> GameStart()
-    GameStart() // Can Play Now
-        OnGameStart.Invoke
-            Player can move
-            ui manager fades in HUD
 LevelCompleted()
     Next Level Load
-    Fade out HUD
     Lock Player Controls
     End of next level load --> GameStart()
 PlayerDied()
@@ -21,3 +16,5 @@ PauseGame()
 ResumeGame()
     Resume Game Event
     Change UI
+RestartGame() // From UI
+    

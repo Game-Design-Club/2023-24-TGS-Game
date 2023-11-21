@@ -1,23 +1,26 @@
 using System;
 
+using Game.GameManagement.LevelManagement;
+
 using TesterScript;
 
 using UnityEngine;
 
 namespace Game.GameManagement {
     public class GameManagementTester : Tester{
+        [SerializeField] private LevelManager levelManager;
         private void OnEnable() {
             GameManager.Instance.OnLevelOver += LevelOverCalled;
             GameManager.Instance.OnLevelStart += LevelStartCalled;
-            GameManager.Instance.OnGamePause += GamePauseCalled;
-            GameManager.Instance.OnGameResume += GameResumeCalled;
+            
+            levelManager.OnLevelLoaded += LevelLoadedCalled;
         }
 
         private void OnDisable() {
             GameManager.Instance.OnLevelOver -= LevelOverCalled;
             GameManager.Instance.OnLevelStart -= LevelStartCalled;
-            GameManager.Instance.OnGamePause -= GamePauseCalled;
-            GameManager.Instance.OnGameResume -= GameResumeCalled;
+            
+            levelManager.OnLevelLoaded -= LevelLoadedCalled;
         }
 
         private void LevelOverCalled() {
@@ -36,6 +39,10 @@ namespace Game.GameManagement {
             DebugLog("Game Resume Called");
         }
         
+        private void LevelLoadedCalled() {
+            DebugLog("Level Loaded Called");
+        }
+        
         [ContextMenu(itemName: "Game Start")]
         public void GameStart() {
             GameManager.Instance.GameStart();
@@ -49,16 +56,6 @@ namespace Game.GameManagement {
         [ContextMenu(itemName: "Level Finished")]
         public void PlayerWon() {
             GameManager.Instance.LevelFinished();
-        }
-        
-        [ContextMenu(itemName: "Game Pause")]
-        public void GamePause() {
-            GameManager.Instance.GamePause();
-        }
-        
-        [ContextMenu(itemName: "Game Resume")]
-        public void GameResume() {
-            GameManager.Instance.GameResume();
         }
     }
 }
