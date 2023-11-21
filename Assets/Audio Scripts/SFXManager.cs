@@ -3,48 +3,60 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using Random = UnityEngine.Random;
 
 namespace Audio_Scripts
 {
     public class SFXManager : MonoBehaviour
     {
-        //constant varriables used to access different groups in the audio mixer
-        private const string SFX_VOLUME = "SFXVolume";
+        //constant variables used to access different groups in the audio mixer
+        private const string SfxVolume = "SFXVolume";
 
         //the audio mixer and its groups
-        private AudioMixer mixer;
+        private AudioMixer _mixer = null;
         [SerializeField] private AudioMixerGroup sfxGroup;
-
-        //Volume of groups
         [Range(0f, 1f)] public float sfxVolume = 1;
 
-        private LinkedList<AudioSource> _currentSoundEffects;
+        private readonly LinkedList<AudioSource> _currentSoundEffects = new LinkedList<AudioSource>();
 
         private void Awake()
         {
-            mixer = sfxGroup.audioMixer;
-            
-            _currentSoundEffects = new LinkedList<AudioSource>();
+            _mixer = sfxGroup.audioMixer;
         }
 
-
-        //converts a volume level from 0f-1f to corresponding value in decibels
-        private float ConvertToDecibels(float volume)
+        private void OnValidate()
         {
-            volume = Mathf.Clamp(volume, 0.0001f, 1f);
-            return Mathf.Log10(volume) * 20;
+            if (_mixer == null) return;
+            _mixer.SetFloat(SfxVolume, AudioManager.ConvertToDecibels(sfxVolume));
         }
 
         //****** SFX ********
-
+        
         public void Play(AudioClip clip)
         {
+            //creates source
             AudioSource source = gameObject.AddComponent<AudioSource>();
             source.clip = clip;
             source.outputAudioMixerGroup = sfxGroup;
             
             _currentSoundEffects.AddLast(source);
 
+            //plays sound and deletes source
+            StartCoroutine(PlaySourceAndRemove(source));
+        }
+        
+        public void PlayWithRandomPitchAdjustment(AudioClip clip, float maxPitchAdjustment)
+        {
+            //creates source
+            AudioSource source = gameObject.AddComponent<AudioSource>();
+            source.clip = clip;
+            //adjusts pitch
+            source.pitch += Random.Range(-maxPitchAdjustment, maxPitchAdjustment);
+            source.outputAudioMixerGroup = sfxGroup;
+            
+            _currentSoundEffects.AddLast(source);
+
+            //plays sound and deletes source
             StartCoroutine(PlaySourceAndRemove(source));
         }
 
@@ -59,21 +71,14 @@ namespace Audio_Scripts
         //Mutes or un-mutes the sfx audio group
         public void Mute(bool mute)
         {
-            if (mute)
-            {
-                mixer.SetFloat(SFX_VOLUME, ConvertToDecibels(0f));
-            }
-            else
-            {
-                mixer.SetFloat(SFX_VOLUME, ConvertToDecibels(sfxVolume));
-            }
+            _mixer.SetFloat(SfxVolume, mute ? AudioManager.ConvertToDecibels(0f) : AudioManager.ConvertToDecibels(sfxVolume));
         }
 
         //sets volume for sfx audio group
         public void SetVolume(float volume)
         {
-            sfxVolume = ConvertToDecibels(volume);
-            mixer.SetFloat(SFX_VOLUME, ConvertToDecibels(sfxVolume));
+            sfxVolume = volume;
+            _mixer.SetFloat(SfxVolume, AudioManager.ConvertToDecibels(sfxVolume));
         }
 
         //Stops and deletes all sfx

@@ -17,40 +17,26 @@ public class tester : MonoBehaviour
     [ContextMenu("Play mer")]
     void PlayMer()
     {
-        m.music.FadeIn(merica, 5f);
+        m.music.Play(merica);
     }
 
     [ContextMenu("Stop mer")]
     void StopMer()
     {
+        m.music.Stop(merica);
+    }
+    [ContextMenu("Fade Play mer")]
+    void fPlayMer()
+    {
+        m.music.FadeIn(merica, 5f);
+    }
+
+    [ContextMenu("Fade Stop mer")]
+    void fStopMer()
+    {
         m.music.FadeOut(merica, 5f);
     }
 
-    // [ContextMenu("Start mer2")]
-    // void SartPiano()
-    // {
-    //     m.music.FadeIn(merica2, 5f);
-    // }
-    //
-    // [ContextMenu("stop mer2")]
-    // void EndPiano()
-    // {
-    //     m.music.FadeOut(merica2, 5f);
-    // }
-    //
-    // [ContextMenu("fade to mer2")]
-    // void Fas()
-    // {
-    //     m.music.FadeIntoCurrentTime(merica, merica2, 5f);
-    // }
-    //
-    // [ContextMenu("fade to mer")]
-    // void Fasa()
-    // {
-    //     m.music.FadeIntoCurrentTime(merica2, merica, 5f);
-    // }
-    //
-    
 
 
 }

@@ -2,18 +2,16 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.Serialization;
-using AudioSource = UnityEngine.AudioSource;
 
 namespace Audio_Scripts
 {
     public class MusicManager : MonoBehaviour
     {
-        //constant varriables used to access different groups in the audio mixer
-        private const string MUSIC_VOLUME = "MusicVolume";
+        //constant variables used to access different groups in the audio mixer
+        private const string MusicVolume = "MusicVolume";
     
         //the audio mixer and its groups
-        private AudioMixer mixer;
+        private AudioMixer _mixer = null;
         [SerializeField] private AudioMixerGroup musicGroup;
         [SerializeField] private AudioMixerGroup deactivatedGroup;
         [SerializeField] private AudioMixerGroup[] musicTrackGroups;
@@ -26,12 +24,11 @@ namespace Audio_Scripts
         [Range(0f, 1f)]
         public float musicVolume = 1;
 
-
-        //Setting up all systems
+        //***** Unity Functions *****
         void Awake()
         {
-            mixer = musicGroup.audioMixer;
-            mixer.SetFloat(MUSIC_VOLUME, ConvertToDecibels(musicVolume));
+            _mixer = musicGroup.audioMixer;
+            _mixer.SetFloat(MusicVolume, AudioManager.ConvertToDecibels(musicVolume));
             
             //initiating track storage
             _userOfTrack = new Music[musicTrackGroups.Length];
@@ -39,25 +36,47 @@ namespace Audio_Scripts
             _trackVolume = new float[musicTrackGroups.Length];
             Array.Fill(_trackVolume, 0f);
         }
-
-        internal AudioSource AddClip(AudioClip clip)
+        
+        private void OnValidate()
         {
-            return gameObject.AddComponent<AudioSource>();
+            if (_mixer == null) return;
+            _mixer.SetFloat(MusicVolume, AudioManager.ConvertToDecibels(musicVolume));
+        }
+
+        //******* Music *******
+        
+        //***** Public Functions *****
+        
+        //*** Basic start and stop ***
+        
+        public void Play(Music music, float startTime = 0)
+        {
+            if (AlreadyPlaying(music))
+            {
+                Debug.LogWarning($"Tried to play Music: {music.musicName} but it was already playing");
+                return;
+            }
+
+            int track = FindNextOpenTrack();
+            
+            SetTrackVolume(track, 1f);
+            PlayOnTrack(music, track, startTime);
+        }
+
+        public void Stop(Music music)
+        {
+            int track = FindTrackOf(music);
+            if (track == -1)
+            {
+                Debug.LogWarning($"Tried to stop Music: {music.musicName} but it wasn't playing");
+                return;
+            }
+            
+            StopMusicAndClearTrack(FindTrackOf(music));
         }
         
-        internal void RemoveSource(AudioSource source)
-        {
-            Destroy(source);
-        }
-
-        //converts a volume level from 0f-1f to corresponding value in decibels
-        private float ConvertToDecibels(float volume)
-        {
-            volume = Mathf.Clamp(volume, 0.0001f, 1f);
-            return Mathf.Log10(volume) * 20;
-        }
-
-        //***** Music *****
+        //*** Fading in and out ***
+        
         /// <summary>
         /// Fades into a specified time of Musics clip.
         /// </summary>
@@ -66,17 +85,16 @@ namespace Audio_Scripts
         /// <param name="duration">How long the it takes for the music to fade in.</param>
         public void FadeIn(Music music, float duration, float startTime = 0f)
         {
-            if (FindTrackOf(music) != -1)
+            if (AlreadyPlaying(music))
             {
-                Debug.LogWarning($"Tried to play Music: {music.musicName} but it was already playing");
+                Debug.LogWarning($"Tried to fade into Music: {music.musicName} but it was already playing");
                 return;
             }
+            
             int track = FindNextOpenTrack();
             
-            MoveOntoTrack(track, music);
             StartCoroutine(FadeTrackIn(track, duration));
-            music.SetTime(startTime);
-            music.Play();
+            PlayOnTrack(music, track, startTime);
         }
         
         /// <summary>
@@ -89,12 +107,14 @@ namespace Audio_Scripts
             int track = FindTrackOf(music);
             if (track == -1)
             {
-                Debug.LogWarning($"Tried to stop Music: {music.musicName} but it wasn't playing");
+                Debug.LogWarning($"Tried to fade out of Music: {music.musicName} but it wasn't playing");
                 return;
             }
             
             StartCoroutine(FadeOutAndEmptyTrack(track, duration));
         }
+        
+        //*** Transitions ***
 
         /// <summary>
         /// Fades out one music while fading into the start of another.
@@ -133,87 +153,80 @@ namespace Audio_Scripts
         {
             StartCoroutine(FadeIntoAfterPauseCoroutine(currentMusic, newMusic, outDuration, pause, inDuration));
         }
-
-        private IEnumerator FadeIntoAfterPauseCoroutine(Music currentMusic, Music newMusic, float outDuration, float pause,
-            float inDuration)
-        {
-            FadeOut(currentMusic, outDuration);
-            yield return new WaitForSeconds(outDuration + pause);
-            FadeIn(newMusic, inDuration);
-        }
-
+        
+        //*** Volume controls ***
+        
         //mutes the music audio group
-        public void Mute(bool mute)
+        public void Mute(bool mute = true)
         {
-            if (mute)
-            {
-                mixer.SetFloat(MUSIC_VOLUME, ConvertToDecibels(0f));
-            }
-            else
-            {
-                mixer.SetFloat(MUSIC_VOLUME, ConvertToDecibels(musicVolume));
-            }
+            _mixer.SetFloat(MusicVolume,
+                mute ? AudioManager.ConvertToDecibels(0f) : AudioManager.ConvertToDecibels(musicVolume));
         }
-    
-        //mutes the audio group of the given track
-        private void MuteTrack(bool mute, int track)
+        
+        //mutes the track of given music
+        public void MuteMusic(Music music, bool mute = true)
         {
-            string trackName = GetTrackExposedParam(track);
-            if (mute)
+            int track = FindTrackOf(music);
+            if (track == -1)
             {
-                mixer.SetFloat(trackName, ConvertToDecibels(0f));
+                Debug.LogWarning($"Tried to mute: ${music.name} but it was not already playing");
+                return;
             }
-            else
-            {
-                mixer.SetFloat(trackName, ConvertToDecibels(_trackVolume[track]));
-            }
+            
+            MuteTrack(track);
         }
     
         //sets the volume of the musics audio group
         public void SetVolume(float volume)
         {
-            musicVolume = ConvertToDecibels(volume);
-            mixer.SetFloat(MUSIC_VOLUME, ConvertToDecibels(musicVolume));
+            musicVolume = volume;
+            _mixer.SetFloat(MusicVolume, AudioManager.ConvertToDecibels(musicVolume));
         }
     
-        //sets the volume of given track audio group
-        private void SetTrackVolume(int track, float volume)
+        //sets the volume of the musics track
+        public void SetMusicVolume(Music music, float volume)
         {
-            string trackName = GetTrackExposedParam(track);
-            _trackVolume[track] = volume;
-            mixer.SetFloat(trackName, ConvertToDecibels(_trackVolume[track]));
-        }
-
-        private void MoveOntoTrack(int track, Music music)
-        {
-            music.AddSources();
-            _userOfTrack[track] = music;
-            foreach (AudioSource source in music.Sources)
+            int track = FindTrackOf(music);
+            if (track == -1)
             {
-                source.outputAudioMixerGroup = musicTrackGroups[track];
+                Debug.LogWarning($"Tried to mute: ${music.name} but it was not already playing");
+                return;
             }
-            SetTrackVolume(track, 0f);
+            SetTrackVolume(track, volume);
         }
         
-        private void ClearTrack(int track)
+        //***** Internal Functions *****
+        
+        //creates and returns a new AudioSource
+        internal AudioSource GetNewSource()
         {
-            Music music = _userOfTrack[track];
-            _userOfTrack[track] = null;
-            foreach (AudioSource source in music.Sources)
-            {
-                source.outputAudioMixerGroup = deactivatedGroup;
-            }
-            SetTrackVolume(track, 0f);
-            music.Stop();
-            music.RemoveSources();
+            return gameObject.AddComponent<AudioSource>();
+        }
+        
+        //Destroys the given AudioSource 
+        internal void RemoveSource(AudioSource source)
+        {
+            Destroy(source);
+        }
+
+        //***** Private functions *****
+        
+        //checks if the music is already playing
+        
+        //*** Processing Functions ***
+        private bool AlreadyPlaying(Music music)
+        {
+            return FindTrackOf(music) != -1;
         }
         
         //returns the string of the exposed volume parameter of given track (gives access to the volume of the track)
-        private string GetTrackExposedParam(int track)
+        private static string GetTrackExposedParam(int track)
         {
             return "Track" + track + "Volume";
         }
-
+        
+        //*** Finder functions ***
+        
         //finds the first track that is not playing any music
         private int FindNextOpenTrack()
         {
@@ -229,7 +242,7 @@ namespace Audio_Scripts
 
             return track;
         }
-
+        
         //finds the track that the music with the given name is playing on
         private int FindTrackOf(Music music)
         {
@@ -246,25 +259,90 @@ namespace Audio_Scripts
             return track;
         }
         
+        //*** Volume Controls ***
+        
+        //mutes the audio group of the given track
+        private void MuteTrack(int track, bool mute = true)
+        {
+            string trackName = GetTrackExposedParam(track);
+            _mixer.SetFloat(trackName,
+                mute ? AudioManager.ConvertToDecibels(0f) : AudioManager.ConvertToDecibels(_trackVolume[track]));
+        }
+    
+        //sets the volume of given track audio group
+        private void SetTrackVolume(int track, float volume)
+        {
+            string trackName = GetTrackExposedParam(track);
+            _trackVolume[track] = volume;
+            _mixer.SetFloat(trackName, AudioManager.ConvertToDecibels(_trackVolume[track]));
+        }
+        
+        //*** Moving Music on and off tracks ***
+
+        //moves the music onto given track and plays it
+        private void PlayOnTrack(Music music, int track, float startTime)
+        {
+            MoveOntoTrack(track, music);
+            music.SetTime(startTime);
+            music.Play();
+        }
+
+        //moves music onto a track
+        private void MoveOntoTrack(int track, Music music)
+        {
+            music.CurrentGroup = musicTrackGroups[track];
+            music.AddSources();
+            _userOfTrack[track] = music;
+            foreach (AudioSource source in music.Sources)
+            {
+                source.outputAudioMixerGroup = musicTrackGroups[track];
+            }
+        }
+        
+        //stops the music on the given track and then clears the track
+        private void StopMusicAndClearTrack(int track)
+        {
+            Music music = _userOfTrack[track];
+            music.CurrentGroup = null;
+            _userOfTrack[track] = null;
+            foreach (AudioSource source in music.Sources)
+            {
+                source.outputAudioMixerGroup = deactivatedGroup;
+            }
+            SetTrackVolume(track, 0f);
+            music.Stop();
+            music.RemoveSources();
+        }
+
+        //*** Coroutines ***
+        
+        //The Coroutine for the FadeIntoAfterPause function
+        private IEnumerator FadeIntoAfterPauseCoroutine(Music currentMusic, Music newMusic, float outDuration, float pause,
+            float inDuration)
+        {
+            FadeOut(currentMusic, outDuration);
+            yield return new WaitForSeconds(outDuration + pause);
+            FadeIn(newMusic, inDuration);
+        }
+        
+        //Fades a track in
         private IEnumerator FadeTrackIn(int track, float duration)
         {
             string trackParam = GetTrackExposedParam(track);
-            MuteTrack(true, track);
+            MuteTrack(track);
             
             float currentTime = 0;
             float currentVol;
-            mixer.GetFloat(trackParam, out currentVol);
+            _mixer.GetFloat(trackParam, out currentVol);
             currentVol = Mathf.Pow(10, currentVol / 20);
             float targetValue = 1f;
             while (currentTime < duration)
             {
                 currentTime += Time.deltaTime;
                 float newVol = Mathf.Lerp(currentVol, targetValue, currentTime / duration);
-                mixer.SetFloat(trackParam, Mathf.Log10(newVol) * 20);
+                _mixer.SetFloat(trackParam, Mathf.Log10(newVol) * 20);
                 yield return null;
             }
-
-            yield break;
         }
     
         //Fades a music track out and then stops the music and clears the track
@@ -274,19 +352,18 @@ namespace Audio_Scripts
 
             float currentTime = 0;
             float currentVol;
-            mixer.GetFloat(trackParam, out currentVol);
+            _mixer.GetFloat(trackParam, out currentVol);
             currentVol = Mathf.Pow(10, currentVol / 20);
             float targetValue = 0f;
             while (currentTime < duration)
             {
                 currentTime += Time.deltaTime;
                 float newVol = Mathf.Lerp(currentVol, targetValue, currentTime / duration);
-                mixer.SetFloat(trackParam, Mathf.Log10(newVol) * 20);
+                _mixer.SetFloat(trackParam, Mathf.Log10(newVol) * 20);
                 yield return null;
             }
 
-            ClearTrack(track);
-            yield break;
+            StopMusicAndClearTrack(track);
         }
     }
 }

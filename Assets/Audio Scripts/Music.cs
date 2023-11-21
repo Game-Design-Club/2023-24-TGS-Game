@@ -1,11 +1,7 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.Serialization;
-using UnityEngine.UIElements;
 
 namespace Audio_Scripts
 {
@@ -14,31 +10,25 @@ namespace Audio_Scripts
     {
         [SerializeField] public string musicName = "Unnamed Music";
         [SerializeField] private Track[] tracks;
-        internal List<AudioSource> Sources = new List<AudioSource>();
+        internal readonly List<AudioSource> Sources = new List<AudioSource>();
         internal AudioMixerGroup CurrentGroup = null;
-        private bool sourcesAdded = false;
+        private bool _sourcesAdded = false;
 
         private void OnValidate()
         {
             //Check to make sure the music is currently activated
-            if (!Application.isPlaying || !sourcesAdded) return;
+            if (!Application.isPlaying || !_sourcesAdded) return;
             
-            if (Sources.Count < tracks.Length)
+            if (Sources.Count < tracks.Length) //track added
             {
+                //find new track and add source
                 for (int i = 0; i < tracks.Length ; i++)
                 {
                     Track track = tracks[i];
                     
                     if (track.clip == null) continue;
                     
-                    bool found = false;
-                    foreach (AudioSource source in Sources)
-                    {
-                        if (source.clip != track.clip) continue;
-                        
-                        found = true;
-                        break;
-                    }
+                    bool found = Sources.Any(source => source.clip == track.clip);
 
                     if (found) continue;
                     
@@ -48,20 +38,14 @@ namespace Audio_Scripts
                     newSource.Play();
                 }
                 ReSink();
-            }else if (Sources.Count > tracks.Length)
+            }else if (Sources.Count > tracks.Length) // track removed
             {
+                //finds removed track and removes source
                 for (int i = 0; i < Sources.Count ; i++)
                 {
                     AudioSource source = Sources[i];
 
-                    bool found = false;
-                    foreach (Track track in tracks)
-                    {
-                        if (source.clip != track.clip) continue;
-                        
-                        found = true;
-                        break;
-                    }
+                    bool found = tracks.Any(track => source.clip == track.clip);
 
                     if (found) continue;
                     
@@ -71,13 +55,16 @@ namespace Audio_Scripts
                 ReSink();
             }
             
+            //updating volume and clips
             for (int i = 0; i < tracks.Length && i < Sources.Count; i++)
             {
                 Track track = tracks[i];
                 AudioSource source = Sources[i];
                 source.volume = track.clipVolume;
                 
+                //clip changed
                 if (source.clip == track.clip) continue;
+                
                 source.Stop();
                 source.clip = track.clip;
                 ReSink();
@@ -86,22 +73,23 @@ namespace Audio_Scripts
             
         }
 
+        //Adds new sources for each tracks
         internal void AddSources()
         {
             Sources.Clear();
-            for (int i = 0; i < tracks.Length; i++)
+            foreach (var track in tracks)
             {
-                Track track = tracks[i];
                 AudioSource source = CreateSource(track);
                 Sources.Add(source);
             }
 
-            sourcesAdded = true;
+            _sourcesAdded = true;
         }
 
+        //Creates a new source and integrates track into it
         private AudioSource CreateSource(Track track)
         {
-            AudioSource source = AudioManager.Instance.music.AddClip(track.clip);
+            AudioSource source = AudioManager.Instance.music.GetNewSource();
             source.playOnAwake = false;
             source.clip = track.clip;
             source.volume = track.clipVolume;
@@ -109,6 +97,7 @@ namespace Audio_Scripts
             return source;
         }
         
+        //Removes all sources from scene
         internal void RemoveSources()
         {
             foreach (AudioSource source in Sources)
@@ -116,9 +105,10 @@ namespace Audio_Scripts
                 AudioManager.Instance.music.RemoveSource(source);
             }
 
-            sourcesAdded = false;
+            _sourcesAdded = false;
         }
 
+        //Plays all sources
         internal void Play()
         {
             foreach (AudioSource source in Sources)
@@ -127,6 +117,7 @@ namespace Audio_Scripts
             }
         }
         
+        //stops all sources
         internal void Stop()
         {
             foreach (AudioSource source in Sources)
@@ -135,19 +126,27 @@ namespace Audio_Scripts
             }
         }
 
+        //sets the time of all sources
         internal void SetTime(float time)
         {
             foreach (AudioSource source in Sources)
             {
+                if (time > source.clip.length)
+                {
+                    Debug.LogWarning("Tried to set the time of a clip outside its length");
+                    continue;
+                }
                 source.time = time;
             }
         }
 
+        //gets the current time of the first source 
         internal float GetTime()
         {
             return Sources[0].time;
         }
 
+        //Sets all of the sources times equal to the first source
         private void ReSink()
         {
             float time = GetTime();
