@@ -167,9 +167,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da35a567daa074305a9993a9197a6a0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m: {fileID: 536161207}
-  ooga: {fileID: 8300000, guid: 37536e8509b6a4bf09b199b665e3f039, type: 3}
+  debugMessages: 0
+  audioClip1: {fileID: 0}
   merica: {fileID: 11400000, guid: 1f337e2eaa43d434eacfb484df81103d, type: 2}
+  piano: {fileID: 0}
 --- !u!1 &486765974
 GameObject:
   m_ObjectHideFlags: 0

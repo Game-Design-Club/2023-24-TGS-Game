@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
+
 using UnityEngine;
 using UnityEngine.Audio;
 
-namespace Audio_Scripts
+namespace AppCore.AudioManagement
 {
     [CreateAssetMenu(fileName = "Music", menuName = "Music", order = 1)]
     public class Music : ScriptableObject

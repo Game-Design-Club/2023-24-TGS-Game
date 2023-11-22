@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Audio_Scripts
+namespace AppCore.AudioManagement
 {
     [System.Serializable]
     public struct Track

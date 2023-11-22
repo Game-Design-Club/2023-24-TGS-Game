@@ -1,11 +1,12 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.Audio;
+
 using Random = UnityEngine.Random;
 
-namespace Audio_Scripts
+namespace AppCore.AudioManagement
 {
     public class SFXManager : MonoBehaviour
     {

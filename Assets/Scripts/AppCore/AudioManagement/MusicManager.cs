@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
+
 using UnityEngine;
 using UnityEngine.Audio;
 
-namespace Audio_Scripts
+namespace AppCore.AudioManagement
 {
     public class MusicManager : MonoBehaviour
     {
