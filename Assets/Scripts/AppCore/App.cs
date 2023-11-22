@@ -1,8 +1,7 @@
 using UnityEngine;
-using AppCore;
+
 using AppCore.AudioManagement;
 using AppCore.InputManagement;
-using AppCore.TimeManagement;
 using AppCore.SceneManagement;
 using AppCore.FadeManagement;
 
@@ -13,7 +12,6 @@ namespace AppCore {
         [SerializeField] public AudioManager audioManager;
         [SerializeField] public InputManager inputManager;
         [SerializeField] public SceneManager sceneManager;
-        [SerializeField] public TimeManager timeManager;
         [SerializeField] public FadeManager fadeManager;
         
         private void Awake() {
