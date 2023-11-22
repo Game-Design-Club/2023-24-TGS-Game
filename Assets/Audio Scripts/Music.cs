@@ -8,7 +8,6 @@ namespace Audio_Scripts
     [CreateAssetMenu(fileName = "Music", menuName = "Music", order = 1)]
     public class Music : ScriptableObject
     {
-        [SerializeField] internal string musicName = "Unnamed Music";
         [SerializeField] private Track[] tracks;
         internal readonly List<AudioSource> Sources = new List<AudioSource>();
         internal AudioMixerGroup CurrentGroup = null;
@@ -154,6 +153,11 @@ namespace Audio_Scripts
             {
                 source.time = time;
             }
+        }
+
+        public override string ToString()
+        {
+            return name;
         }
     }
 }

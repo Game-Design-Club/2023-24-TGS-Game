@@ -53,7 +53,7 @@ namespace Audio_Scripts
         {
             if (AlreadyPlaying(music))
             {
-                Debug.LogWarning($"Tried to play Music: {music.musicName} but it was already playing");
+                Debug.LogWarning($"Tried to play Music: {music} but it was already playing");
                 return;
             }
 
@@ -68,7 +68,7 @@ namespace Audio_Scripts
             int track = FindTrackOf(music);
             if (track == -1)
             {
-                Debug.LogWarning($"Tried to stop Music: {music.musicName} but it wasn't playing");
+                Debug.LogWarning($"Tried to stop Music: {music} but it wasn't playing");
                 return;
             }
             
@@ -87,7 +87,7 @@ namespace Audio_Scripts
         {
             if (AlreadyPlaying(music))
             {
-                Debug.LogWarning($"Tried to fade into Music: {music.musicName} but it was already playing");
+                Debug.LogWarning($"Tried to fade into Music: {music} but it was already playing");
                 return;
             }
             
@@ -107,7 +107,7 @@ namespace Audio_Scripts
             int track = FindTrackOf(music);
             if (track == -1)
             {
-                Debug.LogWarning($"Tried to fade out of Music: {music.musicName} but it wasn't playing");
+                Debug.LogWarning($"Tried to fade out of Music: {music} but it wasn't playing");
                 return;
             }
             
