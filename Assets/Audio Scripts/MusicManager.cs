@@ -169,11 +169,11 @@ namespace Audio_Scripts
             int track = FindTrackOf(music);
             if (track == -1)
             {
-                Debug.LogWarning($"Tried to mute: ${music.name} but it was not already playing");
+                Debug.LogWarning($"Tried to {(mute ? "mute" : "unmute")}: {music.name} but it was not already playing");
                 return;
             }
             
-            MuteTrack(track);
+            MuteTrack(track, mute);
         }
     
         //sets the volume of the musics audio group
@@ -189,7 +189,7 @@ namespace Audio_Scripts
             int track = FindTrackOf(music);
             if (track == -1)
             {
-                Debug.LogWarning($"Tried to mute: ${music.name} but it was not already playing");
+                Debug.LogWarning($"Tried to change volume of: {music.name} but it was not already playing");
                 return;
             }
             SetTrackVolume(track, volume);

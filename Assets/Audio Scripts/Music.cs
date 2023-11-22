@@ -8,7 +8,7 @@ namespace Audio_Scripts
     [CreateAssetMenu(fileName = "Music", menuName = "Music", order = 1)]
     public class Music : ScriptableObject
     {
-        [SerializeField] public string musicName = "Unnamed Music";
+        [SerializeField] internal string musicName = "Unnamed Music";
         [SerializeField] private Track[] tracks;
         internal readonly List<AudioSource> Sources = new List<AudioSource>();
         internal AudioMixerGroup CurrentGroup = null;
