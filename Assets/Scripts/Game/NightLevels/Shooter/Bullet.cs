@@ -1,0 +1,38 @@
+using System;
+
+using Game.GameManagement;
+
+using UnityEngine;
+
+namespace Game.NightLevels.Shooter {
+    public class Bullet : MonoBehaviour{
+        [SerializeField] private float shootSpeed = 3f;
+        // Unity functions
+        private void OnEnable() {
+            GameManager.Instance.OnLevelStart += OnLevelStart;
+        }
+        
+        private void OnDisable() {
+            GameManager.Instance.OnLevelStart -= OnLevelStart;
+        }
+
+        private void OnCollisionEnter2D(Collision2D other) {
+            DestroyBullet();
+        }
+        
+        // Private functions
+        private void OnLevelStart() {
+            DestroyBullet();
+        }
+        
+        private void DestroyBullet() {
+            Destroy(gameObject);
+            // sfx, particle effects, etc.
+        }
+        
+        // Public functions
+        public void Shoot(Vector2 direction) {
+            GetComponent<Rigidbody2D>().velocity = direction * shootSpeed;
+        }
+    }
+}
