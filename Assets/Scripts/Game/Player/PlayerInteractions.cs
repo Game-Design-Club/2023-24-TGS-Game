@@ -25,6 +25,9 @@ namespace Game.Player {
                 case TagConstants.Oucher:
                     GameManager.Instance.PlayerDied();
                     break;
+                case TagConstants.Goal:
+                    GameManager.Instance.LevelCompleted();
+                    break;
             }
         }
         

@@ -62,7 +62,7 @@ namespace Game.GameManagement {
             OnLevelOver?.Invoke();
         }
         
-        public void LevelFinished() {
+        public void LevelCompleted() {
             _levelManager.LoadNextLevel();
             OnLevelOver?.Invoke();
         }

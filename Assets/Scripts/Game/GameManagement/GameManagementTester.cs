@@ -55,7 +55,7 @@ namespace Game.GameManagement {
         
         [ContextMenu(itemName: "Level Finished")]
         public void PlayerWon() {
-            GameManager.Instance.LevelFinished();
+            GameManager.Instance.LevelCompleted();
         }
     }
 }
