@@ -24,11 +24,11 @@ namespace Game.NightLevels.Shooter {
         // Private functions
         // ReSharper disable Unity.PerformanceAnalysis
         private IEnumerator SpawnBullets() {
-            yield return new WaitForSeconds(shootFrequency);
-            GameObject bullet = Instantiate(bulletPrefab, shootTransform.position, Quaternion.identity);
-            bullet.GetComponent<Bullet>().Shoot(transform.right);
-
-            StartCoroutine(SpawnBullets());
+            while (true) {
+                yield return new WaitForSeconds(shootFrequency);
+                GameObject bullet = Instantiate(bulletPrefab, shootTransform.position, Quaternion.identity);
+                bullet.GetComponent<Bullet>().Shoot(transform.right);
+            }
         }
 
         private void LevelOver() {
