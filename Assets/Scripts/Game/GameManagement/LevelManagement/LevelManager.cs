@@ -55,7 +55,7 @@ namespace Game.GameManagement.LevelManagement {
                 yield break;
             }
 
-            if (level is null) {
+            if (level == null) {
                 Debug.LogWarning("Tried to load a null level");
                 yield break;
             }
@@ -70,11 +70,14 @@ namespace Game.GameManagement.LevelManagement {
         }
 
         private void ChangeCurrentLevel(Level level) {
-            if (_currentLevel is not null) {
+            if (_currentLevel != null) {
                 Destroy(_levelGameObject);
             }
-
-            _levelGameObject = Instantiate(level.gameObject);
+            if (level.gameObject == null) {
+                Debug.LogWarning($"Level '{level}' has no game object assigned");
+            } else {
+                _levelGameObject = Instantiate(level.gameObject);
+            }
             _currentLevel = level;
             OnLevelLoaded?.Invoke();
         }
