@@ -7,17 +7,14 @@ namespace Game.Player {
         public static Player Instance { get; private set; }
 
         private void Awake() {
-            if (Instance != null) {
-                Destroy(gameObject);
-                Debug.LogWarning("Duplicate Player found and deleted.");
-            } else {
-                Instance = this;
-            }
+            Instance = this;
+            Debug.Log("Player created.");
         }
 
         private void OnDestroy() {
             if (Instance == this) {
                 Instance = null;
+                Debug.Log("Player destroyed.");
             }
         }
     }
