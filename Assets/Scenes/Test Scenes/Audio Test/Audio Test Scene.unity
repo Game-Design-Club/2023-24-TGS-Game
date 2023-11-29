@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugMessages: 0
+  _audioManager: {fileID: 0}
   oogaSFX: {fileID: 8300000, guid: 37536e8509b6a4bf09b199b665e3f039, type: 3}
   mericaMusic: {fileID: 11400000, guid: 1f337e2eaa43d434eacfb484df81103d, type: 2}
   pianoMusic: {fileID: 11400000, guid: df4fb3ca5627f40e7a359f0891f672a7, type: 2}
@@ -387,6 +388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b49ca65ed679f4701b5d4f6408831208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mixer: {fileID: 0}
   sfxGroup: {fileID: 1970814278512185952, guid: 8956fd7b59b984e9288875aea0daad40, type: 2}
   sfxVolume: 1
 --- !u!4 &2082309687
@@ -433,6 +435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78132aa1e65984e9db6971b79e5b41da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mixer: {fileID: 0}
   musicGroup: {fileID: -6148185287971383011, guid: 8956fd7b59b984e9288875aea0daad40, type: 2}
   deactivatedGroup: {fileID: 7124472715387518926, guid: 8956fd7b59b984e9288875aea0daad40, type: 2}
   musicTrackGroups:
@@ -441,6 +444,8 @@ MonoBehaviour:
   - {fileID: -6503487167736853835, guid: 8956fd7b59b984e9288875aea0daad40, type: 2}
   - {fileID: -2353549686153223025, guid: 8956fd7b59b984e9288875aea0daad40, type: 2}
   - {fileID: -7624873118883205710, guid: 8956fd7b59b984e9288875aea0daad40, type: 2}
+  _userOfTrack: []
+  _trackVolume: []
   musicVolume: 1
 --- !u!4 &2126237806
 Transform:

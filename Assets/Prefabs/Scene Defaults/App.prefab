@@ -187,6 +187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2817302321717132237}
   - component: {fileID: 7720440812478346304}
+  - component: {fileID: 1480533991414497013}
   m_Layer: 0
   m_Name: Input Manager
   m_TagString: Untagged
@@ -221,6 +222,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5726b0d43bd64b42afb2a0ade62639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputActionAsset: {fileID: 0}
+--- !u!114 &1480533991414497013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4018976970419405023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 8dece189248fe4d2fa94b0ce69ee85f3, type: 3}
+  m_NotificationBehavior: 3
+  m_UIInputModule: {fileID: 4052014531981019811}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: Keyboard&Mouse
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &4049925941698198754
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,50 +365,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47cdae10abd24b2693d4f87fd6a21538, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &5984797482541189428
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5048170099767497368}
-  - component: {fileID: 4278541418734754865}
-  m_Layer: 0
-  m_Name: Time Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5048170099767497368
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5984797482541189428}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8267727598159319133}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4278541418734754865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5984797482541189428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 841c2576de8d4958a54f97703e81350e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7250545030962422242
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,7 +443,6 @@ Transform:
   - {fileID: 2817302321717132237}
   - {fileID: 5642497236956840426}
   - {fileID: 191346256175040941}
-  - {fileID: 5048170099767497368}
   - {fileID: 127475967107572436}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -474,7 +461,6 @@ MonoBehaviour:
   audioManager: {fileID: 6956697097583618276}
   inputManager: {fileID: 7720440812478346304}
   sceneManager: {fileID: 8611576920855062264}
-  timeManager: {fileID: 4278541418734754865}
   fadeManager: {fileID: 7035760210295001624}
 --- !u!1 &8307326441484293718
 GameObject:
@@ -486,7 +472,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4472139088559206250}
   - component: {fileID: 4659078693952299526}
-  - component: {fileID: 1938705293294291128}
+  - component: {fileID: 4052014531981019811}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -524,7 +510,7 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
---- !u!114 &1938705293294291128
+--- !u!114 &4052014531981019811
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -533,14 +519,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 8307326441484293718}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: 8dece189248fe4d2fa94b0ce69ee85f3, type: 3}
+  m_PointAction: {fileID: 0}
+  m_MoveAction: {fileID: 0}
+  m_SubmitAction: {fileID: 0}
+  m_CancelAction: {fileID: 0}
+  m_LeftClickAction: {fileID: 0}
+  m_MiddleClickAction: {fileID: 0}
+  m_RightClickAction: {fileID: 0}
+  m_ScrollWheelAction: {fileID: 0}
+  m_TrackedDevicePositionAction: {fileID: 0}
+  m_TrackedDeviceOrientationAction: {fileID: 0}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
