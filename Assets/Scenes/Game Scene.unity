@@ -215,47 +215,7 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1480533991414497013, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4052014531981019811, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
-      propertyPath: m_MoveAction
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4052014531981019811, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
-      propertyPath: m_PointAction
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4052014531981019811, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
-      propertyPath: m_CancelAction
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4052014531981019811, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
-      propertyPath: m_SubmitAction
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4052014531981019811, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
-      propertyPath: m_LeftClickAction
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4052014531981019811, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
-      propertyPath: m_RightClickAction
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4052014531981019811, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
-      propertyPath: m_MiddleClickAction
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4052014531981019811, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
-      propertyPath: m_ScrollWheelAction
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4052014531981019811, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
-      propertyPath: m_TrackedDevicePositionAction
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4052014531981019811, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
-      propertyPath: m_TrackedDeviceOrientationAction
+      propertyPath: m_UIInputModule
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8257527468688489269, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
