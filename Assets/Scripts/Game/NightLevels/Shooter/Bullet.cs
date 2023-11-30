@@ -1,5 +1,7 @@
 using System;
 
+using Constants;
+
 using Game.GameManagement;
 
 using UnityEngine;
@@ -19,7 +21,13 @@ namespace Game.NightLevels.Shooter {
         private void OnCollisionEnter2D(Collision2D other) {
             DestroyBullet();
         }
-        
+
+        private void OnTriggerEnter2D(Collider2D other) {
+            if (other.gameObject.CompareTag(TagConstants.Player)) {
+                DestroyBullet();
+            }
+        }
+
         // Private functions
         private void OnLevelStart() {
             DestroyBullet();
