@@ -19,7 +19,7 @@ namespace Game.Player {
             GameManager.Instance.OnLevelOver -= OnLevelOver;
         }
         
-        private void OnCollisionEnter2D(Collision2D other) {
+        private void OnTriggerEnter2D(Collider2D other) {
             if (!_interactionsOn) return;
             switch (other.gameObject.tag) {
                 case TagConstants.Oucher:
