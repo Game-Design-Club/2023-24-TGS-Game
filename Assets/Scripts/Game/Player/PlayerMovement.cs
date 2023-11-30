@@ -13,15 +13,8 @@ namespace Game.Player {
             _rigidbody2D = GetComponent<Rigidbody2D>();
         }
 
-        private void OnEnable() {
-            AppCore.App.Instance.inputManager.OnMovementInput += MovementChanged;
-        }
-        
-        private void OnDisable() {
-            AppCore.App.Instance.inputManager.OnMovementInput -= MovementChanged;
-        }
-
         private void Update() {
+            _rigidbody2D.velocity = Vector2.zero;
             _rigidbody2D.position += _currentMovement * (movementSpeed * Time.deltaTime);
         }
         
