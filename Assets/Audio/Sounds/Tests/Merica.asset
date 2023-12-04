@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3961a5128fcd946e694441aeba440c25, type: 3}
+  m_Name: Merica
+  m_EditorClassIdentifier: 
+  tracks:
+  - clip: {fileID: 8300000, guid: 8a9b6a390fcca470897e2f7a08cdd448, type: 3}
+    clipVolume: 1
+  - clip: {fileID: 8300000, guid: 88eca867d87ab4e659bfd3d32878c8b2, type: 3}
+    clipVolume: 1
+  - clip: {fileID: 8300000, guid: fb711c002db774ab3b5146ddb2d3470e, type: 3}
+    clipVolume: 1
+  - clip: {fileID: 8300000, guid: 3ea4d977691cc44d8b7123a6b1df9631, type: 3}
+    clipVolume: 1
+  - clip: {fileID: 8300000, guid: f55363337ae884e0893cf1387a4a1b39, type: 3}
+    clipVolume: 1
+  - clip: {fileID: 8300000, guid: 2a9e3209275d948f8b0809650ff3d160, type: 3}
+    clipVolume: 1
