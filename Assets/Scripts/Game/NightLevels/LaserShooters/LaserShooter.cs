@@ -7,7 +7,8 @@ using Game.GameManagement;
 using UnityEngine;
 
 namespace Game.NightLevels.LaserShooters {
-    public class LaserShooter : MonoBehaviour{
+    public class LaserShooter : MonoBehaviour {
+        [SerializeField] private LaserShooterType laserType;
         [SerializeField] private float betweenShotsTime = 1f;
         [SerializeField] private float warningTime = .5f;
         [SerializeField] private float activeTime = 1f;
@@ -42,7 +43,11 @@ namespace Game.NightLevels.LaserShooters {
 
         // Private functions
         private void OnLevelStart() {
-            StartCoroutine(WaitToShootLaser());
+            if (laserType == LaserShooterType.Cycled) {
+                StartCoroutine(WaitToShootLaser());
+            } else {
+                _animator.SetTrigger(AnimationConstants.LaserShooter.On);
+            }
             DetermineLaserLength();
         }
         
