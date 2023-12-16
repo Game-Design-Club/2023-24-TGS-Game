@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 
 using Constants;
@@ -12,10 +13,12 @@ namespace Game.NightLevels.LaserShooters {
         [SerializeField] private float betweenShotsTime = 1f;
         [SerializeField] private float warningTime = .5f;
         [SerializeField] private float activeTime = 1f;
-
+        [SerializeField] private float startOffset;
         [SerializeField] private GameObject[] matchLengthLaserParts;
 
         private Animator _animator;
+
+        private float _lastDistance = 0;
         
         // Unity functions
         private void OnEnable() {
@@ -35,9 +38,13 @@ namespace Game.NightLevels.LaserShooters {
             }
         }
 
+        private void Update() {
+            DetermineLaserLength();
+        }
+
         // Private functions
         private void OnLevelStart() {
-            StartCoroutine(ShootLaser());
+            StartCoroutine(WaitToShootLaser());
             DetermineLaserLength();
         }
         
@@ -51,28 +58,36 @@ namespace Game.NightLevels.LaserShooters {
                 Debug.LogError("Laser hit nothing.", this);
                 return;
             }
-
+            
             float distance = hit.distance;
-            foreach (GameObject laser in matchLengthLaserParts) {
-                Vector3 currentScale = laser.transform.localScale;
-                laser.transform.localScale = new Vector3(distance, currentScale.y, currentScale.z);
+            if (distance == _lastDistance) return;
+            Debug.Log($"New Distance Calculated: {distance}");
+            _lastDistance = distance;
+            foreach (GameObject lastComponent in matchLengthLaserParts) {
+                Vector3 currentScale = lastComponent.transform.localScale;
+                lastComponent.transform.localScale = new Vector3(distance, currentScale.y, currentScale.z);
                 // Set line location to be starting from current position to the hit point, no matter which direction the laser is facing
-                Vector3 startPoint = laser.transform.position;
+                Vector3 startPoint = lastComponent.transform.position;
                 Vector3 endPoint = hit.point;
-                laser.transform.position = (startPoint + endPoint) / 2;
-                laser.transform.right = endPoint - startPoint;
-                
+                lastComponent.transform.position = (startPoint + endPoint) / 2;
+                lastComponent.transform.right = endPoint - startPoint;
+                Debug.Log($"Start Point: {startPoint}, End Point: {endPoint}");
             }
+        }
+
+        private IEnumerator WaitToShootLaser() {
+            yield return new WaitForSeconds(startOffset);
+            StartCoroutine(ShootLaser());
         }
         
         private IEnumerator ShootLaser() {
             while (true) {
-                yield return new WaitForSeconds(betweenShotsTime);
                 _animator.SetTrigger(AnimationConstants.LaserShooter.Warning);
                 yield return new WaitForSeconds(warningTime);
                 _animator.SetTrigger(AnimationConstants.LaserShooter.On);
                 yield return new WaitForSeconds(activeTime);
                 _animator.SetTrigger(AnimationConstants.LaserShooter.Off);
+                yield return new WaitForSeconds(betweenShotsTime);
             }
         }
     }
