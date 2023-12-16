@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 
 using Constants;
@@ -6,7 +5,6 @@ using Constants;
 using Game.GameManagement;
 
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Game.NightLevels.LaserShooters {
     public class LaserShooter : MonoBehaviour{
@@ -53,7 +51,8 @@ namespace Game.NightLevels.LaserShooters {
         }
         
         private void DetermineLaserLength() {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, Mathf.Infinity, LayerMask.GetMask(LayerConstants.Walls));
+            Transform thisTransform = transform;
+            RaycastHit2D hit = Physics2D.Raycast(thisTransform.position, thisTransform.right, Mathf.Infinity, LayerMask.GetMask(LayerConstants.Walls));
             if (hit.collider is null) {
                 Debug.LogError("Laser hit nothing.", this);
                 return;
@@ -61,17 +60,14 @@ namespace Game.NightLevels.LaserShooters {
             
             float distance = hit.distance;
             if (distance == _lastDistance) return;
-            Debug.Log($"New Distance Calculated: {distance}");
             _lastDistance = distance;
             foreach (GameObject lastComponent in matchLengthLaserParts) {
                 Vector3 currentScale = lastComponent.transform.localScale;
                 lastComponent.transform.localScale = new Vector3(distance, currentScale.y, currentScale.z);
-                // Set line location to be starting from current position to the hit point, no matter which direction the laser is facing
-                Vector3 startPoint = lastComponent.transform.position;
+                Vector3 startPoint = transform.position;
                 Vector3 endPoint = hit.point;
                 lastComponent.transform.position = (startPoint + endPoint) / 2;
                 lastComponent.transform.right = endPoint - startPoint;
-                Debug.Log($"Start Point: {startPoint}, End Point: {endPoint}");
             }
         }
 
