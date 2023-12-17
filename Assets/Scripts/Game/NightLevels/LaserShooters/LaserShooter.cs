@@ -14,9 +14,9 @@ namespace Game.NightLevels.LaserShooters {
         [SerializeField] private float activeTime = 1f;
         [SerializeField] private float startOffset;
         [SerializeField] private GameObject[] matchLengthLaserParts;
-
-        private Animator _animator;
-
+        [SerializeField] private GameObject warningGameObject;
+        [SerializeField] private GameObject onGameObject;
+        
         private float _lastDistance = 0;
         
         // Unity functions
@@ -30,13 +30,6 @@ namespace Game.NightLevels.LaserShooters {
             GameManager.Instance.OnLevelOver -= OnLevelOver;
         }
 
-        private void Awake() {
-            _animator = GetComponent<Animator>();
-            if (_animator is null) {
-                Debug.LogError("Animator not found.", this);
-            }
-        }
-
         private void Update() {
             DetermineLaserLength();
         }
@@ -46,7 +39,8 @@ namespace Game.NightLevels.LaserShooters {
             if (laserType == LaserShooterType.Cycled) {
                 StartCoroutine(WaitToShootLaser());
             } else {
-                _animator.SetTrigger(AnimationConstants.LaserShooter.On);
+                warningGameObject.SetActive(false);
+                onGameObject.SetActive(true);
             }
             DetermineLaserLength();
         }
@@ -77,17 +71,22 @@ namespace Game.NightLevels.LaserShooters {
         }
 
         private IEnumerator WaitToShootLaser() {
+            warningGameObject.SetActive(false);
+            onGameObject.SetActive(false);
             yield return new WaitForSeconds(startOffset);
             StartCoroutine(ShootLaser());
         }
         
         private IEnumerator ShootLaser() {
             while (true) {
-                _animator.SetTrigger(AnimationConstants.LaserShooter.Warning);
+                warningGameObject.SetActive(true);
+                onGameObject.SetActive(false);
                 yield return new WaitForSeconds(warningTime);
-                _animator.SetTrigger(AnimationConstants.LaserShooter.On);
+                warningGameObject.SetActive(false);
+                onGameObject.SetActive(true);
                 yield return new WaitForSeconds(activeTime);
-                _animator.SetTrigger(AnimationConstants.LaserShooter.Off);
+                warningGameObject.SetActive(false);
+                onGameObject.SetActive(false);
                 yield return new WaitForSeconds(betweenShotsTime);
             }
         }
