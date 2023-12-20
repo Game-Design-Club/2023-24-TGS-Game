@@ -1,3 +1,5 @@
+using System.Linq;
+
 using Game.GameManagement;
 
 using UnityEngine;
@@ -8,6 +10,7 @@ namespace Game.MovingObjects
         [SerializeField] private GameObject pointsParent;
         [SerializeField] private float speed = 3f;
         [SerializeField] private bool loop = true;
+        [SerializeField] private bool showLine = true;
     
         private int _currentPointIndex;
         private Vector2 _currentPoint;
@@ -16,6 +19,8 @@ namespace Game.MovingObjects
         private float _startTime;
 
         private Vector2[] _points;
+        
+        private LineRenderer _lineRenderer;
     
         // Unity functions
         private void OnEnable() {
@@ -25,7 +30,10 @@ namespace Game.MovingObjects
         private void OnDisable() {
             GameManager.Instance.OnLevelStart -= OnLevelStart;
         }
-
+        
+        private void Awake() {
+            _lineRenderer = pointsParent.GetComponent<LineRenderer>();
+        }
         // Private functions
         private void OnLevelStart() {
             _points = new Vector2[pointsParent.transform.childCount];
@@ -41,6 +49,16 @@ namespace Game.MovingObjects
             _nextPoint = _points[_currentPointIndex += 1];
             _distance = Vector2.Distance(_currentPoint, _nextPoint);
             _startTime = Time.time;
+
+
+            if (showLine && _lineRenderer != null) {
+                Vector3[] lineRendererPoints = new Vector3[_points.Length];
+                for (int i = 0; i < _points.Length; i++) {
+                    lineRendererPoints[i] = new Vector3(_points[i].x, _points[i].y, 0);
+                }
+                _lineRenderer.positionCount = _points.Length;
+                _lineRenderer.SetPositions(lineRendererPoints);
+            }
         }
     
         private void Update() {
