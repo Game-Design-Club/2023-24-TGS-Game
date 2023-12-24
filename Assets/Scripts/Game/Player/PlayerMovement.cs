@@ -20,6 +20,7 @@ namespace Game.Player {
         
         public void MovementChanged(Vector2 movementInput) {
             _currentMovement = movementInput;
+            _currentMovement.Normalize();
         }
     }
 }
