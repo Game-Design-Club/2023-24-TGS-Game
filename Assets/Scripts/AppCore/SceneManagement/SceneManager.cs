@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace AppCore.SceneManagement {
     public class SceneManager : MonoBehaviour {

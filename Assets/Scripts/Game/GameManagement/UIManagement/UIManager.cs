@@ -1,7 +1,3 @@
-using System;
-
-using Game.GameManagement.LevelManagement;
-
 using UnityEngine;
 
 namespace Game.GameManagement.UIManagement {

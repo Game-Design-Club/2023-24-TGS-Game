@@ -5,7 +5,6 @@ using Constants;
 using Game.GameManagement;
 
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Game.NightLevels.LaserShooters {
     public class LaserShooter : MonoBehaviour{
