@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7712413144387835841}
   - component: {fileID: 630202714405344822}
   - component: {fileID: 5919040179200322564}
+  - component: {fileID: 5771283853818490137}
   m_Layer: 0
   m_Name: Fan
   m_TagString: Untagged
@@ -130,6 +131,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5771283853818490137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491108495538969031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75c6a33c81f448a3839dfecccdfe400d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705687414200325846
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,6 +355,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2012396299502727661}
   - component: {fileID: 5974795060677194281}
+  - component: {fileID: 7835420379812902559}
   m_Layer: 0
   m_Name: Fan
   m_TagString: Untagged
@@ -411,6 +425,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &7835420379812902559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5200932345594521952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39878f9773934abca03033e576ec1755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fanStrength: 5
+  decayOverDistanceRate: 0
+  maxLength: 20
+  fanTrigger: {fileID: 5771283853818490137}
 --- !u!1 &6861923972560001537
 GameObject:
   m_ObjectHideFlags: 0

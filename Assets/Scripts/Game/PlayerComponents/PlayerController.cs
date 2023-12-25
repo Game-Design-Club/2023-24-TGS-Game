@@ -4,7 +4,7 @@ using Game.GameManagement;
 
 using UnityEngine;
 
-namespace Game.Player {
+namespace Game.PlayerComponents {
     public class PlayerController : MonoBehaviour {
         private PlayerMovement _playerMovement;
         private bool _lockedControls;

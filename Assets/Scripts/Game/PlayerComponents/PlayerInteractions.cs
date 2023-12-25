@@ -4,7 +4,7 @@ using Game.GameManagement;
 
 using UnityEngine;
 
-namespace Game.Player {
+namespace Game.PlayerComponents {
     public class PlayerInteractions : MonoBehaviour {
         private bool _interactionsOn = false;
         
