@@ -12,7 +12,6 @@ namespace Game.GameManagement {
         public event Action OnLevelOver; // LevelOver is called when the player dies or finishes the level
         
         private LevelManager _levelManager;
-        private PauseManager _pauseManager;
         
         // Unity functions
         private void Awake() {
@@ -24,13 +23,9 @@ namespace Game.GameManagement {
             }
             
             _levelManager = GetComponentInChildren<LevelManager>();
-            _pauseManager = GetComponentInChildren<PauseManager>();
             
             if (_levelManager is null) {
                 Debug.LogError("LevelManager not found.");
-            }
-            if (_pauseManager is null) {
-                Debug.LogError("PauseManager not found.");
             }
         }
 
