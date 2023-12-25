@@ -2,7 +2,6 @@ using System;
 
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 namespace AppCore.InputManagement {
     public class InputManager : MonoBehaviour {

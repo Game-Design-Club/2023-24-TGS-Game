@@ -24,7 +24,7 @@ namespace Game.CameraManagement
         }
     
         private void OnLevelStart() {
-            Transform playerTransform = Player.Player.Instance.transform; // (Player.Player) because of namespace conflict
+            Transform playerTransform = PlayerComponents.Player.Instance.transform; // (Player.Player) because of namespace conflict
             _virtualCamera.Follow = playerTransform;
             _virtualCamera.ForceCameraPosition(playerTransform.position, transform.rotation);
         }

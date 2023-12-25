@@ -1,8 +1,6 @@
-using System;
-
 using UnityEngine;
 
-namespace Game.Player {
+namespace Game.PlayerComponents {
     public class PlayerMovement : MonoBehaviour{
         [SerializeField] private float movementSpeed = 5f;
         

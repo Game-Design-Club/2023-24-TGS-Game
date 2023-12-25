@@ -1,9 +1,6 @@
-using System;
-
 using TesterScript;
 
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace AppCore.AudioManagement
 {

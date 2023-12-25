@@ -1,5 +1,3 @@
-using System.Collections;
-
 using Constants;
 
 using UnityEngine;
