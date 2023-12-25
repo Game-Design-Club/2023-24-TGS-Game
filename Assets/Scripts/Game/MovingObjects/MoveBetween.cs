@@ -1,3 +1,5 @@
+using System.Collections;
+
 using Game.GameManagement;
 using Game.NightLevels.LaserShooters;
 
@@ -9,6 +11,7 @@ namespace Game.MovingObjects
         [SerializeField] private GameObject pointsParent;
         [SerializeField] private LoopType loop = LoopType.Cyclical;
         [SerializeField] private float speed = 3f;
+        [SerializeField] private float startDelay = 0f;
         [SerializeField] private bool showLine = true;
     
         private int _currentPointIndex;
@@ -18,6 +21,7 @@ namespace Game.MovingObjects
         private float _startTime;
 
         private bool _movingBackwards = false;
+        private bool _isMoving = false;
 
         private Vector2[] _points;
         
@@ -37,35 +41,14 @@ namespace Game.MovingObjects
         }
         // Private functions
         private void OnLevelStart() {
-            _points = new Vector2[pointsParent.transform.childCount];
-            for (int i = 0; i < _points.Length; i++) {
-                _points[i] = pointsParent.transform.GetChild(i).transform.position;
-            }
-            if (_points.Length <= 1) {
-                enabled = false;
-                return;
-            }
-            _currentPointIndex = 0;
-            _currentPoint = _points[_currentPointIndex];
-            _nextPoint = _points[_currentPointIndex += 1];
-            _distance = Vector2.Distance(_currentPoint, _nextPoint);
-            _startTime = Time.time;
-
-
-            if (showLine && _lineRenderer != null) {
-                if (loop == LoopType.Cyclical && _points.Length > 2) { // If there are only 2 points, it's a straight line
-                    _lineRenderer.loop = true;
-                }
-                Vector3[] lineRendererPoints = new Vector3[_points.Length];
-                for (int i = 0; i < _points.Length; i++) {
-                    lineRendererPoints[i] = new Vector3(_points[i].x, _points[i].y, 0);
-                }
-                _lineRenderer.positionCount = _points.Length;
-                _lineRenderer.SetPositions(lineRendererPoints);
-            }
+            StartCoroutine(StartAfterDelay());
         }
-    
+        private IEnumerator StartAfterDelay() {
+            yield return new WaitForSeconds(startDelay);
+            StartMoving();
+        }
         private void Update() {
+            if (!_isMoving) return;
             float distanceCovered = (Time.time - _startTime) * speed;
             float fractionOfJourney = distanceCovered / _distance;
             if (fractionOfJourney > 1) fractionOfJourney = 1;
@@ -76,7 +59,7 @@ namespace Game.MovingObjects
                 // Reached the last point
                 switch (loop) {
                     case LoopType.None:
-                        enabled = false;
+                        _isMoving = false;
                         return;
                     case LoopType.Cyclical:
                         // Move back to the first point
@@ -121,6 +104,39 @@ namespace Game.MovingObjects
             _distance = Vector2.Distance(_currentPoint, _nextPoint);
             _startTime = Time.time;
         }
+        
+        // Public functions
+        public void StartMoving() {
+            _points = new Vector2[pointsParent.transform.childCount];
+            for (int i = 0; i < _points.Length; i++) {
+                _points[i] = pointsParent.transform.GetChild(i).transform.position;
+            }
+            if (_points.Length <= 1) {
+                enabled = false;
+                return;
+            }
+            _currentPointIndex = 0;
+            _currentPoint = _points[_currentPointIndex];
+            _nextPoint = _points[_currentPointIndex += 1];
+            _distance = Vector2.Distance(_currentPoint, _nextPoint);
+            _startTime = Time.time;
+
+
+            if (showLine && _lineRenderer != null) {
+                if (loop == LoopType.Cyclical && _points.Length > 2) { // If there are only 2 points, it's a straight line
+                    _lineRenderer.loop = true;
+                }
+                Vector3[] lineRendererPoints = new Vector3[_points.Length];
+                for (int i = 0; i < _points.Length; i++) {
+                    lineRendererPoints[i] = new Vector3(_points[i].x, _points[i].y, 0);
+                }
+                _lineRenderer.positionCount = _points.Length;
+                _lineRenderer.SetPositions(lineRendererPoints);
+            }
+            
+            _isMoving = true;
+        }
+
     }
 }
 
