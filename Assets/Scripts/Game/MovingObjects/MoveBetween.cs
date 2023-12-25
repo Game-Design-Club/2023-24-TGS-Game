@@ -1,5 +1,3 @@
-using System.Linq;
-
 using Game.GameManagement;
 
 using UnityEngine;
@@ -42,8 +40,8 @@ namespace Game.MovingObjects
             }
             if (_points.Length <= 1) {
                 enabled = false;
+                return;
             }
-
             _currentPointIndex = 0;
             _currentPoint = _points[_currentPointIndex];
             _nextPoint = _points[_currentPointIndex += 1];
