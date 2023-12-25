@@ -310,6 +310,7 @@ GameObject:
   - component: {fileID: 717807812101464004}
   - component: {fileID: 103732524171091322}
   - component: {fileID: 7135471512821529451}
+  - component: {fileID: 6105333931572537259}
   m_Layer: 0
   m_Name: Laser Shooter
   m_TagString: Untagged
@@ -373,9 +374,6 @@ MonoBehaviour:
   warningTime: 1.5
   activeTime: 2
   startOffset: 0
-  matchLengthLaserParts:
-  - {fileID: 804272546221404832}
-  - {fileID: 152247374082525360}
   warningGameObject: {fileID: 804272546221404832}
   onGameObject: {fileID: 152247374082525360}
 --- !u!114 &7135471512821529451
@@ -391,9 +389,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsParent: {fileID: 6781962493244036462}
-  speed: 3
   loop: 1
+  speed: 3
   showLine: 1
+--- !u!114 &6105333931572537259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5304442803487058992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b80efd8042c84c5f822c8390f347ac82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistance: Infinity
+  gameObjectsToMatchLength:
+  - {fileID: 804272546221404832}
+  - {fileID: 152247374082525360}
 --- !u!1 &6303746910081250034
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,6 +484,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8996358988547869369}
   - component: {fileID: 2969099674295480126}
+  - component: {fileID: 6145674508271856330}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -544,6 +559,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &6145674508271856330
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7404737874793183806}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1001 &7015021770392934773
 PrefabInstance:
   m_ObjectHideFlags: 0
