@@ -35,15 +35,17 @@ namespace Game.Interactables {
         }
         
         private void OnTriggerEnter2D(Collider2D other) {
-            if (other.CompareTag(TagConstants.Player)) {
-                _playerInRange = true;
-            }
+            if (!other.CompareTag(TagConstants.Player)) return;
+
+            _playerInRange = true;
+            InteractionsPopup.Instance.Show();
         }
 
         private void OnTriggerExit2D(Collider2D other) {
-            if (other.CompareTag(TagConstants.Player)) {
-                _playerInRange = false;
-            }
+            if (!other.CompareTag(TagConstants.Player)) return;
+
+            _playerInRange = false;
+            InteractionsPopup.Instance.Hide();
         }
         
         // Private functions
