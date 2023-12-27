@@ -1,5 +1,5 @@
 {
-    "name": "Player Input",
+    "name": "Input Actions",
     "maps": [
         {
             "name": "Player",
@@ -240,6 +240,15 @@
                     "type": "PassThrough",
                     "id": "d51ce15c-9f0f-4bd2-bec1-556a4cb89b82",
                     "expectedControlType": "Quaternion",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "9419e1fb-dc01-4f5b-aa34-1d8f3adb9519",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -661,6 +670,17 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "TrackedDeviceOrientation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "baaee8a5-f968-433c-8ef5-ec726c18290c",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
