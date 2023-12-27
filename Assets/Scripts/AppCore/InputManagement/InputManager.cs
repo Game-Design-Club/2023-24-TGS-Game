@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 namespace AppCore.InputManagement {
     public class InputManager : MonoBehaviour {
         public event Action<Vector2> OnMovementInput;
-        public event Action OnInteractInput;
+        public event Action OnInteractPressed;
         
         private InputActions _inputActions;
         
@@ -55,7 +55,7 @@ namespace AppCore.InputManagement {
         }
         
         private void OnInteractPerformed(InputAction.CallbackContext context) {
-            OnInteractInput?.Invoke();
+            OnInteractPressed?.Invoke();
         }
     }
 }
