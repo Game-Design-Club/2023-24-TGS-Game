@@ -22,7 +22,12 @@ namespace Editor
             string folderPath = GetCurrentFolderPath();
 
             // Instantiate and create a prefab from the default GameObject
-            GameObject instantiatedObject = Object.Instantiate(defaultGameObject);
+            GameObject instantiatedObject = PrefabUtility.InstantiatePrefab(defaultGameObject) as GameObject;
+            if (instantiatedObject == null) {
+                EditorUtility.DisplayDialog("Prefab Creation Failed", "Failed to create a prefab.", "OK");
+                return;
+            }
+            PrefabUtility.UnpackPrefabInstance(instantiatedObject, PrefabUnpackMode.OutermostRoot, InteractionMode.AutomatedAction);
             string prefabName = "New Level";
             instantiatedObject.name = prefabName;
             string fullPath = Path.Combine(folderPath, prefabName + ".prefab");
