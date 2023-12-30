@@ -11,8 +11,10 @@ namespace Game.Interactables {
     [RequireComponent(typeof(Collider2D))]
     public class Interactable : MonoBehaviour {
         [SerializeField] private UnityEvent interacted;
+        [SerializeField] private bool oneTimeUse = true;
         
         private bool _playerInRange = false;
+        private bool _interacted = false;
         
         private Collider2D _collider2D;
         
@@ -35,14 +37,14 @@ namespace Game.Interactables {
         }
         
         private void OnTriggerEnter2D(Collider2D other) {
-            if (!other.CompareTag(TagConstants.Player) || !Application.isPlaying) return;
+            if (!other.CompareTag(TagConstants.Player) || !Application.isPlaying || (_interacted && oneTimeUse)) return;
 
             _playerInRange = true;
             InteractionsPopup.Instance.Show();
         }
 
         private void OnTriggerExit2D(Collider2D other) {
-            if (!other.CompareTag(TagConstants.Player) || !Application.isPlaying) return;
+            if (!other.CompareTag(TagConstants.Player) || !Application.isPlaying || (_interacted && oneTimeUse)) return;
 
             _playerInRange = false;
             InteractionsPopup.Instance.Hide();
@@ -56,6 +58,10 @@ namespace Game.Interactables {
         
         private void Interacted() {
             interacted?.Invoke();
+            if (oneTimeUse) {
+                _interacted = true;
+                InteractionsPopup.Instance.Hide();
+            }
         }
         
         private void OnLevelStart() {
