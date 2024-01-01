@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 5.3168826
+    OrthographicSize: 8
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -174,7 +174,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.3168826
+  orthographic size: 8.37
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -360,7 +360,7 @@ MonoBehaviour:
   m_PivotOffset: {x: 0, y: 0, z: 0}
   m_AmplitudeGain: 0
   m_FrequencyGain: 0
-  mNoiseOffsets: {x: 0, y: 0, z: 0}
+  mNoiseOffsets: {x: -689.5614, y: -109.46359, z: -484.28333}
 --- !u!1 &3651679837890676466
 GameObject:
   m_ObjectHideFlags: 0
