@@ -11,6 +11,7 @@ namespace Game.NightLevels.Spikes {
         [SerializeField] private GameObject spikesOff;
         [SerializeField] private float offDuration = 1f;
         [SerializeField] private float onDuration = 1f;
+        [SerializeField] private float delay = 0f;
 
         // Unity functions
         private void OnEnable() {
@@ -33,6 +34,9 @@ namespace Game.NightLevels.Spikes {
         }
         
         private IEnumerator SpikeRoutine() {
+            spikesOn.SetActive(true);
+            spikesOff.SetActive(false);
+            yield return new WaitForSeconds(delay);
             while (true) {
                 spikesOn.SetActive(true);
                 spikesOff.SetActive(false);
