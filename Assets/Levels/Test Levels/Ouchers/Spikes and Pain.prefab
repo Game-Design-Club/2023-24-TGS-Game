@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 5349337489874689870}
   - component: {fileID: 5204659455420192709}
   m_Layer: 0
-  m_Name: Spikes
+  m_Name: Spikes and Pain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,6 +75,7 @@ Transform:
   - {fileID: 1801353934689063417}
   - {fileID: 6216873832891098521}
   - {fileID: 110089472581260086}
+  - {fileID: 3967181740684503134}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5204659455420192709
@@ -89,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50da87de824c4b18aaf59b1d54f13cbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: Default Level
+  levelName: Spikes and Pain
   nextLevel: {fileID: 0}
 --- !u!1 &3346668768738277484
 GameObject:
@@ -191,6 +192,68 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4386014233628155372, guid: 2c5e02e86dc29429c946ff4845c6af72, type: 3}
   m_PrefabInstance: {fileID: 428788880703597927}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &683548132369109585
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5349337489874689870}
+    m_Modifications:
+    - target: {fileID: 4499713547610389007, guid: 4c988217d510e439bb21d14de2267a38, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499713547610389007, guid: 4c988217d510e439bb21d14de2267a38, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499713547610389007, guid: 4c988217d510e439bb21d14de2267a38, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499713547610389007, guid: 4c988217d510e439bb21d14de2267a38, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499713547610389007, guid: 4c988217d510e439bb21d14de2267a38, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499713547610389007, guid: 4c988217d510e439bb21d14de2267a38, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499713547610389007, guid: 4c988217d510e439bb21d14de2267a38, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499713547610389007, guid: 4c988217d510e439bb21d14de2267a38, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499713547610389007, guid: 4c988217d510e439bb21d14de2267a38, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499713547610389007, guid: 4c988217d510e439bb21d14de2267a38, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202731725583367209, guid: 4c988217d510e439bb21d14de2267a38, type: 3}
+      propertyPath: m_Name
+      value: Ball of Pain
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4c988217d510e439bb21d14de2267a38, type: 3}
+--- !u!4 &3967181740684503134 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4499713547610389007, guid: 4c988217d510e439bb21d14de2267a38, type: 3}
+  m_PrefabInstance: {fileID: 683548132369109585}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1033113735206232977
 PrefabInstance:
