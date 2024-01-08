@@ -377,6 +377,7 @@ GameObject:
   m_Component:
   - component: {fileID: 103438430217019246}
   - component: {fileID: 7153672263306914036}
+  - component: {fileID: 3466868403356298402}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Oucher
@@ -434,6 +435,33 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.64
+--- !u!114 &3466868403356298402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6634131907404396270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b0ec402b0d34053bb33c050d0ccb924, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onKilledPlayer:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 764611418891056192}
+        m_TargetAssemblyTypeName: Game.MovingObjects.MoveBetween, Assembly-CSharp
+        m_MethodName: StopMoving
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6921972882199780667
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using Constants;
 
 using Game.GameManagement;
+using Game.NightLevels;
 
 using UnityEngine;
 
@@ -24,6 +25,9 @@ namespace Game.PlayerComponents {
             switch (other.gameObject.tag) {
                 case TagConstants.Oucher:
                     GameManager.Instance.PlayerDied();
+                    if (other.TryGetComponent(out Oucher oucher)) {
+                        oucher.KilledPlayer();
+                    }
                     break;
                 case TagConstants.Goal:
                     GameManager.Instance.LevelCompleted();
