@@ -1,9 +1,3 @@
-using System;
-
-using Constants;
-
-using Game.MovingObjects;
-
 using UnityEngine;
 using UnityEngine.Events;
 
