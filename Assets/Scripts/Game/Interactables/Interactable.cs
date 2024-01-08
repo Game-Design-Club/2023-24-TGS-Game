@@ -70,7 +70,7 @@ namespace Game.Interactables {
         
         private void CheckInitialPlayerPosition() {
             // Adjust the size and position based on your trigger collider
-            Collider2D[] hitColliders = Physics2D.OverlapBoxAll(transform.position, GetComponent<Collider2D>().bounds.size, 0);
+            Collider2D[] hitColliders = Physics2D.OverlapBoxAll(transform.position, _collider2D.bounds.size, 0);
             foreach (Collider2D hitCollider in hitColliders) {
                 if (hitCollider.CompareTag(TagConstants.Player)) {
                     _playerInRange = true;
