@@ -7,6 +7,8 @@ namespace AppCore.InputManagement {
     public class InputManager : MonoBehaviour {
         public event Action<Vector2> OnMovementInput;
         public event Action OnInteractPressed;
+        public event Action<Vector2> OnClick;
+        public event Action<Vector2> OnClickWorld;
         
         private InputActions _inputActions;
         
@@ -18,12 +20,14 @@ namespace AppCore.InputManagement {
             _inputActions.Enable();
             EnableMovement();
             EnableInteract();
+            EnableClicking();
         }
 
         private void OnDisable() {
             _inputActions.Disable();
             DisableMovement();
             DisableInteract();
+            DisableClicking();
         }
 
 
@@ -49,6 +53,16 @@ namespace AppCore.InputManagement {
             _inputActions.UI.Interact.performed -= OnInteractPerformed;
         }
         
+        private void EnableClicking() {
+            _inputActions.UI.Click.Enable();
+            _inputActions.UI.Click.performed += OnClickPerformed;
+        }
+        
+        private void DisableClicking() {
+            _inputActions.UI.Click.Disable();
+            _inputActions.UI.Click.performed -= OnClickPerformed;
+        }
+        
         private void OnMovementPerformed(InputAction.CallbackContext context) {
             Vector2 movementInput = context.ReadValue<Vector2>();
             OnMovementInput?.Invoke(movementInput);
@@ -56,6 +70,12 @@ namespace AppCore.InputManagement {
         
         private void OnInteractPerformed(InputAction.CallbackContext context) {
             OnInteractPressed?.Invoke();
+        }
+        
+        private void OnClickPerformed(InputAction.CallbackContext context) {
+            Vector2 clickPosition = Mouse.current.position.ReadValue();
+            OnClick?.Invoke(clickPosition);
+            OnClickWorld?.Invoke(Camera.main.ScreenToWorldPoint(clickPosition));
         }
     }
 }
