@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -6,6 +7,7 @@ using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using Object = UnityEngine.Object;
 
 namespace Game.GameManagement.LevelManagement
 {
@@ -44,6 +46,11 @@ namespace Game.GameManagement.LevelManagement
             {
                 // Initialize your prefab list here
                 LoadPrefabList();
+            }
+
+            private void OnFocus()
+            {
+                Repaint();
             }
 
             private void OnGUI()
@@ -96,7 +103,7 @@ namespace Game.GameManagement.LevelManagement
                     GUILayout.BeginVertical(); // Nested vertical layout for name and button
                     GUILayout.BeginHorizontal();
                     // Display the name of the prefab
-                    GUILayout.Label(_objectPrefabList.prefabList[i].name, GUILayout.Width(100));
+                    GUILayout.Label(_objectPrefabList.prefabList[i].name, GUILayout.Width(150));
                     GUILayout.FlexibleSpace();
                     if (GUILayout.Button("delete", GUILayout.Width(50)))
                     {
