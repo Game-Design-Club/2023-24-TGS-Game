@@ -5,7 +5,8 @@ using AppCore.InputManagement;
 using AppCore.SceneManagement;
 using AppCore.TransitionManagement;
 
-using UnityEngine.EventSystems;
+using UnityEditor;
+
 using UnityEngine.Serialization;
 
 namespace AppCore {
@@ -25,6 +26,13 @@ namespace AppCore {
                 DontDestroyOnLoad(gameObject);
             } else {
                 Destroy(gameObject);
+            }
+        }
+        
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        private static void CheckAppInstance() {
+            if (Instance == null) {
+                Debug.LogError("No App instance found in the scene.");
             }
         }
     }

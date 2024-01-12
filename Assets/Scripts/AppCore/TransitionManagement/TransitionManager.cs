@@ -11,6 +11,7 @@ namespace AppCore.TransitionManagement {
         }
 
         public void FadeIn(TransitionType transitionType = TransitionType.Fade) {
+            ResetTriggers();
             switch (transitionType) {
                 case TransitionType.Fade:
                     _animator.SetTrigger(Constants.AnimationConstants.FadeInOut.FadeToBlack);
@@ -22,6 +23,7 @@ namespace AppCore.TransitionManagement {
         }
         
         public void FadeOut(TransitionType transitionType = TransitionType.Fade) {
+            ResetTriggers();
             switch (transitionType) {
                 case TransitionType.Fade:
                     _animator.SetTrigger(Constants.AnimationConstants.FadeInOut.FadeFromBlack);
@@ -30,6 +32,14 @@ namespace AppCore.TransitionManagement {
                     _animator.SetTrigger(Constants.AnimationConstants.WipeInOut.WipeFromBlack);
                     break;
             }
+        }
+        
+        // Private functions
+        private void ResetTriggers() {
+            _animator.ResetTrigger(Constants.AnimationConstants.FadeInOut.FadeToBlack);
+            _animator.ResetTrigger(Constants.AnimationConstants.FadeInOut.FadeFromBlack);
+            _animator.ResetTrigger(Constants.AnimationConstants.WipeInOut.WipeToBlack);
+            _animator.ResetTrigger(Constants.AnimationConstants.WipeInOut.WipeFromBlack);
         }
     }
 }
