@@ -75,7 +75,7 @@ namespace Game.GameManagement {
         }
         
         public static void LevelCompletedStatic() {
-            s_instance.RestartLevel();
+            s_instance.LevelCompleted();
         }
     }
 }

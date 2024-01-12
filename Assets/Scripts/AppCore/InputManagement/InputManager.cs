@@ -7,6 +7,7 @@ namespace AppCore.InputManagement {
     public class InputManager : MonoBehaviour {
         public event Action<Vector2> OnMovementInput;
         public event Action OnInteractPressed;
+        public event Action OnCancelPressed;
         
         private InputActions _inputActions;
         
@@ -18,12 +19,14 @@ namespace AppCore.InputManagement {
             _inputActions.Enable();
             EnableMovement();
             EnableInteract();
+            EnableCancel();
         }
 
         private void OnDisable() {
             _inputActions.Disable();
             DisableMovement();
             DisableInteract();
+            DisableCancel();
         }
 
 
@@ -49,6 +52,16 @@ namespace AppCore.InputManagement {
             _inputActions.UI.Interact.performed -= OnInteractPerformed;
         }
         
+        private void EnableCancel() {
+            _inputActions.UI.Cancel.Enable();
+            _inputActions.UI.Cancel.performed += OnCancelPerformed;
+        }
+        
+        private void DisableCancel() {
+            _inputActions.UI.Cancel.Disable();
+            _inputActions.UI.Cancel.performed -= OnCancelPerformed;
+        }
+        
         private void OnMovementPerformed(InputAction.CallbackContext context) {
             Vector2 movementInput = context.ReadValue<Vector2>();
             OnMovementInput?.Invoke(movementInput);
@@ -56,6 +69,10 @@ namespace AppCore.InputManagement {
         
         private void OnInteractPerformed(InputAction.CallbackContext context) {
             OnInteractPressed?.Invoke();
+        }
+        
+        private void OnCancelPerformed(InputAction.CallbackContext context) {
+            OnCancelPressed?.Invoke();
         }
     }
 }

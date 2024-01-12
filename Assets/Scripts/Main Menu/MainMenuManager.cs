@@ -21,7 +21,6 @@ namespace Main_Menu {
                 return;
             }
             _freeze = true;
-            Debug.Log("Quitting game");
             Application.Quit();
         }
     }

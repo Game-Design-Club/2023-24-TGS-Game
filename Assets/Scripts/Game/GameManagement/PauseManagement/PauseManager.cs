@@ -1,5 +1,3 @@
-using System;
-
 using UnityEngine;
 
 namespace Game.GameManagement.PauseManagement {
@@ -39,6 +37,14 @@ namespace Game.GameManagement.PauseManagement {
         public void OnLevelStart() {
             if (IsPaused) {
                 ResumeGame();
+            }
+        }
+        
+        public void TogglePaused() {
+            if (IsPaused) {
+                ResumeGame();
+            } else {
+                PauseGame();
             }
         }
     }
