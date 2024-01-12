@@ -15,12 +15,10 @@ namespace Credits {
         [SerializeField] private GameObject personNamePrefab;
         [SerializeField] private GameObject creditsParentObject;
         [SerializeField] private float scrollSpeed = 1f;
-
-        [SerializeField] private float endY;
         
         [SerializeField] private GameObject thankYouObject;
-        [SerializeField] private float thankYouDelay = 1f;
 
+        private float _endY;
         private bool _scrolling = true;
 
         // Unity functions
@@ -41,26 +39,35 @@ namespace Credits {
         private void Update() {
             if (!_scrolling) return;
             creditsParentObject.transform.position += Vector3.up * (scrollSpeed * Time.deltaTime);
-            if (creditsParentObject.transform.position.y < endY) {
+            if (creditsParentObject.transform.position.y > _endY) {
                 _scrolling = false;
                 ShowThankYou();
-                Debug.Log("Scroll done");
             }
         }
 
         // Private functions
         private void SetupCredits() {
-            float currentY = 0;
+            _endY = 0f;
+            float currentY = 0f;
             foreach (CreditsSection section in creditsAsset.creditsSections) {
                 GameObject sectionObject = Instantiate(sectionTitlePrefab, creditsParentObject.transform);
-                Debug.Log(section.title);
                 sectionObject.GetComponent<TextMeshProUGUI>().SetText(section.title);
-                // foreach (String personName in section.names) {
-                //     GameObject nameObject = Instantiate(personNamePrefab, creditsParentObject.transform);
-                //     nameObject.GetComponent<TextMeshProUGUI>().SetText(personName);
-                // }
+                RectTransform sectionTransform = sectionObject.GetComponent<RectTransform>();
+                sectionTransform.anchoredPosition = new Vector2(sectionTransform.anchoredPosition.x, currentY);
+                foreach (String personName in section.names) {
+                    GameObject nameObject = Instantiate(personNamePrefab, creditsParentObject.transform);
+                    nameObject.GetComponent<TextMeshProUGUI>().SetText(personName);
+                    RectTransform nameTransform = nameObject.GetComponent<RectTransform>();
+                    nameTransform.anchoredPosition = new Vector2(nameTransform.anchoredPosition.x, currentY);
+                    
+                    float nameHeight = nameObject.GetComponent<RectTransform>().rect.height;
+                    currentY -= nameHeight;
+                    _endY += nameHeight;
+                }
                 currentY -= creditsAsset.spaceBetweenSections;
+                _endY += creditsAsset.spaceBetweenSections;
             }
+            Debug.Log(_endY);
         }
         
         private void OnCancelPressed() {
