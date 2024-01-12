@@ -20,6 +20,7 @@ namespace Credits {
 
         private float _endY;
         private bool _scrolling = true;
+        private bool _freeze = false;
 
         // Unity functions
         private void OnEnable() {
@@ -47,7 +48,7 @@ namespace Credits {
 
         // Private functions
         private void SetupCredits() {
-            _endY = 0f;
+            _endY = -creditsParentObject.GetComponent<RectTransform>().rect.y;
             float currentY = 0f;
             foreach (CreditsSection section in creditsAsset.creditsSections) {
                 GameObject sectionObject = Instantiate(sectionTitlePrefab, creditsParentObject.transform);
@@ -67,11 +68,13 @@ namespace Credits {
                 currentY -= creditsAsset.spaceBetweenSections;
                 _endY += creditsAsset.spaceBetweenSections;
             }
-            Debug.Log(_endY);
+            
         }
         
         private void OnCancelPressed() {
+            if (_freeze) return;
             App.Instance.sceneManager.LoadScene(SceneConstants.MainMenu, true);
+            _freeze = true;
         }
 
         private void ShowThankYou() {

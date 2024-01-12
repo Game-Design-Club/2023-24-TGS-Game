@@ -33,10 +33,10 @@ namespace Game.GameManagement.UIManagement {
             
             GameManagerEvents.OnLevelStart -= OnLevelStart;
         }
-        
+
         private void OnGamePause() {
             pauseCanvas.SetActive(true);
-            eventSystem.SetSelectedGameObject(defaultSelectedGameObjectPaused);
+            if (defaultSelectedGameObjectPaused != null) eventSystem.SetSelectedGameObject(defaultSelectedGameObjectPaused);
         }
         
         private void OnGameResume() {
