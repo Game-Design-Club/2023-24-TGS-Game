@@ -13,17 +13,16 @@ MonoBehaviour:
   m_Name: CreditsInfo
   m_EditorClassIdentifier: 
   creditsSections:
-  - sectionTitle: Leaders
-    peopleNames:
-    - Nico Howlett
+  - title: Leaders
+    names:
     - Noah Conzetti
-  - sectionTitle: Art
-    peopleNames:
+    - Nico Howlett
+  - title: Art
+    names:
     - Nico Howlett
     - Quinn Hatcher-Ross
     - Paul Maslen
-  - sectionTitle: Music
-    peopleNames:
+  - title: Music
+    names:
     - Paul Maslen
-  spaceBetweenLines: 1
   spaceBetweenSections: 3
