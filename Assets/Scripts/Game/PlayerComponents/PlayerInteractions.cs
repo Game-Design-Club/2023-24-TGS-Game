@@ -1,6 +1,7 @@
 using Constants;
 
 using Game.GameManagement;
+using Game.NightLevels;
 
 using UnityEngine;
 
@@ -30,6 +31,9 @@ namespace Game.PlayerComponents {
                 case TagConstants.Oucher:
                     GameManager.Instance.PlayerDied();
                     _playerAnimator.PlayDeathAnimation();
+                    if (other.TryGetComponent(out Oucher oucher)) {
+                        oucher.KilledPlayer();
+                    }
                     break;
                 case TagConstants.Goal:
                     GameManager.Instance.LevelCompleted();
