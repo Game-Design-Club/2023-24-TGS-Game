@@ -1,5 +1,5 @@
 using System;
-
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -73,6 +73,7 @@ namespace AppCore.InputManagement {
         }
         
         private void OnClickPerformed(InputAction.CallbackContext context) {
+            if (!Mouse.current.leftButton.wasPressedThisFrame) return;
             Vector2 clickPosition = Mouse.current.position.ReadValue();
             OnClick?.Invoke(clickPosition);
             OnClickWorld?.Invoke(Camera.main.ScreenToWorldPoint(clickPosition));
