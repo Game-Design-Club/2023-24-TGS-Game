@@ -1,5 +1,7 @@
 using System;
 
+using AppCore;
+
 using Game.GameManagement.LevelManagement;
 
 using UnityEngine;
@@ -61,8 +63,7 @@ namespace Game.GameManagement {
         }
         
         public void LoadMainMenu() {
-            Debug.LogError("Not implemented yet");
-            // App.Instance.sceneManager.LoadScene(Constants.SceneConstants.MainMenu);
+            App.Instance.sceneManager.LoadScene(Constants.SceneConstants.MainMenu);
         }
     }
 }

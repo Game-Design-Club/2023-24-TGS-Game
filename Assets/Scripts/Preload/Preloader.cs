@@ -41,7 +41,7 @@ namespace Preload
             }
 
             yield return new WaitForSecondsRealtime(postWaitTime);
-            App.Instance.sceneManager.LoadScene(SceneConstants.Menu, false);
+            App.Instance.sceneManager.LoadScene(SceneConstants.MainMenu, false);
         }
     }
 }
