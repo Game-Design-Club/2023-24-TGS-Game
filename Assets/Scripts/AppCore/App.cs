@@ -5,6 +5,8 @@ using AppCore.InputManagement;
 using AppCore.SceneManagement;
 using AppCore.FadeManagement;
 
+using UnityEngine.EventSystems;
+
 namespace AppCore {
     public class App : MonoBehaviour {
         public static App Instance { get; private set; }
@@ -13,6 +15,8 @@ namespace AppCore {
         [SerializeField] public InputManager inputManager;
         [SerializeField] public SceneManager sceneManager;
         [SerializeField] public FadeManager fadeManager;
+
+        [SerializeField] private EventSystem eventSystem;
         
         private void Awake() {
             // Sets up singleton pattern
@@ -21,7 +25,14 @@ namespace AppCore {
                 DontDestroyOnLoad(gameObject);
             } else {
                 Destroy(gameObject);
+                if (eventSystem.firstSelectedGameObject != null) {
+                    SetUISelected(eventSystem.firstSelectedGameObject);
+                }
             }
+        }
+
+        private void SetUISelected(GameObject uiObject) {
+            eventSystem.SetSelectedGameObject(uiObject);
         }
     }
 }

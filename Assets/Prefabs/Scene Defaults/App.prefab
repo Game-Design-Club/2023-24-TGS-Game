@@ -298,7 +298,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50aa6d680e5944f88ccefb5b3b4169a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionPeriod: 2
+  fadeTransitionPeriod: 2.5
+  fadeAnimator: {fileID: 9100000, guid: f57c407bedaef46bf94a84b49dbc5e01, type: 2}
+  wipeTransitionPeriod: 1.5
+  wipeAnimator: {fileID: 9100000, guid: 699df3736557d4a9dbc5f1ba99530a7a, type: 2}
 --- !u!95 &9007641925216518637
 Animator:
   serializedVersion: 5

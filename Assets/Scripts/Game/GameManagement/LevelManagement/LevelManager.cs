@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 
 using AppCore;
+using AppCore.FadeManagement;
 
 using UnityEngine;
 

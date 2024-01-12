@@ -1,4 +1,7 @@
 using System.Collections;
+
+using AppCore.FadeManagement;
+
 using UnityEngine;
 
 namespace AppCore.SceneManagement {
