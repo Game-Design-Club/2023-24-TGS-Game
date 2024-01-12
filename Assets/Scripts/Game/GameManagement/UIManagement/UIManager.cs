@@ -1,3 +1,5 @@
+using Game.GameManagement.PauseManagement;
+
 using UnityEngine;
 
 namespace Game.GameManagement.UIManagement {
@@ -6,17 +8,17 @@ namespace Game.GameManagement.UIManagement {
         [SerializeField] private GameObject pauseCanvas;
         
         private void OnEnable() {
-            PauseManager.Instance.OnGamePause += PauseGame;
-            PauseManager.Instance.OnGameResume += ResumeGame;
+            PauseManagerEvents.OnGamePause += PauseGame;
+            PauseManagerEvents.OnGameResume += ResumeGame;
 
-            GameManager.Instance.OnLevelStart += LevelStart;
+            GameManagerEvents.OnLevelStart += OnLevelStart;
         }
 
         private void OnDisable() {
-            PauseManager.Instance.OnGamePause -= PauseGame;
-            PauseManager.Instance.OnGameResume -= ResumeGame;
+            PauseManagerEvents.OnGamePause -= PauseGame;
+            PauseManagerEvents.OnGameResume -= ResumeGame;
             
-            GameManager.Instance.OnLevelStart -= LevelStart;
+            GameManagerEvents.OnLevelStart -= OnLevelStart;
         }
         
         private void PauseGame() {
@@ -27,7 +29,7 @@ namespace Game.GameManagement.UIManagement {
             pauseCanvas.SetActive(false);
         }
         
-        private void LevelStart() {
+        private void OnLevelStart() {
             // hudDisplay.SetActive(true);
             pauseCanvas.SetActive(false);
         }

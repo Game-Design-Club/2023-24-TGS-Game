@@ -14,13 +14,13 @@ namespace Game.CameraManagement
         }
 
         private void OnEnable() {
-            GameManager.Instance.OnLevelStart += OnLevelStart;
-            GameManager.Instance.OnLevelOver += OnLevelOver;
+            GameManagerEvents.OnLevelStart += OnLevelStart;
+            GameManagerEvents.OnLevelOver += OnLevelOver;
         }
     
         private void OnDisable() {
-            GameManager.Instance.OnLevelStart -= OnLevelStart;
-            GameManager.Instance.OnLevelOver -= OnLevelOver;
+            GameManagerEvents.OnLevelStart -= OnLevelStart;
+            GameManagerEvents.OnLevelOver -= OnLevelOver;
         }
     
         private void OnLevelStart() {

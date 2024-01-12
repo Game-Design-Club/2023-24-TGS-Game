@@ -17,17 +17,9 @@ namespace Game.GameManagement.LevelManagement {
         private bool _currentlySwitching;
         
         public event Action OnLevelLoaded;
-        public static LevelManager Instance { get; private set; }
         
         // Unity functions
         private void Awake() {
-            if (Instance is null) {
-                Instance = this;
-            } else {
-                Debug.LogWarning("Duplicate LevelManager found and deleted.");
-                Destroy(gameObject);
-            }
-            
             if (customFirstLevel != null) {
                 firstLevel = customFirstLevel;
             }

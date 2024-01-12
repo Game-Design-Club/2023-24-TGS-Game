@@ -12,13 +12,13 @@ namespace Game.NightLevels.Shooter {
         
         // Unity functions
         private void OnEnable() {
-            GameManager.Instance.OnLevelOver += LevelOver;
-            GameManager.Instance.OnLevelStart += LevelStart;
+            GameManagerEvents.OnLevelStart += OnLevelStart;
+            GameManagerEvents.OnLevelOver += OnLevelOver;
         }
 
         private void OnDisable() {
-            GameManager.Instance.OnLevelOver -= LevelOver;
-            GameManager.Instance.OnLevelStart -= LevelStart;
+            GameManagerEvents.OnLevelStart -= OnLevelStart;
+            GameManagerEvents.OnLevelOver -= OnLevelOver;
         }
 
         // Private functions
@@ -31,11 +31,11 @@ namespace Game.NightLevels.Shooter {
             }
         }
 
-        private void LevelOver() {
+        private void OnLevelOver() {
             StopAllCoroutines();
         }
 
-        private void LevelStart() {
+        private void OnLevelStart() {
             StartCoroutine(SpawnBullets());
         }
     }

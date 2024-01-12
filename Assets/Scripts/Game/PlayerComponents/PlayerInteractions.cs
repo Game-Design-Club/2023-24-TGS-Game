@@ -10,23 +10,23 @@ namespace Game.PlayerComponents {
         
         // Unity functions
         private void OnEnable() {
-            GameManager.Instance.OnLevelStart += OnLevelStart;
-            GameManager.Instance.OnLevelOver += OnLevelOver;
+            GameManagerEvents.OnLevelStart += OnLevelStart;
+            GameManagerEvents.OnLevelOver += OnLevelOver;
         }
         
         private void OnDisable() {
-            GameManager.Instance.OnLevelStart -= OnLevelStart;
-            GameManager.Instance.OnLevelOver -= OnLevelOver;
+            GameManagerEvents.OnLevelStart -= OnLevelStart;
+            GameManagerEvents.OnLevelOver -= OnLevelOver;
         }
         
         private void OnTriggerEnter2D(Collider2D other) {
             if (!_interactionsOn) return;
             switch (other.gameObject.tag) {
                 case TagConstants.Oucher:
-                    GameManager.Instance.PlayerDied();
+                    GameManager.PlayerDiedStatic();
                     break;
                 case TagConstants.Goal:
-                    GameManager.Instance.LevelCompleted();
+                    GameManager.LevelCompletedStatic();
                     break;
             }
         }

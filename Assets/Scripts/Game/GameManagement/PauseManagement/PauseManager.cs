@@ -2,31 +2,17 @@ using System;
 
 using UnityEngine;
 
-namespace Game.GameManagement {
+namespace Game.GameManagement.PauseManagement {
     public class PauseManager : MonoBehaviour{
         private bool IsPaused { get; set; }
         
-        public event Action OnGamePause;
-        public event Action OnGameResume;
-        
-        public static PauseManager Instance { get; private set; }
-        
         // Unity functions
-        private void Awake() {
-            if (Instance is null) {
-                Instance = this;
-            } else {
-                Debug.LogWarning("Duplicate PauseManager found and deleted.");
-                Destroy(gameObject);
-            }
-        }
-
         private void OnEnable() {
-            GameManager.Instance.OnLevelStart += TryResumeGame;
+            GameManagerEvents.OnLevelStart += OnLevelStart;
         }
         
         private void OnDisable() {
-            GameManager.Instance.OnLevelStart -= TryResumeGame;
+            GameManagerEvents.OnLevelStart -= OnLevelStart;
         }
         
         // Public functions
@@ -35,7 +21,7 @@ namespace Game.GameManagement {
                 Debug.LogWarning("Tried to pause game while already paused.");
                 return;
             }
-            OnGamePause?.Invoke();
+            PauseManagerEvents.InvokeGamePause();
             IsPaused = true;
             Time.timeScale = 0;
         }
@@ -45,12 +31,12 @@ namespace Game.GameManagement {
                 Debug.LogWarning("Tried to resume game while not paused.");
                 return;
             }
-            OnGameResume?.Invoke();
+            PauseManagerEvents.InvokeGameResume();
             IsPaused = false;
             Time.timeScale = 1;
         }
         
-        public void TryResumeGame() {
+        public void OnLevelStart() {
             if (IsPaused) {
                 ResumeGame();
             }
