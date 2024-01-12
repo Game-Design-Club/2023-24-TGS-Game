@@ -62,7 +62,7 @@ namespace Game.GameManagement {
             OnLevelOver?.Invoke();
         }
         
-        public void LoadMainMenu() {
+        public void QuitToMainMenu() {
             App.Instance.sceneManager.LoadScene(Constants.SceneConstants.MainMenu);
         }
     }

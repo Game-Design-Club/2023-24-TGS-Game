@@ -65,7 +65,6 @@ namespace Game.GameManagement.LevelManagement {
                 _currentlySwitching = true;
                 yield return new WaitForSecondsRealtime(App.Instance.transitionManager.wipeTime);
                 _currentlySwitching = false;
-                Debug.Log("Done waiting");
                 App.Instance.transitionManager.FadeOut(TransitionType.Wipe);
             }
             ChangeCurrentLevel(level);
