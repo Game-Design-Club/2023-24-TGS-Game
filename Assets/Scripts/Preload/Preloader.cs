@@ -1,7 +1,6 @@
 using System.Collections;
 
 using AppCore;
-using AppCore.FadeManagement;
 
 using Constants;
 

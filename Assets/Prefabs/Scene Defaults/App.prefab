@@ -135,10 +135,10 @@ RectTransform:
   m_Father: {fileID: 1957750964966658944}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 678}
-  m_Pivot: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2842810523016557115
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -161,7 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -298,8 +298,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50aa6d680e5944f88ccefb5b3b4169a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionPeriod: 1.5
-  wipeAnimator: {fileID: 9100000, guid: 699df3736557d4a9dbc5f1ba99530a7a, type: 2}
+  fadeTime: 1.7
+  wipeTime: 1
 --- !u!95 &9007641925216518637
 Animator:
   serializedVersion: 5
@@ -515,8 +515,7 @@ MonoBehaviour:
   audioManager: {fileID: 8572554616410408506}
   inputManager: {fileID: 7720440812478346304}
   sceneManager: {fileID: 8611576920855062264}
-  fadeManager: {fileID: 7035760210295001624}
-  eventSystem: {fileID: 0}
+  transitionManager: {fileID: 7035760210295001624}
 --- !u!1 &8277497635276174182
 GameObject:
   m_ObjectHideFlags: 0

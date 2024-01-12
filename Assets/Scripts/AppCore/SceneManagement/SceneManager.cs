@@ -22,13 +22,13 @@ namespace AppCore.SceneManagement {
 
         private IEnumerator LoadSceneWithFade(int sceneIndex, bool fade) {
             if (fade) {
-                App.Instance.fadeManager.FadeIn();
+                App.Instance.transitionManager.FadeIn();
             }
-            yield return new WaitForSeconds(App.Instance.fadeManager.fadeTime);
+            yield return new WaitForSeconds(App.Instance.transitionManager.fadeTime);
             UnityEngine.SceneManagement.SceneManager.LoadScene(sceneIndex);
 
             if (fade) {
-                App.Instance.fadeManager.FadeOut();
+                App.Instance.transitionManager.FadeOut();
             }
         }
     }

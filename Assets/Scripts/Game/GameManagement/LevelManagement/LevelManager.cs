@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 
 using AppCore;
-using AppCore.FadeManagement;
+using AppCore.TransitionManagement;
 
 using UnityEngine;
 
@@ -61,11 +61,12 @@ namespace Game.GameManagement.LevelManagement {
                 yield break;
             }
             if (fade) {
-                App.Instance.fadeManager.FadeIn();
+                App.Instance.transitionManager.FadeIn(TransitionType.Wipe);
                 _currentlySwitching = true;
-                yield return new WaitForSecondsRealtime(App.Instance.fadeManager.fadeTime);
+                yield return new WaitForSecondsRealtime(App.Instance.transitionManager.wipeTime);
                 _currentlySwitching = false;
-                App.Instance.fadeManager.FadeOut();
+                Debug.Log("Done waiting");
+                App.Instance.transitionManager.FadeOut(TransitionType.Wipe);
             }
             ChangeCurrentLevel(level);
         }
