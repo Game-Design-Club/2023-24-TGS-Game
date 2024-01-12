@@ -16,12 +16,12 @@ namespace Game.NightLevels.Shooter {
             GameManager.Instance.OnLevelStart -= OnLevelStart;
         }
 
-        private void OnCollisionEnter2D(Collision2D other) {
-            DestroyBullet();
-        }
-
         private void OnTriggerEnter2D(Collider2D other) {
             if (other.gameObject.CompareTag(TagConstants.Player)) {
+                DestroyBullet();
+            }
+
+            if (other.gameObject.CompareTag(TagConstants.Wall)) {
                 DestroyBullet();
             }
         }
