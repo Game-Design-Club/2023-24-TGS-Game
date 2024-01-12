@@ -26,7 +26,7 @@ namespace AppCore.SceneManagement {
             }
             yield return new WaitForSecondsRealtime(App.Instance.transitionManager.fadeTime);
     
-            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneIndex);
+            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Single);
 
             if (fade) {
                 App.Instance.transitionManager.FadeOut();

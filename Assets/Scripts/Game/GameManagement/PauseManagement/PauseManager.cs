@@ -37,6 +37,8 @@ namespace Game.GameManagement.PauseManagement {
         public void OnLevelStart() {
             if (IsPaused) {
                 ResumeGame();
+            } else {
+                Time.timeScale = 1;
             }
         }
         
