@@ -9,5 +9,9 @@ namespace Constants {
             public const string Show = "Show";
             public const string Hide = "Hide";
         }
+
+        public static class Player {
+            public const string Die = "Die";
+        }
     }
 }
