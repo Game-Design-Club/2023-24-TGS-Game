@@ -32,6 +32,8 @@ namespace Game.GameManagement.LevelManagement
         {
             private ObjectPrefabList _objectPrefabList;
             private Vector2 _scrollPosition;
+            private String _searchText = "";
+            private bool _searchBarFocused = false;
             
             [MenuItem("Window/Custom Popup Window")]
             public static void ShowWindow()
@@ -55,6 +57,8 @@ namespace Game.GameManagement.LevelManagement
             {
                 CheckDraggedInPrefab();
                 
+                SearchBar();
+                
                 DisplayPrefabsInList();
 
                 // Handle prefab list reordering by dragging
@@ -65,6 +69,61 @@ namespace Game.GameManagement.LevelManagement
                 }
             }
 
+            private void SearchBar()
+            {
+                // Debug.Log(_inTextField);
+                
+                EditorGUI.BeginChangeCheck();
+                
+                // Detect when the user enters the TextField
+                GUI.SetNextControlName("Search Bar"); // Set a control name
+                
+                //changing text color
+                Color originalColor = GUI.contentColor;
+                GUI.contentColor = _searchBarFocused || !_searchText.Equals("") ? originalColor : new Color(originalColor.r * 0.5f, originalColor.g * 0.5f, originalColor.b * 0.5f);
+                
+                String currentText = GUILayout.TextField(_searchBarFocused || !_searchText.Equals("") ? _searchText : "Search");
+                
+                //reverting color
+                GUI.contentColor = originalColor;
+                
+                if (_searchBarFocused)
+                {
+                    _searchText = currentText;
+                }
+
+                if (Event.current.type == EventType.Repaint && GUI.GetNameOfFocusedControl() == "Search Bar")
+                {
+                    // TextField is focused
+                    if (!_searchBarFocused)
+                    {
+                        _searchBarFocused = true;
+                    }
+                    
+                }
+                else if (Event.current.type == EventType.Repaint && _searchBarFocused)
+                {
+                    // TextField lost focus
+                    _searchBarFocused = false;
+                }
+                
+                if (Event.current.type == EventType.MouseDown && _searchBarFocused)
+                {
+                    Rect textFieldRect = GUILayoutUtility.GetLastRect();
+
+                    // Check if the click is outside the text field
+                    if (!textFieldRect.Contains(Event.current.mousePosition))
+                    {
+                        // Lose focus when clicking outside the text field
+                        EditorGUI.FocusTextInControl(null);
+                        _searchBarFocused = false;
+                        Repaint(); // Force repaint to update the GUI
+                    }
+                }
+
+                
+            }
+
             private void DisplayPrefabsInList()
             {
                 _scrollPosition = EditorGUILayout.BeginScrollView(_scrollPosition);
@@ -73,6 +132,7 @@ namespace Game.GameManagement.LevelManagement
                 
                 for (int i = 0; i < _objectPrefabList.prefabList.Length; i++)
                 {
+                    if (!_objectPrefabList.prefabList[i].name.ToLower().Contains(_searchText.ToLower())) continue;
                     DisplayPrefab(i);
                 }
                 
@@ -123,7 +183,10 @@ namespace Game.GameManagement.LevelManagement
                 }
                 
                 //moves object up in list
-                if (i != 0 && GUILayout.Button("Ʌ", GUILayout.Width(20)))
+                if (i == 0)
+                {
+                    GUILayout.Space(20);
+                } else if (_searchText.Equals("") && GUILayout.Button("Ʌ", GUILayout.Width(20)))
                 {
                     SwapPrefabs(i, i - 1);
                 }
@@ -137,7 +200,7 @@ namespace Game.GameManagement.LevelManagement
                 
                 GUILayout.FlexibleSpace(); //pushes to the other side
                 
-                if (i != _objectPrefabList.prefabList.Length - 1 && GUILayout.Button("V", GUILayout.Width(20)))
+                if (i != _objectPrefabList.prefabList.Length - 1 && _searchText.Equals("") && GUILayout.Button("V", GUILayout.Width(20)))
                 {
                     SwapPrefabs(i, i + 1);
                 }
