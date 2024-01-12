@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 
 namespace AppCore.FadeManagement {
     public class FadeManager : MonoBehaviour {
-        [SerializeField] public float transitionPeriod = 1.5f;
+        [SerializeField] public float fadeTime = 1.5f;
         [SerializeField] private AnimatorController wipeAnimator;
         
         private AnimatorController _currentAnimator;

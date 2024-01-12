@@ -63,7 +63,7 @@ namespace Game.GameManagement.LevelManagement {
             if (fade) {
                 App.Instance.fadeManager.FadeIn();
                 _currentlySwitching = true;
-                yield return new WaitForSecondsRealtime(App.Instance.fadeManager.transitionPeriod);
+                yield return new WaitForSecondsRealtime(App.Instance.fadeManager.fadeTime);
                 _currentlySwitching = false;
                 App.Instance.fadeManager.FadeOut();
             }

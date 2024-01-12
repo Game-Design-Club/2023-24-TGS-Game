@@ -16,7 +16,6 @@ namespace AppCore {
         [SerializeField] public SceneManager sceneManager;
         [SerializeField] public FadeManager fadeManager;
 
-        [SerializeField] private EventSystem eventSystem;
         
         private void Awake() {
             // Sets up singleton pattern
@@ -25,14 +24,7 @@ namespace AppCore {
                 DontDestroyOnLoad(gameObject);
             } else {
                 Destroy(gameObject);
-                if (eventSystem.firstSelectedGameObject != null) {
-                    SetUISelected(eventSystem.firstSelectedGameObject);
-                }
             }
-        }
-
-        private void SetUISelected(GameObject uiObject) {
-            eventSystem.SetSelectedGameObject(uiObject);
         }
     }
 }
