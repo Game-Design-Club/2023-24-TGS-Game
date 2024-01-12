@@ -777,6 +777,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4988194046242993821, guid: 2cf9926c8376c40f49f8b80fdb0d5214, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4988194046242993821, guid: 2cf9926c8376c40f49f8b80fdb0d5214, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4988194046242993821, guid: 2cf9926c8376c40f49f8b80fdb0d5214, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 264066020}
+    - target: {fileID: 4988194046242993821, guid: 2cf9926c8376c40f49f8b80fdb0d5214, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4988194046242993821, guid: 2cf9926c8376c40f49f8b80fdb0d5214, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ShowCredits
+      objectReference: {fileID: 0}
+    - target: {fileID: 4988194046242993821, guid: 2cf9926c8376c40f49f8b80fdb0d5214, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Main_Menu.MainMenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4988194046242993821, guid: 2cf9926c8376c40f49f8b80fdb0d5214, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6108180877200169308, guid: 2cf9926c8376c40f49f8b80fdb0d5214, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

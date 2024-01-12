@@ -15,7 +15,14 @@ namespace Main_Menu {
             _freeze = true;
             App.Instance.sceneManager.LoadScene(SceneConstants.Game);
         }
-        
+
+        public void ShowCredits() {
+            if (!_freeze) {
+                _freeze = true;
+                App.Instance.sceneManager.LoadScene(SceneConstants.Credits);
+            }
+        }
+
         public void QuitGame() {
             if (_freeze) {
                 return;

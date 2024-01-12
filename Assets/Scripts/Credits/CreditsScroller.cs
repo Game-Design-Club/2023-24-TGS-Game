@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 
 using AppCore;
 
@@ -9,12 +7,13 @@ using Constants;
 using TMPro;
 
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Credits {
     public class CreditsScroller : MonoBehaviour {
-        [FormerlySerializedAs("creditsInfo")] [SerializeField] private CreditsAsset creditsAsset;
-        [SerializeField] private GameObject parentObject;
+        [SerializeField] private CreditsAsset creditsAsset;
+        [SerializeField] private GameObject sectionTitlePrefab;
+        [SerializeField] private GameObject personNamePrefab;
+        [SerializeField] private GameObject creditsParentObject;
         [SerializeField] private float scrollSpeed = 1f;
 
         [SerializeField] private float endY;
@@ -33,24 +32,45 @@ namespace Credits {
             App.Instance.inputManager.OnCancelPressed -= OnCancelPressed;
         }
 
+        private void Start() {
+            thankYouObject.SetActive(false);
+            creditsParentObject.SetActive(true);
+            SetupCredits();
+        }
+
         private void Update() {
             if (!_scrolling) return;
-            parentObject.transform.position += Vector3.up * (scrollSpeed * Time.deltaTime);
-            if (parentObject.transform.position.y > endY) {
+            creditsParentObject.transform.position += Vector3.up * (scrollSpeed * Time.deltaTime);
+            if (creditsParentObject.transform.position.y < endY) {
                 _scrolling = false;
-                StartCoroutine(ShowThankYou());
+                ShowThankYou();
+                Debug.Log("Scroll done");
             }
         }
 
         // Private functions
+        private void SetupCredits() {
+            float currentY = 0;
+            foreach (CreditsSection section in creditsAsset.creditsSections) {
+                GameObject sectionObject = Instantiate(sectionTitlePrefab, creditsParentObject.transform);
+                Debug.Log(section.title);
+                sectionObject.GetComponent<TextMeshProUGUI>().SetText(section.title);
+                // foreach (String personName in section.names) {
+                //     GameObject nameObject = Instantiate(personNamePrefab, creditsParentObject.transform);
+                //     nameObject.GetComponent<TextMeshProUGUI>().SetText(personName);
+                // }
+                currentY -= creditsAsset.spaceBetweenSections;
+            }
+        }
+        
         private void OnCancelPressed() {
             App.Instance.sceneManager.LoadScene(SceneConstants.MainMenu, true);
         }
 
-        private IEnumerator ShowThankYou() {
+        private void ShowThankYou() {
             App.Instance.transitionManager.FadeOut();
-            yield return new WaitForSeconds(thankYouDelay);
+            creditsParentObject.SetActive(false);
+            thankYouObject.SetActive(true);
         }
-        
     }
 }
