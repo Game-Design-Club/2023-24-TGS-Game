@@ -16,14 +16,14 @@ namespace Game.PlayerComponents {
         
         private void OnEnable() {
             App.Instance.inputManager.OnMovementInput += MovementInputChange;
-            GameManager.Instance.OnLevelStart += OnLevelStart;
-            GameManager.Instance.OnLevelOver += OnLevelOver;
+            GameManagerEvents.OnLevelStart += OnLevelStart;
+            GameManagerEvents.OnLevelOver += OnLevelOver;
         }
         
         private void OnDisable() {
             App.Instance.inputManager.OnMovementInput -= MovementInputChange;
-            GameManager.Instance.OnLevelStart -= OnLevelStart;
-            GameManager.Instance.OnLevelOver -= OnLevelOver;
+            GameManagerEvents.OnLevelStart -= OnLevelStart;
+            GameManagerEvents.OnLevelOver -= OnLevelOver;
         }
         
         // Private functions

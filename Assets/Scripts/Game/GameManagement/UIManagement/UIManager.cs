@@ -1,35 +1,56 @@
+using AppCore;
+
+using Game.GameManagement.PauseManagement;
+
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 namespace Game.GameManagement.UIManagement {
     public class UIManager : MonoBehaviour {
+        [SerializeField] private PauseManager pauseManager;
+        
         [SerializeField] private GameObject hudCanvas;
         [SerializeField] private GameObject pauseCanvas;
+
+        [SerializeField] private EventSystem eventSystem;
+        [SerializeField] private GameObject defaultSelectedGameObjectPaused;
         
         private void OnEnable() {
-            PauseManager.Instance.OnGamePause += PauseGame;
-            PauseManager.Instance.OnGameResume += ResumeGame;
+            PauseManagerEvents.OnGamePause += OnGamePause;
+            PauseManagerEvents.OnGameResume += OnGameResume;
+            
+            App.Instance.inputManager.OnCancelPressed += OnCancelPressed;
 
-            GameManager.Instance.OnLevelStart += LevelStart;
+            GameManagerEvents.OnLevelStart += OnLevelStart;
         }
 
         private void OnDisable() {
-            PauseManager.Instance.OnGamePause -= PauseGame;
-            PauseManager.Instance.OnGameResume -= ResumeGame;
+            PauseManagerEvents.OnGamePause -= OnGamePause;
+            PauseManagerEvents.OnGameResume -= OnGameResume;
+
+            App.Instance.inputManager.OnCancelPressed += OnCancelPressed;
             
-            GameManager.Instance.OnLevelStart -= LevelStart;
+            GameManagerEvents.OnLevelStart -= OnLevelStart;
         }
-        
-        private void PauseGame() {
+
+        private void OnGamePause() {
             pauseCanvas.SetActive(true);
+            if (defaultSelectedGameObjectPaused != null) eventSystem.SetSelectedGameObject(defaultSelectedGameObjectPaused);
         }
         
-        private void ResumeGame() {
+        private void OnGameResume() {
             pauseCanvas.SetActive(false);
+            eventSystem.SetSelectedGameObject(null);
         }
         
-        private void LevelStart() {
+        private void OnLevelStart() {
             // hudDisplay.SetActive(true);
             pauseCanvas.SetActive(false);
+        }
+        
+        private void OnCancelPressed() {
+            pauseManager.TogglePaused();
         }
     }
 }

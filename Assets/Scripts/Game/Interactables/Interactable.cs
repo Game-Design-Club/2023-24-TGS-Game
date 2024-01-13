@@ -28,12 +28,12 @@ namespace Game.Interactables {
 
         private void OnEnable() {
             App.Instance.inputManager.OnInteractPressed += OnInteractPressed;
-            GameManager.Instance.OnLevelStart += OnLevelStart;
+            GameManagerEvents.OnLevelStart += OnLevelStart;
         }
         
         private void OnDisable() {
             App.Instance.inputManager.OnInteractPressed -= OnInteractPressed;
-            GameManager.Instance.OnLevelStart -= OnLevelStart;
+            GameManagerEvents.OnLevelStart -= OnLevelStart;
         }
         
         private void OnTriggerEnter2D(Collider2D other) {

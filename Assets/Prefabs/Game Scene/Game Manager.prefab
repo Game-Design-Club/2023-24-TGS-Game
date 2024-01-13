@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb6572a1a0874f5ab4de35ac4c1290fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstLevel: {fileID: 0}
+  firstLevel: {fileID: 5740429000864550923, guid: 5382b405aab2e4c5c9f6e2d49e54fcd2, type: 3}
   customFirstLevel: {fileID: 0}
 --- !u!1 &6302996255836281009
 GameObject:
@@ -134,8 +134,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ceb74a08e104946928cdc3bbf149913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseManager: {fileID: 6493589380194381377}
   hudCanvas: {fileID: 0}
   pauseCanvas: {fileID: 0}
+  eventSystem: {fileID: 0}
+  defaultSelectedGameObjectPaused: {fileID: 0}
 --- !u!1 &7376372508466637606
 GameObject:
   m_ObjectHideFlags: 0

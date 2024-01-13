@@ -15,12 +15,12 @@ namespace Tools.Debug_Tools {
         
         private void OnEnable() {
             App.Instance.inputManager.OnClickWorld += OnClickWorld;
-            GameManager.Instance.OnLevelStart += OnLevelStart;
+            GameManagerEvents.OnLevelStart += OnLevelStart;
         }
         
         private void OnDisable() {
             App.Instance.inputManager.OnClickWorld -= OnClickWorld;
-            GameManager.Instance.OnLevelStart -= OnLevelStart;
+            GameManagerEvents.OnLevelStart -= OnLevelStart;
         }
         
         private void OnClickWorld(Vector2 clickPosition) {

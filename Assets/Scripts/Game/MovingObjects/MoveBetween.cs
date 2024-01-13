@@ -29,11 +29,11 @@ namespace Game.MovingObjects
     
         // Unity functions
         private void OnEnable() {
-            GameManager.Instance.OnLevelStart += OnLevelStart;
+            GameManagerEvents.OnLevelStart += OnLevelStart;
         }
     
         private void OnDisable() {
-            GameManager.Instance.OnLevelStart -= OnLevelStart;
+            GameManagerEvents.OnLevelStart -= OnLevelStart;
         }
         
         private void Awake() {

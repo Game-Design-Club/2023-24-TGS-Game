@@ -3,7 +3,11 @@ using UnityEngine;
 using AppCore.AudioManagement;
 using AppCore.InputManagement;
 using AppCore.SceneManagement;
-using AppCore.FadeManagement;
+using AppCore.TransitionManagement;
+
+using UnityEditor;
+
+using UnityEngine.Serialization;
 
 namespace AppCore {
     public class App : MonoBehaviour {
@@ -12,7 +16,8 @@ namespace AppCore {
         [SerializeField] public AudioManager audioManager;
         [SerializeField] public InputManager inputManager;
         [SerializeField] public SceneManager sceneManager;
-        [SerializeField] public FadeManager fadeManager;
+        [FormerlySerializedAs("fadeManager")] [SerializeField] public TransitionManager transitionManager;
+
         
         private void Awake() {
             // Sets up singleton pattern
@@ -21,6 +26,13 @@ namespace AppCore {
                 DontDestroyOnLoad(gameObject);
             } else {
                 Destroy(gameObject);
+            }
+        }
+        
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        private static void CheckAppInstance() {
+            if (Instance == null) {
+                Debug.LogError("No App instance found in the scene.");
             }
         }
     }

@@ -1,22 +1,21 @@
 using System;
 
+using AppCore;
+
 using Game.GameManagement.LevelManagement;
 
 using UnityEngine;
 
 namespace Game.GameManagement {
     public class GameManager : MonoBehaviour{
-        public static GameManager Instance { get; private set; }
-        
-        public event Action OnLevelStart; // LevelStart is called when the level is loaded
-        public event Action OnLevelOver; // LevelOver is called when the player dies or finishes the level
         
         private LevelManager _levelManager;
-        
+
+        private static GameManager s_instance;
         // Unity functions
         private void Awake() {
-            if (Instance is null) {
-                Instance = this;
+            if (s_instance is null) {
+                s_instance = this;
             } else {
                 Debug.LogWarning("Duplicate GameManager found and deleted.");
                 Destroy(gameObject);
@@ -41,9 +40,15 @@ namespace Game.GameManagement {
             _levelManager.LoadFirstLevel();
         }
 
+        private void OnDestroy() {
+            if (s_instance == this) {
+                s_instance = null;
+            }
+        }
+
         // Public functions
         public void GameStart() {
-            OnLevelStart?.Invoke();
+            GameManagerEvents.InvokeLevelStart();
         }
         
         public void PlayerDied() {
@@ -52,17 +57,25 @@ namespace Game.GameManagement {
         
         public void RestartLevel() {
             _levelManager.RestartLevel();
-            OnLevelOver?.Invoke();
+            GameManagerEvents.InvokeLevelOver();
         }
         
         public void LevelCompleted() {
             _levelManager.LoadNextLevel();
-            OnLevelOver?.Invoke();
+            GameManagerEvents.InvokeLevelOver();
         }
         
-        public void LoadMainMenu() {
-            Debug.LogError("Not implemented yet");
-            // App.Instance.sceneManager.LoadScene(Constants.SceneConstants.MainMenu);
+        public void QuitToMainMenu() {
+            App.Instance.sceneManager.LoadScene(Constants.SceneConstants.MainMenu);
+        }
+        
+        // Static functions
+        public static void PlayerDiedStatic() {
+            s_instance.PlayerDied();
+        }
+        
+        public static void LevelCompletedStatic() {
+            s_instance.LevelCompleted();
         }
     }
 }

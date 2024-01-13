@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 
 using AppCore;
+using AppCore.TransitionManagement;
 
 using UnityEngine;
 
@@ -16,17 +17,9 @@ namespace Game.GameManagement.LevelManagement {
         private bool _currentlySwitching;
         
         public event Action OnLevelLoaded;
-        public static LevelManager Instance { get; private set; }
         
         // Unity functions
         private void Awake() {
-            if (Instance is null) {
-                Instance = this;
-            } else {
-                Debug.LogWarning("Duplicate LevelManager found and deleted.");
-                Destroy(gameObject);
-            }
-            
             if (customFirstLevel != null) {
                 firstLevel = customFirstLevel;
             }
@@ -60,11 +53,11 @@ namespace Game.GameManagement.LevelManagement {
                 yield break;
             }
             if (fade) {
-                App.Instance.fadeManager.FadeIn();
+                App.Instance.transitionManager.FadeIn(TransitionType.Wipe);
                 _currentlySwitching = true;
-                yield return new WaitForSecondsRealtime(App.Instance.fadeManager.transitionPeriod);
+                yield return new WaitForSecondsRealtime(App.Instance.transitionManager.wipeTime);
                 _currentlySwitching = false;
-                App.Instance.fadeManager.FadeOut();
+                App.Instance.transitionManager.FadeOut(TransitionType.Wipe);
             }
             ChangeCurrentLevel(level);
         }

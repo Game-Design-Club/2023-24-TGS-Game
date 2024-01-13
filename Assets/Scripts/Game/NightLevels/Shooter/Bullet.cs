@@ -9,11 +9,11 @@ namespace Game.NightLevels.Shooter {
         [SerializeField] private float shootSpeed = 3f;
         // Unity functions
         private void OnEnable() {
-            GameManager.Instance.OnLevelStart += OnLevelStart;
+            GameManagerEvents.OnLevelStart += OnLevelStart;
         }
         
         private void OnDisable() {
-            GameManager.Instance.OnLevelStart -= OnLevelStart;
+            GameManagerEvents.OnLevelStart -= OnLevelStart;
         }
 
         private void OnTriggerEnter2D(Collider2D other) {
