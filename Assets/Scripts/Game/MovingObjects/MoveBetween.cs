@@ -136,7 +136,10 @@ namespace Game.MovingObjects
             
             _isMoving = true;
         }
-
+        
+        public void StopMoving() {
+            _isMoving = false;
+        }
     }
 }
 

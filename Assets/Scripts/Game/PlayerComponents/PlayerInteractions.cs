@@ -1,12 +1,14 @@
 using Constants;
 
 using Game.GameManagement;
+using Game.NightLevels;
 
 using UnityEngine;
 
 namespace Game.PlayerComponents {
     public class PlayerInteractions : MonoBehaviour {
         private bool _interactionsOn = false;
+        private PlayerAnimator _playerAnimator;
         
         // Unity functions
         private void OnEnable() {
@@ -18,12 +20,20 @@ namespace Game.PlayerComponents {
             GameManagerEvents.OnLevelStart -= OnLevelStart;
             GameManagerEvents.OnLevelOver -= OnLevelOver;
         }
-        
+
+        private void Awake() {
+            _playerAnimator = GetComponent<PlayerAnimator>();
+        }
+
         private void OnTriggerEnter2D(Collider2D other) {
             if (!_interactionsOn) return;
             switch (other.gameObject.tag) {
                 case TagConstants.Oucher:
                     GameManager.PlayerDiedStatic();
+                    _playerAnimator.PlayDeathAnimation();
+                    if (other.TryGetComponent(out Oucher oucher)) {
+                        oucher.KilledPlayer();
+                    }
                     break;
                 case TagConstants.Goal:
                     GameManager.LevelCompletedStatic();

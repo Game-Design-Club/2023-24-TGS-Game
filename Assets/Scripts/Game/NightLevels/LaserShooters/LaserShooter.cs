@@ -1,7 +1,5 @@
 using System.Collections;
 
-using Constants;
-
 using Game.GameManagement;
 
 using UnityEngine;

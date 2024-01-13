@@ -1,5 +1,5 @@
 using System;
-
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +8,8 @@ namespace AppCore.InputManagement {
         public event Action<Vector2> OnMovementInput;
         public event Action OnInteractPressed;
         public event Action OnCancelPressed;
+        public event Action<Vector2> OnClick;
+        public event Action<Vector2> OnClickWorld;
         
         private InputActions _inputActions;
         
@@ -20,6 +22,7 @@ namespace AppCore.InputManagement {
             EnableMovement();
             EnableInteract();
             EnableCancel();
+            EnableClicking();
         }
 
         private void OnDisable() {
@@ -27,6 +30,7 @@ namespace AppCore.InputManagement {
             DisableMovement();
             DisableInteract();
             DisableCancel();
+            DisableClicking();
         }
 
 
@@ -56,10 +60,20 @@ namespace AppCore.InputManagement {
             _inputActions.UI.Cancel.Enable();
             _inputActions.UI.Cancel.performed += OnCancelPerformed;
         }
-        
+
         private void DisableCancel() {
             _inputActions.UI.Cancel.Disable();
             _inputActions.UI.Cancel.performed -= OnCancelPerformed;
+        }
+
+        private void EnableClicking() {
+            _inputActions.UI.Click.Enable();
+            _inputActions.UI.Click.performed += OnClickPerformed;
+        }
+        
+        private void DisableClicking() {
+            _inputActions.UI.Click.Disable();
+            _inputActions.UI.Click.performed -= OnClickPerformed;
         }
         
         private void OnMovementPerformed(InputAction.CallbackContext context) {
@@ -70,9 +84,16 @@ namespace AppCore.InputManagement {
         private void OnInteractPerformed(InputAction.CallbackContext context) {
             OnInteractPressed?.Invoke();
         }
-        
+
         private void OnCancelPerformed(InputAction.CallbackContext context) {
             OnCancelPressed?.Invoke();
+        }
+
+        private void OnClickPerformed(InputAction.CallbackContext context) {
+            if (!Mouse.current.leftButton.wasPressedThisFrame) return;
+            Vector2 clickPosition = Mouse.current.position.ReadValue();
+            OnClick?.Invoke(clickPosition);
+            OnClickWorld?.Invoke(Camera.main.ScreenToWorldPoint(clickPosition));
         }
     }
 }
