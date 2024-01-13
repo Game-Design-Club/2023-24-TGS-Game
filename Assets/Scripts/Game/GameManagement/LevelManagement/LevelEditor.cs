@@ -1,12 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using UnityEditor;
-using UnityEditorInternal;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 using Object = UnityEngine.Object;
 
 namespace Game.GameManagement.LevelManagement
@@ -33,7 +29,7 @@ namespace Game.GameManagement.LevelManagement
             private ObjectPrefabList _objectPrefabList;
             private Vector2 _scrollPosition;
             private String _searchText = "";
-            private bool _searchBarFocused = false;
+            private bool _searchBarFocused;
             
             [MenuItem("Window/Custom Popup Window")]
             public static void ShowWindow()
@@ -71,7 +67,7 @@ namespace Game.GameManagement.LevelManagement
 
             private void SearchBar()
             {
-                // Debug.Log(_inTextField);
+                GUILayout.BeginHorizontal();
                 
                 EditorGUI.BeginChangeCheck();
                 
@@ -80,7 +76,7 @@ namespace Game.GameManagement.LevelManagement
                 
                 //changing text color
                 Color originalColor = GUI.contentColor;
-                GUI.contentColor = _searchBarFocused || !_searchText.Equals("") ? originalColor : new Color(originalColor.r * 0.5f, originalColor.g * 0.5f, originalColor.b * 0.5f);
+                GUI.contentColor = _searchBarFocused || !_searchText.Equals("") ? originalColor : new Color(originalColor.r * 0.75f, originalColor.g * 0.75f, originalColor.b * 0.75f);
                 
                 String currentText = GUILayout.TextField(_searchBarFocused || !_searchText.Equals("") ? _searchText : "Search");
                 
@@ -101,11 +97,6 @@ namespace Game.GameManagement.LevelManagement
                     }
                     
                 }
-                else if (Event.current.type == EventType.Repaint && _searchBarFocused)
-                {
-                    // TextField lost focus
-                    _searchBarFocused = false;
-                }
                 
                 if (Event.current.type == EventType.MouseDown && _searchBarFocused)
                 {
@@ -121,14 +112,26 @@ namespace Game.GameManagement.LevelManagement
                     }
                 }
 
-                
+                if (GUILayout.Button("X", GUILayout.Width(20)))
+                {
+                    SetFocusToSearchBar();
+                }
+
+                GUILayout.EndHorizontal();
+            }
+
+            private void SetFocusToSearchBar()
+            {
+                GUI.FocusControl("Search Bar");
+                _searchText = "";
+                _searchBarFocused = true;
             }
 
             private void DisplayPrefabsInList()
             {
-                _scrollPosition = EditorGUILayout.BeginScrollView(_scrollPosition);
+                _scrollPosition = GUILayout.BeginScrollView(_scrollPosition);
                 
-                EditorGUILayout.BeginVertical();
+                GUILayout.BeginVertical();
                 
                 for (int i = 0; i < _objectPrefabList.prefabList.Length; i++)
                 {
@@ -153,9 +156,9 @@ namespace Game.GameManagement.LevelManagement
                 labelStyle.normal.textColor = originalColor;
                 GUI.skin.label = labelStyle;
 
-                EditorGUILayout.EndVertical();
+                GUILayout.EndVertical();
 
-                EditorGUILayout.EndScrollView();
+                GUILayout.EndScrollView();
             }
 
             private void DisplayPrefab(int i)
@@ -173,40 +176,46 @@ namespace Game.GameManagement.LevelManagement
                 GUILayout.BeginHorizontal(); //starting upper line
                 // Display the name of the prefab
                 GUILayout.Label(_objectPrefabList.prefabList[i].name, GUILayout.Width(150));
-                
+
                 GUILayout.FlexibleSpace(); //pushes to the other end
-                
+
                 //deletes object
                 if (GUILayout.Button("delete", GUILayout.Width(50)))
                 {
                     RemovePrefabFromList(i);
                 }
-                
+
                 //moves object up in list
-                if (i == 0)
+                if (i == 0 && _searchText.Equals(""))
                 {
                     GUILayout.Space(20);
-                } else if (_searchText.Equals("") && GUILayout.Button("Ʌ", GUILayout.Width(20)))
+                }
+                else if (_searchText.Equals("") && GUILayout.Button("Ʌ", GUILayout.Width(20)))
                 {
                     SwapPrefabs(i, i - 1);
                 }
+
                 GUILayout.EndHorizontal(); //ending upper line
 
-                GUILayout.BeginHorizontal();//starting lower line
+                GUILayout.BeginHorizontal(); //starting lower line
                 if (GUILayout.Button("Add", GUILayout.Width(60)))
                 {
                     AddPrefabToScene(_objectPrefabList.prefabList[i]);
                 }
-                
+
                 GUILayout.FlexibleSpace(); //pushes to the other side
-                
-                if (i != _objectPrefabList.prefabList.Length - 1 && _searchText.Equals("") && GUILayout.Button("V", GUILayout.Width(20)))
+
+                if (i != _objectPrefabList.prefabList.Length - 1 && _searchText.Equals("") &&
+                    GUILayout.Button("V", GUILayout.Width(20)))
                 {
                     SwapPrefabs(i, i + 1);
                 }
+
                 GUILayout.EndHorizontal(); //ends second layer
 
+            
                 GUILayout.EndVertical(); // End of two layers
+                
 
                 GUILayout.EndHorizontal(); //end of object
             }
@@ -269,9 +278,9 @@ namespace Game.GameManagement.LevelManagement
                 {
                     foreach (Object draggedObject in DragAndDrop.objectReferences)
                     {
-                        if (draggedObject is not GameObject) continue;
+                        if (!(draggedObject is GameObject)) continue;
 
-                        AddPrefabToList((GameObject)draggedObject);
+                        AddPrefabToList((GameObject) draggedObject);
                     }
 
                     DragAndDrop.AcceptDrag();
@@ -291,14 +300,14 @@ namespace Game.GameManagement.LevelManagement
             private void AddPrefabToList(GameObject prefab)
             {
                 // Check if the prefab is already in the list
-                if (System.Array.Exists(_objectPrefabList.prefabList, element => element == prefab))
+                if (Array.Exists(_objectPrefabList.prefabList, element => element == prefab))
                 {
                     Debug.LogWarning("Prefab is already in the list.");
                     return;
                 }
 
                 // Resize the prefab list array
-                System.Array.Resize(ref _objectPrefabList.prefabList, _objectPrefabList.prefabList.Length + 1);
+                Array.Resize(ref _objectPrefabList.prefabList, _objectPrefabList.prefabList.Length + 1);
 
                 // Add the new prefab to the list
                 _objectPrefabList.prefabList[^1] = prefab;
