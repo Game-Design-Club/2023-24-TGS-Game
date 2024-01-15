@@ -48,8 +48,10 @@ namespace Credits {
 
         // Private functions
         private void SetupCredits() {
-            _endY = -creditsParentObject.GetComponent<RectTransform>().rect.y;
+            float canvasHeight = creditsParentObject.GetComponent<RectTransform>().rect.height;
             float currentY = 0f;
+            float creditsHeight = 0f;
+            
             foreach (CreditsSection section in creditsAsset.creditsSections) {
                 GameObject sectionObject = Instantiate(sectionTitlePrefab, creditsParentObject.transform);
                 sectionObject.GetComponent<TextMeshProUGUI>().SetText(section.title);
@@ -63,12 +65,17 @@ namespace Credits {
                     
                     float nameHeight = nameObject.GetComponent<RectTransform>().rect.height;
                     currentY -= nameHeight;
-                    _endY += nameHeight;
+                    creditsHeight += nameHeight;
                 }
                 currentY -= creditsAsset.spaceBetweenSections;
-                _endY += creditsAsset.spaceBetweenSections;
+                creditsHeight += creditsAsset.spaceBetweenSections;
             }
             
+            float startY = -canvasHeight;
+            Vector3 position = creditsParentObject.transform.position;
+            creditsParentObject.transform.position = new Vector3(position.x, startY, position.z);
+            
+            _endY = canvasHeight + creditsHeight;
         }
         
         private void OnCancelPressed() {
