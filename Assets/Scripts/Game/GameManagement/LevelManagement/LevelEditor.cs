@@ -67,7 +67,7 @@ namespace Game.GameManagement.LevelManagement
 
             private void SearchBar()
             {
-                GUILayout.BeginHorizontal();
+                using var searchbarArea = new EditorGUILayout.HorizontalScope();
                 
                 EditorGUI.BeginChangeCheck();
                 
@@ -116,8 +116,6 @@ namespace Game.GameManagement.LevelManagement
                 {
                     SetFocusToSearchBar();
                 }
-
-                GUILayout.EndHorizontal();
             }
 
             private void SetFocusToSearchBar()
@@ -129,42 +127,43 @@ namespace Game.GameManagement.LevelManagement
 
             private void DisplayPrefabsInList()
             {
-                _scrollPosition = GUILayout.BeginScrollView(_scrollPosition);
-                
-                GUILayout.BeginVertical();
+                using var scrollView = new EditorGUILayout.ScrollViewScope(_scrollPosition);
+                _scrollPosition = scrollView.scrollPosition;
+
+                using var wholeArea = new EditorGUILayout.VerticalScope();
                 
                 for (int i = 0; i < _objectPrefabList.prefabList.Length; i++)
                 {
-                    if (!_objectPrefabList.prefabList[i].name.ToLower().Contains(_searchText.ToLower())) continue;
+                    if (!_objectPrefabList.prefabList[i].name.ToLower().Contains(_searchText.ToLower()))
+                        continue;
                     DisplayPrefab(i);
                 }
                 
+
                 //changing text color
                 GUIStyle labelStyle = new GUIStyle(GUI.skin.label);
                 Color originalColor = labelStyle.normal.textColor;
-                labelStyle.normal.textColor = new Color(originalColor.r * 0.5f, originalColor.g * 0.5f, originalColor.b * 0.5f);
+                labelStyle.normal.textColor = new Color(originalColor.r * 0.5f, originalColor.g * 0.5f,
+                    originalColor.b * 0.5f);
                 GUI.skin.label = labelStyle;
-                
+
                 //adding info label
-                GUILayout.BeginHorizontal();
-                GUILayout.FlexibleSpace();
-                GUILayout.Label("Drag Prefabs to Add");
-                GUILayout.FlexibleSpace();
-                GUILayout.EndHorizontal();
+                using (var infoLabel = new EditorGUILayout.HorizontalScope())
+                {
+                    GUILayout.FlexibleSpace();
+                    GUILayout.Label("Drag Prefabs to Add");
+                    GUILayout.FlexibleSpace();
+                }
 
                 //reverting color
                 labelStyle.normal.textColor = originalColor;
                 GUI.skin.label = labelStyle;
-
-                GUILayout.EndVertical();
-
-                GUILayout.EndScrollView();
             }
 
             private void DisplayPrefab(int i)
             {
-                GUILayout.BeginHorizontal(); //start object
-
+                using var prefabArea = new EditorGUILayout.HorizontalScope();
+                
                 // Display the preview
                 Texture2D previewTexture = AssetPreview.GetAssetPreview(_objectPrefabList.prefabList[i]);
                 if (previewTexture != null)
@@ -172,52 +171,48 @@ namespace Game.GameManagement.LevelManagement
                     GUILayout.Label(previewTexture, GUILayout.MaxHeight(50), GUILayout.MaxWidth(50));
                 }
 
-                GUILayout.BeginVertical(); //the two lines
-                GUILayout.BeginHorizontal(); //starting upper line
-                // Display the name of the prefab
-                GUILayout.Label(_objectPrefabList.prefabList[i].name, GUILayout.Width(150));
-
-                GUILayout.FlexibleSpace(); //pushes to the other end
-
-                //deletes object
-                if (GUILayout.Button("delete", GUILayout.Width(50)))
-                {
-                    RemovePrefabFromList(i);
-                }
-
-                //moves object up in list
-                if (i == 0 && _searchText.Equals(""))
-                {
-                    GUILayout.Space(20);
-                }
-                else if (_searchText.Equals("") && GUILayout.Button("Ʌ", GUILayout.Width(20)))
-                {
-                    SwapPrefabs(i, i - 1);
-                }
-
-                GUILayout.EndHorizontal(); //ending upper line
-
-                GUILayout.BeginHorizontal(); //starting lower line
-                if (GUILayout.Button("Add", GUILayout.Width(60)))
-                {
-                    AddPrefabToScene(_objectPrefabList.prefabList[i]);
-                }
-
-                GUILayout.FlexibleSpace(); //pushes to the other side
-
-                if (i != _objectPrefabList.prefabList.Length - 1 && _searchText.Equals("") &&
-                    GUILayout.Button("V", GUILayout.Width(20)))
-                {
-                    SwapPrefabs(i, i + 1);
-                }
-
-                GUILayout.EndHorizontal(); //ends second layer
-
-            
-                GUILayout.EndVertical(); // End of two layers
+                using var actionsArea = new EditorGUILayout.VerticalScope();
                 
+                using (var upperArea = new EditorGUILayout.HorizontalScope())
+                {
+                    // Display the name of the prefab
+                    GUILayout.Label(_objectPrefabList.prefabList[i].name, GUILayout.Width(150));
 
-                GUILayout.EndHorizontal(); //end of object
+                    GUILayout.FlexibleSpace(); //pushes to the other end
+
+                    //deletes object
+                    if (GUILayout.Button("delete", GUILayout.Width(50)))
+                    {
+                        RemovePrefabFromList(i);
+                    }
+
+                    //moves object up in list
+                    if (i == 0 && _searchText.Equals(""))
+                    {
+                        EditorGUILayout.Space(20, false);
+                    }
+                    else if (_searchText.Equals("") && GUILayout.Button("Ʌ", GUILayout.Width(20)))
+                    {
+                        SwapPrefabs(i, i - 1);
+                    }
+
+                }
+
+                using (var lowerArea = new EditorGUILayout.HorizontalScope())
+                {
+                    if (GUILayout.Button("Add", GUILayout.Width(60)))
+                    {
+                        AddPrefabToScene(_objectPrefabList.prefabList[i]);
+                    }
+
+                    GUILayout.FlexibleSpace(); //pushes to the other side
+
+                    if (i != _objectPrefabList.prefabList.Length - 1 && _searchText.Equals("") &&
+                        GUILayout.Button("V", GUILayout.Width(20)))
+                    {
+                        SwapPrefabs(i, i + 1);
+                    }
+                }
             }
 
             private void AddPrefabToScene(GameObject prefab)
