@@ -17,13 +17,7 @@ namespace Game.NightLevels.Shooter {
         }
 
         private void OnTriggerEnter2D(Collider2D other) {
-            if (other.gameObject.CompareTag(TagConstants.Player)) {
-                DestroyBullet();
-            }
-
-            if (other.gameObject.CompareTag(TagConstants.Wall)) {
-                DestroyBullet();
-            }
+            DestroyBullet();
         }
 
         // Private functions
