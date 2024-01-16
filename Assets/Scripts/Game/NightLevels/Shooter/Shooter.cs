@@ -9,6 +9,7 @@ namespace Game.NightLevels.Shooter {
         [SerializeField] private Transform shootTransform;
         [SerializeField] private GameObject bulletPrefab;
         [SerializeField] private float shootFrequency = 2f;
+        [SerializeField] private float startDelay;
         
         // Unity functions
         private void OnEnable() {
@@ -24,6 +25,7 @@ namespace Game.NightLevels.Shooter {
         // Private functions
         // ReSharper disable Unity.PerformanceAnalysis
         private IEnumerator SpawnBullets() {
+            yield return new WaitForSeconds(startDelay);
             while (true) {
                 yield return new WaitForSeconds(shootFrequency);
                 GameObject bullet = Instantiate(bulletPrefab, shootTransform.position, Quaternion.identity);
