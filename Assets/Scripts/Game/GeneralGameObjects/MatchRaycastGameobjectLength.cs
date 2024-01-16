@@ -8,6 +8,7 @@ namespace Game.GeneralGameObjects {
     public class MatchRaycastGameobjectLength : MonoBehaviour{
         [SerializeField] private float maxDistance = Single.PositiveInfinity;
         [SerializeField] private GameObject[] gameObjectsToMatchLength;
+        [SerializeField] private LayerMask layerMask;
         
         private float _lastDistance = 0;
 
@@ -23,7 +24,7 @@ namespace Game.GeneralGameObjects {
                 thisTransform.position,
                 thisTransform.right,
                 Mathf.Infinity,
-                LayerMask.GetMask(LayerConstants.Walls));
+                layerMask);
             if (hit.collider is null) {
                 Debug.LogWarning("Laser hit nothing.", this);
                 return;

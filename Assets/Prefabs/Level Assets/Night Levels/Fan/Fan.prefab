@@ -411,6 +411,9 @@ MonoBehaviour:
   maxDistance: Infinity
   gameObjectsToMatchLength:
   - {fileID: 491108495538969031}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 192
 --- !u!114 &9119368163360996358
 MonoBehaviour:
   m_ObjectHideFlags: 0
