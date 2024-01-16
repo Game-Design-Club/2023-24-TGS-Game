@@ -1,8 +1,10 @@
-using UnityEditor;
-using UnityEngine;
 using System.IO;
 
-namespace Editor
+using UnityEditor;
+
+using UnityEngine;
+
+namespace Tools.Editor.LevelManipulation
 {
     public class LevelCreator
     {
