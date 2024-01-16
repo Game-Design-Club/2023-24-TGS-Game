@@ -455,7 +455,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -500}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &862960675
@@ -640,7 +640,7 @@ MonoBehaviour:
   sectionTitlePrefab: {fileID: 8100001670591354797, guid: 0e27d8631940045ebafddfa30e096d6e, type: 3}
   personNamePrefab: {fileID: 6781021356592098017, guid: eae2368bfbc854893b731949ae3fdf2e, type: 3}
   creditsParentObject: {fileID: 463886328}
-  scrollSpeed: 50
+  scrollSpeed: 200
   thankYouObject: {fileID: 430527745}
 --- !u!1001 &1545465935
 PrefabInstance:

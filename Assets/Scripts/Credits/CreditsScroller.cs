@@ -39,8 +39,8 @@ namespace Credits {
 
         private void Update() {
             if (!_scrolling) return;
-            creditsParentObject.transform.position += Vector3.up * (scrollSpeed * Time.unscaledDeltaTime);
-            if (creditsParentObject.transform.position.y > _endY) {
+            creditsParentObject.transform.position += Vector3.up * (scrollSpeed * Time.deltaTime);
+            if (creditsParentObject.transform.localPosition.y > _endY) {
                 _scrolling = false;
                 ShowThankYou();
             }
@@ -48,7 +48,8 @@ namespace Credits {
 
         // Private functions
         private void SetupCredits() {
-            float canvasHeight = creditsParentObject.GetComponent<RectTransform>().rect.height;
+            RectTransform parentTransform = creditsParentObject.GetComponent<RectTransform>();
+            float canvasHeight = parentTransform.rect.height;
             float currentY = 0f;
             float creditsHeight = 0f;
             
@@ -71,11 +72,7 @@ namespace Credits {
                 creditsHeight += creditsAsset.spaceBetweenSections;
             }
             
-            float startY = -canvasHeight;
-            Vector3 position = creditsParentObject.transform.position;
-            creditsParentObject.transform.position = new Vector3(position.x, startY, position.z);
-            
-            _endY = canvasHeight + creditsHeight;
+            _endY = creditsHeight;
         }
         
         private void OnCancelPressed() {
