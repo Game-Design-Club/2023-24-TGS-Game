@@ -39,8 +39,8 @@ namespace Credits {
 
         private void Update() {
             if (!_scrolling) return;
-            creditsParentObject.transform.position += Vector3.up * (scrollSpeed * Time.unscaledDeltaTime);
-            if (creditsParentObject.transform.position.y > _endY) {
+            creditsParentObject.transform.position += Vector3.up * (scrollSpeed * Time.deltaTime);
+            if (creditsParentObject.transform.localPosition.y > _endY) {
                 _scrolling = false;
                 ShowThankYou();
             }
@@ -48,8 +48,11 @@ namespace Credits {
 
         // Private functions
         private void SetupCredits() {
-            _endY = -creditsParentObject.GetComponent<RectTransform>().rect.y;
+            RectTransform parentTransform = creditsParentObject.GetComponent<RectTransform>();
+            float canvasHeight = parentTransform.rect.height;
             float currentY = 0f;
+            float creditsHeight = 0f;
+            
             foreach (CreditsSection section in creditsAsset.creditsSections) {
                 GameObject sectionObject = Instantiate(sectionTitlePrefab, creditsParentObject.transform);
                 sectionObject.GetComponent<TextMeshProUGUI>().SetText(section.title);
@@ -63,12 +66,13 @@ namespace Credits {
                     
                     float nameHeight = nameObject.GetComponent<RectTransform>().rect.height;
                     currentY -= nameHeight;
-                    _endY += nameHeight;
+                    creditsHeight += nameHeight;
                 }
                 currentY -= creditsAsset.spaceBetweenSections;
-                _endY += creditsAsset.spaceBetweenSections;
+                creditsHeight += creditsAsset.spaceBetweenSections;
             }
             
+            _endY = creditsHeight;
         }
         
         private void OnCancelPressed() {

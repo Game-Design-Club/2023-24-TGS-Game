@@ -1,22 +1,27 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
+using Game.GameManagement.LevelManagement;
+
 using UnityEditor;
+
 using UnityEngine;
+
 using Object = UnityEngine.Object;
 
-namespace Game.GameManagement.LevelManagement
+namespace Tools.Editor.LevelManipulation
 {
     [CustomEditor(typeof(Level))]
-    public class LevelEditor : Editor
+    public class LevelEditor : UnityEditor.Editor
     {
-        private static Level _currentLevel;
+        private static Level s_currentLevel;
 
         public override void OnInspectorGUI()
         {
             DrawDefaultInspector(); // This will draw the default Inspector fields for the script
 
-            _currentLevel = (Level) target;
+            s_currentLevel = (Level) target;
 
             if (GUILayout.Button("Add Object"))
             {
@@ -221,9 +226,9 @@ namespace Game.GameManagement.LevelManagement
                 GameObject parent = null;
 
                 bool found = false;
-                for (int i = 0; i < _currentLevel.transform.childCount; i++)
+                for (int i = 0; i < s_currentLevel.transform.childCount; i++)
                 {
-                    Transform child = _currentLevel.transform.GetChild(i);
+                    Transform child = s_currentLevel.transform.GetChild(i);
                     
                     if (!child.gameObject.name.Equals(parentName)) continue;
                     
@@ -234,7 +239,7 @@ namespace Game.GameManagement.LevelManagement
 
                 if (!found)
                 {
-                    parent = Instantiate(new GameObject(), _currentLevel.transform);
+                    parent = Instantiate(new GameObject(), s_currentLevel.transform);
                     parent.name = parentName;
                 }
                 

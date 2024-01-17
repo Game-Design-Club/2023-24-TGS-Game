@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Game.GameManagement.LevelManagement
+namespace Tools.Editor.LevelManipulation
 {
     [CreateAssetMenu(fileName = "ObjectPrefabList", menuName = "Object Prefab List", order = 2)]
     public class ObjectPrefabList : ScriptableObject
