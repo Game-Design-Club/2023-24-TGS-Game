@@ -1,8 +1,8 @@
 using AppCore;
 
-using Constants;
-
 using Game.GameManagement;
+
+using Tools.Constants;
 
 using UnityEngine;
 using UnityEngine.Events;
@@ -27,12 +27,12 @@ namespace Game.Interactables {
         }
 
         private void OnEnable() {
-            App.Instance.inputManager.OnInteractPressed += OnInteractPressed;
+            App.Instance.inputManager.OnInteract += OnInteractPressed;
             GameManagerEvents.OnLevelStart += OnLevelStart;
         }
         
         private void OnDisable() {
-            App.Instance.inputManager.OnInteractPressed -= OnInteractPressed;
+            App.Instance.inputManager.OnInteract -= OnInteractPressed;
             GameManagerEvents.OnLevelStart -= OnLevelStart;
         }
         

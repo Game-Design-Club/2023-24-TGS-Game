@@ -2,9 +2,9 @@ using System;
 
 using AppCore;
 
-using Constants;
-
 using TMPro;
+
+using Tools.Constants;
 
 using UnityEngine;
 
@@ -24,11 +24,11 @@ namespace Credits {
 
         // Unity functions
         private void OnEnable() {
-            App.Instance.inputManager.OnCancelPressed += OnCancelPressed;
+            App.Instance.inputManager.OnCancel += OnCancelPressed;
         }
 
         private void OnDisable() {
-            App.Instance.inputManager.OnCancelPressed -= OnCancelPressed;
+            App.Instance.inputManager.OnCancel -= OnCancelPressed;
         }
 
         private void Start() {

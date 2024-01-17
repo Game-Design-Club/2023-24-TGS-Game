@@ -1,4 +1,4 @@
-namespace Constants {
+namespace Tools.Constants {
     public static class AnimationConstants {
         public static class FadeInOut {
             public const string FadeToBlack = "FadeToBlack";

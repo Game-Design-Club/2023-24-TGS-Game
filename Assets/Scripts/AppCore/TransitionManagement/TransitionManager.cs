@@ -1,3 +1,5 @@
+using Tools.Constants;
+
 using UnityEngine;
 
 namespace AppCore.TransitionManagement {
@@ -14,10 +16,10 @@ namespace AppCore.TransitionManagement {
             ResetTriggers();
             switch (transitionType) {
                 case TransitionType.Fade:
-                    _animator.SetTrigger(Constants.AnimationConstants.FadeInOut.FadeToBlack);
+                    _animator.SetTrigger(AnimationConstants.FadeInOut.FadeToBlack);
                     break;
                 case TransitionType.Wipe:
-                    _animator.SetTrigger(Constants.AnimationConstants.WipeInOut.WipeToBlack);
+                    _animator.SetTrigger(AnimationConstants.WipeInOut.WipeToBlack);
                     break;
             }
         }
@@ -26,20 +28,20 @@ namespace AppCore.TransitionManagement {
             ResetTriggers();
             switch (transitionType) {
                 case TransitionType.Fade:
-                    _animator.SetTrigger(Constants.AnimationConstants.FadeInOut.FadeFromBlack);
+                    _animator.SetTrigger(AnimationConstants.FadeInOut.FadeFromBlack);
                     break;
                 case TransitionType.Wipe:
-                    _animator.SetTrigger(Constants.AnimationConstants.WipeInOut.WipeFromBlack);
+                    _animator.SetTrigger(AnimationConstants.WipeInOut.WipeFromBlack);
                     break;
             }
         }
         
         // Private functions
         private void ResetTriggers() {
-            _animator.ResetTrigger(Constants.AnimationConstants.FadeInOut.FadeToBlack);
-            _animator.ResetTrigger(Constants.AnimationConstants.FadeInOut.FadeFromBlack);
-            _animator.ResetTrigger(Constants.AnimationConstants.WipeInOut.WipeToBlack);
-            _animator.ResetTrigger(Constants.AnimationConstants.WipeInOut.WipeFromBlack);
+            _animator.ResetTrigger(AnimationConstants.FadeInOut.FadeToBlack);
+            _animator.ResetTrigger(AnimationConstants.FadeInOut.FadeFromBlack);
+            _animator.ResetTrigger(AnimationConstants.WipeInOut.WipeToBlack);
+            _animator.ResetTrigger(AnimationConstants.WipeInOut.WipeFromBlack);
         }
     }
 }

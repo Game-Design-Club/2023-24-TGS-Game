@@ -1,5 +1,3 @@
-using Constants;
-
 using UnityEngine;
 
 namespace AppCore.SceneManagement

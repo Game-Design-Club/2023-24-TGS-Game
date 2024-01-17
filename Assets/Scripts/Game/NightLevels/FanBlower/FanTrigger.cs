@@ -1,8 +1,8 @@
 using System;
 
-using Constants;
-
 using Game.PlayerComponents;
+
+using Tools.Constants;
 
 using UnityEngine;
 

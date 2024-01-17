@@ -4,6 +4,8 @@ using AppCore;
 
 using Game.GameManagement.LevelManagement;
 
+using Tools.Constants;
+
 using UnityEngine;
 
 namespace Game.GameManagement {
@@ -66,7 +68,7 @@ namespace Game.GameManagement {
         }
         
         public void QuitToMainMenu() {
-            App.Instance.sceneManager.LoadScene(Constants.SceneConstants.MainMenu);
+            App.Instance.sceneManager.LoadScene(SceneConstants.MainMenu);
         }
         
         // Static functions
