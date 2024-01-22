@@ -1,5 +1,3 @@
-using System;
-
 using AppCore;
 
 using Game.GameManagement;
@@ -9,7 +7,7 @@ using UnityEngine;
 
 namespace Tools.Debug_Tools {
     public class ClickToTeleport : MonoBehaviour {
-        [SerializeField] private bool _canTeleport;
+        [SerializeField] private bool canTeleport = true;
         
         private Player _player;
         
@@ -24,7 +22,7 @@ namespace Tools.Debug_Tools {
         }
         
         private void OnClickWorld(Vector2 clickPosition) {
-            if (!_canTeleport) return;
+            if (!canTeleport) return;
             _player.transform.position = clickPosition;
         }
         

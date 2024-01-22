@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TesterScript {
+namespace Tools.TesterScript {
     public abstract class Tester : MonoBehaviour{
         [SerializeField] private bool debugMessages;
         internal void DebugLog(string message) {

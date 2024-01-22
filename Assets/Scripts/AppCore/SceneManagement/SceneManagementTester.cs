@@ -1,8 +1,10 @@
+using Tools.TesterScript;
+
 using UnityEngine;
 
 namespace AppCore.SceneManagement
 {
-    public class SceneManagementTester : TesterScript.Tester
+    public class SceneManagementTester : Tester
     {
         [ContextMenu(itemName: "Load Test Scene 1")]
         private void LoadScene1() {

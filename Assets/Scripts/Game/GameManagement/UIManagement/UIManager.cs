@@ -41,7 +41,6 @@ namespace Game.GameManagement.UIManagement {
         
         private void OnGameResume() {
             pauseCanvas.SetActive(false);
-            eventSystem.SetSelectedGameObject(null);
         }
         
         private void OnLevelStart() {

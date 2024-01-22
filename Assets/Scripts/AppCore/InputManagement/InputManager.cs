@@ -2,7 +2,6 @@ using System;
 
 using Game.GameManagement;
 
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,6 +19,7 @@ namespace AppCore.InputManagement {
         // Player
         public event Action<Vector2> OnMovement;
         public event Action OnInteract;
+        public event Action OnInteractCancel;
         
         private void Awake() {
             _inputActions = new InputActions();
@@ -50,6 +50,7 @@ namespace AppCore.InputManagement {
             void EnableInteract() {
                 _inputActions.Player.Interact.Enable();
                 _inputActions.Player.Interact.performed += OnInteractPerformed;
+                _inputActions.Player.Interact.canceled += OnInteractCancelled;
             }
             void EnableCancel() {
                 _inputActions.UI.Cancel.Enable();
@@ -73,6 +74,7 @@ namespace AppCore.InputManagement {
             void DisableInteract() {
                 _inputActions.Player.Interact.Disable();
                 _inputActions.Player.Interact.performed -= OnInteractPerformed;
+                _inputActions.Player.Interact.canceled -= OnInteractCancelled;
             }
             void DisableCancel() {
                 _inputActions.UI.Cancel.Disable();
@@ -93,6 +95,11 @@ namespace AppCore.InputManagement {
         private void OnInteractPerformed(InputAction.CallbackContext context) {
             if (_lockedControls) return;
             OnInteract?.Invoke();
+        }
+        
+        private void OnInteractCancelled(InputAction.CallbackContext context) {
+            if (_lockedControls) return;
+            OnInteractCancel?.Invoke();
         }
 
         private void OnCancelPerformed(InputAction.CallbackContext context) {
