@@ -26,9 +26,9 @@ namespace Game.PlayerComponents {
         }
         
         // Public functions
-        public override void MovementChanged(Vector2 movementInput) {
+        public void MovementChanged(Vector2 movementInput) {
             if (!_isGrabbingBox) {
-                base.MovementChanged(movementInput);
+                // base.MovementChanged(movementInput);
                 return;
             }
         }
