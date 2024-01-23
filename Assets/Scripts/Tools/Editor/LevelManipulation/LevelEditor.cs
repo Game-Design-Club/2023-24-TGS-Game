@@ -294,7 +294,9 @@ namespace Tools.Editor.LevelManipulation
                 string scriptableObjectPath = "Assets/Scripts/Game/GameManagement/LevelManagement/ObjectPrefabList.asset";
 
                 _objectPrefabList = AssetDatabase.LoadAssetAtPath<ObjectPrefabList>(scriptableObjectPath);
-
+                if (_objectPrefabList == null) {
+                    Debug.LogError("ObjectPrefabList not found. Please create one at " + scriptableObjectPath + " and add it to the LevelEditor window.");
+                }
             }
 
             private void AddPrefabToList(GameObject prefab)
