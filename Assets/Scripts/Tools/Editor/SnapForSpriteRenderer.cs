@@ -19,7 +19,6 @@ namespace Tools.Editor
             _event = Event.current;
 
             if (_event.type != EventType.MouseUp) return;
-            if (!_spriteRenderer.CompareTag(TagConstants.Wall)) return;
             _spriteRenderer.size = new Vector2(Mathf.Round(_spriteRenderer.size.x), Mathf.Round(_spriteRenderer.size.y));
 
             Transform targetTransform = _spriteRenderer.transform;
