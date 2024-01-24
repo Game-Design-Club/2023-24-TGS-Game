@@ -247,11 +247,10 @@ namespace Tools.Editor.LevelManipulation
                 if (sceneView != null)
                 {
                     Camera sceneCamera = sceneView.camera;
-                    Vector3 centerPoint = sceneCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, sceneCamera.nearClipPlane));
-                    centerPoint.x = (int)centerPoint.x;
-                    centerPoint.y = (int)centerPoint.y;
+                    Vector3 centerPoint = sceneCamera.ViewportToWorldPoint(new Vector3(sceneCamera.rect.center.x, sceneCamera.rect.center.y, 0));
                     
-                    GameObject newObject = Instantiate(prefab, centerPoint, new Quaternion(), parent.transform);
+                    GameObject newObject = PrefabUtility.InstantiatePrefab(prefab, parent.transform) as GameObject;
+                    newObject.transform.position = centerPoint;
                     newObject.name = prefab.name;
                 }
                 else
@@ -291,7 +290,7 @@ namespace Tools.Editor.LevelManipulation
 
             private void LoadPrefabList()
             {
-                string scriptableObjectPath = "Assets/Scripts/Game/GameManagement/LevelManagement/ObjectPrefabList.asset";
+                string scriptableObjectPath = "Assets/Scripts/Tools/Editor/LevelManipulation/ObjectPrefabList.asset";
 
                 _objectPrefabList = AssetDatabase.LoadAssetAtPath<ObjectPrefabList>(scriptableObjectPath);
                 if (_objectPrefabList == null) {
