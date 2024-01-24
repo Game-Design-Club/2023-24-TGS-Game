@@ -17,8 +17,15 @@ namespace Tools.Editor
             _event = Event.current;
 
             if (_event.type != EventType.MouseUp) return;
-            _spriteRenderer.size = new Vector2(Mathf.Round(_spriteRenderer.size.x), Mathf.Round(_spriteRenderer.size.y));
 
+            float xSize = Mathf.Round(_spriteRenderer.size.x);
+            float ySize = Mathf.Round(_spriteRenderer.size.y);
+            
+            if (xSize < 1) xSize = 1;
+            if (ySize < 1) ySize = 1;
+            
+            _spriteRenderer.size = new Vector2(xSize, ySize);
+            
             Transform targetTransform = _spriteRenderer.transform;
             Vector3 position = targetTransform.position;
             position = new Vector3(

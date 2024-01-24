@@ -131,14 +131,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2860877519265261435, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2072369798}
-    - target: {fileID: 4733278516730577522, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2072369797}
     - target: {fileID: 6077378776631414732, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -163,10 +155,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2072369797}
-    - target: {fileID: 6250288256530300257, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: QuitToMainMenu
-      objectReference: {fileID: 0}
     - target: {fileID: 6648832949763898109, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -187,14 +175,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2072369797}
-    - target: {fileID: 7250311320611241599, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RestartLevel
-      objectReference: {fileID: 0}
-    - target: {fileID: 7250311320611241599, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Game.GameManagement.GameManager, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 7341761917665025406, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -239,18 +219,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2072369798}
-    - target: {fileID: 7821642183689980750, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ResumeGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 7821642183689980750, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Game.GameManagement.PauseManagement.PauseManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7940082402773741433, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2072369797}
     - target: {fileID: 7955149015158946275, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -267,10 +235,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8049060747592314313, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2072369798}
     - target: {fileID: 8458738185526514110, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -321,6 +285,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3131133812457035087, guid: 7855afa0328e04ef18e287633259fa55, type: 3}
+      propertyPath: canTeleport
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6535898616566914683, guid: 7855afa0328e04ef18e287633259fa55, type: 3}
       propertyPath: m_Name
       value: Debug Tools
