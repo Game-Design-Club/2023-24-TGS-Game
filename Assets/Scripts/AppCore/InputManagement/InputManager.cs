@@ -1,15 +1,18 @@
 using System;
+using System.Collections;
 
 using Game.GameManagement;
 
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace AppCore.InputManagement {
     public class InputManager : MonoBehaviour {
         private InputActions _inputActions;
-        private bool _lockedControls;
         private Vector2 _lastMovementInput;
+        
+        public bool lockedControls;
         
         // UI
         public event Action OnCancel;
@@ -94,17 +97,17 @@ namespace AppCore.InputManagement {
         
         private void OnMovementPerformed(InputAction.CallbackContext context) {
             _lastMovementInput = context.ReadValue<Vector2>();
-            if (_lockedControls) return;
+            if (lockedControls) return;
             OnMovement?.Invoke(_lastMovementInput);
         }
         
         private void OnInteractPerformed(InputAction.CallbackContext context) {
-            if (_lockedControls) return;
+            if (lockedControls) return;
             OnInteract?.Invoke();
         }
         
         private void OnInteractCancelled(InputAction.CallbackContext context) {
-            if (_lockedControls) return;
+            if (lockedControls) return;
             OnInteractCancel?.Invoke();
         }
 
@@ -124,11 +127,15 @@ namespace AppCore.InputManagement {
         }
         
         private void OnLevelStart() {
-            _lockedControls = false;
+            StartCoroutine(UnlockControlsAfterSeconds(App.Instance.transitionManager.wipeTime));
+        }
+        private IEnumerator UnlockControlsAfterSeconds(float seconds) {
+            yield return new WaitForSecondsRealtime(seconds);
+            lockedControls = false;
             OnMovement?.Invoke(_lastMovementInput);
         }
         private void OnLevelOver() {
-            _lockedControls = true;
+            lockedControls = true;
             OnMovement?.Invoke(Vector2.zero);
         }
     }
