@@ -27,9 +27,9 @@ namespace Game.NightLevels.Shooter {
         private IEnumerator SpawnBullets() {
             yield return new WaitForSeconds(startDelay);
             while (true) {
-                yield return new WaitForSeconds(shootFrequency);
                 GameObject bullet = Instantiate(bulletPrefab, shootTransform.position, Quaternion.identity);
                 bullet.GetComponent<Bullet>().Shoot(transform.right);
+                yield return new WaitForSeconds(shootFrequency);
             }
         }
 

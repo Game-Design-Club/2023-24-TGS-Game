@@ -13,16 +13,38 @@ MonoBehaviour:
   m_Name: CreditsInfo
   m_EditorClassIdentifier: 
   creditsSections:
-  - title: Leaders
+  - title: Co-Leaders
     names:
     - Noah Conzetti
     - Nico Howlett
+  - title: Programming
+    names:
+    - Noah Conzetti
+    - Nico Howlett
+    - Maddox Gumboc
+    - Simon Weil
   - title: Art
     names:
-    - Nico Howlett
     - Quinn Hatcher-Ross
+    - Nico Howlett
     - Paul Maslen
+  - title: Story Writing
+    names:
+    - Quinn Hatcher-Ross
+  - title: Marketing and Publicity
+    names:
+    - Ari Wilda
   - title: Music
     names:
     - Paul Maslen
+  - title: Mentor
+    names:
+    - Andrew Merrill
+  - title: Playtesters
+    names:
+    - Andrew Uan-Zo-Li
+    - Zach Rutman
+    - David Kong
+    - Adley Jackson
+    - Mateo Luria
   spaceBetweenSections: 40
