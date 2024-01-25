@@ -39,7 +39,7 @@ namespace Credits {
 
         private void Update() {
             if (!_scrolling) return;
-            creditsParentObject.transform.position += Vector3.up * (scrollSpeed * Time.deltaTime);
+            creditsParentObject.transform.position += Vector3.up * (scrollSpeed * Time.unscaledDeltaTime);
             if (creditsParentObject.transform.localPosition.y > _endY) {
                 _scrolling = false;
                 ShowThankYou();
