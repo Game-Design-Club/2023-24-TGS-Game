@@ -15,6 +15,7 @@ namespace AppCore.InputManagement {
         public event Action OnCancel;
         public event Action<Vector2> OnClick;
         public event Action<Vector2> OnClickWorld;
+        public event Action OnPoint;
         
         // Player
         public event Action<Vector2> OnMovement;
@@ -42,6 +43,7 @@ namespace AppCore.InputManagement {
             EnableInteract();
             EnableCancel();
             EnableClicking();
+            EnableMouseMovement();
             void EnableMovement() {
                 _inputActions.Player.Move.Enable();
                 _inputActions.Player.Move.performed += OnMovementPerformed;
@@ -59,6 +61,10 @@ namespace AppCore.InputManagement {
             void EnableClicking() {
                 _inputActions.UI.Click.Enable();
                 _inputActions.UI.Click.performed += OnClickPerformed;
+            }
+            void EnableMouseMovement() {
+                _inputActions.UI.Point.Enable();
+                _inputActions.UI.Point.performed += OnPointPerformed;
             }
         }
         private void DisableAll() {
@@ -111,6 +117,10 @@ namespace AppCore.InputManagement {
             Vector2 clickPosition = Mouse.current.position.ReadValue();
             OnClick?.Invoke(clickPosition);
             OnClickWorld?.Invoke(Camera.main.ScreenToWorldPoint(clickPosition));
+        }
+        
+        private void OnPointPerformed(InputAction.CallbackContext context) {
+            OnPoint?.Invoke();
         }
         
         private void OnLevelStart() {
