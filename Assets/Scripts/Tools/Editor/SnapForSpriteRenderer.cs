@@ -43,6 +43,9 @@ namespace Tools.Editor
                 Mathf.Round(localScale.y),
                 localScale.z
             );
+            
+            Undo.RecordObject(targetTransform, "Snap to grid");
+            
             EditorUtility.SetDirty(targetTransform);
         }
     }
