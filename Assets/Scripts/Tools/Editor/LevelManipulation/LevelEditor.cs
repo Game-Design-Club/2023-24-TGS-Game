@@ -248,6 +248,7 @@ namespace Tools.Editor.LevelManipulation
                 {
                     Camera sceneCamera = sceneView.camera;
                     Vector3 centerPoint = sceneCamera.ViewportToWorldPoint(new Vector3(sceneCamera.rect.center.x, sceneCamera.rect.center.y, 0));
+                    centerPoint.z = 0;
                     
                     GameObject newObject = PrefabUtility.InstantiatePrefab(prefab, parent.transform) as GameObject;
                     newObject.transform.position = centerPoint;
