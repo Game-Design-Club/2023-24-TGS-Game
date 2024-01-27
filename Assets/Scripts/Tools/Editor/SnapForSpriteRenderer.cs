@@ -45,9 +45,5 @@ namespace Tools.Editor
             );
             EditorUtility.SetDirty(targetTransform);
         }
- 
-        public override void OnInspectorGUI() {
-            DrawDefaultInspector();
-        }
     }
 }
