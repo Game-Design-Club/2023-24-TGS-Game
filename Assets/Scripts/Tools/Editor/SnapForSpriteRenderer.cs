@@ -1,3 +1,5 @@
+using Tools.Constants;
+
 using UnityEditor;
 
 using UnityEngine;
@@ -13,11 +15,12 @@ namespace Tools.Editor
             _spriteRenderer = target as SpriteRenderer;
         }
  
-        private void OnSceneGUI(){
+        private void OnSceneGUI() {
             _event = Event.current;
 
             if (_event.type != EventType.MouseUp) return;
-
+            if (!_event.control) return;
+            
             float xSize = Mathf.Round(_spriteRenderer.size.x);
             float ySize = Mathf.Round(_spriteRenderer.size.y);
             
