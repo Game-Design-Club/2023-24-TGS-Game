@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 6934082371367163038}
   - component: {fileID: 8461699209777913145}
   m_Layer: 0
-  m_Name: Shooter
+  m_Name: Fast Shooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -244,7 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootTransform: {fileID: 3756650673542648919}
   bulletPrefab: {fileID: 4546296023617695968, guid: ec4c7424f25df44d5a49d71e40984ee5, type: 3}
-  shootFrequency: 0.8
+  shootFrequency: 0.3
   startDelay: 0
 --- !u!114 &8461699209777913145
 MonoBehaviour:
