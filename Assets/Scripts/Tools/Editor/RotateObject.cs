@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Tools.Editor
 {
     public static class RotateObject {
-        [MenuItem("Edit/Rotate Object 90 Degrees &_r")] // %r is the shortcut for Ctrl+R or Command+R
+        [MenuItem("Edit/Rotate Object 90 Degrees &r")]
         private static void RotateObj() {
             foreach (GameObject obj in Selection.gameObjects) {
                 Undo.RecordObject(obj.transform, "Rotate 90 degrees");
@@ -14,9 +14,8 @@ namespace Tools.Editor
         }
 
         // Validate the menu item
-        [MenuItem("Edit/Rotate Object 90 Degrees _%r", true)]
+        [MenuItem("Edit/Rotate Object 90 Degrees &r", true)]
         private static bool ValidateRotateObj() {
-            // Return false if no transform is selected
             return Selection.activeTransform != null;
         }
     }
