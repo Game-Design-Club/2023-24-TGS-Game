@@ -1,5 +1,3 @@
-using Tools.Constants;
-
 using UnityEditor;
 
 using UnityEngine;
@@ -14,13 +12,13 @@ namespace Tools.Editor
         void OnEnable() {
             _spriteRenderer = target as SpriteRenderer;
         }
- 
+        
         private void OnSceneGUI() {
             _event = Event.current;
 
             if (_event.type != EventType.MouseUp) return;
             if (!_event.control) return;
-            
+
             float xSize = Mathf.Round(_spriteRenderer.size.x);
             float ySize = Mathf.Round(_spriteRenderer.size.y);
             
@@ -30,6 +28,9 @@ namespace Tools.Editor
             _spriteRenderer.size = new Vector2(xSize, ySize);
             
             Transform targetTransform = _spriteRenderer.transform;
+            
+            Undo.RecordObject(targetTransform, "Snap to Grid");
+            
             Vector3 position = targetTransform.position;
             position = new Vector3(
                 Mathf.Round(2*position.x)/2,
@@ -43,8 +44,6 @@ namespace Tools.Editor
                 Mathf.Round(localScale.y),
                 localScale.z
             );
-            
-            Undo.RecordObject(targetTransform, "Snap to grid");
             
             EditorUtility.SetDirty(targetTransform);
         }
