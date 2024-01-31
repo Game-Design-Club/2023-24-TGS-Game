@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -9,7 +10,7 @@ namespace Game.Day_Levels.Robots.Robot_Paths
     {
         [SerializeField] private GameObject robotPrefab;
         public RobotPath path = null;
-        public List<Robot> robots = new List<Robot>();
+        [HideInInspector] public List<Robot> robots = new List<Robot>();
 
         private void OnValidate()
         {
@@ -45,7 +46,9 @@ namespace Game.Day_Levels.Robots.Robot_Paths
 
         public void AddRobot()
         {
-            GameObject robotObject = Instantiate(robotPrefab, path.points[0].position, Quaternion.identity, transform);
+            GameObject robotObject = PrefabUtility.InstantiatePrefab(robotPrefab, transform) as GameObject;
+            robotObject.transform.position = path.points[0].position;
+            
             Robot robot = robotObject.GetComponent<Robot>();
             robot.path = path;
             robots.Add(robot);

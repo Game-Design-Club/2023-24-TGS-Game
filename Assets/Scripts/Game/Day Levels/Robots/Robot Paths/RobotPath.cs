@@ -38,9 +38,9 @@ namespace Game.Day_Levels.Robots.Robot_Paths
             int numPoints = points.Count;
             for (int i = 0; i < numPoints; i++)
             {
-                RobotPathPoint point = points[i];
-                RobotPathPoint next = points[(i + 1) % numPoints];
-                length += Vector2.Distance(point.position, next.position);
+                RobotPathPoint start = points[i];
+                RobotPathPoint end = points[(i + 1) % numPoints];
+                length += Vector2.Distance(start.position, end.position);
             }
         }
 

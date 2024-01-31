@@ -53,10 +53,10 @@ namespace Game.Day_Levels.Robots.Robot_Paths
             //Lines
             for (int i = 0; i < numPoints; i++)
             {
-                RobotPathPoint point = pathSupervisor.path.points[i];
-                RobotPathPoint next = pathSupervisor.path.points[(i + 1) % numPoints];
+                RobotPathPoint start = pathSupervisor.path.points[i];
+                RobotPathPoint end = pathSupervisor.path.points[(i + 1) % numPoints];
                 Handles.color = Color.green;
-                Handles.DrawLine(point.position, next.position, 5f);
+                Handles.DrawLine(start.position, end.position, 5f);
             }
             
             //Points

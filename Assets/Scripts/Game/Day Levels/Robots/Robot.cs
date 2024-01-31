@@ -11,25 +11,12 @@ namespace Game.Day_Levels.Robots
         private static float _robotSpeed = 5f;
         public RobotPath path;
         [HideInInspector] public float dstAlongPath = 0;
+        private RobotPathPoint _destination;
 
         private void Update()
         {
             dstAlongPath = (dstAlongPath + _robotSpeed * Time.deltaTime) % path.length;
             UpdatePosition();
-        }
-
-        private void OnEnable()
-        {
-            Debug.Log("Enable");
-        }
-        private void OnDisable()
-        {
-            Debug.Log("Disable");
-        }
-        
-        private void OnDestroy()
-        {
-            Debug.Log("Destroy");
         }
 
         public void UpdatePosition()
@@ -38,9 +25,9 @@ namespace Game.Day_Levels.Robots
             float currentDst = 0;
             for (int i = 0; i < numPoints; i++)
             {
-                RobotPathPoint point = path.points[i];
-                RobotPathPoint next = path.points[(i + 1) % numPoints];
-                float dst = Vector2.Distance(point.position, next.position);
+                RobotPathPoint start = path.points[i];
+                RobotPathPoint end = path.points[(i + 1) % numPoints];
+                float dst = Vector2.Distance(start.position, end.position);
                 
                 if (currentDst + dst < dstAlongPath)
                 {
@@ -50,7 +37,8 @@ namespace Game.Day_Levels.Robots
                 
                 //found current segment
                 float percent = (dstAlongPath - currentDst) / dst;
-                transform.position = Vector2.Lerp(point.position, next.position, percent);
+                transform.position = Vector2.Lerp(start.position, end.position, percent);
+                _destination = end;
                 break;
             }
         }

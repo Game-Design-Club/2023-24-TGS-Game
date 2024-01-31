@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2007676625144982585}
   m_Layer: 0
   m_Name: Robot
-  m_TagString: Untagged
+  m_TagString: Robot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,3 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 846a50c5d8d0e442c814e72fb5722444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  path:
+    points: []
+    length: 0
+  dstAlongPath: 0
