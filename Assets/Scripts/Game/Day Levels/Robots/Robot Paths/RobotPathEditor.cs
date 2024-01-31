@@ -15,6 +15,15 @@ namespace Game.Day_Levels.Robots.Robot_Paths
             pathSupervisor = (RobotPathSupervisor)target;
         }
 
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+            if (GUILayout.Button("Add Robot"))
+            {
+                pathSupervisor.AddRobot();
+            }
+        }
+
         private void OnSceneGUI()
         {
             Input();
@@ -57,7 +66,7 @@ namespace Game.Day_Levels.Robots.Robot_Paths
                 if (point.position != newPos)
                 {
                     Undo.RecordObject(pathSupervisor, "Move Point");
-                    pathSupervisor.path.MovePoint(i, newPos);
+                    pathSupervisor.MovePoint(i, newPos);
                 }
             }
         }
