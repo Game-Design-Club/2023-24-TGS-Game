@@ -18,6 +18,20 @@ namespace Game.Day_Levels.Robots
             UpdatePosition();
         }
 
+        private void OnEnable()
+        {
+            Debug.Log("Enable");
+        }
+        private void OnDisable()
+        {
+            Debug.Log("Disable");
+        }
+        
+        private void OnDestroy()
+        {
+            Debug.Log("Destroy");
+        }
+
         public void UpdatePosition()
         {
             int numPoints = path.points.Count;
