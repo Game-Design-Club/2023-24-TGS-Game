@@ -129,12 +129,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63d8246c1ab7d4e37ba32d3618ecbd18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  robotPrefab: {fileID: 2354338020392594987, guid: a8bc9ac9184c248619fb6db3a976a341, type: 3}
   path:
     points:
-    - position: {x: 1, y: 2}
+    - position: {x: 2, y: 2}
     - position: {x: -2, y: 2}
-    length: 6
-  robots: []
+    - position: {x: 6, y: -5}
+    - position: {x: 5, y: 4}
+    length: 27.291082
 --- !u!1001 &66256480585276364
 PrefabInstance:
   m_ObjectHideFlags: 0

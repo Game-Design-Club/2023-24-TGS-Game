@@ -7,8 +7,8 @@ namespace Game.Day_Levels.Robots.Robot_Paths
 {
     public class RobotPathSupervisor : MonoBehaviour
     {
-        [SerializeField] public RobotPath path = null;
-        public List<Robot> robots;
+        [SerializeField] private GameObject robotPrefab;
+        public RobotPath path = null;
 
         private void OnValidate()
         {
@@ -22,7 +22,9 @@ namespace Game.Day_Levels.Robots.Robot_Paths
 
         private void OnEnable()
         {
-            throw new NotImplementedException();
+            GameObject robotObject = Instantiate(robotPrefab, transform.position, Quaternion.identity);
+            Robot robot = robotObject.GetComponent<Robot>();
+            robot.path = path;
         }
     }
 }
