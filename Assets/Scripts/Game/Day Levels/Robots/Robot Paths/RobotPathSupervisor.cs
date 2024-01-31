@@ -10,7 +10,7 @@ namespace Game.Day_Levels.Robots.Robot_Paths
     {
         [SerializeField] private GameObject robotPrefab;
         public RobotPath path = null;
-        [HideInInspector] public List<Robot> robots = new List<Robot>();
+        public List<Robot> robots = new List<Robot>();
 
         private void OnValidate()
         {
@@ -27,6 +27,7 @@ namespace Game.Day_Levels.Robots.Robot_Paths
             path.MovePoint(index, position);
             foreach (Robot robot in robots)
             {
+                robot.path = path;
                 robot.SetPosition(robot.transform.position);
             }
         }
@@ -39,6 +40,7 @@ namespace Game.Day_Levels.Robots.Robot_Paths
                 Robot robot = transform.GetChild(i).GetComponent<Robot>();
                 if (robot != null)
                 {
+                    robot.path = path;
                     robots.Add(robot);
                 }
             }
