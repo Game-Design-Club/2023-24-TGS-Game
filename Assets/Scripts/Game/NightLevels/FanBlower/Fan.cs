@@ -42,6 +42,7 @@ namespace Game.NightLevels.FanBlower {
         private void MovePlayer() {
             if (_player == null) return;
             _playerRb.AddForce(transform.right * fanStrength, ForceMode2D.Force);
+            Debug.Log(_playerRb.velocity);
         }
     }
 }

@@ -1,20 +1,24 @@
 using System;
+using System.Collections;
 
 using Game.GameManagement;
 
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace AppCore.InputManagement {
     public class InputManager : MonoBehaviour {
         private InputActions _inputActions;
-        private bool _lockedControls;
         private Vector2 _lastMovementInput;
+        
+        public bool lockedControls;
         
         // UI
         public event Action OnCancel;
         public event Action<Vector2> OnClick;
         public event Action<Vector2> OnClickWorld;
+        public event Action OnPoint;
         
         // Player
         public event Action<Vector2> OnMovement;
@@ -42,6 +46,7 @@ namespace AppCore.InputManagement {
             EnableInteract();
             EnableCancel();
             EnableClicking();
+            EnableMouseMovement();
             void EnableMovement() {
                 _inputActions.Player.Move.Enable();
                 _inputActions.Player.Move.performed += OnMovementPerformed;
@@ -59,6 +64,10 @@ namespace AppCore.InputManagement {
             void EnableClicking() {
                 _inputActions.UI.Click.Enable();
                 _inputActions.UI.Click.performed += OnClickPerformed;
+            }
+            void EnableMouseMovement() {
+                _inputActions.UI.Point.Enable();
+                _inputActions.UI.Point.performed += OnPointPerformed;
             }
         }
         private void DisableAll() {
@@ -88,17 +97,17 @@ namespace AppCore.InputManagement {
         
         private void OnMovementPerformed(InputAction.CallbackContext context) {
             _lastMovementInput = context.ReadValue<Vector2>();
-            if (_lockedControls) return;
+            if (lockedControls) return;
             OnMovement?.Invoke(_lastMovementInput);
         }
         
         private void OnInteractPerformed(InputAction.CallbackContext context) {
-            if (_lockedControls) return;
+            if (lockedControls) return;
             OnInteract?.Invoke();
         }
         
         private void OnInteractCancelled(InputAction.CallbackContext context) {
-            if (_lockedControls) return;
+            if (lockedControls) return;
             OnInteractCancel?.Invoke();
         }
 
@@ -113,12 +122,20 @@ namespace AppCore.InputManagement {
             OnClickWorld?.Invoke(Camera.main.ScreenToWorldPoint(clickPosition));
         }
         
+        private void OnPointPerformed(InputAction.CallbackContext context) {
+            OnPoint?.Invoke();
+        }
+        
         private void OnLevelStart() {
-            _lockedControls = false;
+            StartCoroutine(UnlockControlsAfterSeconds(App.Instance.transitionManager.wipeTime));
+        }
+        private IEnumerator UnlockControlsAfterSeconds(float seconds) {
+            yield return new WaitForSecondsRealtime(seconds);
+            lockedControls = false;
             OnMovement?.Invoke(_lastMovementInput);
         }
         private void OnLevelOver() {
-            _lockedControls = true;
+            lockedControls = true;
             OnMovement?.Invoke(Vector2.zero);
         }
     }

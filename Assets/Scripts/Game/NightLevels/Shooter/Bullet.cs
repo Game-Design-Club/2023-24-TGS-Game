@@ -1,10 +1,13 @@
 using Game.GameManagement;
+using Game.ParticleManagement;
 
 using UnityEngine;
 
 namespace Game.NightLevels.Shooter {
-    public class Bullet : MonoBehaviour{
+    public class Bullet : MonoBehaviour {
         [SerializeField] private float shootSpeed = 3f;
+        [SerializeField] private ParticleSystem particleSystem;
+        
         // Unity functions
         private void OnEnable() {
             GameManagerEvents.OnLevelStart += OnLevelStart;
@@ -25,7 +28,9 @@ namespace Game.NightLevels.Shooter {
         
         private void DestroyBullet() {
             Destroy(gameObject);
-            // sfx, particle effects, etc.
+            if (particleSystem != null) {
+                ParticleManager.PlayParticleEffect(particleSystem, transform.position);
+            }
         }
         
         // Public functions

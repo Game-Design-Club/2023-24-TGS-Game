@@ -252,7 +252,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5900289050738318274, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
@@ -287,7 +288,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3131133812457035087, guid: 7855afa0328e04ef18e287633259fa55, type: 3}
       propertyPath: canTeleport
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6535898616566914683, guid: 7855afa0328e04ef18e287633259fa55, type: 3}
       propertyPath: m_Name
@@ -585,10 +586,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 7778564107128079809, guid: f7dd0f4d07d3445a18315844fd95adef, type: 3}
-      propertyPath: firstLevel
-      value: 
-      objectReference: {fileID: 3721227100662698277, guid: a60fcc7bf7e0f47c3bf276a64250be44, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

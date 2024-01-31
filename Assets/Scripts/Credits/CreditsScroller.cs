@@ -15,6 +15,7 @@ namespace Credits {
         [SerializeField] private GameObject personNamePrefab;
         [SerializeField] private GameObject creditsParentObject;
         [SerializeField] private float scrollSpeed = 1f;
+        [SerializeField] private int characterCountWrap = 15;
         
         [SerializeField] private GameObject thankYouObject;
 
@@ -39,7 +40,7 @@ namespace Credits {
 
         private void Update() {
             if (!_scrolling) return;
-            creditsParentObject.transform.position += Vector3.up * (scrollSpeed * Time.deltaTime);
+            creditsParentObject.transform.position += Vector3.up * (scrollSpeed * Time.unscaledDeltaTime);
             if (creditsParentObject.transform.localPosition.y > _endY) {
                 _scrolling = false;
                 ShowThankYou();
@@ -67,6 +68,10 @@ namespace Credits {
                     float nameHeight = nameObject.GetComponent<RectTransform>().rect.height;
                     currentY -= nameHeight;
                     creditsHeight += nameHeight;
+                }
+                if (section.names.Length <= 1 && section.title.Length > characterCountWrap) {
+                    currentY -= creditsAsset.spaceBetweenSections;
+                    creditsHeight += creditsAsset.spaceBetweenSections;
                 }
                 currentY -= creditsAsset.spaceBetweenSections;
                 creditsHeight += creditsAsset.spaceBetweenSections;

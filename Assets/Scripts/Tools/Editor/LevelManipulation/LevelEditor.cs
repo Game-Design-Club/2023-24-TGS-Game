@@ -253,6 +253,8 @@ namespace Tools.Editor.LevelManipulation
                     GameObject newObject = PrefabUtility.InstantiatePrefab(prefab, parent.transform) as GameObject;
                     newObject.transform.position = centerPoint;
                     newObject.name = prefab.name;
+                    
+                    Undo.RegisterCreatedObjectUndo(newObject, "Add " + prefab.name);
                 }
                 else
                 {
