@@ -9,10 +9,12 @@ namespace Game.Day_Levels.Robots.Robot_Paths
     public class RobotPathEditor : Editor
     {
         public RobotPathSupervisor pathSupervisor;
+        private int lastKnownChildCount = 0;
 
         private void OnEnable()
         {
             pathSupervisor = (RobotPathSupervisor)target;
+            pathSupervisor.UpdateRobotList();
         }
 
         public override void OnInspectorGUI()
@@ -28,6 +30,8 @@ namespace Game.Day_Levels.Robots.Robot_Paths
         {
             Input();
             Draw();
+
+            if (lastKnownChildCount != pathSupervisor.transform.childCount) pathSupervisor.UpdateRobotList();
         }
         
         void Input()

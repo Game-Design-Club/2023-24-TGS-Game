@@ -9,6 +9,7 @@ namespace Game.Day_Levels.Robots.Robot_Paths
     {
         [SerializeField] private GameObject robotPrefab;
         public RobotPath path = null;
+        public List<Robot> robots = new List<Robot>();
 
         private void OnValidate()
         {
@@ -23,12 +24,21 @@ namespace Game.Day_Levels.Robots.Robot_Paths
         public void MovePoint(int index, Vector2 position)
         {
             path.MovePoint(index, position);
-            for (int i = 0 ; i < transform.childCount ; i++)
+            foreach (Robot robot in robots)
+            {
+                robot.SetPosition(robot.transform.position);
+            }
+        }
+
+        public void UpdateRobotList()
+        {
+            robots.Clear();
+            for (int i = 0; i < transform.childCount; i++)
             {
                 Robot robot = transform.GetChild(i).GetComponent<Robot>();
                 if (robot != null)
                 {
-                    robot.SetPosition(robot.transform.position);
+                    robots.Add(robot);
                 }
             }
         }
@@ -38,6 +48,7 @@ namespace Game.Day_Levels.Robots.Robot_Paths
             GameObject robotObject = Instantiate(robotPrefab, path.points[0].position, Quaternion.identity, transform);
             Robot robot = robotObject.GetComponent<Robot>();
             robot.path = path;
+            robots.Add(robot);
         }
     }
 }
