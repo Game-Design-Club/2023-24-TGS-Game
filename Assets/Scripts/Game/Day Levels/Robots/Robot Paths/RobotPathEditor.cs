@@ -75,16 +75,20 @@ namespace Game.Day_Levels.Robots.Robot_Paths
             }
             
             // Points
-             // for (int i = 0; i < pathSupervisor.idealPositions.Count; i++)
-             // {
-             //     Handles.color = Color.cyan;
-             //     float idealPos = pathSupervisor.idealPositions[i];
-             //     RobotPath.SegmentInfo currentSegment = pathSupervisor.path.GetSegment(idealPos);
-             //     float percent = (idealPos - currentSegment.StartDstFromStart) / currentSegment.Length;
-             //     Vector2 position = Vector2.Lerp(currentSegment.Start.position, currentSegment.End.position, percent);
-             //     
-             //     Handles.FreeMoveHandle(position, .2f, Vector2.zero, Handles.CylinderHandleCap);
-             // }
+             for (int i = 0; i < pathSupervisor.robots.Count; i++)
+             {
+                 Handles.color = Color.cyan;
+                 Robot robot = pathSupervisor.robots[i];
+                 float idealPos = robot.idealDst;
+                 RobotPath.SegmentInfo currentSegment = pathSupervisor.path.GetSegment(idealPos);
+                 float percent = (idealPos - currentSegment.StartDstFromStart) / currentSegment.Length;
+                 Vector2 position = Vector2.Lerp(currentSegment.Start.position, currentSegment.End.position, percent);
+                 
+                 Handles.FreeMoveHandle(position, .2f, Vector2.zero, Handles.CylinderHandleCap);
+                 
+                 Handles.color = Color.yellow;
+                 Handles.DrawLine(position, robot.transform.position);
+             }
         }
     }
 }

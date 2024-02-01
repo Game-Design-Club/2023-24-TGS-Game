@@ -14,6 +14,7 @@ namespace Game.Day_Levels.Robots
         [HideInInspector] public float dstAlongPath = 0;
         [HideInInspector]public RobotPathPoint destination;
         [HideInInspector]public float velocity;
+        [FormerlySerializedAs("ideaDst")] public float idealDst;
 
         public float distanceUntilCollision = 0;
 

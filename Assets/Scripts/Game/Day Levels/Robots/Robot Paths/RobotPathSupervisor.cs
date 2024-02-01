@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -27,11 +28,30 @@ namespace Game.Day_Levels.Robots.Robot_Paths
         {
             for (int i = 0; i < robots.Count; i++)
             {
-                float idealDst = idealPositions[i];
-                // robots[i].idealDst = idealDst;
-                RobotPath.SegmentInfo segmentInfo = path.GetSegment(idealDst);
+                RobotPath.SegmentInfo segmentInfo = path.GetSegment(idealPositions[i]);
                 idealPositions[i] = (idealPositions[i] + segmentInfo.Speed * Time.deltaTime) % path.length;
             }
+            
+            robots.Sort();
+            idealPositions.Sort();
+
+            float distanceFromIdealAhead = 0f;
+            float distanceFromIdealBehind = 0f;
+            for (int i = 0; i < robots.Count; i++)
+            {
+                distanceFromIdealAhead += Mathf.Abs(idealPositions[i] - robots[i].dstAlongPath);
+                distanceFromIdealBehind += Mathf.Abs(idealPositions[(i - 1 + idealPositions.Count) % idealPositions.Count] - robots[i].dstAlongPath);
+            }
+
+            int indexAdjustment = distanceFromIdealAhead < distanceFromIdealBehind ? 0 : -1;
+            
+            for (int i = 0; i < robots.Count; i++)
+            {
+                robots[i].idealDst =
+                    idealPositions[(i + indexAdjustment + idealPositions.Count) % idealPositions.Count];
+            }
+
+
         }
 
         private void OnValidate()
