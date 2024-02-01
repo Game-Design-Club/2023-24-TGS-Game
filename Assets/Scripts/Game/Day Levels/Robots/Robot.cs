@@ -65,29 +65,30 @@ namespace Game.Day_Levels.Robots
         private void CalculateDistanceTillCollision()
         {
             Vector2 direction = GetDirection();
-            float minDistance = MinDistance();
+            Vector2 perp = Vector2.Perpendicular(direction) * 0.5f;
             Vector2 startPosition = (Vector2)transform.position;
+            distanceUntilCollision = SendRay(startPosition, direction);
+            distanceUntilCollision = Mathf.Min(distanceUntilCollision, SendRay(startPosition + perp, direction));
+            distanceUntilCollision = Mathf.Min(distanceUntilCollision, SendRay(startPosition - perp, direction));
+        }
+
+        public float SendRay(Vector2 startingPosition, Vector2 direction)
+        {
             RaycastHit2D hit = Physics2D.Raycast(
-                startPosition,
+                startingPosition,
                 direction,
                 Mathf.Infinity,
                 layerMask);
             if (hit.collider is null) {
-                Debug.LogWarning("Laser hit nothing.", this);
+                Debug.LogWarning("Robot collider hit nothing.", this);
                 distanceUntilCollision = float.PositiveInfinity;
             }
-
-            distanceUntilCollision = hit.distance;
+            return hit.distance;
         }
 
         public Vector2 GetDirection()
         {
             return (destination.position - (Vector2)transform.position).normalized;
-        }
-
-        public float MinDistance()
-        {
-            return .5f / Mathf.Cos(90 - Vector2.Angle(transform.position, destination.position));
         }
 
         public void SetPosition(Vector2 referencePoint)
