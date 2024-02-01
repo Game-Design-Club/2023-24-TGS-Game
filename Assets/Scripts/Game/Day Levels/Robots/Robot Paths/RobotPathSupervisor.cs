@@ -11,6 +11,26 @@ namespace Game.Day_Levels.Robots.Robot_Paths
         [SerializeField] private GameObject robotPrefab;
         public RobotPath path = null;
         public List<Robot> robots = new List<Robot>();
+        public List<float> idealPositions;
+
+        private void OnEnable()
+        {
+            robots.Sort();
+            idealPositions = new List<float>();
+            String s = "";
+            foreach (Robot robot in robots)
+            {
+                idealPositions.Add(robot.dstAlongPath);
+                s += robot.dstAlongPath + ", ";
+            }
+            Debug.Log(s);
+            
+        }
+
+        private void Update()
+        {
+            throw new NotImplementedException();
+        }
 
         private void OnValidate()
         {

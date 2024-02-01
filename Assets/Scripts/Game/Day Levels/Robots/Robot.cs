@@ -6,60 +6,48 @@ using UnityEngine.Serialization;
 
 namespace Game.Day_Levels.Robots
 {
-    public class Robot : MonoBehaviour
+    public class Robot : MonoBehaviour, IComparable<Robot>
     {
-        private static float _robotSpeed = 5f;
         private static float _hardStopDistance = 1f;
         [SerializeField] private LayerMask layerMask;
         public RobotPath path;
         [HideInInspector] public float dstAlongPath = 0;
         [HideInInspector]public RobotPathPoint destination;
-        [HideInInspector]public float velocity = _robotSpeed;
+        [HideInInspector]public float velocity = 0;
+        public float idealDst;
 
         public float distanceUntilCollision = 0;
 
         private void OnEnable()
         {
-            UpdatePosition();
+            RobotPath.SegmentInfo currentSegment = path.GetSegment(dstAlongPath);
+            UpdatePosition(currentSegment);
+            velocity = currentSegment.Speed;
+            idealDst = dstAlongPath;
         }
 
         private void Update()
         {
             CalculateDistanceTillCollision();
             
-            velocity = distanceUntilCollision < _hardStopDistance && distanceUntilCollision < Vector2.Distance(transform.position, destination.position) ? 0 : _robotSpeed;
+            RobotPath.SegmentInfo currentSegment = path.GetSegment(dstAlongPath);
+            
+            velocity = distanceUntilCollision < _hardStopDistance && distanceUntilCollision < Vector2.Distance(transform.position, destination.position) ? 0 : currentSegment.Speed;
             
             dstAlongPath = (dstAlongPath + velocity * Time.deltaTime) % path.length;
             
-            UpdatePosition();
+            UpdatePosition(currentSegment);
             // Quaternion newRotation = Quaternion.LookRotation(GetDirection());
             // Quaternion newRotation2D = Quaternion.Euler(0f, 0f, newRotation.eulerAngles.y);
             // transform.rotation = newRotation2D;
 
         }
 
-        public void UpdatePosition()
+        public void UpdatePosition(RobotPath.SegmentInfo currentSegment)
         {
-            int numPoints = path.points.Count;
-            float currentDst = 0;
-            for (int i = 0; i < numPoints; i++)
-            {
-                RobotPathPoint start = path.points[i];
-                RobotPathPoint end = path.points[(i + 1) % numPoints];
-                float dst = Vector2.Distance(start.position, end.position);
-                
-                if (currentDst + dst < dstAlongPath)
-                {
-                    currentDst += dst;
-                    continue;
-                }
-                
-                //found current segment
-                float percent = (dstAlongPath - currentDst) / dst;
-                transform.position = Vector2.Lerp(start.position, end.position, percent);
-                destination = end;
-                break;
-            }
+            float percent = (dstAlongPath - currentSegment.StartDstFromStart) / currentSegment.Length;
+            transform.position = Vector2.Lerp(currentSegment.Start.position, currentSegment.End.position, percent);
+            destination = currentSegment.End;
         }
         
         private void CalculateDistanceTillCollision()
@@ -80,6 +68,8 @@ namespace Game.Day_Levels.Robots
                 Mathf.Infinity,
                 layerMask);
             if (hit.collider is null) {
+                Debug.Log(startingPosition);
+                Debug.Log(direction);
                 Debug.LogWarning("Robot collider hit nothing.", this);
                 distanceUntilCollision = float.PositiveInfinity;
             }
@@ -122,6 +112,11 @@ namespace Game.Day_Levels.Robots
             
             float subSegLength = Vector2.Distance(shortestStart, newPos);
             dstAlongPath = smallestDstOnPath + subSegLength;
+        }
+
+        public int CompareTo(Robot other)
+        {
+            return dstAlongPath.CompareTo(other.dstAlongPath);
         }
     }
 }
