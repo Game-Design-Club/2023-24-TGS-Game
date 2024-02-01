@@ -26,7 +26,8 @@ namespace Game.Day_Levels.Robots
         private void Update()
         {
             CalculateDistanceTillCollision();
-            velocity = distanceUntilCollision < _hardStopDistance ? 0 : _robotSpeed;
+            
+            velocity = distanceUntilCollision < _hardStopDistance && distanceUntilCollision < Vector2.Distance(transform.position, destination.position) ? 0 : _robotSpeed;
             
             dstAlongPath = (dstAlongPath + velocity * Time.deltaTime) % path.length;
             
