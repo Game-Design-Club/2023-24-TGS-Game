@@ -17,19 +17,21 @@ namespace Game.Day_Levels.Robots.Robot_Paths
         {
             robots.Sort();
             idealPositions = new List<float>();
-            String s = "";
             foreach (Robot robot in robots)
             {
                 idealPositions.Add(robot.dstAlongPath);
-                s += robot.dstAlongPath + ", ";
             }
-            Debug.Log(s);
-            
         }
 
         private void Update()
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < robots.Count; i++)
+            {
+                float idealDst = idealPositions[i];
+                // robots[i].idealDst = idealDst;
+                RobotPath.SegmentInfo segmentInfo = path.GetSegment(idealDst);
+                idealPositions[i] = (idealPositions[i] + segmentInfo.Speed * Time.deltaTime) % path.length;
+            }
         }
 
         private void OnValidate()

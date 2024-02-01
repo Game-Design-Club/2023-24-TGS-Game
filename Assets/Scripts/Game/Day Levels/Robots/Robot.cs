@@ -13,8 +13,7 @@ namespace Game.Day_Levels.Robots
         public RobotPath path;
         [HideInInspector] public float dstAlongPath = 0;
         [HideInInspector]public RobotPathPoint destination;
-        [HideInInspector]public float velocity = 0;
-        public float idealDst;
+        [HideInInspector]public float velocity;
 
         public float distanceUntilCollision = 0;
 
@@ -22,21 +21,20 @@ namespace Game.Day_Levels.Robots
         {
             RobotPath.SegmentInfo currentSegment = path.GetSegment(dstAlongPath);
             UpdatePosition(currentSegment);
-            velocity = currentSegment.Speed;
-            idealDst = dstAlongPath;
         }
 
         private void Update()
         {
             CalculateDistanceTillCollision();
-            
+
             RobotPath.SegmentInfo currentSegment = path.GetSegment(dstAlongPath);
             
-            velocity = distanceUntilCollision < _hardStopDistance && distanceUntilCollision < Vector2.Distance(transform.position, destination.position) ? 0 : currentSegment.Speed;
+            UpdatePosition(currentSegment);
             
+            velocity = distanceUntilCollision < _hardStopDistance && distanceUntilCollision < Vector2.Distance(transform.position, destination.position) ? 0 : currentSegment.Speed;
+
             dstAlongPath = (dstAlongPath + velocity * Time.deltaTime) % path.length;
             
-            UpdatePosition(currentSegment);
             // Quaternion newRotation = Quaternion.LookRotation(GetDirection());
             // Quaternion newRotation2D = Quaternion.Euler(0f, 0f, newRotation.eulerAngles.y);
             // transform.rotation = newRotation2D;
