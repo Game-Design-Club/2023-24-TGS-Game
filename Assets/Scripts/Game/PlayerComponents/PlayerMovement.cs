@@ -1,4 +1,9 @@
+using System;
+
 using AppCore;
+
+using Game.GameManagement;
+
 using UnityEngine;
 
 namespace Game.PlayerComponents {
@@ -6,12 +11,14 @@ namespace Game.PlayerComponents {
         [SerializeField] private float movementSpeed = 5f;
         [SerializeField] private LayerMask wallLayer;
         [SerializeField] private bool smoothMovement = true;
+        [SerializeField] private float snapDistance = 0.01f;
 
-        protected Vector2 _currentMovement;
-        protected Rigidbody2D _rigidbody2D;
-
-        private const float _wallDistance = 0.01f;
-
+        private Vector2 _currentMovement;
+        private float _currentMovementSpeed;
+        private Rigidbody2D _rigidbody2D;
+        
+        internal event Action<Vector2> OnPlayerMoved;
+        
         // Unity functions
         private void OnEnable() {
             App.Instance.inputManager.OnMovement += OnMovement;
@@ -25,6 +32,10 @@ namespace Game.PlayerComponents {
             _rigidbody2D = GetComponent<Rigidbody2D>();
         }
 
+        private void Start() {
+            _currentMovementSpeed = movementSpeed;
+        }
+
         private void Update() {
             MovePlayer();
         }
@@ -35,17 +46,20 @@ namespace Game.PlayerComponents {
             _currentMovement.Normalize();
         }
 
-        // Protected functions
-        protected virtual void MovePlayer() {
-            float movementDistance = movementSpeed * Time.deltaTime;
-            Vector2 movement = _currentMovement * movementDistance;
-            Vector2 newPosition = _rigidbody2D.position + movement;
-
+        private void MovePlayer() {
+            float movementDistance = _currentMovementSpeed * Time.deltaTime;
+            Vector2 originalMovement = _currentMovement * movementDistance;
+            Vector2 newPosition = _rigidbody2D.position + originalMovement;
+            Vector2 actualMovement = originalMovement;
+            
             if (smoothMovement) {
-                newPosition = SmoothMovement(movement);
+                newPosition = SmoothMovement(originalMovement);
+                actualMovement = newPosition - _rigidbody2D.position;
             }
 
             _rigidbody2D.position = newPosition;
+            
+            OnPlayerMoved?.Invoke(actualMovement);
         }
 
 
@@ -55,13 +69,12 @@ namespace Game.PlayerComponents {
             // Define the size of the player for BoxCast
             Vector2 localScale = transform.localScale;
             Vector2 size = new (localScale.x, localScale.y);
-        
             // Separate BoxCast checks for X and Y axes
             if (_currentMovement.x != 0) {
                 RaycastHit2D hitX = Physics2D.BoxCast(_rigidbody2D.position, size, 0f, new Vector2(_currentMovement.x, 0), Mathf.Abs(movement.x), wallLayer);
                 if (hitX.collider != null) {
-                    if (hitX.distance > _wallDistance) {
-                        newPosition.x = _rigidbody2D.position.x + _currentMovement.x * (hitX.distance - _wallDistance);
+                    if (hitX.distance > snapDistance) {
+                        newPosition.x = _rigidbody2D.position.x + _currentMovement.x * (hitX.distance - snapDistance);
                     } else {
                         newPosition.x = _rigidbody2D.position.x;
                     }
@@ -71,8 +84,8 @@ namespace Game.PlayerComponents {
             if (_currentMovement.y != 0) {
                 RaycastHit2D hitY = Physics2D.BoxCast(_rigidbody2D.position, size, 0f, new Vector2(0, _currentMovement.y), Mathf.Abs(movement.y), wallLayer);
                 if (hitY.collider != null) {
-                    if (hitY.distance > _wallDistance) {
-                        newPosition.y = _rigidbody2D.position.y + _currentMovement.y * (hitY.distance - _wallDistance);
+                    if (hitY.distance > snapDistance) {
+                        newPosition.y = _rigidbody2D.position.y + _currentMovement.y * (hitY.distance - snapDistance);
                     } else {
                         newPosition.y = _rigidbody2D.position.y;
                     }
@@ -80,6 +93,16 @@ namespace Game.PlayerComponents {
             }
 
             return newPosition;
+        }
+        
+        // Protected functions
+        internal void SetMovementSpeed(float speed) {
+            _currentMovementSpeed = speed;
+            Debug.Log("Movement speed set to " + speed);
+        }
+        
+        internal void ResetMovementSpeed() {
+            SetMovementSpeed(movementSpeed);
         }
     }
 }
