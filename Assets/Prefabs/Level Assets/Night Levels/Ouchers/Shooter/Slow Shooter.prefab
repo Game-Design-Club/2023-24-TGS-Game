@@ -129,6 +129,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shooter Base
       objectReference: {fileID: 0}
+    - target: {fileID: 6934082371367163038, guid: 019704176945648ddad70ecf1973015d, type: 3}
+      propertyPath: shootFrequency
+      value: 1.15
+      objectReference: {fileID: 0}
     - target: {fileID: 8775868771979242570, guid: 019704176945648ddad70ecf1973015d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
