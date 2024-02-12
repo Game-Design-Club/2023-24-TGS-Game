@@ -13,7 +13,7 @@ namespace Game.PlayerComponents {
         private bool _isTouchingBox;
         private bool _isGrabbingBox;
         
-        [SerializeField] private Transform _boxTransform;
+        [SerializeField] private Rigidbody2D _boxRB;
         
         // Unity functions
         private void OnEnable() {
@@ -31,21 +31,21 @@ namespace Game.PlayerComponents {
         private void OnTriggerEnter2D (Collider2D other) {
             if (other.CompareTag(TagConstants.Box)) {
                 _isTouchingBox = true;
-                _boxTransform = other.transform;
+                _boxRB = other.GetComponent<Rigidbody2D>();
             }
         } 
         
         private void OnTriggerExit2D (Collider2D other) {
             if (other.CompareTag(TagConstants.Box)) {
                 _isTouchingBox = false;
-                _boxTransform = null;
+                _boxRB = null;
             }
         }
 
         // Private functions
         private void OnPlayerMoved(Vector2 rawMovement) {
             if (_isGrabbingBox) {
-                _boxTransform.position += rawMovement;
+                _boxRB.position += rawMovement;
             }
         }
         

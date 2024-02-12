@@ -91,14 +91,13 @@ namespace Game.PlayerComponents {
                     }
                 }
             }
-
+            
             return newPosition;
         }
         
         // Protected functions
         internal void SetMovementSpeed(float speed) {
             _currentMovementSpeed = speed;
-            Debug.Log("Movement speed set to " + speed);
         }
         
         internal void ResetMovementSpeed() {
