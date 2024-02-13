@@ -1,5 +1,7 @@
 using System;
 
+using AppCore;
+
 using Tools.Constants;
 
 using UnityEngine;
@@ -18,10 +20,14 @@ namespace Game.PlayerComponents {
         // Unity functions
         private void OnEnable() {
             _playerMovement.OnPlayerMoved += OnPlayerMoved;
+            App.Instance.inputManager.OnInteract += OnInteract;
+            App.Instance.inputManager.OnInteractCancel += OnInteractCancel;
         }
 
         private void OnDisable() {
             _playerMovement.OnPlayerMoved -= OnPlayerMoved;
+            App.Instance.inputManager.OnInteract -= OnInteract;
+            App.Instance.inputManager.OnInteractCancel -= OnInteractCancel;
         }
 
         private void Awake() {
@@ -31,7 +37,7 @@ namespace Game.PlayerComponents {
         private void OnTriggerEnter2D (Collider2D other) {
             if (other.CompareTag(TagConstants.Box)) {
                 _isTouchingBox = true;
-                _boxRB = other.GetComponent<Rigidbody2D>();
+                _boxRB = other.GetComponentInParent<Rigidbody2D>();
             }
         } 
         
@@ -46,6 +52,18 @@ namespace Game.PlayerComponents {
         private void OnPlayerMoved(Vector2 rawMovement) {
             if (_isGrabbingBox) {
                 _boxRB.position += rawMovement;
+            }
+        }
+        
+        private void OnInteract() {
+            if (_isTouchingBox) {
+                GrabBox();
+            }
+        }
+        
+        private void OnInteractCancel() {
+            if (_isGrabbingBox) {
+                ReleaseBox();
             }
         }
         
