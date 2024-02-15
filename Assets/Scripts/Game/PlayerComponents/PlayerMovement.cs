@@ -79,12 +79,13 @@ namespace Game.PlayerComponents {
 
         private Vector2 SmoothMovement(Vector2 movement) {
             Vector2 newPosition = _rigidbody2D.position + movement;
-            
+    
             // Define the size of the player for BoxCast
             Vector2 localScale = transform.localScale;
-            Vector2 size = new (localScale.x, localScale.y);
-            // Separate BoxCast checks for X and Y axes
-            if (_currentMovementInput.x != 0) {
+            Vector2 size = new Vector2(localScale.x, localScale.y);
+    
+            // Perform BoxCast checks only if there is movement in that direction
+            if (Mathf.Abs(_currentMovementInput.x) > 0) {
                 RaycastHit2D hitX = Physics2D.BoxCast(_rigidbody2D.position, size, 0f, new Vector2(_currentMovementInput.x, 0), Mathf.Abs(movement.x), wallLayer);
                 if (hitX.collider != null) {
                     if (hitX.distance > snapDistance) {
@@ -95,7 +96,7 @@ namespace Game.PlayerComponents {
                 }
             }
 
-            if (_currentMovementInput.y != 0) {
+            if (Mathf.Abs(_currentMovementInput.y) > 0) {
                 RaycastHit2D hitY = Physics2D.BoxCast(_rigidbody2D.position, size, 0f, new Vector2(0, _currentMovementInput.y), Mathf.Abs(movement.y), wallLayer);
                 if (hitY.collider != null) {
                     if (hitY.distance > snapDistance) {
@@ -105,9 +106,10 @@ namespace Game.PlayerComponents {
                     }
                 }
             }
-            
+    
             return newPosition;
         }
+
         
         // Protected functions
         internal void SetMovementSpeed(float speed) {

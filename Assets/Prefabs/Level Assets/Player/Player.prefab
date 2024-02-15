@@ -327,7 +327,7 @@ MonoBehaviour:
   movementSpeed: 5
   wallLayer:
     serializedVersion: 2
-    m_Bits: 65
+    m_Bits: 192
   smoothMovement: 1
   snapDistance: 0.01
 --- !u!114 &8583067967338378186
@@ -366,5 +366,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfffd3d586d040f2836bcdd4263a29dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMovement: {fileID: 0}
   boxMoveSpeed: 2

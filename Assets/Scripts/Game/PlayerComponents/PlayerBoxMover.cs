@@ -1,5 +1,3 @@
-using System;
-
 using AppCore;
 
 using Game.NightLevels.Box;
@@ -17,7 +15,8 @@ namespace Game.PlayerComponents {
 
         private bool _isTouchingBox;
         private bool _isGrabbingBox;
-        
+
+        private GameObject _boxTriggerObject;
         private Rigidbody2D _boxRB;
         private Axis _axisLock;
         
@@ -40,8 +39,9 @@ namespace Game.PlayerComponents {
 
         private void OnTriggerEnter2D (Collider2D other) {
             if (other.CompareTag(TagConstants.Box)) {
-                Debug.Log("Touching box");
+                if (_isTouchingBox) return;
                 _isTouchingBox = true;
+                _boxTriggerObject = other.gameObject;
                 _boxRB = other.GetComponentInParent<Rigidbody2D>();
                 _axisLock = other.GetComponent<BoxTrigger>().axis;
             }
@@ -49,7 +49,8 @@ namespace Game.PlayerComponents {
         
         private void OnTriggerExit2D (Collider2D other) {
             if (other.CompareTag(TagConstants.Box)) {
-                Debug.Log("Not touching box");
+                if (!_isTouchingBox || other.gameObject != _boxTriggerObject) return;
+                _boxTriggerObject = null;
                 _isTouchingBox = false;
                 _boxRB = null;
                 _axisLock = Axis.None;
