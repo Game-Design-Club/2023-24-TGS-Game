@@ -2,7 +2,10 @@ using System;
 
 using AppCore;
 
+using Game.NightLevels.Box;
+
 using Tools.Constants;
+using Tools.Helpfuls;
 
 using UnityEngine;
 
@@ -15,7 +18,8 @@ namespace Game.PlayerComponents {
         private bool _isTouchingBox;
         private bool _isGrabbingBox;
         
-        [SerializeField] private Rigidbody2D _boxRB;
+        private Rigidbody2D _boxRB;
+        private Axis _axisLock;
         
         // Unity functions
         private void OnEnable() {
@@ -36,15 +40,19 @@ namespace Game.PlayerComponents {
 
         private void OnTriggerEnter2D (Collider2D other) {
             if (other.CompareTag(TagConstants.Box)) {
+                Debug.Log("Touching box");
                 _isTouchingBox = true;
                 _boxRB = other.GetComponentInParent<Rigidbody2D>();
+                _axisLock = other.GetComponent<BoxTrigger>().axis;
             }
         } 
         
         private void OnTriggerExit2D (Collider2D other) {
             if (other.CompareTag(TagConstants.Box)) {
+                Debug.Log("Not touching box");
                 _isTouchingBox = false;
                 _boxRB = null;
+                _axisLock = Axis.None;
             }
         }
 
@@ -67,16 +75,18 @@ namespace Game.PlayerComponents {
             }
         }
         
-        [ContextMenu("Grab Box")]
         private void GrabBox() {
             _isGrabbingBox = true;
             _playerMovement.SetMovementSpeed(boxMoveSpeed);
+            _playerMovement._axisLock = _axisLock;
+            Debug.Log("Grabbing box");
         }
         
-        [ContextMenu("Release Box")]
         private void ReleaseBox() {
             _isGrabbingBox = false;
             _playerMovement.ResetMovementSpeed();
+            _playerMovement._axisLock = Axis.None;
+            Debug.Log("Releasing box");
         }
     }
 }

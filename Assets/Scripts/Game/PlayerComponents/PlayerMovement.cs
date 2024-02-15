@@ -4,6 +4,8 @@ using AppCore;
 
 using Game.GameManagement;
 
+using Tools.Helpfuls;
+
 using UnityEngine;
 
 namespace Game.PlayerComponents {
@@ -13,11 +15,13 @@ namespace Game.PlayerComponents {
         [SerializeField] private bool smoothMovement = true;
         [SerializeField] private float snapDistance = 0.01f;
 
-        private Vector2 _currentMovement;
+        private Vector2 _currentMovementInput;
         private float _currentMovementSpeed;
         private Rigidbody2D _rigidbody2D;
         
         internal event Action<Vector2> OnPlayerMoved;
+        
+        internal Axis _axisLock;
         
         // Unity functions
         private void OnEnable() {
@@ -42,13 +46,23 @@ namespace Game.PlayerComponents {
 
         // Private functions
         private void OnMovement(Vector2 movementInput) {
-            _currentMovement = movementInput;
-            _currentMovement.Normalize();
+            _currentMovementInput = movementInput;
+            _currentMovementInput.Normalize();
         }
 
         private void MovePlayer() {
+            Vector2 currentMovement = _currentMovementInput;
+            switch (_axisLock) {
+                case Axis.Horizontal:
+                    currentMovement.y = 0;
+                    break;
+                case Axis.Vertical:
+                    currentMovement.x = 0;
+                    break;
+            }
+            
             float movementDistance = _currentMovementSpeed * Time.deltaTime;
-            Vector2 originalMovement = _currentMovement * movementDistance;
+            Vector2 originalMovement = currentMovement * movementDistance;
             Vector2 newPosition = _rigidbody2D.position + originalMovement;
             Vector2 actualMovement = originalMovement;
             
@@ -70,22 +84,22 @@ namespace Game.PlayerComponents {
             Vector2 localScale = transform.localScale;
             Vector2 size = new (localScale.x, localScale.y);
             // Separate BoxCast checks for X and Y axes
-            if (_currentMovement.x != 0) {
-                RaycastHit2D hitX = Physics2D.BoxCast(_rigidbody2D.position, size, 0f, new Vector2(_currentMovement.x, 0), Mathf.Abs(movement.x), wallLayer);
+            if (_currentMovementInput.x != 0) {
+                RaycastHit2D hitX = Physics2D.BoxCast(_rigidbody2D.position, size, 0f, new Vector2(_currentMovementInput.x, 0), Mathf.Abs(movement.x), wallLayer);
                 if (hitX.collider != null) {
                     if (hitX.distance > snapDistance) {
-                        newPosition.x = _rigidbody2D.position.x + _currentMovement.x * (hitX.distance - snapDistance);
+                        newPosition.x = _rigidbody2D.position.x + _currentMovementInput.x * (hitX.distance - snapDistance);
                     } else {
                         newPosition.x = _rigidbody2D.position.x;
                     }
                 }
             }
 
-            if (_currentMovement.y != 0) {
-                RaycastHit2D hitY = Physics2D.BoxCast(_rigidbody2D.position, size, 0f, new Vector2(0, _currentMovement.y), Mathf.Abs(movement.y), wallLayer);
+            if (_currentMovementInput.y != 0) {
+                RaycastHit2D hitY = Physics2D.BoxCast(_rigidbody2D.position, size, 0f, new Vector2(0, _currentMovementInput.y), Mathf.Abs(movement.y), wallLayer);
                 if (hitY.collider != null) {
                     if (hitY.distance > snapDistance) {
-                        newPosition.y = _rigidbody2D.position.y + _currentMovement.y * (hitY.distance - snapDistance);
+                        newPosition.y = _rigidbody2D.position.y + _currentMovementInput.y * (hitY.distance - snapDistance);
                     } else {
                         newPosition.y = _rigidbody2D.position.y;
                     }
