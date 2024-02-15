@@ -30,14 +30,6 @@ namespace Game.GameManagement {
             }
         }
 
-        private void OnEnable() {
-            _levelManager.OnLevelLoaded += GameStart;
-        }
-        
-        private void OnDisable() {
-            _levelManager.OnLevelLoaded -= GameStart;
-        }
-
         private void Start() {
             _levelManager.LoadFirstLevel();
         }
@@ -49,10 +41,6 @@ namespace Game.GameManagement {
         }
 
         // Public functions
-        public void GameStart() {
-            GameManagerEvents.InvokeLevelStart();
-        }
-        
         public void PlayerDied() {
             RestartLevel();
         }

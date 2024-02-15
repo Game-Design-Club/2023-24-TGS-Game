@@ -18,8 +18,6 @@ namespace Game.GameManagement.LevelManagement {
 
         private bool _currentlySwitching;
         
-        public event Action OnLevelLoaded;
-        
         // Unity functions
         private void Awake() {
             if (customFirstLevel != null) {
@@ -75,7 +73,7 @@ namespace Game.GameManagement.LevelManagement {
                 _levelGameObject = Instantiate(level.gameObject);
             }
             _currentLevel = level;
-            OnLevelLoaded?.Invoke();
+            GameManagerEvents.InvokeLevelStart();
         }
     }
 }
