@@ -20,7 +20,6 @@ namespace Game.NightLevels.Box {
                 // hit = hit.collider.GetComponent<Box>().SendBoxCast(direction, distance, layerMask);
                 Debug.Log("Double box :O " + (hit.collider.gameObject == gameObject));
             }
-            Debug.Log(distance + "     " + hit.distance);
             return hit;
         }
     }

@@ -84,18 +84,11 @@ namespace Game.PlayerComponents {
     
             // Perform BoxCast checks only if there is movement in that direction
             if (Mathf.Abs(_currentMovementInput.x) > 0) {
+                
                 RaycastHit2D hitX = Physics2D.BoxCast(_rigidbody2D.position, size, 0f, new Vector2(_currentMovementInput.x, 0), Mathf.Abs(movement.x), wallLayer);
-                Debug.Log("movement.x: " + movement.x + " hitx.distance: " + hitX.distance);
-                if (_boxPusher.IsGrabbingBox && _boxAttachDirection.x < 0 && _currentMovementInput.x > 0) {
-                    // If the player is grabbing a box and the box is to the right of the player, and the player is moving right
-                    // hitX = new RaycastHit2D();
-                    Debug.Log("box to the right of player and moving right");
-                    // replace hitx with the boxcast for the box
-                    hitX = _boxPusher.BoxRb.GetComponent<Box>().SendBoxCast(new Vector2(_currentMovementInput.x, 0), Mathf.Abs(movement.x), wallLayer);
-                } else if (_boxPusher.IsGrabbingBox && _boxAttachDirection.x > 0 && _currentMovementInput.x < 0) {
-                    // If the player is grabbing a box and the box is to the left of the player, and the player is moving left
-                    Debug.Log("box to the left of player and moving left");
-                    // hitX = new RaycastHit2D();
+                
+                if (_boxPusher.IsGrabbingBox && ((_boxAttachDirection.x < 0 && _currentMovementInput.x > 0) || (_boxAttachDirection.x > 0 && _currentMovementInput.x < 0))) {
+                    hitX = _boxPusher.BoxBox.SendBoxCast(new Vector2(_currentMovementInput.x, 0), Mathf.Abs(movement.x), wallLayer);
                 }
                 
                 if (hitX.collider != null) {
@@ -110,8 +103,11 @@ namespace Game.PlayerComponents {
             if (Mathf.Abs(_currentMovementInput.y) > 0) {
                 RaycastHit2D hitY = Physics2D.BoxCast(_rigidbody2D.position, size, 0f, new Vector2(0, _currentMovementInput.y), Mathf.Abs(movement.y), wallLayer);
                 
+                if (_boxPusher.IsGrabbingBox && ((_boxAttachDirection.y < 0 && _currentMovementInput.y > 0) || (_boxAttachDirection.y > 0 && _currentMovementInput.y < 0))) {
+                    hitY = _boxPusher.BoxBox.SendBoxCast(new Vector2(0, _currentMovementInput.y), Mathf.Abs(movement.y), wallLayer);
+                }
+                
                 if (hitY.collider != null) {
-                    
                     if (hitY.distance > snapDistance) {
                         newPosition.y = _rigidbody2D.position.y + _currentMovementInput.y * (hitY.distance - snapDistance);
                     } else {

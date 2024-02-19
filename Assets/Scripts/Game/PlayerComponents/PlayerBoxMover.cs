@@ -15,6 +15,7 @@ namespace Game.PlayerComponents {
         internal GameObject BoxTriggerObject;
         internal GameObject BoxObject;
         internal Rigidbody2D BoxRb;
+        internal Box BoxBox;
         internal Vector2 AttachDirection = Vector2.zero;
         
         // Unity functions
@@ -40,6 +41,7 @@ namespace Game.PlayerComponents {
                 IsTouchingBox = true;
                 BoxTriggerObject = other.gameObject;
                 BoxRb = other.GetComponentInParent<Rigidbody2D>();
+                BoxBox = other.GetComponentInParent<Box>();
                 BoxObject = BoxRb.gameObject;
                 
                 AttachDirection = other.GetComponent<BoxTrigger>().AttachDirection;
@@ -55,6 +57,7 @@ namespace Game.PlayerComponents {
                 BoxTriggerObject = null;
                 IsTouchingBox = false;
                 BoxRb = null;
+                BoxBox = null;
                 AttachDirection = Vector2.zero;
                 BoxObject = null;
             }
