@@ -3,7 +3,6 @@ using AppCore;
 using Game.NightLevels.Box;
 
 using Tools.Constants;
-using Tools.Helpfuls;
 
 using UnityEngine;
 
@@ -13,12 +12,13 @@ namespace Game.PlayerComponents {
         
         private PlayerMovement _playerMovement;
 
-        private bool _isTouchingBox;
-        private bool _isGrabbingBox;
+        internal bool IsTouchingBox;
+        internal bool IsGrabbingBox;
 
-        private GameObject _boxTriggerObject;
-        private Rigidbody2D _boxRB;
-        private Axis _axisLock;
+        internal GameObject BoxTriggerObject;
+        internal GameObject BoxObject;
+        internal Rigidbody2D BoxRb;
+        internal Vector2 AttachDirection = Vector2.zero;
         
         // Unity functions
         private void OnEnable() {
@@ -39,55 +39,56 @@ namespace Game.PlayerComponents {
 
         private void OnTriggerEnter2D (Collider2D other) {
             if (other.CompareTag(TagConstants.Box)) {
-                if (_isTouchingBox) return;
-                _isTouchingBox = true;
-                _boxTriggerObject = other.gameObject;
-                _boxRB = other.GetComponentInParent<Rigidbody2D>();
-                _axisLock = other.GetComponent<BoxTrigger>().axis;
+                if (IsTouchingBox) return;
+                IsTouchingBox = true;
+                BoxTriggerObject = other.gameObject;
+                BoxRb = other.GetComponentInParent<Rigidbody2D>();
+                BoxObject = BoxRb.gameObject;
+                
+                AttachDirection = other.GetComponent<BoxTrigger>().AttachDirection;
             }
         } 
         
         private void OnTriggerExit2D (Collider2D other) {
             if (other.CompareTag(TagConstants.Box)) {
-                if (!_isTouchingBox || other.gameObject != _boxTriggerObject) return;
-                _boxTriggerObject = null;
-                _isTouchingBox = false;
-                _boxRB = null;
-                _axisLock = Axis.None;
+                if (!IsTouchingBox || other.gameObject != BoxTriggerObject) return;
+                BoxTriggerObject = null;
+                IsTouchingBox = false;
+                BoxRb = null;
+                AttachDirection = Vector2.zero;
+                BoxObject = null;
             }
         }
 
         // Private functions
         private void OnPlayerMoved(Vector2 rawMovement) {
-            if (_isGrabbingBox) {
-                _boxRB.position += rawMovement;
+            if (IsGrabbingBox) {
+                BoxRb.position += rawMovement;
             }
         }
         
         private void OnInteract() {
-            if (_isTouchingBox) {
+            if (IsTouchingBox) {
                 GrabBox();
             }
         }
         
         private void OnInteractCancel() {
-            if (_isGrabbingBox) {
+            if (IsGrabbingBox) {
                 ReleaseBox();
             }
         }
         
         private void GrabBox() {
-            _isGrabbingBox = true;
+            IsGrabbingBox = true;
             _playerMovement.SetMovementSpeed(boxMoveSpeed);
-            _playerMovement._axisLock = _axisLock;
-            Debug.Log("Grabbing box");
+            _playerMovement._boxAttachDirection = AttachDirection;
         }
         
         private void ReleaseBox() {
-            _isGrabbingBox = false;
+            IsGrabbingBox = false;
             _playerMovement.ResetMovementSpeed();
-            _playerMovement._axisLock = Axis.None;
-            Debug.Log("Releasing box");
+            _playerMovement._boxAttachDirection = Vector2.zero;
         }
     }
 }

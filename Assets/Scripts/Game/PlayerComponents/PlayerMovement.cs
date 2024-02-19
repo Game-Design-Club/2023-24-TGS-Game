@@ -2,10 +2,6 @@ using System;
 
 using AppCore;
 
-using Game.GameManagement;
-
-using Tools.Helpfuls;
-
 using UnityEngine;
 
 namespace Game.PlayerComponents {
@@ -18,10 +14,11 @@ namespace Game.PlayerComponents {
         private Vector2 _currentMovementInput;
         private float _currentMovementSpeed;
         private Rigidbody2D _rigidbody2D;
+        private PlayerBoxMover _boxPusher;
         
         internal event Action<Vector2> OnPlayerMoved;
         
-        internal Axis _axisLock;
+        internal Vector2 _boxAttachDirection;
         
         // Unity functions
         private void OnEnable() {
@@ -34,6 +31,7 @@ namespace Game.PlayerComponents {
 
         private void Awake() {
             _rigidbody2D = GetComponent<Rigidbody2D>();
+            _boxPusher = GetComponent<PlayerBoxMover>();
         }
 
         private void Start() {
@@ -52,13 +50,11 @@ namespace Game.PlayerComponents {
 
         private void MovePlayer() {
             Vector2 currentMovement = _currentMovementInput;
-            switch (_axisLock) {
-                case Axis.Horizontal:
-                    currentMovement.y = 0;
-                    break;
-                case Axis.Vertical:
-                    currentMovement.x = 0;
-                    break;
+            
+            if (_boxAttachDirection.x != 0 && _boxAttachDirection.y == 0) {
+                currentMovement.y = 0;
+            } else if (_boxAttachDirection.y != 0 && _boxAttachDirection.x == 0) {
+                currentMovement.x = 0;
             }
             
             float movementDistance = _currentMovementSpeed * Time.deltaTime;
@@ -87,7 +83,19 @@ namespace Game.PlayerComponents {
             // Perform BoxCast checks only if there is movement in that direction
             if (Mathf.Abs(_currentMovementInput.x) > 0) {
                 RaycastHit2D hitX = Physics2D.BoxCast(_rigidbody2D.position, size, 0f, new Vector2(_currentMovementInput.x, 0), Mathf.Abs(movement.x), wallLayer);
+                
+                if (_boxPusher.IsGrabbingBox && _boxAttachDirection.x > 0 && _currentMovementInput.x > 0) {
+                    // If the player is grabbing a box and the box is to the right of the player, and the player is moving right
+                    // hitX = new RaycastHit2D();
+                    Debug.Log("box to the right of player and moving right");
+                } else if (_boxPusher.IsGrabbingBox && _boxAttachDirection.x < 0 && _currentMovementInput.x < 0) {
+                    // If the player is grabbing a box and the box is to the left of the player, and the player is moving left
+                    Debug.Log("box to the left of player and moving left");
+                    // hitX = new RaycastHit2D();
+                }
+                
                 if (hitX.collider != null) {
+                    
                     if (hitX.distance > snapDistance) {
                         newPosition.x = _rigidbody2D.position.x + _currentMovementInput.x * (hitX.distance - snapDistance);
                     } else {
@@ -98,7 +106,9 @@ namespace Game.PlayerComponents {
 
             if (Mathf.Abs(_currentMovementInput.y) > 0) {
                 RaycastHit2D hitY = Physics2D.BoxCast(_rigidbody2D.position, size, 0f, new Vector2(0, _currentMovementInput.y), Mathf.Abs(movement.y), wallLayer);
+                
                 if (hitY.collider != null) {
+                    
                     if (hitY.distance > snapDistance) {
                         newPosition.y = _rigidbody2D.position.y + _currentMovementInput.y * (hitY.distance - snapDistance);
                     } else {
