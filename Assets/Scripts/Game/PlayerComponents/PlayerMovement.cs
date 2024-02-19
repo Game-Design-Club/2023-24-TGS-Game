@@ -16,6 +16,7 @@ namespace Game.PlayerComponents {
         private Vector2 _currentMovementInput;
         private float _currentMovementSpeed;
         private Rigidbody2D _rigidbody2D;
+        private BoxCollider2D _boxCollider;
         private PlayerBoxMover _boxPusher;
         
         internal event Action<Vector2> OnPlayerMoved;
@@ -34,6 +35,7 @@ namespace Game.PlayerComponents {
         private void Awake() {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _boxPusher = GetComponent<PlayerBoxMover>();
+            _boxCollider = GetComponent<BoxCollider2D>();
         }
 
         private void Start() {
@@ -59,6 +61,8 @@ namespace Game.PlayerComponents {
                 currentMovement.x = 0;
             }
             
+            currentMovement.Normalize();
+            
             float movementDistance = _currentMovementSpeed * Time.deltaTime;
             Vector2 originalMovement = currentMovement * movementDistance;
             Vector2 newPosition = _rigidbody2D.position + originalMovement;
@@ -78,11 +82,8 @@ namespace Game.PlayerComponents {
         private Vector2 SmoothMovement(Vector2 movement) {
             Vector2 newPosition = _rigidbody2D.position + movement;
     
-            // Define the size of the player for BoxCast
-            Vector2 localScale = transform.localScale;
-            Vector2 size = new Vector2(localScale.x, localScale.y);
+            Vector2 size = _boxCollider.size * transform.localScale;
     
-            // Perform BoxCast checks only if there is movement in that direction
             if (Mathf.Abs(_currentMovementInput.x) > 0) {
                 
                 RaycastHit2D hitX = Physics2D.BoxCast(_rigidbody2D.position, size, 0f, new Vector2(_currentMovementInput.x, 0), Mathf.Abs(movement.x), wallLayer);

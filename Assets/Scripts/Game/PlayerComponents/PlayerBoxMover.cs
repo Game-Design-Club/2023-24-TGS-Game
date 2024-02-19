@@ -17,6 +17,8 @@ namespace Game.PlayerComponents {
         internal Rigidbody2D BoxRb;
         internal Box BoxBox;
         internal Vector2 AttachDirection = Vector2.zero;
+
+        [HideInInspector] public Rigidbody2D[] boxChain;
         
         // Unity functions
         private void OnEnable() {
@@ -49,7 +51,7 @@ namespace Game.PlayerComponents {
         } 
         
         private void OnTriggerExit2D (Collider2D other) {
-            if (IsGrabbingBox) {
+            if (IsGrabbingBox && other.gameObject == BoxTriggerObject) {
                 ReleaseBox();
             }
             if (other.CompareTag(TagConstants.Box)) {
@@ -67,6 +69,9 @@ namespace Game.PlayerComponents {
         private void OnPlayerMoved(Vector2 rawMovement) {
             if (IsGrabbingBox) {
                 BoxRb.position += rawMovement;
+                foreach (Rigidbody2D box in boxChain) {
+                    box.position += rawMovement;
+                }
             }
         }
         
