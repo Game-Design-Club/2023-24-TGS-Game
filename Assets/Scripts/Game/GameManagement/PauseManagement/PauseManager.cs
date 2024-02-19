@@ -1,3 +1,5 @@
+using System;
+
 using UnityEngine;
 
 namespace Game.GameManagement.PauseManagement {
@@ -12,7 +14,15 @@ namespace Game.GameManagement.PauseManagement {
         private void OnDisable() {
             GameManagerEvents.OnLevelStart -= OnLevelStart;
         }
-        
+
+        private void OnApplicationFocus(bool hasFocus) {
+            if (!hasFocus && !IsPaused) {
+                PauseGame();
+            } else if (hasFocus && IsPaused) {
+                ResumeGame();
+            }
+        }
+
         // Public functions
         public void PauseGame() {
             if (IsPaused) {
