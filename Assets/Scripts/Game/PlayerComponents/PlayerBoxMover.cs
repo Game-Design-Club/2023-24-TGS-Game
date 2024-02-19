@@ -48,7 +48,7 @@ namespace Game.PlayerComponents {
                 
                 AttachDirection = other.GetComponent<BoxTrigger>().AttachDirection;
             }
-        } 
+        }
         
         private void OnTriggerExit2D (Collider2D other) {
             if (IsGrabbingBox && other.gameObject == BoxTriggerObject) {
