@@ -2,6 +2,8 @@ using System;
 
 using AppCore;
 
+using Game.NightLevels.Box;
+
 using UnityEngine;
 
 namespace Game.PlayerComponents {
@@ -83,19 +85,20 @@ namespace Game.PlayerComponents {
             // Perform BoxCast checks only if there is movement in that direction
             if (Mathf.Abs(_currentMovementInput.x) > 0) {
                 RaycastHit2D hitX = Physics2D.BoxCast(_rigidbody2D.position, size, 0f, new Vector2(_currentMovementInput.x, 0), Mathf.Abs(movement.x), wallLayer);
-                
-                if (_boxPusher.IsGrabbingBox && _boxAttachDirection.x > 0 && _currentMovementInput.x > 0) {
+                Debug.Log("movement.x: " + movement.x + " hitx.distance: " + hitX.distance);
+                if (_boxPusher.IsGrabbingBox && _boxAttachDirection.x < 0 && _currentMovementInput.x > 0) {
                     // If the player is grabbing a box and the box is to the right of the player, and the player is moving right
                     // hitX = new RaycastHit2D();
                     Debug.Log("box to the right of player and moving right");
-                } else if (_boxPusher.IsGrabbingBox && _boxAttachDirection.x < 0 && _currentMovementInput.x < 0) {
+                    // replace hitx with the boxcast for the box
+                    hitX = _boxPusher.BoxRb.GetComponent<Box>().SendBoxCast(new Vector2(_currentMovementInput.x, 0), Mathf.Abs(movement.x), wallLayer);
+                } else if (_boxPusher.IsGrabbingBox && _boxAttachDirection.x > 0 && _currentMovementInput.x < 0) {
                     // If the player is grabbing a box and the box is to the left of the player, and the player is moving left
                     Debug.Log("box to the left of player and moving left");
                     // hitX = new RaycastHit2D();
                 }
                 
                 if (hitX.collider != null) {
-                    
                     if (hitX.distance > snapDistance) {
                         newPosition.x = _rigidbody2D.position.x + _currentMovementInput.x * (hitX.distance - snapDistance);
                     } else {

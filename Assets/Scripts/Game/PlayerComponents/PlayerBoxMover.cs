@@ -1,13 +1,10 @@
 using AppCore;
-
 using Game.NightLevels.Box;
-
 using Tools.Constants;
-
 using UnityEngine;
 
 namespace Game.PlayerComponents {
-    public class PlayerBoxMover : MonoBehaviour{
+    public class PlayerBoxMover : MonoBehaviour {
         [SerializeField] private float boxMoveSpeed = 5f;
         
         private PlayerMovement _playerMovement;
@@ -50,6 +47,9 @@ namespace Game.PlayerComponents {
         } 
         
         private void OnTriggerExit2D (Collider2D other) {
+            if (IsGrabbingBox) {
+                ReleaseBox();
+            }
             if (other.CompareTag(TagConstants.Box)) {
                 if (!IsTouchingBox || other.gameObject != BoxTriggerObject) return;
                 BoxTriggerObject = null;
