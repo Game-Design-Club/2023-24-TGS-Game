@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.GameManagement.PauseManagement {
     public class PauseManager : MonoBehaviour{
-        private bool IsPaused { get; set; }
+        public static bool IsPaused { get; private set; }
         
         // Unity functions
         private void OnEnable() {
