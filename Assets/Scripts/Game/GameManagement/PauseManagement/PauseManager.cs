@@ -18,8 +18,6 @@ namespace Game.GameManagement.PauseManagement {
         private void OnApplicationFocus(bool hasFocus) {
             if (!hasFocus && !IsPaused) {
                 PauseGame();
-            } else if (hasFocus && IsPaused) {
-                ResumeGame();
             }
         }
 
