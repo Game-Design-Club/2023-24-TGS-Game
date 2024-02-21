@@ -84,7 +84,7 @@ namespace Game.PlayerComponents {
     
             if (Mathf.Abs(_currentMovementInput.x) > 0) {
                 
-                RaycastHit2D[] playerHits = new RaycastHit2D[1];
+                RaycastHit2D[] playerHits = new RaycastHit2D[4];
                 Physics2D.BoxCastNonAlloc(_rigidbody2D.position, size, 0f, new Vector2(_currentMovementInput.x, 0), playerHits,Mathf.Abs(movement.x), wallLayer);
                 
                 RaycastHit2D hitX = new RaycastHit2D();
