@@ -18,15 +18,15 @@ namespace Game.NightLevels.Box {
         // Public functions
         public RaycastHit2D SendBoxCast(Vector2 direction, float distance, LayerMask wallLayer) {
             Vector2 size = _boxCollider.size * transform.localScale;
-            RaycastHit2D hit = Physics2D.BoxCast(_rigidbody2D.position, size, 0f, direction, Mathf.Abs(distance), wallLayer);
             
             RaycastHit2D[] hits = new RaycastHit2D[4];
+            RaycastHit2D hit = hits[0];
             Physics2D.BoxCastNonAlloc(_rigidbody2D.position, size, 0f, direction, hits, Mathf.Abs(distance), wallLayer);
             
             PlayerBoxMover.BoxChain.Add(_rigidbody2D);
             
             foreach (RaycastHit2D currentHit in hits) {
-                if (currentHit.collider == null) return currentHit;
+                if (currentHit.collider == null) continue;
                 if (currentHit.collider.gameObject.CompareTag(TagConstants.Box)) {
                     RaycastHit2D chainHit = currentHit.collider.GetComponent<Box>().SendBoxCast(direction, distance, wallLayer);
 
