@@ -47,6 +47,8 @@ namespace Game.PlayerComponents {
                 BoxTriggerObject = other.gameObject;
                 BoxRb = other.GetComponentInParent<Rigidbody2D>();
                 BoxBox = other.GetComponentInParent<Box>();
+                BoxBox.EnteredTrigger();
+                
                 BoxObject = BoxRb.gameObject;
                 
                 AttachDirection = other.GetComponent<BoxTrigger>().AttachDirection;
@@ -59,6 +61,8 @@ namespace Game.PlayerComponents {
             }
             if (other.CompareTag(TagConstants.Box)) {
                 if (!IsTouchingBox || other.gameObject != BoxTriggerObject) return;
+                BoxBox.ExitedTrigger();
+                
                 BoxTriggerObject = null;
                 IsTouchingBox = false;
                 BoxRb = null;
@@ -94,12 +98,14 @@ namespace Game.PlayerComponents {
             IsGrabbingBox = true;
             _playerMovement.SetMovementSpeed(boxMoveSpeed);
             _playerMovement._boxAttachDirection = AttachDirection;
+            BoxBox.GrabbedBox();
         }
         
         private void ReleaseBox() {
             IsGrabbingBox = false;
             _playerMovement.ResetMovementSpeed();
             _playerMovement._boxAttachDirection = Vector2.zero;
+            BoxBox.ReleasedBox();
         }
         
     }

@@ -2,17 +2,21 @@ using Game.PlayerComponents;
 
 using Tools.Constants;
 
+using UnityEditor.Animations;
+
 using UnityEngine;
 
 namespace Game.NightLevels.Box {
     public class Box : MonoBehaviour {
         private Rigidbody2D _rigidbody2D;
         private BoxCollider2D _boxCollider;
+        private Animator _animator;
         
         // Unity functions
         private void Awake() {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _boxCollider = GetComponent<BoxCollider2D>();
+            _animator = GetComponent<Animator>();
         }
         
         // Public functions
@@ -32,12 +36,27 @@ namespace Game.NightLevels.Box {
 
                     hit = chainHit;
                 } else {
-                    Debug.Log("Hit wall");
                     return currentHit;
                 }
             }
             
             return hit;
+        }
+
+        public void EnteredTrigger() {
+            _animator.SetBool(AnimationConstants.Box.InRange, true);
+        }
+
+        public void ExitedTrigger() {
+            _animator.SetBool(AnimationConstants.Box.InRange, false);
+        }
+
+        public void GrabbedBox() {
+            _animator.SetBool(AnimationConstants.Box.Grab, true);
+        }
+
+        public void ReleasedBox() {
+            _animator.SetBool(AnimationConstants.Box.Grab, false);
         }
     }
 }
