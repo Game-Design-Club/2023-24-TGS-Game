@@ -2,8 +2,6 @@ using System;
 
 using AppCore;
 
-using Game.NightLevels.Box;
-
 using UnityEngine;
 
 namespace Game.PlayerComponents {

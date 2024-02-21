@@ -1,3 +1,5 @@
+using Game.PlayerComponents;
+
 using Tools.Constants;
 
 using UnityEngine;
@@ -18,10 +20,23 @@ namespace Game.NightLevels.Box {
             Vector2 size = _boxCollider.size * transform.localScale;
             RaycastHit2D hit = Physics2D.BoxCast(_rigidbody2D.position, size, 0f, direction, Mathf.Abs(distance), wallLayer);
             
-            if (hit.collider != null && hit.collider.gameObject.CompareTag(TagConstants.Box) && hit.collider.gameObject != gameObject) {
-                hit = Physics2D.BoxCast(_rigidbody2D.position, size, 0f, direction, Mathf.Abs(distance), wallLayer);
-                Debug.Log("Double box :O " + (hit.collider.gameObject == gameObject));
+            RaycastHit2D[] hits = new RaycastHit2D[4];
+            Physics2D.BoxCastNonAlloc(_rigidbody2D.position, size, 0f, direction, hits, Mathf.Abs(distance), wallLayer);
+            
+            PlayerBoxMover.BoxChain.Add(_rigidbody2D);
+            
+            foreach (RaycastHit2D currentHit in hits) {
+                if (currentHit.collider == null) return currentHit;
+                if (currentHit.collider.gameObject.CompareTag(TagConstants.Box)) {
+                    RaycastHit2D chainHit = currentHit.collider.GetComponent<Box>().SendBoxCast(direction, distance, wallLayer);
+
+                    hit = chainHit;
+                } else {
+                    Debug.Log("Hit wall");
+                    return currentHit;
+                }
             }
+            
             return hit;
         }
     }

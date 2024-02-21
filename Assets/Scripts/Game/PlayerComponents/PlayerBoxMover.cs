@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Collections.Generic;
+
 using AppCore;
 using Game.NightLevels.Box;
 using Tools.Constants;
@@ -18,7 +21,7 @@ namespace Game.PlayerComponents {
         internal Box BoxBox;
         internal Vector2 AttachDirection = Vector2.zero;
 
-        [HideInInspector] public Rigidbody2D[] boxChain;
+        public static List<Rigidbody2D> BoxChain = new();
         
         // Unity functions
         private void OnEnable() {
@@ -68,10 +71,10 @@ namespace Game.PlayerComponents {
         // Private functions
         private void OnPlayerMoved(Vector2 rawMovement) {
             if (IsGrabbingBox) {
-                BoxRb.position += rawMovement;
-                foreach (Rigidbody2D box in boxChain) {
+                foreach (Rigidbody2D box in BoxChain) {
                     box.position += rawMovement;
                 }
+                BoxChain.Clear();
             }
         }
         
@@ -98,5 +101,6 @@ namespace Game.PlayerComponents {
             _playerMovement.ResetMovementSpeed();
             _playerMovement._boxAttachDirection = Vector2.zero;
         }
+        
     }
 }
