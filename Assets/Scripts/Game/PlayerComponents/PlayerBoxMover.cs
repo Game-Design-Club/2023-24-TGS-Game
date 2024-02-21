@@ -108,5 +108,22 @@ namespace Game.PlayerComponents {
             BoxBox.ReleasedBox();
         }
         
+        // Internal functions
+        internal Vector2 GetLockedMovement(Vector2 currentInput) {
+            Vector2 movement = new(currentInput.x, currentInput.y);
+            if (IsGrabbingBox) {
+                if (AttachDirection.x != 0) {
+                    // Moving along x axis
+                    movement.y = 0;
+                    Debug.Log("Clamping y");
+                }
+                if (AttachDirection.y != 0) {
+                    // Moving along y axis
+                    movement.x = 0;
+                    Debug.Log("Clamping x");
+                }
+            }
+            return movement.normalized;
+        }
     }
 }

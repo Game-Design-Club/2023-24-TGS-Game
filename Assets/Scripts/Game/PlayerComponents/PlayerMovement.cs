@@ -12,6 +12,7 @@ namespace Game.PlayerComponents {
         [SerializeField] private float snapDistance = 0.01f;
 
         private Vector2 _currentMovementInput;
+        private Vector2 _currentMovement;
         private float _currentMovementSpeed;
         private Rigidbody2D _rigidbody2D;
         private BoxCollider2D _boxCollider;
@@ -51,19 +52,12 @@ namespace Game.PlayerComponents {
         }
 
         private void MovePlayer() {
-            Vector2 currentMovement = _currentMovementInput;
-            
-            if (_boxAttachDirection.x != 0 && _boxAttachDirection.y == 0) {
-                currentMovement.y = 0;
-            } else if (_boxAttachDirection.y != 0 && _boxAttachDirection.x == 0) {
-                currentMovement.x = 0;
-            }
-            
-            currentMovement.Normalize();
+            _currentMovement = _boxPusher.GetLockedMovement(_currentMovementInput);
             
             float movementDistance = _currentMovementSpeed * Time.deltaTime;
-            Vector2 originalMovement = currentMovement * movementDistance;
+            Vector2 originalMovement = _currentMovement * movementDistance;
             Vector2 newPosition = _rigidbody2D.position + originalMovement;
+            
             Vector2 actualMovement = originalMovement;
             
             if (smoothMovement) {
@@ -82,10 +76,10 @@ namespace Game.PlayerComponents {
     
             Vector2 size = _boxCollider.size * transform.localScale;
     
-            if (Mathf.Abs(_currentMovementInput.x) > 0) {
+            if (Mathf.Abs(_currentMovement.x) > 0) {
                 
                 RaycastHit2D[] playerHits = new RaycastHit2D[4];
-                Physics2D.BoxCastNonAlloc(_rigidbody2D.position, size, 0f, new Vector2(_currentMovementInput.x, 0), playerHits,Mathf.Abs(movement.x), wallLayer);
+                Physics2D.BoxCastNonAlloc(_rigidbody2D.position, size, 0f, new Vector2(_currentMovement.x, 0), playerHits,Mathf.Abs(movement.x), wallLayer);
                 
                 RaycastHit2D hitX = new RaycastHit2D();
                 foreach (RaycastHit2D hit in playerHits) {
@@ -95,7 +89,7 @@ namespace Game.PlayerComponents {
                 }
                 
                 if (_boxPusher.IsGrabbingBox) {
-                    RaycastHit2D boxRaycast = _boxPusher.BoxBox.SendBoxCast(new Vector2(_currentMovementInput.x, 0), Mathf.Abs(movement.x), wallLayer);
+                    RaycastHit2D boxRaycast = _boxPusher.BoxBox.SendBoxCast(new Vector2(_currentMovement.x, 0), Mathf.Abs(movement.x), wallLayer);
                     if (boxRaycast.collider != null && boxRaycast.collider.gameObject != _boxPusher.BoxObject) {
                         hitX = boxRaycast;
                     }
@@ -103,16 +97,16 @@ namespace Game.PlayerComponents {
                 
                 if (hitX.collider != null) {
                     if (hitX.distance > snapDistance) {
-                        newPosition.x = _rigidbody2D.position.x + _currentMovementInput.x * (hitX.distance - snapDistance);
+                        newPosition.x = _rigidbody2D.position.x + _currentMovement.x * (hitX.distance - snapDistance);
                     } else {
                         newPosition.x = _rigidbody2D.position.x;
                     }
                 }
             }
 
-            if (Mathf.Abs(_currentMovementInput.y) > 0) {
+            if (Mathf.Abs(_currentMovement.y) > 0) {
                 RaycastHit2D[] playerHits = new RaycastHit2D[1];
-                Physics2D.BoxCastNonAlloc(_rigidbody2D.position, size, 0f, new Vector2(0, _currentMovementInput.y), playerHits,Mathf.Abs(movement.y), wallLayer);
+                Physics2D.BoxCastNonAlloc(_rigidbody2D.position, size, 0f, new Vector2(0, _currentMovement.y), playerHits,Mathf.Abs(movement.y), wallLayer);
                 
                 RaycastHit2D hitY = new RaycastHit2D();
                 foreach (RaycastHit2D hit in playerHits) {
@@ -122,7 +116,7 @@ namespace Game.PlayerComponents {
                 }
                 
                 if (_boxPusher.IsGrabbingBox) {
-                    RaycastHit2D boxRaycast = _boxPusher.BoxBox.SendBoxCast(new Vector2(0, _currentMovementInput.y), Mathf.Abs(movement.y), wallLayer);
+                    RaycastHit2D boxRaycast = _boxPusher.BoxBox.SendBoxCast(new Vector2(0, _currentMovement.y), Mathf.Abs(movement.y), wallLayer);
                     if (boxRaycast.collider != null && boxRaycast.collider.gameObject != _boxPusher.BoxObject) {
                         hitY = boxRaycast;
                     }
@@ -130,7 +124,7 @@ namespace Game.PlayerComponents {
                 
                 if (hitY.collider != null) {
                     if (hitY.distance > snapDistance) {
-                        newPosition.y = _rigidbody2D.position.y + _currentMovementInput.y * (hitY.distance - snapDistance);
+                        newPosition.y = _rigidbody2D.position.y + _currentMovement.y * (hitY.distance - snapDistance);
                     } else {
                         newPosition.y = _rigidbody2D.position.y;
                     }
