@@ -32,7 +32,6 @@ namespace Game.GameManagement.LevelManagement {
         
         public void LoadNextLevel() {
             if (_currentLevel.nextLevel is null) {
-                Debug.LogWarning($"Next level for '{_currentLevel}' is not assigned");
                 App.Instance.sceneManager.LoadScene(SceneConstants.Credits);
                 return;
             }
