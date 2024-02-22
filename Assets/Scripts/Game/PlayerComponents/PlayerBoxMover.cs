@@ -115,12 +115,10 @@ namespace Game.PlayerComponents {
                 if (AttachDirection.x != 0) {
                     // Moving along x axis
                     movement.y = 0;
-                    Debug.Log("Clamping y");
                 }
                 if (AttachDirection.y != 0) {
                     // Moving along y axis
                     movement.x = 0;
-                    Debug.Log("Clamping x");
                 }
             }
             return movement.normalized;
