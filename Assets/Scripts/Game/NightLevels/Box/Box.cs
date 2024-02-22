@@ -2,8 +2,6 @@ using Game.PlayerComponents;
 
 using Tools.Constants;
 
-using UnityEditor.Animations;
-
 using UnityEngine;
 
 namespace Game.NightLevels.Box {

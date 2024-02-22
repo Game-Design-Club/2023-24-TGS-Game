@@ -62,7 +62,7 @@ namespace Game.PlayerComponents {
                 newPosition = SmoothMovement(originalMovement);
                 actualMovement = newPosition - _rigidbody2D.position;
             }
-
+            
             _rigidbody2D.position = newPosition;
             
             OnPlayerMoved?.Invoke(actualMovement);
@@ -81,7 +81,10 @@ namespace Game.PlayerComponents {
                 
                 RaycastHit2D hitX = new RaycastHit2D();
                 foreach (RaycastHit2D hit in playerHits) {
-                    if (hit.collider != null && ((hit.collider.gameObject != _boxPusher.BoxObject && _boxPusher.IsGrabbingBox) || !_boxPusher.IsGrabbingBox)) {
+                    if (hit.collider == null) continue;
+
+                    if (!_boxPusher.IsGrabbingBox ||
+                        (_boxPusher.IsGrabbingBox && hit.collider.gameObject != _boxPusher.BoxObject)) {
                         hitX = hit;
                     }
                 }
@@ -108,7 +111,10 @@ namespace Game.PlayerComponents {
                 
                 RaycastHit2D hitY = new RaycastHit2D();
                 foreach (RaycastHit2D hit in playerHits) {
-                    if (hit.collider != null && ((hit.collider.gameObject != _boxPusher.BoxObject && _boxPusher.IsGrabbingBox) || !_boxPusher.IsGrabbingBox)) {
+                    if (hit.collider == null) continue;
+
+                    if (!_boxPusher.IsGrabbingBox ||
+                        (_boxPusher.IsGrabbingBox && hit.collider.gameObject != _boxPusher.BoxObject)) {
                         hitY = hit;
                     }
                 }

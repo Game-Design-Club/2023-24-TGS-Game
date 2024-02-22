@@ -15,9 +15,10 @@ namespace Game.PlayerComponents {
         internal bool IsGrabbingBox;
 
         internal List<BoxTrigger> BoxTriggers  = new();
-        internal GameObject BoxObject => BoxTriggers.Count > 0 ? BoxTriggers[0].gameObject : null;
-        internal Rigidbody2D BoxRb => BoxObject?.GetComponentInParent<Rigidbody2D>();
-        internal Box BoxBox => BoxObject?.GetComponentInParent<Box>();
+        internal GameObject BoxTriggerObject => BoxTriggers.Count > 0 ? BoxTriggers[0].gameObject : null;
+        internal Box BoxBox => BoxTriggerObject?.GetComponentInParent<Box>();
+        internal Rigidbody2D BoxRb => BoxBox?.GetComponent<Rigidbody2D>();
+        internal GameObject BoxObject => BoxRb?.gameObject;
         internal Vector2 AttachDirection => BoxTriggers.Count > 0 ? BoxTriggers[0].AttachDirection : Vector2.zero;
 
         public static List<Rigidbody2D> BoxChain = new();
