@@ -20,8 +20,6 @@ namespace Game.PlayerComponents {
         
         internal event Action<Vector2> OnPlayerMoved;
         
-        internal Vector2 _boxAttachDirection;
-        
         // Unity functions
         private void OnEnable() {
             App.Instance.inputManager.OnMovement += OnMovement;
