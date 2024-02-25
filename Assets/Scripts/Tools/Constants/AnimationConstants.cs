@@ -18,5 +18,10 @@ namespace Tools.Constants {
         public static class Player {
             public const string Die = "Die";
         }
+
+        public static class Box {
+            public const string Grab = "Grab";
+            public const string InRange = "Hover";
+        }
     }
 }
