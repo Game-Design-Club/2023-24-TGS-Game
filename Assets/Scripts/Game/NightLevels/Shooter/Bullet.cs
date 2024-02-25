@@ -2,11 +2,12 @@ using Game.GameManagement;
 using Game.ParticleManagement;
 
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.NightLevels.Shooter {
     public class Bullet : MonoBehaviour {
         [SerializeField] private float shootSpeed = 3f;
-        [SerializeField] private ParticleSystem particleSystem;
+        [SerializeField] private ParticleSystem impactParticles;
         
         // Unity functions
         private void OnEnable() {
@@ -28,8 +29,8 @@ namespace Game.NightLevels.Shooter {
         
         private void DestroyBullet() {
             Destroy(gameObject);
-            if (particleSystem != null) {
-                ParticleManager.PlayParticleEffect(particleSystem, transform.position);
+            if (impactParticles != null) {
+                ParticleManager.PlayParticleEffect(impactParticles, transform.position);
             }
         }
         

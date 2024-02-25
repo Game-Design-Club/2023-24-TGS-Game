@@ -28,6 +28,10 @@ namespace Main_Menu {
                 return;
             }
             _freeze = true;
+            if (Application.isEditor) {
+                UnityEditor.EditorApplication.isPlaying = false;
+                return;
+            }
             Application.Quit();
         }
     }

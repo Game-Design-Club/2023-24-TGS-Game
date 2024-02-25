@@ -1,6 +1,7 @@
 using AppCore;
 
 using Game.GameManagement;
+using Game.GameManagement.PauseManagement;
 using Game.PlayerComponents;
 
 using UnityEngine;
@@ -23,6 +24,7 @@ namespace Tools.Debug_Tools {
         
         private void OnClickWorld(Vector2 clickPosition) {
             if (!canTeleport) return;
+            if (PauseManager.IsPaused) return;
             if (!ClickIsInWorld(clickPosition)) return;
             _player.transform.position = clickPosition;
         }

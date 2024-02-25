@@ -131,6 +131,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4282434124064054994, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
+      propertyPath: m_text
+      value: 'Exit
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 6077378776631414732, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -585,6 +591,10 @@ PrefabInstance:
     - target: {fileID: 7376372508466637606, guid: f7dd0f4d07d3445a18315844fd95adef, type: 3}
       propertyPath: m_Name
       value: Game Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778564107128079809, guid: f7dd0f4d07d3445a18315844fd95adef, type: 3}
+      propertyPath: customFirstLevel
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
