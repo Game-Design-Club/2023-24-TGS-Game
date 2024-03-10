@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 using AppCore;
+
+using Game.GameManagement;
 using Game.NightLevels.Box;
 using Tools.Constants;
 using UnityEngine;
@@ -28,12 +30,14 @@ namespace Game.PlayerComponents {
             _playerMovement.OnPlayerMoved += OnPlayerMoved;
             App.Instance.inputManager.OnInteract += OnInteract;
             App.Instance.inputManager.OnInteractCancel += OnInteractCancel;
+            GameManagerEvents.OnLevelOver += OnLevelOver;
         }
 
         private void OnDisable() {
             _playerMovement.OnPlayerMoved -= OnPlayerMoved;
             App.Instance.inputManager.OnInteract -= OnInteract;
             App.Instance.inputManager.OnInteractCancel -= OnInteractCancel;
+            GameManagerEvents.OnLevelOver -= OnLevelOver;
         }
 
         private void Awake() {
@@ -102,6 +106,11 @@ namespace Game.PlayerComponents {
             BoxBox.ReleasedBox();
         }
         
+        private void OnLevelOver() {
+            if (IsGrabbingBox) {
+                ReleaseBox();
+            }
+        }
         // Internal functions
         internal Vector2 GetLockedMovement(Vector2 currentInput) {
             Vector2 movement = new(currentInput.x, currentInput.y);

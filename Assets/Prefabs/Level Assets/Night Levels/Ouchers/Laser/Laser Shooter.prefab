@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7022336072712364634}
   - component: {fileID: 2753409722154690227}
   - component: {fileID: 1864282735176408662}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Shot
   m_TagString: Oucher
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 185310718248803401}
   - component: {fileID: 1148006374413049816}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Warning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 103732524171091322}
   - component: {fileID: 7135471512821529451}
   - component: {fileID: 6105333931572537259}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Laser Shooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,7 +316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5915334449792272046}
   - component: {fileID: 5177633370282000888}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Nozzle Thing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -399,7 +399,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1108554950239114535}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -432,7 +432,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3217487376629791312}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -467,7 +467,7 @@ GameObject:
   - component: {fileID: 8996358988547869369}
   - component: {fileID: 2969099674295480126}
   - component: {fileID: 6145674508271856330}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -597,6 +597,14 @@ PrefabInstance:
     - target: {fileID: 4558772942648003611, guid: 9738dc25a6cda4876b45e6310b5a8071, type: 3}
       propertyPath: m_Name
       value: Move Between
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558772942648003611, guid: 9738dc25a6cda4876b45e6310b5a8071, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5784658241977396458, guid: 9738dc25a6cda4876b45e6310b5a8071, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7443528997076573946, guid: 9738dc25a6cda4876b45e6310b5a8071, type: 3}
       propertyPath: m_LocalPosition.x

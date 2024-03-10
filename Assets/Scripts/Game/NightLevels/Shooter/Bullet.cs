@@ -2,12 +2,13 @@ using Game.GameManagement;
 using Game.ParticleManagement;
 
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Game.NightLevels.Shooter {
     public class Bullet : MonoBehaviour {
         [SerializeField] private float shootSpeed = 3f;
         [SerializeField] private ParticleSystem impactParticles;
+        
+        private GameObject _ignoreObject;
         
         // Unity functions
         private void OnEnable() {
@@ -19,6 +20,11 @@ namespace Game.NightLevels.Shooter {
         }
 
         private void OnTriggerEnter2D(Collider2D other) {
+            // check if ignoreObject is in any of the parents of the collider (not just the object itself)
+            if (other.gameObject == _ignoreObject || other.transform.IsChildOf(_ignoreObject.transform)) return;
+            
+            Debug.Log("Bullet hit " + other.gameObject.name);
+            
             DestroyBullet();
         }
 
@@ -35,7 +41,8 @@ namespace Game.NightLevels.Shooter {
         }
         
         // Public functions
-        public void Shoot(Vector2 direction) {
+        public void Shoot(Vector2 direction, GameObject ignoreObject = null) {
+            _ignoreObject = ignoreObject;
             GetComponent<Rigidbody2D>().velocity = direction * shootSpeed;
         }
     }
