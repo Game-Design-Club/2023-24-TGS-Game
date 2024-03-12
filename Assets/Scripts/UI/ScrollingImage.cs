@@ -19,7 +19,7 @@ namespace UI {
         }
 
         private void Update() {
-            image.uvRect = new Rect(image.uvRect.position + scrollSpeed * Time.deltaTime, image.uvRect.size);
+            image.uvRect = new Rect(image.uvRect.position + scrollSpeed * Time.unscaledDeltaTime, image.uvRect.size);
         }
     }
 }
