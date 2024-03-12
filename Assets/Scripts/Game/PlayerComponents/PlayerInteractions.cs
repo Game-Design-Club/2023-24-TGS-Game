@@ -30,7 +30,6 @@ namespace Game.PlayerComponents {
             switch (other.gameObject.tag) {
                 case TagConstants.Oucher:
                     GameManager.PlayerDiedStatic();
-                    _playerAnimator.PlayDeathAnimation();
                     if (other.TryGetComponent(out Oucher oucher)) {
                         oucher.KilledPlayer();
                     }

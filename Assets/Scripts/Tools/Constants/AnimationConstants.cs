@@ -17,6 +17,11 @@ namespace Tools.Constants {
 
         public static class Player {
             public const string Die = "Die";
+            public const string Idle = "Idle";
+            public const string FaceRight = "Face Right";
+            public const string FaceLeft = "Face Left";
+            public const string FaceUp = "Face Up";
+            public const string FaceDown = "Face Down";
         }
 
         public static class Box {

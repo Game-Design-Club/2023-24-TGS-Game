@@ -17,6 +17,7 @@ namespace Game.PlayerComponents {
         private Rigidbody2D _rigidbody2D;
         private BoxCollider2D _boxCollider;
         private PlayerBoxMover _boxPusher;
+        private PlayerAnimator _playerAnimator;
         
         internal event Action<Vector2> OnPlayerMoved;
         
@@ -33,6 +34,7 @@ namespace Game.PlayerComponents {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _boxPusher = GetComponent<PlayerBoxMover>();
             _boxCollider = GetComponent<BoxCollider2D>();
+            _playerAnimator = GetComponent<PlayerAnimator>();
         }
 
         private void Start() {
@@ -47,6 +49,8 @@ namespace Game.PlayerComponents {
         private void OnMovement(Vector2 movementInput) {
             _currentMovementInput = movementInput;
             _currentMovementInput.Normalize();
+            
+            _playerAnimator.SetDirection(_currentMovementInput);
         }
 
         private void MovePlayer() {
