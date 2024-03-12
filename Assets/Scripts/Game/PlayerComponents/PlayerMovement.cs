@@ -1,6 +1,9 @@
 using System;
+using System.Collections;
 
 using AppCore;
+
+using Game.GameManagement;
 
 using UnityEngine;
 
@@ -10,7 +13,11 @@ namespace Game.PlayerComponents {
         [SerializeField] private LayerMask wallLayer;
         [SerializeField] private bool smoothMovement = true;
         [SerializeField] private float snapDistance = 0.01f;
-
+        
+        [SerializeField] private AudioClip moveSound;
+        [SerializeField] private AudioClip pushBoxSound;
+        [SerializeField] private float moveSoundPitchVariation = 0.1f;
+        
         private Vector2 _currentMovementInput;
         private Vector2 _currentMovement;
         private float _currentMovementSpeed;
@@ -23,10 +30,14 @@ namespace Game.PlayerComponents {
         // Unity functions
         private void OnEnable() {
             App.Instance.inputManager.OnMovement += OnMovement;
+            GameManagerEvents.OnLevelStart += OnLevelStart;
+            GameManagerEvents.OnLevelOver += OnLevelEnd;
         }
 
         private void OnDisable() {
             App.Instance.inputManager.OnMovement -= OnMovement;
+            GameManagerEvents.OnLevelStart -= OnLevelStart;
+            GameManagerEvents.OnLevelOver -= OnLevelEnd;
         }
 
         private void Awake() {
@@ -138,6 +149,29 @@ namespace Game.PlayerComponents {
             return newPosition;
         }
 
+        private IEnumerator PlayMovementSFX() {
+            while (true) {
+                StopAllCoroutines();
+                AudioClip sound = moveSound;
+                
+                if (_boxPusher.IsGrabbingBox) {
+                    sound = pushBoxSound;
+                }
+                
+                if (sound != null) {
+                    App.Instance.audioManager.sfx.Play(moveSound, moveSoundPitchVariation);
+                }
+                yield return new WaitForSeconds(sound.length);
+            }
+        }
+        
+        private void OnLevelStart() {
+            StartCoroutine(PlayMovementSFX());
+        }
+        
+        private void OnLevelEnd() {
+            StopAllCoroutines();
+        }
         
         // Protected functions
         internal void SetMovementSpeed(float speed) {

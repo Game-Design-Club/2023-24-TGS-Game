@@ -35,5 +35,10 @@ namespace AppCore {
                 Debug.LogError("No App instance found in the scene.");
             }
         }
+        
+        // Public functions
+        public void GetAudioManager() {
+            return;
+        }
     }
 }

@@ -33,31 +33,17 @@ namespace AppCore.AudioManagement
 
         //****** SFX ********
         
-        public void Play(AudioClip clip)
-        {
-            //creates source
+        public void Play(AudioClip clip, float maxPitchAdjustment = 0f) {
+            // creates source
             AudioSource source = gameObject.AddComponent<AudioSource>();
             source.clip = clip;
-            source.outputAudioMixerGroup = sfxGroup;
-            
-            _currentSoundEffects.AddLast(source);
-
-            //plays sound and deletes source
-            StartCoroutine(PlaySourceAndRemove(source));
-        }
-        
-        public void PlayWithRandomPitchAdjustment(AudioClip clip, float maxPitchAdjustment)
-        {
-            //creates source
-            AudioSource source = gameObject.AddComponent<AudioSource>();
-            source.clip = clip;
-            //adjusts pitch
+            // adjusts pitch
             source.pitch += Random.Range(-maxPitchAdjustment, maxPitchAdjustment);
             source.outputAudioMixerGroup = sfxGroup;
             
             _currentSoundEffects.AddLast(source);
 
-            //plays sound and deletes source
+            // plays sound and deletes source
             StartCoroutine(PlaySourceAndRemove(source));
         }
 
