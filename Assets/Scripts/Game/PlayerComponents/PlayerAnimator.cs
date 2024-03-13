@@ -40,6 +40,7 @@ namespace Game.PlayerComponents {
             _animator.ResetTrigger(AnimationConstants.Player.FaceLeft);
             _animator.ResetTrigger(AnimationConstants.Player.FaceUp);
             _animator.ResetTrigger(AnimationConstants.Player.FaceDown);
+            _animator.ResetTrigger(AnimationConstants.Player.Idle);
             
             if (direction.x > 0) {
                 _animator.SetTrigger(AnimationConstants.Player.FaceRight);
