@@ -170,7 +170,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 10
+  m_Spacing: 15
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -212,11 +212,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 337185314415283406, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 320
       objectReference: {fileID: 0}
     - target: {fileID: 337185314415283406, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 60
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 337185314415283406, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -270,11 +270,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: Options
       objectReference: {fileID: 0}
+    - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.Animator, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Show Options
+      objectReference: {fileID: 0}
     - target: {fileID: 5883375144565615615, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_text
       value: 'Options
 
 '
+      objectReference: {fileID: 0}
+    - target: {fileID: 5883375144565615615, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
+      propertyPath: m_fontSize
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 5883375144565615615, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5883375144565615615, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_fontColor32.rgba
@@ -324,11 +356,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 337185314415283406, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 320
       objectReference: {fileID: 0}
     - target: {fileID: 337185314415283406, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 60
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 337185314415283406, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -382,10 +414,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Play Button
       objectReference: {fileID: 0}
-    - target: {fileID: 5883375144565615615, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4293388263
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -430,11 +458,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 337185314415283406, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 320
       objectReference: {fileID: 0}
     - target: {fileID: 337185314415283406, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 60
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 337185314415283406, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -488,9 +516,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Quit
       objectReference: {fileID: 0}
+    - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuitGame
+      objectReference: {fileID: 0}
     - target: {fileID: 5883375144565615615, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_text
       value: Quit
+      objectReference: {fileID: 0}
+    - target: {fileID: 5883375144565615615, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
+      propertyPath: m_fontSize
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 5883375144565615615, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5883375144565615615, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_fontColor32.rgba
@@ -540,11 +584,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 337185314415283406, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 320
       objectReference: {fileID: 0}
     - target: {fileID: 337185314415283406, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 60
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 337185314415283406, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -598,11 +642,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: Credits
       objectReference: {fileID: 0}
+    - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ShowCredits
+      objectReference: {fileID: 0}
     - target: {fileID: 5883375144565615615, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_text
       value: 'Credits
 
 '
+      objectReference: {fileID: 0}
+    - target: {fileID: 5883375144565615615, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
+      propertyPath: m_fontSize
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 5883375144565615615, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5883375144565615615, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_fontColor32.rgba
