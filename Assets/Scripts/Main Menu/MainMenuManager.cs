@@ -26,7 +26,9 @@ namespace Main_Menu {
             _freeze = true;
             
             if (Application.isEditor) {
+#if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;
+#endif
                 return;
             }
             Application.Quit();
@@ -42,12 +44,16 @@ namespace Main_Menu {
             if (_freeze) return;
             
             App.Instance.audioManager.sfx.sfxVolume = value ? 1 : 0;
+            
+            Debug.Log("SFX: " + App.Instance.audioManager.sfx.sfxVolume);
         }
         
         public void SetMusicToggle(bool value) {
             if (_freeze) return;
             
             App.Instance.audioManager.music.musicVolume = value ? 1 : 0;
+            
+            Debug.Log("Music: " + App.Instance.audioManager.music.musicVolume);
         }
     }
 }
