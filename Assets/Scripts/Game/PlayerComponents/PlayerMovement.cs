@@ -50,7 +50,7 @@ namespace Game.PlayerComponents {
             _currentMovementInput = movementInput;
             _currentMovementInput.Normalize();
             
-            _playerAnimator.SetDirection(_currentMovementInput);
+            SetFacingDirection();
         }
 
         private void MovePlayer() {
@@ -142,6 +142,17 @@ namespace Game.PlayerComponents {
             return newPosition;
         }
 
+        private void SetFacingDirection() {
+            if (!_boxPusher.IsGrabbingBox) {
+                if (_currentMovementInput.x > 0) {
+                    _playerAnimator.SetFacingDirection(PlayerAnimator.FacingDirection.Right);
+                } else if (_currentMovementInput.x < 0) {
+                    _playerAnimator.SetFacingDirection(PlayerAnimator.FacingDirection.Left);
+                }
+            } else {
+                _playerAnimator.SetDirection(_currentMovementInput);
+            }
+        }
         
         // Protected functions
         internal void SetMovementSpeed(float speed) {
