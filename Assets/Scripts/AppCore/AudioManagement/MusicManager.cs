@@ -339,7 +339,7 @@ namespace AppCore.AudioManagement
             float targetValue = 1f;
             while (currentTime < duration)
             {
-                currentTime += Time.deltaTime;
+                currentTime += Time.unscaledDeltaTime;
                 float newVol = Mathf.Lerp(currentVol, targetValue, currentTime / duration);
                 _mixer.SetFloat(trackParam, Mathf.Log10(newVol) * 20);
                 yield return null;
@@ -358,7 +358,7 @@ namespace AppCore.AudioManagement
             float targetValue = 0f;
             while (currentTime < duration)
             {
-                currentTime += Time.deltaTime;
+                currentTime += Time.unscaledDeltaTime;
                 float newVol = Mathf.Lerp(currentVol, targetValue, currentTime / duration);
                 _mixer.SetFloat(trackParam, Mathf.Log10(newVol) * 20);
                 yield return null;
