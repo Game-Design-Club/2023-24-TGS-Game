@@ -1,11 +1,15 @@
 using AppCore;
 
+using Game.GameManagement.UIManagement;
+
 using Tools.Constants;
 
 using UnityEngine;
 
 namespace Main_Menu {
     public class MainMenuManager : MonoBehaviour {
+        [SerializeField] private Animator menuAnimator;
+        
         private bool _freeze = false;
         
         public void StartGame() {
@@ -54,6 +58,18 @@ namespace Main_Menu {
             App.Instance.audioManager.music.musicVolume = value ? 1 : 0;
             
             Debug.Log("Music: " + App.Instance.audioManager.music.musicVolume);
+        }
+        
+        public void ShowOptions() {
+            if (_freeze) return;
+            
+            menuAnimator.SetTrigger(AnimationConstants.MainMenu.ShowOptions);
+        }
+        
+        public void HideOptions() {
+            if (_freeze) return;
+            
+            menuAnimator.SetTrigger(AnimationConstants.MainMenu.HideOptions);
         }
     }
 }

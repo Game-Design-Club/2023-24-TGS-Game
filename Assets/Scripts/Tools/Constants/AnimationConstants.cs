@@ -23,5 +23,10 @@ namespace Tools.Constants {
             public const string Grab = "Grab";
             public const string InRange = "Hover";
         }
+        
+        public static class MainMenu {
+            public const string ShowOptions = "Show Options";
+            public const string HideOptions = "Show Main";
+        }
     }
 }

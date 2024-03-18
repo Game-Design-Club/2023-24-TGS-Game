@@ -7,6 +7,7 @@ using AppCore.TransitionManagement;
 using Tools.Constants;
 
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.GameManagement.LevelManagement {
     public class LevelManager : MonoBehaviour {
@@ -16,7 +17,7 @@ namespace Game.GameManagement.LevelManagement {
         private Level _currentLevel;
         private GameObject _levelGameObject;
 
-        private bool _currentlySwitching;
+        public static bool IsCurrentlySwitching;
         
         // Unity functions
         private void Awake() {
@@ -43,7 +44,7 @@ namespace Game.GameManagement.LevelManagement {
         }
         
         public IEnumerator LoadLevel(Level level, bool fade = true) {
-            if (_currentlySwitching) {
+            if (IsCurrentlySwitching) {
                 Debug.LogWarning("Tried to load level in the middle of loading another level");
                 yield break;
             }
@@ -54,9 +55,9 @@ namespace Game.GameManagement.LevelManagement {
             }
             if (fade) {
                 App.Instance.transitionManager.FadeIn(TransitionType.Wipe);
-                _currentlySwitching = true;
+                IsCurrentlySwitching = true;
                 yield return new WaitForSecondsRealtime(App.Instance.transitionManager.wipeTime);
-                _currentlySwitching = false;
+                IsCurrentlySwitching = false;
                 App.Instance.transitionManager.FadeOut(TransitionType.Wipe);
             }
             ChangeCurrentLevel(level);
