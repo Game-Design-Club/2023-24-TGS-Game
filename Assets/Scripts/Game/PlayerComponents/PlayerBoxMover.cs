@@ -94,12 +94,16 @@ namespace Game.PlayerComponents {
             IsGrabbingBox = true;
             _playerMovement.SetMovementSpeed(boxMoveSpeed);
             BoxBox.GrabbedBox();
+            
+            _playerMovement.UpdateFacingDirection();
         }
         
         private void ReleaseBox() {
             IsGrabbingBox = false;
             _playerMovement.ResetMovementSpeed();
             BoxBox.ReleasedBox();
+            
+            _playerMovement.UpdateFacingDirection();
         }
         
         // Internal functions

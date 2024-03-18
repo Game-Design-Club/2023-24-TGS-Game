@@ -16,7 +16,7 @@ namespace Game.PlayerComponents {
         private float _currentMovementSpeed;
         private Rigidbody2D _rigidbody2D;
         private BoxCollider2D _boxCollider;
-        private PlayerBoxMover _boxPusher;
+        private PlayerBoxMover _boxMover;
         private PlayerAnimator _playerAnimator;
         
         internal event Action<Vector2> OnPlayerMoved;
@@ -32,7 +32,7 @@ namespace Game.PlayerComponents {
 
         private void Awake() {
             _rigidbody2D = GetComponent<Rigidbody2D>();
-            _boxPusher = GetComponent<PlayerBoxMover>();
+            _boxMover = GetComponent<PlayerBoxMover>();
             _boxCollider = GetComponent<BoxCollider2D>();
             _playerAnimator = GetComponent<PlayerAnimator>();
         }
@@ -50,11 +50,11 @@ namespace Game.PlayerComponents {
             _currentMovementInput = movementInput;
             _currentMovementInput.Normalize();
             
-            SetFacingDirection();
+            UpdateFacingDirection();
         }
 
         private void MovePlayer() {
-            _currentMovement = _boxPusher.GetLockedMovement(_currentMovementInput);
+            _currentMovement = _boxMover.GetLockedMovement(_currentMovementInput);
             
             float movementDistance = _currentMovementSpeed * Time.deltaTime;
             Vector2 originalMovement = _currentMovement * movementDistance;
@@ -87,15 +87,15 @@ namespace Game.PlayerComponents {
                 foreach (RaycastHit2D hit in playerHits) {
                     if (hit.collider == null) continue;
 
-                    if (!_boxPusher.IsGrabbingBox ||
-                        (_boxPusher.IsGrabbingBox && hit.collider.gameObject != _boxPusher.BoxObject)) {
+                    if (!_boxMover.IsGrabbingBox ||
+                        (_boxMover.IsGrabbingBox && hit.collider.gameObject != _boxMover.BoxObject)) {
                         hitX = hit;
                     }
                 }
                 
-                if (_boxPusher.IsGrabbingBox) {
-                    RaycastHit2D boxRaycast = _boxPusher.BoxBox.SendBoxCast(new Vector2(_currentMovement.x, 0), Mathf.Abs(movement.x), wallLayer);
-                    if (boxRaycast.collider != null && boxRaycast.collider.gameObject != _boxPusher.BoxObject) {
+                if (_boxMover.IsGrabbingBox) {
+                    RaycastHit2D boxRaycast = _boxMover.BoxBox.SendBoxCast(new Vector2(_currentMovement.x, 0), Mathf.Abs(movement.x), wallLayer);
+                    if (boxRaycast.collider != null && boxRaycast.collider.gameObject != _boxMover.BoxObject) {
                         hitX = boxRaycast;
                     }
                 }
@@ -117,15 +117,15 @@ namespace Game.PlayerComponents {
                 foreach (RaycastHit2D hit in playerHits) {
                     if (hit.collider == null) continue;
 
-                    if (!_boxPusher.IsGrabbingBox ||
-                        (_boxPusher.IsGrabbingBox && hit.collider.gameObject != _boxPusher.BoxObject)) {
+                    if (!_boxMover.IsGrabbingBox ||
+                        (_boxMover.IsGrabbingBox && hit.collider.gameObject != _boxMover.BoxObject)) {
                         hitY = hit;
                     }
                 }
                 
-                if (_boxPusher.IsGrabbingBox) {
-                    RaycastHit2D boxRaycast = _boxPusher.BoxBox.SendBoxCast(new Vector2(0, _currentMovement.y), Mathf.Abs(movement.y), wallLayer);
-                    if (boxRaycast.collider != null && boxRaycast.collider.gameObject != _boxPusher.BoxObject) {
+                if (_boxMover.IsGrabbingBox) {
+                    RaycastHit2D boxRaycast = _boxMover.BoxBox.SendBoxCast(new Vector2(0, _currentMovement.y), Mathf.Abs(movement.y), wallLayer);
+                    if (boxRaycast.collider != null && boxRaycast.collider.gameObject != _boxMover.BoxObject) {
                         hitY = boxRaycast;
                     }
                 }
@@ -142,18 +142,6 @@ namespace Game.PlayerComponents {
             return newPosition;
         }
 
-        private void SetFacingDirection() {
-            if (!_boxPusher.IsGrabbingBox) {
-                if (_currentMovementInput.x > 0) {
-                    _playerAnimator.SetFacingDirection(PlayerAnimator.FacingDirection.Right);
-                } else if (_currentMovementInput.x < 0) {
-                    _playerAnimator.SetFacingDirection(PlayerAnimator.FacingDirection.Left);
-                }
-            } else {
-                _playerAnimator.SetDirection(_currentMovementInput);
-            }
-        }
-        
         // Protected functions
         internal void SetMovementSpeed(float speed) {
             _currentMovementSpeed = speed;
@@ -161,6 +149,22 @@ namespace Game.PlayerComponents {
         
         internal void ResetMovementSpeed() {
             SetMovementSpeed(movementSpeed);
+        }
+        
+        internal void UpdateFacingDirection() {
+            if (_boxMover.IsGrabbingBox) {
+                if (_boxMover.AttachDirection.x < 0) {
+                    _playerAnimator.SetDirection(Vector2.right);
+                } else if (_boxMover.AttachDirection.x > 0) {
+                    _playerAnimator.SetDirection(Vector2.left);
+                } else if (_boxMover.AttachDirection.y < 0) {
+                    _playerAnimator.SetDirection(Vector2.up);
+                } else if (_boxMover.AttachDirection.y > 0) {
+                    _playerAnimator.SetDirection(Vector2.down);
+                }
+            } else {
+                _playerAnimator.SetDirection(_currentMovementInput);
+            }
         }
     }
 }
