@@ -1,5 +1,7 @@
 using System;
 
+using Game.GameManagement.LevelManagement;
+
 using UnityEngine;
 
 namespace Game.GameManagement.PauseManagement {
@@ -37,6 +39,7 @@ namespace Game.GameManagement.PauseManagement {
                 Debug.LogWarning("Tried to resume game while not paused.");
                 return;
             }
+            if (LevelManager.IsCurrentlySwitching) return;
             PauseManagerEvents.InvokeGameResume();
             IsPaused = false;
             Time.timeScale = 1;
