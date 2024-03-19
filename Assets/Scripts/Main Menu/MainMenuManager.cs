@@ -1,3 +1,5 @@
+using System;
+
 using AppCore;
 
 using Tools.Constants;
@@ -7,7 +9,11 @@ using UnityEngine;
 namespace Main_Menu {
     public class MainMenuManager : MonoBehaviour {
         private bool _freeze = false;
-        
+
+        private void Start() {
+            App.Instance.audioManager.musicPlayer.PlayMainMenuMusic();
+        }
+
         public void StartGame() {
             if (_freeze) {
                 return;

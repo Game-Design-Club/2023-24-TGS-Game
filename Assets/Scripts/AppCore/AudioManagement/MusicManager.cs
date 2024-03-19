@@ -86,6 +86,7 @@ namespace AppCore.AudioManagement
         /// <param name="duration">How long the it takes for the music to fade in.</param>
         public void FadeIn(Music music, float duration, float startTime = 0f)
         {
+            Debug.Log("Fading in music: " + music.name + " at time: " + startTime + " with duration: " + duration);
             if (AlreadyPlaying(music))
             {
                 Debug.LogWarning($"Tried to fade into Music: {music} but it was already playing");

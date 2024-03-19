@@ -5,8 +5,9 @@ namespace AppCore.AudioManagement
 {
     public class AudioManager : MonoBehaviour
     {
-        public MusicManager music;
-        public SFXManager sfx;
+        [SerializeField] public MusicManager music;
+        [SerializeField] public MusicPlayer musicPlayer;
+        [SerializeField] public SFXManager sfx;
         
         //constant variables used to access different groups in the audio mixer
         private const string MasterVolume = "MasterVolume";
