@@ -23,8 +23,6 @@ namespace Game.NightLevels.Shooter {
             // check if ignoreObject is in any of the parents of the collider (not just the object itself)
             if (other.gameObject == _ignoreObject || other.transform.IsChildOf(_ignoreObject.transform)) return;
             
-            Debug.Log("Bullet hit " + other.gameObject.name);
-            
             DestroyBullet();
         }
 
