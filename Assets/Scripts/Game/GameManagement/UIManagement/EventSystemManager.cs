@@ -41,7 +41,18 @@ namespace Game.GameManagement.UIManagement
         }
         
         private void OnLevelStart() {
+            // Only in game scene
             _eventSystem.SetSelectedGameObject(_eventSystem.firstSelectedGameObject);
+        }
+        
+        // Public functions
+        public void SetSelectedGameObject(GameObject selectedGameObject) {
+            if (selectedGameObject == null) {
+                _eventSystem.SetSelectedGameObject(null);
+                Debug.LogWarning("SelectedGameObject is null");
+                return;
+            }
+            _eventSystem.SetSelectedGameObject(selectedGameObject);
         }
     }
 }

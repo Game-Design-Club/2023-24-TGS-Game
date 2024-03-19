@@ -9,6 +9,9 @@ using UnityEngine;
 namespace Main_Menu {
     public class MainMenuManager : MonoBehaviour {
         [SerializeField] private Animator menuAnimator;
+        [SerializeField] private EventSystemManager eventSystemManager;
+        [SerializeField] private GameObject defaultButton;
+        [SerializeField] private GameObject defaultOptionsButton;
         
         private bool _freeze = false;
         
@@ -63,12 +66,14 @@ namespace Main_Menu {
         public void ShowOptions() {
             if (_freeze) return;
             
+            eventSystemManager.SetSelectedGameObject(defaultOptionsButton);
             menuAnimator.SetTrigger(AnimationConstants.MainMenu.ShowOptions);
         }
         
         public void HideOptions() {
             if (_freeze) return;
             
+            eventSystemManager.SetSelectedGameObject(defaultButton);
             menuAnimator.SetTrigger(AnimationConstants.MainMenu.HideOptions);
         }
     }
