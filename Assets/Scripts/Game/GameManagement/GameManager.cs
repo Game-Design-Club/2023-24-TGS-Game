@@ -14,6 +14,9 @@ namespace Game.GameManagement {
         private LevelManager _levelManager;
 
         private static GameManager s_instance;
+        
+        private bool _freeze = false;
+        
         // Unity functions
         private void Awake() {
             if (s_instance is null) {
@@ -40,12 +43,23 @@ namespace Game.GameManagement {
             }
         }
 
+        private void OnEnable() {
+            GameManagerEvents.OnLevelStart += OnLevelStart;
+        }
+        
+        private void OnDisable() {
+            GameManagerEvents.OnLevelStart -= OnLevelStart;
+        }
+
         // Public functions
         public void PlayerDied() {
             RestartLevel();
         }
         
         public void RestartLevel() {
+            if (_freeze) return;
+            _freeze = true;
+            
             _levelManager.RestartLevel();
             GameManagerEvents.InvokeLevelOver();
         }
@@ -56,7 +70,14 @@ namespace Game.GameManagement {
         }
         
         public void QuitToMainMenu() {
+            if (_freeze) return;
+            _freeze = true;
+            
             App.Instance.sceneManager.LoadScene(SceneConstants.MainMenu);
+        }
+        
+        private void OnLevelStart() {
+            _freeze = false;
         }
         
         // Static functions
