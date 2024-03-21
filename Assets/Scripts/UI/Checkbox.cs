@@ -10,6 +10,12 @@ namespace UI {
         public void Toggle() {
             state = !state;
             checkmark.SetActive(state);
+            OnToggle?.Invoke(state);
+        }
+        
+        public void SetState(bool value) {
+            state = value;
+            checkmark.SetActive(state);
         }
     }
 }

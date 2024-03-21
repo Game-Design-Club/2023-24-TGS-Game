@@ -171,6 +171,8 @@ MonoBehaviour:
   eventSystemManager: {fileID: 624391572}
   defaultButton: {fileID: 6567228405262744362}
   defaultOptionsButton: {fileID: 1256165473}
+  sfxToggle: {fileID: 1762918747}
+  musicToggle: {fileID: 1256165474}
 --- !u!224 &365795885 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6103851871040375804, guid: 2cf9926c8376c40f49f8b80fdb0d5214, type: 3}
@@ -665,14 +667,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7035760210295001624, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
-      propertyPath: fadeTime
-      value: 1.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7035760210295001624, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
-      propertyPath: wipeTime
-      value: 0.9
-      objectReference: {fileID: 0}
     - target: {fileID: 8257527468688489269, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
       propertyPath: m_Name
       value: App
@@ -1303,6 +1297,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1574524298068359000, guid: 99265d26c8e8f42739f3eb510e69bde7, type: 3}
   m_PrefabInstance: {fileID: 1256165471}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1256165474 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2496202579164776881, guid: 99265d26c8e8f42739f3eb510e69bde7, type: 3}
+  m_PrefabInstance: {fileID: 1256165471}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256165473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7f88dca3a5a4940a7a1c96239165dff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1384133985
 GameObject:
   m_ObjectHideFlags: 0
@@ -1739,6 +1744,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1720521476}
   m_CullTransparentMesh: 1
+--- !u!114 &1762918747 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2496202579164776881, guid: 99265d26c8e8f42739f3eb510e69bde7, type: 3}
+  m_PrefabInstance: {fileID: 1026369347}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7f88dca3a5a4940a7a1c96239165dff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1888783146
 GameObject:
   m_ObjectHideFlags: 0

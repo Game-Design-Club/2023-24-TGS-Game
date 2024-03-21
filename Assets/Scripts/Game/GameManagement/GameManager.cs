@@ -9,7 +9,7 @@ using Tools.Constants;
 using UnityEngine;
 
 namespace Game.GameManagement {
-    public class GameManager : MonoBehaviour{
+    public class GameManager : MonoBehaviour {
         
         private LevelManager _levelManager;
 
