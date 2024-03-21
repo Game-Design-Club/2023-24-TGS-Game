@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 using UnityEngine;
 
 namespace AppCore.Data_Management {
@@ -32,6 +29,7 @@ namespace AppCore.Data_Management {
             private set {
                 PlayerPrefs.SetInt(PlayerDataKeys.Levels, value);
                 PlayerPrefs.Save();
+                Debug.Log("int set to " + value);
             }
         }
         
@@ -55,7 +53,7 @@ namespace AppCore.Data_Management {
         }
         
         public void LastLevelCompleted(int index) {
-            LastCompletedLevelIndex++;
+            LastCompletedLevelIndex = index;
         }
         
         public void LogTime(long time) {

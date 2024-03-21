@@ -26,6 +26,7 @@ namespace Main_Menu {
         private void Start() {
             SetSFXToggle(App.Instance.playerDataManager.AreSFXOn);
             SetMusicToggle(App.Instance.playerDataManager.IsMusicOn);
+            
         }
 
         // Public functions

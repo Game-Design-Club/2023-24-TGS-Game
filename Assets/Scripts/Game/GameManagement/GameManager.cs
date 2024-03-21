@@ -34,7 +34,7 @@ namespace Game.GameManagement {
         }
 
         private void Start() {
-            _levelManager.LoadFirstLevel();
+            _levelManager.LoadSavedLevel();
         }
 
         private void OnDestroy() {
