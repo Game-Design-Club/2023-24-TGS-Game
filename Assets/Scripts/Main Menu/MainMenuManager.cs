@@ -1,4 +1,5 @@
-using System;
+using System.Collections;
+using System.Collections.Generic;
 
 using AppCore;
 
@@ -26,7 +27,7 @@ namespace Main_Menu {
         private void Start() {
             SetSFXToggle(App.Instance.playerDataManager.AreSFXOn);
             SetMusicToggle(App.Instance.playerDataManager.IsMusicOn);
-            
+            App.Instance.audioManager.musicPlayer.PlayMainMenuMusic();
         }
 
         // Public functions
@@ -65,7 +66,7 @@ namespace Main_Menu {
         public void SetSFXToggle(bool value) {
             if (_freeze) return;
             
-            App.Instance.audioManager.sfx.sfxVolume = value ? 1 : 0;
+            App.Instance.audioManager.sfx.SetVolume(value ? 1 : 0);
             App.Instance.playerDataManager.SetSFX(value);
             
             sfxToggle.SetState(value);
@@ -74,7 +75,7 @@ namespace Main_Menu {
         public void SetMusicToggle(bool value) {
             if (_freeze) return;
             
-            App.Instance.audioManager.music.musicVolume = value ? 1 : 0;
+            App.Instance.audioManager.music.SetVolume(value ? 1 : 0);
             App.Instance.playerDataManager.SetMusic(value);
             
             musicToggle.SetState(value);

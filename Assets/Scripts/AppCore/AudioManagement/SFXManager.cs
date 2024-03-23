@@ -16,7 +16,7 @@ namespace AppCore.AudioManagement
         //the audio mixer and its groups
         private AudioMixer _mixer = null;
         [SerializeField] private AudioMixerGroup sfxGroup;
-        [Range(0f, 1f)] public float sfxVolume = 1;
+        [Range(0f, 1f)] private float sfxVolume = 1;
 
         private readonly LinkedList<AudioSource> _currentSoundEffects = new LinkedList<AudioSource>();
 

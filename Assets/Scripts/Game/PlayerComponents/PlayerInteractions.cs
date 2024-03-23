@@ -29,7 +29,6 @@ namespace Game.PlayerComponents {
             if (!_interactionsOn) return;
             switch (other.gameObject.tag) {
                 case TagConstants.Oucher:
-                    Debug.Log("Hit by: " + other.gameObject.name);
                     GameManager.PlayerDiedStatic();
                     _playerAnimator.PlayDeathAnimation();
                     if (other.TryGetComponent(out Oucher oucher)) {

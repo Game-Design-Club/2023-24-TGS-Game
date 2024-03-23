@@ -595,6 +595,7 @@ Transform:
   m_Children:
   - {fileID: 5216073212486819603}
   - {fileID: 3531887354329511547}
+  - {fileID: 5585479328299932475}
   m_Father: {fileID: 8267727598159319133}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8572554616410408506
@@ -610,6 +611,54 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   music: {fileID: 1436839184743552707}
+  musicPlayer: {fileID: 92633838598556293}
   sfx: {fileID: 5411140165652539178}
   mixer: {fileID: 24100000, guid: 8956fd7b59b984e9288875aea0daad40, type: 2}
   masterVolume: 1
+--- !u!1 &8695549524398983569
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5585479328299932475}
+  - component: {fileID: 92633838598556293}
+  m_Layer: 0
+  m_Name: Music Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5585479328299932475
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8695549524398983569}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 683116182538534987}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &92633838598556293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8695549524398983569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8ff1124ba124f19b1a16ee4d649ce86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainMenuMusic: {fileID: 11400000, guid: d4c36613b0a914570a4e06ce42466acb, type: 2}
+  gameMusic: {fileID: 11400000, guid: f0ababf09938e48b3ade709f945b5278, type: 2}
+  fadeTime: 1

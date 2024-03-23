@@ -35,6 +35,7 @@ namespace Game.GameManagement {
 
         private void Start() {
             _levelManager.LoadSavedLevel();
+            App.Instance.audioManager.musicPlayer.PlayGameMusic();
         }
 
         private void OnDestroy() {
