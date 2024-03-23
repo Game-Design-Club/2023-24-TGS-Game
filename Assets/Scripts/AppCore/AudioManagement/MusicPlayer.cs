@@ -25,10 +25,8 @@ namespace AppCore.AudioManagement {
             }
             if (currentMusic == null) {
                 App.Instance.audioManager.music.FadeIn(mainMenuMusic, fadeTime);
-                Debug.Log("Fading in main menu music");
             } else {
                 App.Instance.audioManager.music.FadeIntoCurrentTime(currentMusic, mainMenuMusic, fadeTime);
-                Debug.Log("Fading into current time main menu music");
             }
             currentMusic = mainMenuMusic;
         }
@@ -41,10 +39,8 @@ namespace AppCore.AudioManagement {
             
             if (currentMusic == null) {
                 App.Instance.audioManager.music.FadeIn(gameMusic, fadeTime);
-                Debug.Log("Fading in game music");
             } else {
                 App.Instance.audioManager.music.FadeIntoCurrentTime(currentMusic, gameMusic, fadeTime);
-                Debug.Log("Fading into current time game music");
             }
             currentMusic = gameMusic;
         }

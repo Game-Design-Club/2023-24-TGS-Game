@@ -8,9 +8,6 @@ namespace AppCore.AudioManagement
 {
     public class MusicManager : MonoBehaviour
     {
-        //constant variables used to access different groups in the audio mixer
-        private const string MusicVolume = "MusicVolume";
-    
         //the audio mixer and its groups
         private AudioMixer _mixer = null;
         [SerializeField] private AudioMixerGroup musicGroup;
@@ -23,13 +20,13 @@ namespace AppCore.AudioManagement
 
         //Volume of groups
         [Range(0f, 1f)]
-        public float musicVolume = 1;
+        private float musicVolume = 1f;
 
         //***** Unity Functions *****
         void Awake()
         {
             _mixer = musicGroup.audioMixer;
-            _mixer.SetFloat(MusicVolume, AudioManager.ConvertToDecibels(musicVolume));
+            _mixer.SetFloat(MixerConstants.MusicVolume, AudioManager.ConvertToDecibels(musicVolume));
             
             //initiating track storage
             _userOfTrack = new Music[musicTrackGroups.Length];
@@ -41,7 +38,7 @@ namespace AppCore.AudioManagement
         private void OnValidate()
         {
             if (_mixer == null) return;
-            _mixer.SetFloat(MusicVolume, AudioManager.ConvertToDecibels(musicVolume));
+            _mixer.SetFloat(MixerConstants.MusicVolume, AudioManager.ConvertToDecibels(musicVolume));
         }
 
         //******* Music *******
@@ -86,7 +83,6 @@ namespace AppCore.AudioManagement
         /// <param name="duration">How long the it takes for the music to fade in.</param>
         public void FadeIn(Music music, float duration, float startTime = 0f)
         {
-            Debug.Log("Fading in music: " + music.name + " at time: " + startTime + " with duration: " + duration);
             if (AlreadyPlaying(music))
             {
                 Debug.LogWarning($"Tried to fade into Music: {music} but it was already playing");
@@ -161,7 +157,7 @@ namespace AppCore.AudioManagement
         //mutes the music audio group
         public void Mute(bool mute = true)
         {
-            _mixer.SetFloat(MusicVolume,
+            _mixer.SetFloat(MixerConstants.MusicVolume,
                 mute ? AudioManager.ConvertToDecibels(0f) : AudioManager.ConvertToDecibels(musicVolume));
         }
         
@@ -182,7 +178,7 @@ namespace AppCore.AudioManagement
         public void SetVolume(float volume)
         {
             musicVolume = volume;
-            _mixer.SetFloat(MusicVolume, AudioManager.ConvertToDecibels(musicVolume));
+            _mixer.SetFloat(MixerConstants.MusicVolume, AudioManager.ConvertToDecibels(musicVolume));
         }
     
         //sets the volume of the musics track
@@ -202,7 +198,6 @@ namespace AppCore.AudioManagement
         //creates and returns a new AudioSource
         internal AudioSource GetNewSource()
         {
-            Debug.Log(this); // Null????
             return gameObject.AddComponent<AudioSource>();
         }
         
