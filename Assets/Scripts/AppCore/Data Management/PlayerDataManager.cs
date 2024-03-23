@@ -33,16 +33,6 @@ namespace AppCore.Data_Management {
             }
         }
         
-        public long BestTime {
-            get {
-                return PlayerPrefs.GetInt(PlayerDataKeys.BestTime, 0);
-            }
-            private set {
-                PlayerPrefs.SetInt(PlayerDataKeys.BestTime, (int)value);
-                PlayerPrefs.Save();
-            }
-        }
-        
         // Public functions
         public void SetSFX(bool value) {
             AreSFXOn = value;
@@ -54,12 +44,6 @@ namespace AppCore.Data_Management {
         
         public void LastLevelCompleted(int index) {
             LastCompletedLevelIndex = index;
-        }
-        
-        public void LogTime(long time) {
-            if (time < BestTime) {
-                BestTime = time;
-            }
         }
         
         public void EraseProgress() {
