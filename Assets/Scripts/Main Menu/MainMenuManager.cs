@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 using AppCore;
 
@@ -11,9 +13,14 @@ namespace Main_Menu {
         private bool _freeze = false;
 
         private void Start() {
-            App.Instance.audioManager.musicPlayer.PlayMainMenuMusic();
+            StartCoroutine(PlayMusic());
         }
 
+        private IEnumerator PlayMusic() {
+            yield return null;
+            App.Instance.audioManager.musicPlayer.PlayMainMenuMusic();
+        }
+        
         public void StartGame() {
             if (_freeze) {
                 return;

@@ -202,10 +202,11 @@ namespace AppCore.AudioManagement
         //creates and returns a new AudioSource
         internal AudioSource GetNewSource()
         {
+            Debug.Log(this); // Null????
             return gameObject.AddComponent<AudioSource>();
         }
         
-        //Destroys the given AudioSource 
+        //Destroys the given AudioSource
         internal void RemoveSource(AudioSource source)
         {
             Destroy(source);

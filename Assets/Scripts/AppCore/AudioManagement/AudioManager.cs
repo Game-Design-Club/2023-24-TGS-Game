@@ -18,10 +18,8 @@ namespace AppCore.AudioManagement
         //Volume of groups
         [Range(0f, 1f)] public float masterVolume = 1;
 
-        public static AudioManager Instance;
         private void Awake()
         {
-            Instance = this;
             mixer.SetFloat(MasterVolume, ConvertToDecibels(masterVolume));
         }
         
