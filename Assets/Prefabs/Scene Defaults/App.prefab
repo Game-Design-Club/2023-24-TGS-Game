@@ -419,6 +419,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47cdae10abd24b2693d4f87fd6a21538, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5704624178321613029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4951220686665868740}
+  - component: {fileID: 4742768451635549136}
+  m_Layer: 0
+  m_Name: Player Data Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4951220686665868740
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5704624178321613029}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8267727598159319133}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4742768451635549136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5704624178321613029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e5e28726364c5f8996b99b6b1c3114, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7459414943826766906
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,6 +543,7 @@ Transform:
   - {fileID: 5642497236956840426}
   - {fileID: 683116182538534987}
   - {fileID: 127475967107572436}
+  - {fileID: 4951220686665868740}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &927245783669756701
@@ -517,6 +562,7 @@ MonoBehaviour:
   inputManager: {fileID: 7720440812478346304}
   sceneManager: {fileID: 8611576920855062264}
   transitionManager: {fileID: 7035760210295001624}
+  playerDataManager: {fileID: 4742768451635549136}
 --- !u!1 &8277497635276174182
 GameObject:
   m_ObjectHideFlags: 0

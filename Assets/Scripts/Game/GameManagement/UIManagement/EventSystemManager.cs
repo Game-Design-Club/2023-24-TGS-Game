@@ -13,11 +13,13 @@ namespace Game.GameManagement.UIManagement
         private void OnEnable() {
             App.Instance.inputManager.OnPoint += HandleMouseMovement;
             App.Instance.inputManager.OnMovement += HandleKeyboardInput;
+            GameManagerEvents.OnLevelStart += OnLevelStart;
         }
 
         private void OnDisable() {
             App.Instance.inputManager.OnPoint -= HandleMouseMovement;
             App.Instance.inputManager.OnMovement -= HandleKeyboardInput;
+            GameManagerEvents.OnLevelStart -= OnLevelStart;
         }
 
         private void Awake() {
@@ -36,6 +38,21 @@ namespace Game.GameManagement.UIManagement
             Cursor.visible = false;
             _eventSystem.SetSelectedGameObject(_eventSystem.firstSelectedGameObject);
             _inputType = InputType.Keyboard;
+        }
+        
+        private void OnLevelStart() {
+            // Only in game scene
+            _eventSystem.SetSelectedGameObject(_eventSystem.firstSelectedGameObject);
+        }
+        
+        // Public functions
+        public void SetSelectedGameObject(GameObject selectedGameObject) {
+            if (selectedGameObject == null) {
+                _eventSystem.SetSelectedGameObject(null);
+                Debug.LogWarning("SelectedGameObject is null");
+                return;
+            }
+            _eventSystem.SetSelectedGameObject(selectedGameObject);
         }
     }
 }

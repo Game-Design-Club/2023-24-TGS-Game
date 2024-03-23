@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8120639020015886122}
   - component: {fileID: 3403389885347001083}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Triangle (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8775868771979242570}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fast Shooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 681820604330396214}
   - component: {fileID: 5515855326651747119}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Triangle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,7 +213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3034912067469683442}
   - component: {fileID: 7816562041765879641}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -301,7 +301,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6934082371367163038, guid: 019704176945648ddad70ecf1973015d, type: 3}
       propertyPath: shootFrequency
-      value: 0.3
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 8775868771979242570, guid: 019704176945648ddad70ecf1973015d, type: 3}
       propertyPath: m_LocalPosition.x

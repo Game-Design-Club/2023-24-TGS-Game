@@ -12,6 +12,12 @@ namespace Game.GameManagement.LevelManagement {
             DebugLog("Loading First Level");
         }
         
+        [ContextMenu(itemName: "Load Saved Level")]
+        public void LoadSavedLevel() {
+            levelManager.LoadSavedLevel();
+            DebugLog("Loading Saved Level");
+        }
+        
         [ContextMenu(itemName: "Load Next Level")]
         public void LoadNextLevel() {
             levelManager.LoadNextLevel();

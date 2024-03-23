@@ -30,7 +30,7 @@ namespace AppCore.SceneManagement {
             }
             
             UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Single);
-
+            Time.timeScale = 1;
             if (fade) {
                 App.Instance.transitionManager.FadeOut();
             }
