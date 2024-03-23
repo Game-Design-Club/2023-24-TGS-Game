@@ -11,32 +11,39 @@ using UnityEngine.Serialization;
 
 namespace Game.GameManagement.LevelManagement {
     public class LevelManager : MonoBehaviour {
-        [SerializeField] private Level firstLevel;
+        [SerializeField] private LevelsData levelsData;
         [SerializeField] private Level customFirstLevel;
 
         private Level _currentLevel;
+        private int _currentLevelIndex;
         private GameObject _levelGameObject;
 
         public static bool IsCurrentlySwitching;
-        
-        // Unity functions
-        private void Awake() {
-            if (customFirstLevel != null) {
-                firstLevel = customFirstLevel;
-            }
-        }
 
         // Public functions
         public void LoadFirstLevel() {
-            StartCoroutine(LoadLevel(firstLevel, false));
+            StartCoroutine(LoadLevel(levelsData[0], false));
+        }
+        
+        public void LoadSavedLevel() {
+            if (levelsData == null) {
+                Debug.LogError("No levels data assigned to the level manager");
+                return;
+            }
+            StartCoroutine(LoadLevel(levelsData[App.Instance.playerDataManager.LastCompletedLevelIndex], false));
         }
         
         public void LoadNextLevel() {
-            if (_currentLevel.nextLevel is null) {
+            _currentLevelIndex++;
+            if (levelsData[_currentLevelIndex] == null) {
+                // If there are no more levels, go to the credits
+                _currentLevelIndex = 0;
+                App.Instance.playerDataManager.LastLevelCompleted(_currentLevelIndex);
                 App.Instance.sceneManager.LoadScene(SceneConstants.Credits);
                 return;
             }
-            StartCoroutine(LoadLevel(_currentLevel.nextLevel));
+            StartCoroutine(LoadLevel(levelsData[_currentLevelIndex]));
+            App.Instance.playerDataManager.LastLevelCompleted(_currentLevelIndex);
         }
         
         public void RestartLevel() {

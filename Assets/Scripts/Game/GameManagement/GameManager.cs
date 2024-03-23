@@ -9,7 +9,7 @@ using Tools.Constants;
 using UnityEngine;
 
 namespace Game.GameManagement {
-    public class GameManager : MonoBehaviour{
+    public class GameManager : MonoBehaviour {
         
         private LevelManager _levelManager;
 
@@ -34,7 +34,7 @@ namespace Game.GameManagement {
         }
 
         private void Start() {
-            _levelManager.LoadFirstLevel();
+            _levelManager.LoadSavedLevel();
         }
 
         private void OnDestroy() {

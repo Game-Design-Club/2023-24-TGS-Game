@@ -1,8 +1,12 @@
+using System;
+
 using AppCore;
 
 using Game.GameManagement.UIManagement;
 
 using Tools.Constants;
+
+using UI;
 
 using UnityEngine;
 
@@ -13,8 +17,19 @@ namespace Main_Menu {
         [SerializeField] private GameObject defaultButton;
         [SerializeField] private GameObject defaultOptionsButton;
         
+        [SerializeField] private Checkbox sfxToggle;
+        [SerializeField] private Checkbox musicToggle;
+        
         private bool _freeze = false;
         
+        // Unity functions
+        private void Start() {
+            SetSFXToggle(App.Instance.playerDataManager.AreSFXOn);
+            SetMusicToggle(App.Instance.playerDataManager.IsMusicOn);
+            
+        }
+
+        // Public functions
         public void StartGame() {
             if (_freeze) return;
             _freeze = true;
@@ -44,23 +59,25 @@ namespace Main_Menu {
         public void EraseProgress() {
             if (_freeze) return;
             
-            Debug.Log("Progress erased");
+            App.Instance.playerDataManager.EraseProgress();
         }
         
         public void SetSFXToggle(bool value) {
             if (_freeze) return;
             
             App.Instance.audioManager.sfx.sfxVolume = value ? 1 : 0;
+            App.Instance.playerDataManager.SetSFX(value);
             
-            Debug.Log("SFX: " + App.Instance.audioManager.sfx.sfxVolume);
+            sfxToggle.SetState(value);
         }
         
         public void SetMusicToggle(bool value) {
             if (_freeze) return;
             
             App.Instance.audioManager.music.musicVolume = value ? 1 : 0;
+            App.Instance.playerDataManager.SetMusic(value);
             
-            Debug.Log("Music: " + App.Instance.audioManager.music.musicVolume);
+            musicToggle.SetState(value);
         }
         
         public void ShowOptions() {

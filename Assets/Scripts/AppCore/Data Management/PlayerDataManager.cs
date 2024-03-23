@@ -1,0 +1,54 @@
+using UnityEngine;
+
+namespace AppCore.Data_Management {
+    public class PlayerDataManager : MonoBehaviour {
+        public bool AreSFXOn {
+            get {
+                return PlayerPrefs.GetInt(PlayerDataKeys.SFX, 1) == 1;
+            }
+            private set {
+                PlayerPrefs.SetInt(PlayerDataKeys.SFX, value ? 1 : 0);
+                PlayerPrefs.Save();
+            }
+        }
+        
+        public bool IsMusicOn {
+            get {
+                return PlayerPrefs.GetInt(PlayerDataKeys.Music, 1) == 1;
+            }
+            private set {
+                PlayerPrefs.SetInt(PlayerDataKeys.Music, value ? 1 : 0);
+                PlayerPrefs.Save();
+            }
+        }
+        
+        public int LastCompletedLevelIndex {
+            get {
+                return PlayerPrefs.GetInt(PlayerDataKeys.Levels, 0);
+            }
+            private set {
+                PlayerPrefs.SetInt(PlayerDataKeys.Levels, value);
+                PlayerPrefs.Save();
+                Debug.Log("int set to " + value);
+            }
+        }
+        
+        // Public functions
+        public void SetSFX(bool value) {
+            AreSFXOn = value;
+        }
+        
+        public void SetMusic(bool value) {
+            IsMusicOn = value;
+        }
+        
+        public void LastLevelCompleted(int index) {
+            LastCompletedLevelIndex = index;
+        }
+        
+        public void EraseProgress() {
+            PlayerPrefs.DeleteKey(PlayerDataKeys.Levels);
+            PlayerPrefs.Save();
+        }
+    }
+}

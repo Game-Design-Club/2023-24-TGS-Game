@@ -1,6 +1,7 @@
 using UnityEngine;
 
 using AppCore.AudioManagement;
+using AppCore.Data_Management;
 using AppCore.InputManagement;
 using AppCore.SceneManagement;
 using AppCore.TransitionManagement;
@@ -17,6 +18,7 @@ namespace AppCore {
         [SerializeField] public InputManager inputManager;
         [SerializeField] public SceneManager sceneManager;
         [FormerlySerializedAs("fadeManager")] [SerializeField] public TransitionManager transitionManager;
+        [SerializeField] public PlayerDataManager playerDataManager;
 
         
         private void Awake() {
