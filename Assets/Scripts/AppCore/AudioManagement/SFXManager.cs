@@ -8,8 +8,7 @@ using Random = UnityEngine.Random;
 
 namespace AppCore.AudioManagement
 {
-    public class SFXManager : MonoBehaviour
-    {
+    public class SFXManager : MonoBehaviour { // Used to manage the sound effects in the game
         //constant variables used to access different groups in the audio mixer
         private const string SfxVolume = "SFXVolume";
 

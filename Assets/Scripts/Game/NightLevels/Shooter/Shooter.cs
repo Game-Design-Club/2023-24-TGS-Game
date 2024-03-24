@@ -5,7 +5,7 @@ using Game.GameManagement;
 using UnityEngine;
 
 namespace Game.NightLevels.Shooter {
-    public class Shooter : MonoBehaviour{
+    public class Shooter : MonoBehaviour { // Shoots bullets periodically
         [SerializeField] private Transform shootTransform;
         [SerializeField] private GameObject bulletPrefab;
         [SerializeField] private float shootFrequency = 2f;

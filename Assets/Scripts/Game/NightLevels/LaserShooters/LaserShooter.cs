@@ -3,14 +3,15 @@ using System.Collections;
 using Game.GameManagement;
 
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.NightLevels.LaserShooters {
-    public class LaserShooter : MonoBehaviour {
+    public class LaserShooter : MonoBehaviour { // Shoots a laser that goes on and off periodically
         [SerializeField] private LaserShooterType laserType;
         [SerializeField] private float betweenShotsTime = 1f;
         [SerializeField] private float warningTime = .5f;
         [SerializeField] private float activeTime = 1f;
-        [SerializeField] private float startOffset;
+        [FormerlySerializedAs("startOffset")] [SerializeField] private float startDelay;
         [SerializeField] private GameObject warningGameObject;
         [SerializeField] private GameObject onGameObject;
         
@@ -27,26 +28,27 @@ namespace Game.NightLevels.LaserShooters {
 
         // Private functions
         private void OnLevelStart() {
-            if (laserType == LaserShooterType.Cycled) {
-                StartCoroutine(WaitToShootLaser());
-            } else {
-                warningGameObject.SetActive(false);
-                onGameObject.SetActive(true);
+            switch (laserType) {
+                case LaserShooterType.Cycled:
+                    StartCoroutine(ShootLaser());
+                    break;
+                case LaserShooterType.Static:
+                    warningGameObject.SetActive(false);
+                    onGameObject.SetActive(true);
+                    break;
             }
         }
         
         private void OnLevelOver() {
             StopAllCoroutines();
         }
-
-        private IEnumerator WaitToShootLaser() {
-            warningGameObject.SetActive(false);
-            onGameObject.SetActive(false);
-            yield return new WaitForSeconds(startOffset);
-            StartCoroutine(ShootLaser());
-        }
         
         private IEnumerator ShootLaser() {
+            warningGameObject.SetActive(false);
+            onGameObject.SetActive(false);
+            yield return new WaitForSeconds(startDelay);
+            
+            // Main loop
             while (true) {
                 warningGameObject.SetActive(true);
                 onGameObject.SetActive(false);

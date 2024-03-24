@@ -3,7 +3,7 @@ using Tools.Constants;
 using UnityEngine;
 
 namespace Game.Interactables {
-    public class InteractionsPopup : MonoBehaviour{
+    public class InteractionsPopup : MonoBehaviour { // Manages the interactions popup
         public static InteractionsPopup Instance { get; private set; }
 
         private Animator _animator;

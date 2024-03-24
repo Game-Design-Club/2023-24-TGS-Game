@@ -4,8 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Audio;
 
-namespace AppCore.AudioManagement
-{
+namespace AppCore.AudioManagement { // This class is used to store the music objects in the game
     [CreateAssetMenu(fileName = "Music", menuName = "Music", order = 1)]
     public class Music : ScriptableObject
     {

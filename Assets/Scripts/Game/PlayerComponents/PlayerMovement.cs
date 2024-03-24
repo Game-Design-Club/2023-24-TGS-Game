@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace Game.PlayerComponents {
     public class PlayerMovement : MonoBehaviour {
+        // Handles all player movement
+        // Lots of fancy smooth movement and box pushing going on, enabled mostly by raycasts
+        
         [SerializeField] private float movementSpeed = 5f;
         [SerializeField] private LayerMask wallLayer;
         [SerializeField] private bool smoothMovement = true;

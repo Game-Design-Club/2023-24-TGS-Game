@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace AppCore.AudioManagement
 {
-    public class AudioManagementTester : Tester
-    {
+    public class AudioManagementTester : Tester { // This class is used to test the AudioManager and MusicManager classes
+        
         private AudioManager _audioManager;
 
         public AudioClip oogaSFX;

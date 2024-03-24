@@ -4,8 +4,7 @@ using UnityEngine;
 
 namespace AppCore.SceneManagement
 {
-    public class SceneManagementTester : Tester
-    {
+    public class SceneManagementTester : Tester { // Tests the scene management system
         [ContextMenu(itemName: "Load Test Scene 1")]
         private void LoadScene1() {
             DebugLog($"Scene 1 Loading. Current Scene: {UnityEngine.SceneManagement.SceneManager.GetActiveScene().name}");

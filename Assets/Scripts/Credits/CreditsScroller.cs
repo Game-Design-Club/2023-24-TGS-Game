@@ -10,6 +10,9 @@ using UnityEngine;
 
 namespace Credits {
     public class CreditsScroller : MonoBehaviour {
+        // Manages the creation and scrolling of the credits, based on the CreditsAsset
+        // Automatically scrolls the credits up the screen, and displays a thank you message when the credits are done
+        
         [SerializeField] private CreditsAsset creditsAsset;
         [SerializeField] private GameObject sectionTitlePrefab;
         [SerializeField] private GameObject personNamePrefab;
@@ -49,8 +52,6 @@ namespace Credits {
 
         // Private functions
         private void SetupCredits() {
-            RectTransform parentTransform = creditsParentObject.GetComponent<RectTransform>();
-            float canvasHeight = parentTransform.rect.height;
             float currentY = 0f;
             float creditsHeight = 0f;
             
