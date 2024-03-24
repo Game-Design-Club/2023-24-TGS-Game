@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 namespace Game.GameManagement.UIManagement
 {
-    public class EventSystemManager : MonoBehaviour {
+    public class EventSystemManager : MonoBehaviour { // Manages the event system, selecting objects and switching between input methods
         private EventSystem _eventSystem;
         private enum InputType { Mouse, Keyboard }
         private InputType _inputType = InputType.Mouse;

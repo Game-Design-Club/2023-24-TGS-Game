@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Game.MovingObjects
 {
-    public class MoveBetween : MonoBehaviour {
+    public class MoveBetween : MonoBehaviour { // Moves an object between points, super abstract
         [SerializeField] private GameObject pointsParent;
         [SerializeField] private LoopType loop = LoopType.Cyclical;
         [SerializeField] private float speed = 3f;

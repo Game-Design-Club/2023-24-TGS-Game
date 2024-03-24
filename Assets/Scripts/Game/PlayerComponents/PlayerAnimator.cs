@@ -3,7 +3,7 @@ using Tools.Constants;
 using UnityEngine;
 
 namespace Game.PlayerComponents {
-    public class PlayerAnimator : MonoBehaviour{
+    public class PlayerAnimator : MonoBehaviour { // Player animator
         private Animator _animator;
         
         // Unity functions

@@ -9,7 +9,7 @@ using UnityEngine.Events;
 
 namespace Game.Interactables {
     [RequireComponent(typeof(Collider2D))]
-    public class Interactable : MonoBehaviour {
+    public class Interactable : MonoBehaviour { // Base class for all interactable objects
         [SerializeField] private UnityEvent interacted;
         [SerializeField] private bool oneTimeUse = true;
         

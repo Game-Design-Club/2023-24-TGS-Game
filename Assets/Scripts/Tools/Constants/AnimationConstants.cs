@@ -1,5 +1,5 @@
 namespace Tools.Constants {
-    public static class AnimationConstants {
+    public static class AnimationConstants { // Animation constants to ensure spelling consistency
         public static class FadeInOut {
             public const string FadeToBlack = "FadeToBlack";
             public const string FadeFromBlack = "FadeFromBlack";

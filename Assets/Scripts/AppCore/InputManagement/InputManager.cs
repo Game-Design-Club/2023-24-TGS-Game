@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-namespace AppCore.InputManagement {
+namespace AppCore.InputManagement { // This class is used to manage all player input in the game
     public class InputManager : MonoBehaviour {
         private InputActions _inputActions;
         private Vector2 _lastMovementInput;

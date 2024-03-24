@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-
 using AppCore;
 
 using Game.GameManagement.UIManagement;
@@ -60,7 +57,7 @@ namespace Main_Menu {
         public void EraseProgress() {
             if (_freeze) return;
             
-            App.Instance.playerDataManager.EraseProgress();
+            App.Instance.playerDataManager.EraseLevelProgress();
         }
         
         public void SetSFXToggle(bool value) {

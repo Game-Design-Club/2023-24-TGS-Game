@@ -10,7 +10,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace Game.GameManagement.LevelManagement {
-    public class LevelManager : MonoBehaviour {
+    public class LevelManager : MonoBehaviour { // Manages the levels in the game, loading them and keeping track of the current level
         [SerializeField] private LevelsData levelsData;
         [SerializeField] private Level customFirstLevel;
 
@@ -25,7 +25,7 @@ namespace Game.GameManagement.LevelManagement {
             StartCoroutine(LoadLevel(levelsData[0], false));
         }
         
-        public void LoadSavedLevel() {
+        public void LoadSavedLevel() { // Loads the last completed level from player data
             if (levelsData == null) {
                 Debug.LogError("No levels data assigned to the level manager");
                 return;
@@ -50,7 +50,7 @@ namespace Game.GameManagement.LevelManagement {
             StartCoroutine(LoadLevel(_currentLevel));
         }
         
-        public IEnumerator LoadLevel(Level level, bool fade = true) {
+        public IEnumerator LoadLevel(Level level, bool fade = true) { // default fade is true
             if (IsCurrentlySwitching) {
                 Debug.LogWarning("Tried to load level in the middle of loading another level");
                 yield break;
@@ -70,7 +70,7 @@ namespace Game.GameManagement.LevelManagement {
             ChangeCurrentLevel(level);
         }
 
-        private void ChangeCurrentLevel(Level level) {
+        private void ChangeCurrentLevel(Level level) { // Physically changes the current level game objects
             if (_currentLevel != null) {
                 Destroy(_levelGameObject);
             }

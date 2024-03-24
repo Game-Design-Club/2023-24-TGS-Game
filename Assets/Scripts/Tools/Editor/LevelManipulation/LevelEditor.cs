@@ -13,8 +13,7 @@ using Object = UnityEngine.Object;
 namespace Tools.Editor.LevelManipulation
 {
     [CustomEditor(typeof(Level))]
-    public class LevelEditor : UnityEditor.Editor
-    {
+    public class LevelEditor : UnityEditor.Editor { // Custom editor for the Level script
         private static Level s_currentLevel;
 
         public override void OnInspectorGUI()

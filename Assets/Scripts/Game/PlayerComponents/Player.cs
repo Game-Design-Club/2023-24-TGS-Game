@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace Game.PlayerComponents {
-    public class Player : MonoBehaviour{
+    public class Player : MonoBehaviour { // Player singleton
         public static Player Instance { get; private set; }
 
         private void Awake() {

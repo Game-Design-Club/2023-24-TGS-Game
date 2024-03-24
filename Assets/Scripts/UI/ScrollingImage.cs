@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI {
-    public class ScrollingImage : MonoBehaviour {
+    public class ScrollingImage : MonoBehaviour { // Scrolls a texture on a RawImage
         [SerializeField] private RawImage image;
         [SerializeField] private Vector2 scrollSpeed = Vector2.right;
         

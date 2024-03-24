@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game.GameManagement.LevelManagement {
     [CreateAssetMenu(fileName = "LevelsData", menuName = "Game/LevelsData")]
-    public class LevelsData : ScriptableObject {
+    public class LevelsData : ScriptableObject { // Stores all the levels data
         [SerializeField] public Level[] levels;
         
         // Array access operator

@@ -1,7 +1,9 @@
 using UnityEngine;
 
 namespace AppCore.Data_Management {
-    public class PlayerDataManager : MonoBehaviour {
+    public class PlayerDataManager : MonoBehaviour { // Manages player data such as sound settings and level progress
+        // All player data uses PlayerPrefs, a built-in Unity class that stores data on the user's device, also works for Unity editor
+        // variables are all C# properties, which are like variables but with getter and setter functions, to make sure the data is always saved to PlayerPrefs
         public bool AreSFXOn {
             get {
                 return PlayerPrefs.GetInt(PlayerDataKeys.SFX, 1) == 1;
@@ -22,6 +24,7 @@ namespace AppCore.Data_Management {
             }
         }
         
+        // The last level completed by the player
         public int LastCompletedLevelIndex {
             get {
                 return PlayerPrefs.GetInt(PlayerDataKeys.Levels, 0);
@@ -46,8 +49,13 @@ namespace AppCore.Data_Management {
             LastCompletedLevelIndex = index;
         }
         
-        public void EraseProgress() {
+        public void EraseLevelProgress() { // Only erases the level progress
             PlayerPrefs.DeleteKey(PlayerDataKeys.Levels);
+            PlayerPrefs.Save();
+        }
+        
+        public void EraseAllData() { // Erases all player data
+            PlayerPrefs.DeleteAll();
             PlayerPrefs.Save();
         }
     }

@@ -5,7 +5,7 @@ using Game.GameManagement;
 using UnityEngine;
 
 namespace Game.ParticleManagement {
-    public class ParticleManager : MonoBehaviour {
+    public class ParticleManager : MonoBehaviour { // Manages particle effects, so it's easier for other classes and automatically deletes on level restarting
         [SerializeField] private Transform particleParent;
         
         private static ParticleManager _instance;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Tools.Editor
 {
-    public static class RotateObject {
+    public static class RotateObject { // Rotate selected object 90 degrees clockwise (helpful for level creation)
         [MenuItem("Edit/Rotate Object 90 Degrees &r")]
         private static void RotateObj() {
             foreach (GameObject obj in Selection.gameObjects) {

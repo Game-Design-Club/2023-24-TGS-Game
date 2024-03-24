@@ -7,7 +7,7 @@ using Game.PlayerComponents;
 using UnityEngine;
 
 namespace Tools.Debug_Tools {
-    public class ClickToTeleport : MonoBehaviour {
+    public class ClickToTeleport : MonoBehaviour { // Teleports player to clicked position in world
         [SerializeField] private bool canTeleport = true;
         
         private Player _player;

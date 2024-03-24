@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 
 using AppCore;
@@ -10,6 +9,9 @@ using UnityEngine;
 
 namespace Game.PlayerComponents {
     public class PlayerBoxMover : MonoBehaviour {
+        // Lets player move boxes, muy complicado
+        // Automatically handles touching multiple boxes
+        
         [SerializeField] private float boxMoveSpeed = 5f;
         
         private PlayerMovement _playerMovement;
@@ -18,7 +20,7 @@ namespace Game.PlayerComponents {
 
         internal List<BoxTrigger> BoxTriggers  = new();
         internal GameObject BoxTriggerObject => BoxTriggers.Count > 0 ? BoxTriggers[0].gameObject : null;
-        internal Box BoxBox => BoxTriggerObject?.GetComponentInParent<Box>();
+        internal Box BoxBox => BoxTriggerObject?.GetComponentInParent<Box>(); //"Box" script that is attached to Box Object
         internal Rigidbody2D BoxRb => BoxBox?.GetComponent<Rigidbody2D>();
         internal GameObject BoxObject => BoxRb?.gameObject;
         internal Vector2 AttachDirection => BoxTriggers.Count > 0 ? BoxTriggers[0].AttachDirection : Vector2.zero;

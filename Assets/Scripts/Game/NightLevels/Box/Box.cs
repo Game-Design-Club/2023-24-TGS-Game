@@ -5,7 +5,7 @@ using Tools.Constants;
 using UnityEngine;
 
 namespace Game.NightLevels.Box {
-    public class Box : MonoBehaviour {
+    public class Box : MonoBehaviour { // Box class for the box object
         private Rigidbody2D _rigidbody2D;
         private BoxCollider2D _boxCollider;
         private Animator _animator;
@@ -19,6 +19,8 @@ namespace Game.NightLevels.Box {
         
         // Public functions
         public RaycastHit2D SendBoxCast(Vector2 direction, float distance, LayerMask wallLayer) {
+            // Box cast is a raycast, not the actual box lol
+            
             Vector2 size = _boxCollider.size * transform.localScale;
             
             RaycastHit2D[] hits = new RaycastHit2D[4];
@@ -30,6 +32,7 @@ namespace Game.NightLevels.Box {
             foreach (RaycastHit2D currentHit in hits) {
                 if (currentHit.collider == null) continue;
                 if (currentHit.collider.gameObject.CompareTag(TagConstants.Box)) {
+                    // We hit another box, so we need to check if that box hits a wall, and so on
                     RaycastHit2D chainHit = currentHit.collider.GetComponent<Box>().SendBoxCast(direction, distance, wallLayer);
 
                     hit = chainHit;

@@ -4,10 +4,9 @@ using Game.GameManagement.PauseManagement;
 
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 
 namespace Game.GameManagement.UIManagement {
-    public class UIManager : MonoBehaviour {
+    public class UIManager : MonoBehaviour { // Manages the UI, switching between HUD and pause menu
         [SerializeField] private PauseManager pauseManager;
         
         [SerializeField] private GameObject hudCanvas;

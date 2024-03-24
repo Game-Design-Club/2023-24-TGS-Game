@@ -6,8 +6,7 @@ using UnityEngine.Audio;
 
 namespace AppCore.AudioManagement
 {
-    public class MusicManager : MonoBehaviour
-    {
+    public class MusicManager : MonoBehaviour { // This class is used to manage the playing of music in the game, including adaptive music
         //the audio mixer and its groups
         private AudioMixer _mixer = null;
         [SerializeField] private AudioMixerGroup musicGroup;

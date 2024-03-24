@@ -3,7 +3,7 @@ using Tools.TesterScript;
 using UnityEngine;
 
 namespace Game.GameManagement.LevelManagement {
-    public class LevelManagementTester : Tester{
+    public class LevelManagementTester : Tester { // Tests the LevelManager
         [SerializeField] private LevelManager levelManager;
         
         [ContextMenu(itemName: "Load First Level")]

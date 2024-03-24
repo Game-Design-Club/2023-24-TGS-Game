@@ -6,8 +6,7 @@ using UnityEngine;
 
 namespace Tools.Editor.LevelManipulation
 {
-    public class LevelCreator
-    {
+    public class LevelCreator { // Create a new level from the default GameObject
         private const string DefaultGameObjectPath = "Assets/Levels/Level Template/Level Template.prefab"; // Path to the default GameObject
 
         [MenuItem("Tools/Create New Level")]

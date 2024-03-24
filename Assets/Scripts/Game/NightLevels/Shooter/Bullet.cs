@@ -4,7 +4,7 @@ using Game.ParticleManagement;
 using UnityEngine;
 
 namespace Game.NightLevels.Shooter {
-    public class Bullet : MonoBehaviour {
+    public class Bullet : MonoBehaviour { // Bullet for the shooter
         [SerializeField] private float shootSpeed = 3f;
         [SerializeField] private ParticleSystem impactParticles;
         

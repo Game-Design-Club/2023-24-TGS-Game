@@ -5,7 +5,7 @@ using Game.GameManagement.LevelManagement;
 using UnityEngine;
 
 namespace Game.GameManagement.PauseManagement {
-    public class PauseManager : MonoBehaviour{
+    public class PauseManager : MonoBehaviour { // Manages the pause state of the game, as well as timescale manipulation
         public static bool IsPaused { get; private set; }
         
         // Unity functions

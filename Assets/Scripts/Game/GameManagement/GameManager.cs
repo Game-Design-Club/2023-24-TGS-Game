@@ -1,5 +1,3 @@
-using System;
-
 using AppCore;
 
 using Game.GameManagement.LevelManagement;
@@ -9,7 +7,7 @@ using Tools.Constants;
 using UnityEngine;
 
 namespace Game.GameManagement {
-    public class GameManager : MonoBehaviour {
+    public class GameManager : MonoBehaviour { // Manages the essential game functions, proxies to other managers
         
         private LevelManager _levelManager;
 

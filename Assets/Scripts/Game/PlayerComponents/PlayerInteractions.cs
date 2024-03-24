@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace Game.PlayerComponents {
     public class PlayerInteractions : MonoBehaviour {
+        // Handles interactions between player and other essential game objects
+        // Ex. things that kill player, advance level, etc.
+        
         private bool _interactionsOn = false;
         private PlayerAnimator _playerAnimator;
         

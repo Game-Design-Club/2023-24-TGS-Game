@@ -3,10 +3,8 @@ using Game.PlayerComponents;
 using UnityEngine;
 
 namespace Game.NightLevels.FanBlower {
-    public class Fan : MonoBehaviour {
+    public class Fan : MonoBehaviour { // Fan that blows the player or other objects
         [SerializeField] private float fanStrength = 5f;
-        // [SerializeField] private float decayOverDistanceRate = 0;
-        // [SerializeField] private float maxLength = 20;
         [SerializeField] private FanTrigger fanTrigger;
 
         private Player _player;

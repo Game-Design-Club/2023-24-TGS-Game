@@ -3,8 +3,7 @@ using UnityEngine.Audio;
 
 namespace AppCore.AudioManagement
 {
-    public class AudioManager : MonoBehaviour
-    {
+    public class AudioManager : MonoBehaviour { // This class is used to manage the audio in the game
         [SerializeField] public MusicManager music;
         [SerializeField] public MusicPlayer musicPlayer;
         [SerializeField] public SFXManager sfx;

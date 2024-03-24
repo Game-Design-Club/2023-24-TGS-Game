@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace AppCore.AudioManagement {
-    public class MusicPlayer : MonoBehaviour {
+    public class MusicPlayer : MonoBehaviour { // This class is used to consolidate the music playing in the game, as well as further control over adaptive music
         [SerializeField] private Music mainMenuMusic;
         [SerializeField] private Music gameMusic;
         [SerializeField] private float fadeTime = 1f;
