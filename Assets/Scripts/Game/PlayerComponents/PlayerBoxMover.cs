@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using AppCore;
 
 using Game.GameManagement;
+using Game.Interactables;
 using Game.NightLevels.Box;
 using Tools.Constants;
 using UnityEngine;
@@ -52,7 +53,9 @@ namespace Game.PlayerComponents {
             BoxTriggers.Add(other.GetComponent<BoxTrigger>());
             
             if (BoxTriggers.Count == 1) {
+                // First box touched
                 BoxBox.EnteredTrigger();
+                InteractionsPopup.Show();
             }
         }
         
@@ -66,11 +69,16 @@ namespace Game.PlayerComponents {
             BoxTriggers.Remove(other.GetComponent<BoxTrigger>());
             
             if (IsGrabbingBox && other.GetComponent<BoxTrigger>() == BoxTriggers[0]) {
+                // Somehow exited the trigger while still grabbing the box (has happened before)
                 ReleaseBox();
             }
             
             if (BoxTriggers.Count > 0) {
+                // Was touching multiple boxes at the same time
                 BoxBox.EnteredTrigger();
+            } else {
+                // No longer touching any boxes
+                InteractionsPopup.Hide();
             }
         }
 
