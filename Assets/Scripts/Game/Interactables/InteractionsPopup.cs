@@ -38,14 +38,16 @@ namespace Game.Interactables {
                 s_instance = null;
             }
         }
-
+        
         // Public functions
         public static void Show(String button = "F") {
+            if (!s_instance) return;
             s_instance._text.text = (button + " to interact");
             s_instance._animator.SetTrigger(AnimationConstants.InteractionsPopup.Show);
         }
         
         public static void Hide() {
+            if (!s_instance) return;
             s_instance._animator.SetTrigger(AnimationConstants.InteractionsPopup.Hide);
         }
     }

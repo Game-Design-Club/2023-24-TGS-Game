@@ -64,7 +64,7 @@ namespace Main_Menu {
             if (_freeze) return;
             
             App.Instance.audioManager.sfx.SetVolume(value ? 1 : 0);
-            App.Instance.playerDataManager.SetSFX(value);
+            App.Instance.playerDataManager.AreSFXOn = value;
             
             sfxToggle.SetState(value);
         }
@@ -73,7 +73,7 @@ namespace Main_Menu {
             if (_freeze) return;
             
             App.Instance.audioManager.music.SetVolume(value ? 1 : 0);
-            App.Instance.playerDataManager.SetMusic(value);
+            App.Instance.playerDataManager.IsMusicOn = value;
             
             musicToggle.SetState(value);
         }

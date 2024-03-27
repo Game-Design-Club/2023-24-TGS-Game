@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 
 using AppCore;
@@ -55,7 +56,8 @@ namespace Game.PlayerComponents {
             if (BoxTriggers.Count == 1) {
                 // First box touched
                 BoxBox.EnteredTrigger();
-                InteractionsPopup.Show();
+
+                HandleTutorialPopup();
             }
         }
         
@@ -76,9 +78,6 @@ namespace Game.PlayerComponents {
             if (BoxTriggers.Count > 0) {
                 // Was touching multiple boxes at the same time
                 BoxBox.EnteredTrigger();
-            } else {
-                // No longer touching any boxes
-                InteractionsPopup.Hide();
             }
         }
 
@@ -121,6 +120,17 @@ namespace Game.PlayerComponents {
                 ReleaseBox();
             }
         }
+
+        private IEnumerator HandleTutorialPopup() {
+            InteractionsPopup.Show();
+
+            // yield return new WaitUntil(???);
+            
+            InteractionsPopup.Hide();
+            App.Instance.playerDataManager.HasInteracted = true;
+            yield return null;
+        }
+        
         // Internal functions
         internal Vector2 GetLockedMovement(Vector2 currentInput) {
             Vector2 movement = new(currentInput.x, currentInput.y);
