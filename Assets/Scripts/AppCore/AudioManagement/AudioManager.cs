@@ -1,5 +1,8 @@
+using System;
+
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 namespace AppCore.AudioManagement
 {
@@ -22,6 +25,14 @@ namespace AppCore.AudioManagement
             mixer.SetFloat(MixerConstants.MasterVolume, ConvertToDecibels(masterVolume));
         }
 
+        private void OnEnable() {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        private void OnDisable() {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+
         //converts a volume level from 0f-1f to corresponding value in decibels
         internal static float ConvertToDecibels(float volume) {
             volume = Mathf.Clamp(volume, 0.0001f, 1f);
@@ -38,6 +49,11 @@ namespace AppCore.AudioManagement
             masterVolume = ConvertToDecibels(volume);
             mixer.SetFloat(MixerConstants.MasterVolume, ConvertToDecibels(masterVolume));
         }
-    
+        
+        // Private functions
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+            music.Mute(!App.Instance.playerDataManager.IsMusicOn);
+            sfx.Mute(!App.Instance.playerDataManager.AreSFXOn);
+        }
     }
 }

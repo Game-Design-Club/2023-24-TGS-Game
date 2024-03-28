@@ -72,8 +72,8 @@ namespace Main_Menu {
         public void SetMusicToggle(bool value) {
             if (_freeze) return;
             
-            App.Instance.audioManager.music.Mute(!value);
             App.Instance.playerDataManager.IsMusicOn = value;
+            App.Instance.audioManager.music.Mute(!value);
             
             musicToggle.SetState(value);
         }
