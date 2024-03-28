@@ -57,7 +57,7 @@ namespace Game.PlayerComponents {
                 // First box touched
                 BoxBox.EnteredTrigger();
 
-                HandleTutorialPopup();
+                StartCoroutine(HandleTutorialPopup());
             }
         }
         
@@ -122,13 +122,14 @@ namespace Game.PlayerComponents {
         }
 
         private IEnumerator HandleTutorialPopup() {
+            if (App.Instance.playerDataManager.HasInteracted) yield break;
+            
             InteractionsPopup.Show();
-
-            // yield return new WaitUntil(???);
+            
+            yield return new WaitUntil(() => (IsGrabbingBox && _playerMovement.CurrentMovementInput != Vector2.zero));
             
             InteractionsPopup.Hide();
             App.Instance.playerDataManager.HasInteracted = true;
-            yield return null;
         }
         
         // Internal functions

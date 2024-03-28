@@ -37,10 +37,10 @@ namespace AppCore.Data_Management {
 
         public bool HasInteracted {
             get {
-                return PlayerPrefs.GetInt(PlayerDataKeys.T_HasInteracted, 0) == 1;
+                return PlayerPrefs.GetInt(PlayerDataKeys.TutorialHasInteracted, 0) == 1;
             }
             set {
-                PlayerPrefs.SetInt(PlayerDataKeys.T_HasInteracted, value ? 1 : 0);
+                PlayerPrefs.SetInt(PlayerDataKeys.TutorialHasInteracted, value ? 1 : 0);
                 PlayerPrefs.Save();
             }
         }
