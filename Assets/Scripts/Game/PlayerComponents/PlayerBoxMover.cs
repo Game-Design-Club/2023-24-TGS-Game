@@ -1,8 +1,10 @@
+using System.Collections;
 using System.Collections.Generic;
 
 using AppCore;
 
 using Game.GameManagement;
+using Game.Interactables;
 using Game.NightLevels.Box;
 using Tools.Constants;
 using UnityEngine;
@@ -52,7 +54,10 @@ namespace Game.PlayerComponents {
             BoxTriggers.Add(other.GetComponent<BoxTrigger>());
             
             if (BoxTriggers.Count == 1) {
+                // First box touched
                 BoxBox.EnteredTrigger();
+
+                StartCoroutine(HandleTutorialPopup());
             }
         }
         
@@ -66,10 +71,12 @@ namespace Game.PlayerComponents {
             BoxTriggers.Remove(other.GetComponent<BoxTrigger>());
             
             if (IsGrabbingBox && other.GetComponent<BoxTrigger>() == BoxTriggers[0]) {
+                // Somehow exited the trigger while still grabbing the box (has happened before)
                 ReleaseBox();
             }
             
             if (BoxTriggers.Count > 0) {
+                // Was touching multiple boxes at the same time
                 BoxBox.EnteredTrigger();
             }
         }
@@ -113,6 +120,18 @@ namespace Game.PlayerComponents {
                 ReleaseBox();
             }
         }
+
+        private IEnumerator HandleTutorialPopup() {
+            if (App.Instance.playerDataManager.HasInteracted) yield break;
+            
+            InteractionsPopup.Show();
+            
+            yield return new WaitUntil(() => (IsGrabbingBox && _playerMovement.CurrentMovementInput != Vector2.zero));
+            
+            InteractionsPopup.Hide();
+            App.Instance.playerDataManager.HasInteracted = true;
+        }
+        
         // Internal functions
         internal Vector2 GetLockedMovement(Vector2 currentInput) {
             Vector2 movement = new(currentInput.x, currentInput.y);

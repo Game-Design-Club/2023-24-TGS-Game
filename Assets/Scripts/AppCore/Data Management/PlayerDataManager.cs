@@ -8,7 +8,7 @@ namespace AppCore.Data_Management {
             get {
                 return PlayerPrefs.GetInt(PlayerDataKeys.SFX, 1) == 1;
             }
-            private set {
+            set {
                 PlayerPrefs.SetInt(PlayerDataKeys.SFX, value ? 1 : 0);
                 PlayerPrefs.Save();
             }
@@ -18,7 +18,7 @@ namespace AppCore.Data_Management {
             get {
                 return PlayerPrefs.GetInt(PlayerDataKeys.Music, 1) == 1;
             }
-            private set {
+            set {
                 PlayerPrefs.SetInt(PlayerDataKeys.Music, value ? 1 : 0);
                 PlayerPrefs.Save();
             }
@@ -29,28 +29,30 @@ namespace AppCore.Data_Management {
             get {
                 return PlayerPrefs.GetInt(PlayerDataKeys.Levels, 0);
             }
-            private set {
+            set {
                 PlayerPrefs.SetInt(PlayerDataKeys.Levels, value);
                 PlayerPrefs.Save();
-                Debug.Log("int set to " + value);
+            }
+        }
+
+        public bool HasInteracted {
+            get {
+                return PlayerPrefs.GetInt(PlayerDataKeys.TutorialHasInteracted, 0) == 1;
+            }
+            set {
+                PlayerPrefs.SetInt(PlayerDataKeys.TutorialHasInteracted, value ? 1 : 0);
+                PlayerPrefs.Save();
             }
         }
         
         // Public functions
-        public void SetSFX(bool value) {
-            AreSFXOn = value;
-        }
-        
-        public void SetMusic(bool value) {
-            IsMusicOn = value;
-        }
-        
         public void LastLevelCompleted(int index) {
             LastCompletedLevelIndex = index;
         }
         
         public void EraseLevelProgress() { // Only erases the level progress
             PlayerPrefs.DeleteKey(PlayerDataKeys.Levels);
+            PlayerPrefs.DeleteKey(PlayerDataKeys.TutorialHasInteracted);
             PlayerPrefs.Save();
         }
         
