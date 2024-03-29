@@ -916,6 +916,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3070620909758476729, guid: 2cf9926c8376c40f49f8b80fdb0d5214, type: 3}
   m_PrefabInstance: {fileID: 1762275146495391262}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &913349707 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2645313529785344386, guid: 99265d26c8e8f42739f3eb510e69bde7, type: 3}
+  m_PrefabInstance: {fileID: 1026369347}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &982875767
 GameObject:
   m_ObjectHideFlags: 0
@@ -1064,6 +1069,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SFX Checkbox
       objectReference: {fileID: 0}
+    - target: {fileID: 2496202579164776881, guid: 99265d26c8e8f42739f3eb510e69bde7, type: 3}
+      propertyPath: checkmark
+      value: 
+      objectReference: {fileID: 913349707}
     - target: {fileID: 2496202579164776881, guid: 99265d26c8e8f42739f3eb510e69bde7, type: 3}
       propertyPath: OnToggle.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -1222,6 +1231,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Music Checkbox
       objectReference: {fileID: 0}
+    - target: {fileID: 2496202579164776881, guid: 99265d26c8e8f42739f3eb510e69bde7, type: 3}
+      propertyPath: checkmark
+      value: 
+      objectReference: {fileID: 1972145927}
     - target: {fileID: 2496202579164776881, guid: 99265d26c8e8f42739f3eb510e69bde7, type: 3}
       propertyPath: OnToggle.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -1873,6 +1886,11 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &1972145927 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2645313529785344386, guid: 99265d26c8e8f42739f3eb510e69bde7, type: 3}
+  m_PrefabInstance: {fileID: 1256165471}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1762275146495391262
 PrefabInstance:
   m_ObjectHideFlags: 0
