@@ -3,6 +3,7 @@ using System;
 using AppCore;
 
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.PlayerComponents {
     public class PlayerMovement : MonoBehaviour {
@@ -14,12 +15,13 @@ namespace Game.PlayerComponents {
         [SerializeField] private bool smoothMovement = true;
         [SerializeField] private float snapDistance = 0.01f;
 
-        private Vector2 _currentMovementInput;
         private Vector2 _currentMovement;
         private float _currentMovementSpeed;
         private Rigidbody2D _rigidbody2D;
         private BoxCollider2D _boxCollider;
         private PlayerBoxMover _boxPusher;
+        
+        internal Vector2 CurrentMovementInput { get; private set; }
         
         internal event Action<Vector2> OnPlayerMoved;
         
@@ -48,12 +50,12 @@ namespace Game.PlayerComponents {
 
         // Private functions
         private void OnMovement(Vector2 movementInput) {
-            _currentMovementInput = movementInput;
-            _currentMovementInput.Normalize();
+            CurrentMovementInput = movementInput;
+            CurrentMovementInput.Normalize();
         }
 
         private void MovePlayer() {
-            _currentMovement = _boxPusher.GetLockedMovement(_currentMovementInput);
+            _currentMovement = _boxPusher.GetLockedMovement(CurrentMovementInput);
             
             float movementDistance = _currentMovementSpeed * Time.deltaTime;
             Vector2 originalMovement = _currentMovement * movementDistance;
