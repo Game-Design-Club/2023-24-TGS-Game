@@ -46,13 +46,16 @@ namespace Game.GameManagement.UIManagement
         }
         
         // Public functions
-        public void SetSelectedGameObject(GameObject selectedGameObject) {
+        public void SetSelectedGameObject(GameObject selectedGameObject, bool alsoSetDefault = true) {
             if (selectedGameObject == null) {
                 _eventSystem.SetSelectedGameObject(null);
                 Debug.LogWarning("SelectedGameObject is null");
                 return;
             }
             _eventSystem.SetSelectedGameObject(selectedGameObject);
+            if (alsoSetDefault) {
+                _eventSystem.firstSelectedGameObject = selectedGameObject;
+            }
         }
     }
 }
