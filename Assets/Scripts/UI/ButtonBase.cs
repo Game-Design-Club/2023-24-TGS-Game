@@ -31,7 +31,7 @@ namespace UI {
 
         // Event trigger functions
         public void OnSubmit() {
-            App.Instance.audioManager.sfx.Play(clickSound);
+            App.Instance.audioManager.PlaySFX(clickSound);
         }
 
         public void OnPointerClick() {
@@ -48,7 +48,7 @@ namespace UI {
         
         public void OnSelect() {
             if (_isSelected) return;
-            App.Instance.audioManager.sfx.Play(hoverSound);
+            App.Instance.audioManager.PlaySFX(hoverSound);
             _isSelected = true;
             s_onNewSelection?.Invoke(this);
         }

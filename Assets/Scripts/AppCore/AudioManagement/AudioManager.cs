@@ -50,6 +50,10 @@ namespace AppCore.AudioManagement
             mixer.SetFloat(MixerConstants.MasterVolume, ConvertToDecibels(masterVolume));
         }
         
+        public void PlaySFX(AudioClip clip, float pitchAdjustment = 0f) {
+            sfx.Play(clip, pitchAdjustment);
+        }
+        
         // Private functions
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
             music.Mute(!App.Instance.playerDataManager.IsMusicOn);

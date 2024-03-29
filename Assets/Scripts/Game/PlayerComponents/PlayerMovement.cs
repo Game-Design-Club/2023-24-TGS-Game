@@ -1,9 +1,9 @@
 using System;
+using System.Collections.Generic;
 
 using AppCore;
 
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Game.PlayerComponents {
     public class PlayerMovement : MonoBehaviour {
@@ -13,7 +13,10 @@ namespace Game.PlayerComponents {
         [SerializeField] private float movementSpeed = 5f;
         [SerializeField] private LayerMask wallLayer;
         [SerializeField] private bool smoothMovement = true;
-        [SerializeField] private float snapDistance = 0.01f;
+        [SerializeField] private float snapDistance = 0.02f;
+        [SerializeField] private float updatePosDistance = 0.01f;
+        
+        [SerializeField] private AudioClip hitWallSound;
 
         private Vector2 _currentMovement;
         private float _currentMovementSpeed;
@@ -24,6 +27,8 @@ namespace Game.PlayerComponents {
         internal Vector2 CurrentMovementInput { get; private set; }
         
         internal event Action<Vector2> OnPlayerMoved;
+        
+        private bool _lastFrameHitWall = false;
         
         // Unity functions
         private void OnEnable() {
@@ -44,7 +49,7 @@ namespace Game.PlayerComponents {
             _currentMovementSpeed = movementSpeed;
         }
 
-        private void Update() {
+        private void FixedUpdate() {
             MovePlayer();
         }
 
@@ -78,14 +83,19 @@ namespace Game.PlayerComponents {
             Vector2 newPosition = _rigidbody2D.position + movement;
     
             Vector2 size = _boxCollider.size * transform.localScale;
+            
+            bool hitWall = false;
+            
+            List<Collider2D> thisFrameColliders = new List<Collider2D>();
     
-            if (Mathf.Abs(_currentMovement.x) > 0) {
+            if (_currentMovement.x != 0) {
                 
                 RaycastHit2D[] playerHits = new RaycastHit2D[4];
                 Physics2D.BoxCastNonAlloc(_rigidbody2D.position, size, 0f, new Vector2(_currentMovement.x, 0), playerHits,Mathf.Abs(movement.x), wallLayer);
                 
                 RaycastHit2D hitX = new RaycastHit2D();
                 foreach (RaycastHit2D hit in playerHits) {
+                    // Check if touching box
                     if (hit.collider == null) continue;
 
                     if (!_boxPusher.IsGrabbingBox ||
@@ -102,7 +112,8 @@ namespace Game.PlayerComponents {
                 }
                 
                 if (hitX.collider != null) {
-                    if (hitX.distance > snapDistance) {
+                    hitWall = true;
+                    if (hitX.distance > updatePosDistance) {
                         newPosition.x = _rigidbody2D.position.x + _currentMovement.x * (hitX.distance - snapDistance);
                     } else {
                         newPosition.x = _rigidbody2D.position.x;
@@ -110,8 +121,8 @@ namespace Game.PlayerComponents {
                 }
             }
 
-            if (Mathf.Abs(_currentMovement.y) > 0) {
-                RaycastHit2D[] playerHits = new RaycastHit2D[1];
+            if (_currentMovement.y != 0) {
+                RaycastHit2D[] playerHits = new RaycastHit2D[4];
                 Physics2D.BoxCastNonAlloc(_rigidbody2D.position, size, 0f, new Vector2(0, _currentMovement.y), playerHits,Mathf.Abs(movement.y), wallLayer);
                 
                 RaycastHit2D hitY = new RaycastHit2D();
@@ -132,6 +143,7 @@ namespace Game.PlayerComponents {
                 }
                 
                 if (hitY.collider != null) {
+                    hitWall = true;
                     if (hitY.distance > snapDistance) {
                         newPosition.y = _rigidbody2D.position.y + _currentMovement.y * (hitY.distance - snapDistance);
                     } else {
@@ -139,7 +151,13 @@ namespace Game.PlayerComponents {
                     }
                 }
             }
-    
+            
+            if (hitWall && !_lastFrameHitWall) {
+                App.Instance.audioManager.PlaySFX(hitWallSound);
+            }
+            
+            _lastFrameHitWall = hitWall;
+            
             return newPosition;
         }
 
