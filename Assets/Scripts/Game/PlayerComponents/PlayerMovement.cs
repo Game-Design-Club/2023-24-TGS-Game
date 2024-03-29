@@ -88,7 +88,7 @@ namespace Game.PlayerComponents {
             
             List<Collider2D> thisFrameColliders = new List<Collider2D>();
     
-            if (_currentMovement.x != 0) {
+            if (Mathf.Abs(_currentMovement.x) > 0) {
                 
                 RaycastHit2D[] playerHits = new RaycastHit2D[4];
                 Physics2D.BoxCastNonAlloc(_rigidbody2D.position, size, 0f, new Vector2(_currentMovement.x, 0), playerHits,Mathf.Abs(movement.x), wallLayer);
@@ -121,7 +121,7 @@ namespace Game.PlayerComponents {
                 }
             }
 
-            if (_currentMovement.y != 0) {
+            if (Mathf.Abs(_currentMovement.y) > 0) {
                 RaycastHit2D[] playerHits = new RaycastHit2D[4];
                 Physics2D.BoxCastNonAlloc(_rigidbody2D.position, size, 0f, new Vector2(0, _currentMovement.y), playerHits,Mathf.Abs(movement.y), wallLayer);
                 
@@ -144,7 +144,7 @@ namespace Game.PlayerComponents {
                 
                 if (hitY.collider != null) {
                     hitWall = true;
-                    if (hitY.distance > snapDistance) {
+                    if (hitY.distance > updatePosDistance) {
                         newPosition.y = _rigidbody2D.position.y + _currentMovement.y * (hitY.distance - snapDistance);
                     } else {
                         newPosition.y = _rigidbody2D.position.y;
