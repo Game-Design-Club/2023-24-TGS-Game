@@ -11,14 +11,14 @@ namespace Game.GameManagement.UIManagement
         private InputType _inputType = InputType.Mouse;
         
         private void OnEnable() {
-            App.Instance.inputManager.OnPoint += HandleMouseMovement;
-            App.Instance.inputManager.OnMovement += HandleKeyboardInput;
+            App.InputManager.OnPoint += HandleMouseMovement;
+            App.InputManager.OnMovement += HandleKeyboardInput;
             GameManagerEvents.OnLevelStart += OnLevelStart;
         }
 
         private void OnDisable() {
-            App.Instance.inputManager.OnPoint -= HandleMouseMovement;
-            App.Instance.inputManager.OnMovement -= HandleKeyboardInput;
+            App.InputManager.OnPoint -= HandleMouseMovement;
+            App.InputManager.OnMovement -= HandleKeyboardInput;
             GameManagerEvents.OnLevelStart -= OnLevelStart;
         }
 
@@ -46,13 +46,16 @@ namespace Game.GameManagement.UIManagement
         }
         
         // Public functions
-        public void SetSelectedGameObject(GameObject selectedGameObject) {
+        public void SetSelectedGameObject(GameObject selectedGameObject, bool alsoSetDefault = true) {
             if (selectedGameObject == null) {
                 _eventSystem.SetSelectedGameObject(null);
                 Debug.LogWarning("SelectedGameObject is null");
                 return;
             }
             _eventSystem.SetSelectedGameObject(selectedGameObject);
+            if (alsoSetDefault) {
+                _eventSystem.firstSelectedGameObject = selectedGameObject;
+            }
         }
     }
 }

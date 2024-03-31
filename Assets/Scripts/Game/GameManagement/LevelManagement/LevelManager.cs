@@ -30,7 +30,7 @@ namespace Game.GameManagement.LevelManagement {
                 Debug.LogError("No levels data assigned to the level manager");
                 return;
             }
-            StartCoroutine(LoadLevel(levelsData[App.Instance.playerDataManager.LastCompletedLevelIndex], false));
+            StartCoroutine(LoadLevel(levelsData[App.PlayerDataManager.LastCompletedLevelIndex], false));
         }
         
         public void LoadNextLevel() {
@@ -38,12 +38,12 @@ namespace Game.GameManagement.LevelManagement {
             if (levelsData[_currentLevelIndex] == null) {
                 // If there are no more levels, go to the credits
                 _currentLevelIndex = 0;
-                App.Instance.playerDataManager.LastLevelCompleted(_currentLevelIndex);
-                App.Instance.sceneManager.LoadScene(SceneConstants.Credits);
+                App.PlayerDataManager.LastLevelCompleted(_currentLevelIndex);
+                App.SceneManager.LoadScene(SceneConstants.Credits);
                 return;
             }
             StartCoroutine(LoadLevel(levelsData[_currentLevelIndex]));
-            App.Instance.playerDataManager.LastLevelCompleted(_currentLevelIndex);
+            App.PlayerDataManager.LastLevelCompleted(_currentLevelIndex);
         }
         
         public void RestartLevel() {
@@ -61,11 +61,11 @@ namespace Game.GameManagement.LevelManagement {
                 yield break;
             }
             if (fade) {
-                App.Instance.transitionManager.FadeIn(TransitionType.Wipe);
+                App.TransitionManager.FadeIn(TransitionType.Wipe);
                 IsCurrentlySwitching = true;
-                yield return new WaitForSecondsRealtime(App.Instance.transitionManager.wipeTime);
+                yield return new WaitForSecondsRealtime(App.TransitionManager.wipeTime);
                 IsCurrentlySwitching = false;
-                App.Instance.transitionManager.FadeOut(TransitionType.Wipe);
+                App.TransitionManager.FadeOut(TransitionType.Wipe);
             }
             ChangeCurrentLevel(level);
         }

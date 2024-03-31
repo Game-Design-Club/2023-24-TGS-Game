@@ -1,4 +1,5 @@
 using AppCore;
+using AppCore.AudioManagement;
 
 using Game.GameManagement.LevelManagement;
 
@@ -8,7 +9,7 @@ using UnityEngine;
 
 namespace Game.GameManagement {
     public class GameManager : MonoBehaviour { // Manages the essential game functions, proxies to other managers
-        
+        [SerializeField] private SoundPackage[] ambienceSounds;
         private LevelManager _levelManager;
 
         private static GameManager s_instance;
@@ -33,7 +34,10 @@ namespace Game.GameManagement {
 
         private void Start() {
             _levelManager.LoadSavedLevel();
-            App.Instance.audioManager.musicPlayer.PlayGameMusic();
+            App.AudioManager.musicPlayer.PlayGameMusic();
+            foreach (SoundPackage soundPackage in ambienceSounds) {
+                App.AudioManager.PlaySFX(soundPackage, parent: transform);
+            }
         }
 
         private void OnDestroy() {
@@ -49,11 +53,18 @@ namespace Game.GameManagement {
         private void OnDisable() {
             GameManagerEvents.OnLevelStart -= OnLevelStart;
         }
-
-        // Public functions
-        public void PlayerDied() {
+        
+        // Private functions
+        private void InternalPlayerDied() {
             RestartLevel();
         }
+        
+        private void InternalLevelCompleted() {
+            _levelManager.LoadNextLevel();
+            GameManagerEvents.InvokeLevelOver();
+        }
+        
+        // Public functions
         
         public void RestartLevel() {
             if (_freeze) return;
@@ -63,16 +74,11 @@ namespace Game.GameManagement {
             GameManagerEvents.InvokeLevelOver();
         }
         
-        public void LevelCompleted() {
-            _levelManager.LoadNextLevel();
-            GameManagerEvents.InvokeLevelOver();
-        }
-        
         public void QuitToMainMenu() {
             if (_freeze) return;
             _freeze = true;
             
-            App.Instance.sceneManager.LoadScene(SceneConstants.MainMenu);
+            App.SceneManager.LoadScene(SceneConstants.MainMenu);
         }
         
         private void OnLevelStart() {
@@ -80,12 +86,12 @@ namespace Game.GameManagement {
         }
         
         // Static functions
-        public static void PlayerDiedStatic() {
-            s_instance.PlayerDied();
+        public static void PlayerDied() {
+            s_instance.InternalPlayerDied();
         }
         
-        public static void LevelCompletedStatic() {
-            s_instance.LevelCompleted();
+        public static void LevelCompleted() {
+            s_instance.InternalLevelCompleted();
         }
     }
 }

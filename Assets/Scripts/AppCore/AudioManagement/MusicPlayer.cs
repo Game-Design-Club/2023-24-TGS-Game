@@ -24,9 +24,9 @@ namespace AppCore.AudioManagement {
                 return;
             }
             if (currentMusic == null) {
-                App.Instance.audioManager.music.FadeIn(mainMenuMusic, fadeTime);
+                App.AudioManager.music.FadeIn(mainMenuMusic, fadeTime);
             } else {
-                App.Instance.audioManager.music.FadeIntoCurrentTime(currentMusic, mainMenuMusic, fadeTime);
+                App.AudioManager.music.FadeIntoCurrentTime(currentMusic, mainMenuMusic, fadeTime);
             }
             currentMusic = mainMenuMusic;
         }
@@ -38,9 +38,9 @@ namespace AppCore.AudioManagement {
             }
             
             if (currentMusic == null) {
-                App.Instance.audioManager.music.FadeIn(gameMusic, fadeTime);
+                App.AudioManager.music.FadeIn(gameMusic, fadeTime);
             } else {
-                App.Instance.audioManager.music.FadeIntoCurrentTime(currentMusic, gameMusic, fadeTime);
+                App.AudioManager.music.FadeIntoCurrentTime(currentMusic, gameMusic, fadeTime);
             }
             currentMusic = gameMusic;
         }

@@ -32,15 +32,15 @@ namespace Game.PlayerComponents {
         // Unity functions
         private void OnEnable() {
             _playerMovement.OnPlayerMoved += OnPlayerMoved;
-            App.Instance.inputManager.OnInteract += OnInteract;
-            App.Instance.inputManager.OnInteractCancel += OnInteractCancel;
+            App.InputManager.OnInteract += OnInteract;
+            App.InputManager.OnInteractCancel += OnInteractCancel;
             GameManagerEvents.OnLevelOver += OnLevelOver;
         }
 
         private void OnDisable() {
             _playerMovement.OnPlayerMoved -= OnPlayerMoved;
-            App.Instance.inputManager.OnInteract -= OnInteract;
-            App.Instance.inputManager.OnInteractCancel -= OnInteractCancel;
+            App.InputManager.OnInteract -= OnInteract;
+            App.InputManager.OnInteractCancel -= OnInteractCancel;
             GameManagerEvents.OnLevelOver -= OnLevelOver;
         }
 
@@ -122,14 +122,15 @@ namespace Game.PlayerComponents {
         }
 
         private IEnumerator HandleTutorialPopup() {
-            if (App.Instance.playerDataManager.HasInteracted) yield break;
+            if (App.PlayerDataManager.HasInteracted) yield break;
             
             InteractionsPopup.Show();
             
-            yield return new WaitUntil(() => (IsGrabbingBox && _playerMovement.CurrentMovementInput != Vector2.zero));
+            yield return new WaitUntil(() => 
+                (IsGrabbingBox && _playerMovement.CurrentMovementInput != Vector2.zero));
             
             InteractionsPopup.Hide();
-            App.Instance.playerDataManager.HasInteracted = true;
+            App.PlayerDataManager.HasInteracted = true;
         }
         
         // Internal functions
