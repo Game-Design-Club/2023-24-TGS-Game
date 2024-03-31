@@ -752,6 +752,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 64f10fd89b8f84b8cb2f587e4ce7ae05, type: 3}
     - target: {fileID: 8166390087522240723, guid: f7dd0f4d07d3445a18315844fd95adef, type: 3}
+      propertyPath: ambienceSounds.Array.data[0].pitchAdjustment
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8166390087522240723, guid: f7dd0f4d07d3445a18315844fd95adef, type: 3}
       propertyPath: ambienceSounds.Array.data[0].volumeAdjustment
       value: -0.8
       objectReference: {fileID: 0}

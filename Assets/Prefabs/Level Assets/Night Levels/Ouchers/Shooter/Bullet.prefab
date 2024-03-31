@@ -167,8 +167,9 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 4a24b1ff7092c41d681faaa3764467f6, type: 3}
     pitchAdjustment: 0
     pitchRandomness: 0
-    volumeAdjustment: 0
+    volumeAdjustment: 0.1
     spatialBlend: 1
     rolloffMode: 1
     minDistance: 2
     maxDistance: 5
+    randomStartPos: 0
