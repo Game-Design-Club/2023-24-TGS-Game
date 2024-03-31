@@ -27,12 +27,12 @@ namespace Game.Interactables {
         }
 
         private void OnEnable() {
-            App.Instance.inputManager.OnInteract += OnInteractPressed;
+            App.InputManager.OnInteract += OnInteractPressed;
             GameManagerEvents.OnLevelStart += OnLevelStart;
         }
         
         private void OnDisable() {
-            App.Instance.inputManager.OnInteract -= OnInteractPressed;
+            App.InputManager.OnInteract -= OnInteractPressed;
             GameManagerEvents.OnLevelStart -= OnLevelStart;
         }
         
@@ -40,14 +40,14 @@ namespace Game.Interactables {
             if (!other.CompareTag(TagConstants.Player) || !Application.isPlaying || (_interacted && oneTimeUse)) return;
 
             _playerInRange = true;
-            InteractionsPopup.Instance.Show();
+            InteractionsPopup.Show();
         }
 
         private void OnTriggerExit2D(Collider2D other) {
             if (!other.CompareTag(TagConstants.Player) || !Application.isPlaying || (_interacted && oneTimeUse)) return;
 
             _playerInRange = false;
-            InteractionsPopup.Instance.Hide();
+            InteractionsPopup.Hide();
         }
         
         // Private functions
@@ -60,7 +60,7 @@ namespace Game.Interactables {
             interacted?.Invoke();
             if (oneTimeUse) {
                 _interacted = true;
-                InteractionsPopup.Instance.Hide();
+                InteractionsPopup.Hide();
             }
         }
         

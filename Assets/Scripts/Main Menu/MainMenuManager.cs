@@ -22,23 +22,23 @@ namespace Main_Menu {
         
         // Unity functions
         private void Start() {
-            SetSFXToggle(App.Instance.playerDataManager.AreSFXOn);
-            SetMusicToggle(App.Instance.playerDataManager.IsMusicOn);
-            App.Instance.audioManager.musicPlayer.PlayMainMenuMusic();
+            SetSFXToggle(App.PlayerDataManager.AreSFXOn);
+            SetMusicToggle(App.PlayerDataManager.IsMusicOn);
+            App.AudioManager.musicPlayer.PlayMainMenuMusic();
         }
 
         // Public functions
         public void StartGame() {
             if (_freeze) return;
             _freeze = true;
-            App.Instance.sceneManager.LoadScene(SceneConstants.Game);
+            App.SceneManager.LoadScene(SceneConstants.Game);
         }
 
         public void ShowCredits() { 
             if (_freeze) return;
             
             _freeze = true;
-            App.Instance.sceneManager.LoadScene(SceneConstants.Credits);
+            App.SceneManager.LoadScene(SceneConstants.Credits);
         }
 
         public void QuitGame() {
@@ -57,14 +57,14 @@ namespace Main_Menu {
         public void EraseProgress() {
             if (_freeze) return;
             
-            App.Instance.playerDataManager.EraseLevelProgress();
+            App.PlayerDataManager.EraseLevelProgress();
         }
         
         public void SetSFXToggle(bool value) {
             if (_freeze) return;
             
-            App.Instance.audioManager.sfx.SetVolume(value ? 1 : 0);
-            App.Instance.playerDataManager.SetSFX(value);
+            App.AudioManager.sfx.SetVolume(value ? 1 : 0);
+            App.PlayerDataManager.AreSFXOn = value;
             
             sfxToggle.SetState(value);
         }
@@ -72,8 +72,8 @@ namespace Main_Menu {
         public void SetMusicToggle(bool value) {
             if (_freeze) return;
             
-            App.Instance.audioManager.music.SetVolume(value ? 1 : 0);
-            App.Instance.playerDataManager.SetMusic(value);
+            App.PlayerDataManager.IsMusicOn = value;
+            App.AudioManager.music.Mute(!value);
             
             musicToggle.SetState(value);
         }

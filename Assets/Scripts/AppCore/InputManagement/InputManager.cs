@@ -127,7 +127,7 @@ namespace AppCore.InputManagement { // This class is used to manage all player i
         }
         
         private void OnLevelStart() {
-            StartCoroutine(UnlockControlsAfterSeconds(App.Instance.transitionManager.wipeTime));
+            StartCoroutine(UnlockControlsAfterSeconds(App.TransitionManager.wipeTime));
         }
         private IEnumerator UnlockControlsAfterSeconds(float seconds) {
             yield return new WaitForSecondsRealtime(seconds);

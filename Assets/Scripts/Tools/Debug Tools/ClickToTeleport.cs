@@ -13,12 +13,12 @@ namespace Tools.Debug_Tools {
         private Player _player;
         
         private void OnEnable() {
-            App.Instance.inputManager.OnClickWorld += OnClickWorld;
+            App.InputManager.OnClickWorld += OnClickWorld;
             GameManagerEvents.OnLevelStart += OnLevelStart;
         }
         
         private void OnDisable() {
-            App.Instance.inputManager.OnClickWorld -= OnClickWorld;
+            App.InputManager.OnClickWorld -= OnClickWorld;
             GameManagerEvents.OnLevelStart -= OnLevelStart;
         }
         

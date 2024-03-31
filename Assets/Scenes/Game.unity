@@ -277,6 +277,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8228568628293970022, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8228568628293970022, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5fe3410c22b664b7784b05013eed92db, type: 3}
+    - target: {fileID: 8228568628293970022, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8228568628293970022, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8228568628293970022, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8458738185526514110, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -525,14 +545,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1480533991414497013, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
-      propertyPath: m_DefaultActionMap
-      value: f56614c1-04d1-43b4-aaca-6dc9bace057e
-      objectReference: {fileID: 0}
-    - target: {fileID: 6719424046773837774, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 8257527468688489269, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
       propertyPath: m_Name
       value: App
@@ -723,6 +735,22 @@ PrefabInstance:
       propertyPath: inGameMusic
       value: 
       objectReference: {fileID: 11400000, guid: f0ababf09938e48b3ade709f945b5278, type: 2}
+    - target: {fileID: 8166390087522240723, guid: f7dd0f4d07d3445a18315844fd95adef, type: 3}
+      propertyPath: ambienceSounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8166390087522240723, guid: f7dd0f4d07d3445a18315844fd95adef, type: 3}
+      propertyPath: ambienceSounds.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 64f10fd89b8f84b8cb2f587e4ce7ae05, type: 3}
+    - target: {fileID: 8166390087522240723, guid: f7dd0f4d07d3445a18315844fd95adef, type: 3}
+      propertyPath: ambienceSounds.Array.data[0].pitchAdjustment
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8166390087522240723, guid: f7dd0f4d07d3445a18315844fd95adef, type: 3}
+      propertyPath: ambienceSounds.Array.data[0].volumeAdjustment
+      value: -0.9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
