@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 
 using AppCore;
+using AppCore.AudioManagement;
 
 using UnityEngine;
 
@@ -16,7 +17,8 @@ namespace Game.PlayerComponents {
         [SerializeField] private float snapDistance = 0.02f;
         [SerializeField] private float updatePosDistance = 0.01f;
         
-        [SerializeField] private AudioClip hitWallSound;
+        [SerializeField] private SoundPackage moveSound;
+        [SerializeField] private SoundPackage hitWallSound;
 
         private Vector2 _currentMovement;
         private float _currentMovementSpeed;
@@ -55,8 +57,14 @@ namespace Game.PlayerComponents {
 
         // Private functions
         private void OnMovement(Vector2 movementInput) {
+            bool wasNotMoving = CurrentMovementInput == Vector2.zero;
+            
             CurrentMovementInput = movementInput;
             CurrentMovementInput.Normalize();
+            
+            if (wasNotMoving && CurrentMovementInput != Vector2.zero) {
+                App.Instance.audioManager.PlaySFX(moveSound, stopCondition: () => CurrentMovementInput == Vector2.zero);
+            }
         }
 
         private void MovePlayer() {
@@ -86,8 +94,6 @@ namespace Game.PlayerComponents {
             
             bool hitWall = false;
             
-            List<Collider2D> thisFrameColliders = new List<Collider2D>();
-    
             if (Mathf.Abs(_currentMovement.x) > 0) {
                 
                 RaycastHit2D[] playerHits = new RaycastHit2D[4];

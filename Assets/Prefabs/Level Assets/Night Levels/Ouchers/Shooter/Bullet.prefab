@@ -163,3 +163,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootSpeed: 4
   impactParticles: {fileID: 1080157899643352755, guid: 63e3760e7243645feabae698849671e7, type: 3}
+  impactSound:
+    clip: {fileID: 8300000, guid: 4a24b1ff7092c41d681faaa3764467f6, type: 3}
+    pitchAdjustment: 0
+    pitchRandomness: 0
+    volumeAdjustment: 0
+    spatialBlend: 1
+    rolloffMode: 1
+    minDistance: 2
+    maxDistance: 5

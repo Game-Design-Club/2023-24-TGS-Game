@@ -126,7 +126,8 @@ namespace Game.PlayerComponents {
             
             InteractionsPopup.Show();
             
-            yield return new WaitUntil(() => (IsGrabbingBox && _playerMovement.CurrentMovementInput != Vector2.zero));
+            yield return new WaitUntil(() => 
+                (IsGrabbingBox && _playerMovement.CurrentMovementInput != Vector2.zero));
             
             InteractionsPopup.Hide();
             App.Instance.playerDataManager.HasInteracted = true;

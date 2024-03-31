@@ -1,4 +1,5 @@
 using AppCore;
+using AppCore.AudioManagement;
 
 using Game.GameManagement;
 using Game.ParticleManagement;
@@ -9,7 +10,7 @@ namespace Game.NightLevels.Shooter {
     public class Bullet : MonoBehaviour { // Bullet for the shooter
         [SerializeField] private float shootSpeed = 3f;
         [SerializeField] private ParticleSystem impactParticles;
-        [SerializeField] private AudioClip impactSound;
+        [SerializeField] private SoundPackage impactSound;
         
         private GameObject _ignoreObject;
         
@@ -40,7 +41,7 @@ namespace Game.NightLevels.Shooter {
                 ParticleManager.PlayParticleEffect(impactParticles, transform.position);
             }
             if (impactSound != null) {
-                App.Instance.audioManager.PlaySFX(impactSound);
+                App.Instance.audioManager.PlaySFX(impactSound, transform.position);
             }
         }
         

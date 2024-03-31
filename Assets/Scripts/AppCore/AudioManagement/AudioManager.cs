@@ -50,8 +50,16 @@ namespace AppCore.AudioManagement
             mixer.SetFloat(MixerConstants.MasterVolume, ConvertToDecibels(masterVolume));
         }
         
-        public void PlaySFX(AudioClip clip, float pitchAdjustment = 0f) {
-            sfx.Play(clip, pitchAdjustment);
+        public void PlaySFX(AudioClip clip, float volumeAdjustment = 0, float pitchAdjustment = 0f, float randomAdjustment = 0f,
+            float spatialBlend = 0, float minDistance = 1, float maxDistance = 500,
+            bool randomStartPos = false,
+            Vector2 position = default, Func<bool> stopCondition = null, Transform parent = null) {
+            
+            sfx.Play(clip, volumeAdjustment, pitchAdjustment, randomAdjustment, spatialBlend, minDistance, maxDistance, randomStartPos, position, stopCondition, parent);
+        }
+        
+        public void PlaySFX(SoundPackage soundPackage, Vector2 position = default, Func<bool> stopCondition = null, Transform parent = null) {
+            sfx.Play(soundPackage, position, stopCondition, parent);
         }
         
         // Private functions
