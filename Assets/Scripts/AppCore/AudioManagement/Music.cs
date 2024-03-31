@@ -49,7 +49,7 @@ namespace AppCore.AudioManagement { // This class is used to store the music obj
 
                     if (found) continue;
                     
-                    App.Instance.audioManager.music.RemoveSource(source);
+                    App.AudioManager.music.RemoveSource(source);
                     Sources.RemoveAt(i);
                 }
                 ReSink();
@@ -89,7 +89,7 @@ namespace AppCore.AudioManagement { // This class is used to store the music obj
         //Creates a new source and integrates track into it
         private AudioSource CreateSource(Track track)
         {
-            AudioSource source = App.Instance.audioManager.music.GetNewSource();
+            AudioSource source = App.AudioManager.music.GetNewSource();
             source.playOnAwake = false;
             source.clip = track.clip;
             source.volume = track.clipVolume;
@@ -102,7 +102,7 @@ namespace AppCore.AudioManagement { // This class is used to store the music obj
         {
             foreach (AudioSource source in Sources)
             {
-                App.Instance.audioManager.music.RemoveSource(source);
+                App.AudioManager.music.RemoveSource(source);
             }
 
             _sourcesAdded = false;

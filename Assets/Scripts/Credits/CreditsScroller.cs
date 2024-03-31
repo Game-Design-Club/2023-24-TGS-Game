@@ -28,11 +28,11 @@ namespace Credits {
 
         // Unity functions
         private void OnEnable() {
-            App.Instance.inputManager.OnCancel += OnCancelPressed;
+            App.InputManager.OnCancel += OnCancelPressed;
         }
 
         private void OnDisable() {
-            App.Instance.inputManager.OnCancel -= OnCancelPressed;
+            App.InputManager.OnCancel -= OnCancelPressed;
         }
 
         private void Start() {
@@ -83,12 +83,12 @@ namespace Credits {
         
         private void OnCancelPressed() {
             if (_freeze) return;
-            App.Instance.sceneManager.LoadScene(SceneConstants.MainMenu, true);
+            App.SceneManager.LoadScene(SceneConstants.MainMenu, true);
             _freeze = true;
         }
 
         private void ShowThankYou() {
-            App.Instance.transitionManager.FadeOut();
+            App.TransitionManager.FadeOut();
             creditsParentObject.SetActive(false);
             thankYouObject.SetActive(true);
         }

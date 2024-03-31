@@ -1,13 +1,14 @@
 using System;
 
 using AppCore;
+using AppCore.AudioManagement;
 
 using UnityEngine;
 
 namespace UI {
     public class ButtonBase : MonoBehaviour { // Base class for all buttons in the game, mostly manages audio
-        [SerializeField] private AudioClip hoverSound;
-        [SerializeField] private AudioClip clickSound;
+        [SerializeField] private SoundPackage hoverSound;
+        [SerializeField] private SoundPackage clickSound;
         
         private bool _isSelected = false;
         
@@ -31,7 +32,7 @@ namespace UI {
 
         // Event trigger functions
         public void OnSubmit() {
-            App.Instance.audioManager.PlaySFX(clickSound);
+            App.AudioManager.PlaySFX(clickSound);
         }
 
         public void OnPointerClick() {
@@ -48,7 +49,7 @@ namespace UI {
         
         public void OnSelect() {
             if (_isSelected) return;
-            App.Instance.audioManager.PlaySFX(hoverSound);
+            App.AudioManager.PlaySFX(hoverSound);
             _isSelected = true;
             s_onNewSelection?.Invoke(this);
         }

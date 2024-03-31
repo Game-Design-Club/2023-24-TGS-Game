@@ -13,7 +13,7 @@ namespace AppCore.AudioManagement
         public Music pianoMusic;
 
         private void Awake() {
-            _audioManager = App.Instance.audioManager;
+            _audioManager = App.AudioManager;
         }
 
         [ContextMenu("Play Oooga")]

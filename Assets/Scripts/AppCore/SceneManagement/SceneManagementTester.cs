@@ -17,7 +17,7 @@ namespace AppCore.SceneManagement
         
         [ContextMenu(itemName: "Reload Scene")]
         private void ReloadScene() {
-            App.Instance.sceneManager.ReloadScene();
+            App.SceneManager.ReloadScene();
             DebugLog($"Scene Reloaded. Current Scene: {UnityEngine.SceneManagement.SceneManager.GetActiveScene().name}");
         }
         

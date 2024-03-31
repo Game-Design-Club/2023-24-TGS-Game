@@ -27,12 +27,12 @@ namespace Game.Interactables {
         }
 
         private void OnEnable() {
-            App.Instance.inputManager.OnInteract += OnInteractPressed;
+            App.InputManager.OnInteract += OnInteractPressed;
             GameManagerEvents.OnLevelStart += OnLevelStart;
         }
         
         private void OnDisable() {
-            App.Instance.inputManager.OnInteract -= OnInteractPressed;
+            App.InputManager.OnInteract -= OnInteractPressed;
             GameManagerEvents.OnLevelStart -= OnLevelStart;
         }
         

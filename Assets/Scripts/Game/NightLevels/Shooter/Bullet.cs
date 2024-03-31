@@ -1,8 +1,8 @@
 using AppCore;
 using AppCore.AudioManagement;
+using AppCore.ParticleManagement;
 
 using Game.GameManagement;
-using Game.ParticleManagement;
 
 using UnityEngine;
 
@@ -32,16 +32,16 @@ namespace Game.NightLevels.Shooter {
 
         // Private functions
         private void OnLevelStart() {
-            DestroyBullet();
+            Destroy(gameObject);
         }
         
         private void DestroyBullet() {
             Destroy(gameObject);
             if (impactParticles != null) {
-                ParticleManager.PlayParticleEffect(impactParticles, transform.position);
+                App.ParticleManager.PlayParticleEffect(impactParticles, transform.position);
             }
             if (impactSound != null) {
-                App.Instance.audioManager.PlaySFX(impactSound, transform.position);
+                App.AudioManager.PlaySFX(impactSound, transform.position);
             }
         }
         

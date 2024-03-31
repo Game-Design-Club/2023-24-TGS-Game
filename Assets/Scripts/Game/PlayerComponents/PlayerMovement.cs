@@ -34,11 +34,11 @@ namespace Game.PlayerComponents {
         
         // Unity functions
         private void OnEnable() {
-            App.Instance.inputManager.OnMovement += OnMovement;
+            App.InputManager.OnMovement += OnMovement;
         }
 
         private void OnDisable() {
-            App.Instance.inputManager.OnMovement -= OnMovement;
+            App.InputManager.OnMovement -= OnMovement;
         }
 
         private void Awake() {
@@ -63,7 +63,7 @@ namespace Game.PlayerComponents {
             CurrentMovementInput.Normalize();
             
             if (wasNotMoving && CurrentMovementInput != Vector2.zero) {
-                App.Instance.audioManager.PlaySFX(moveSound, stopCondition: () => CurrentMovementInput == Vector2.zero);
+                App.AudioManager.PlaySFX(moveSound, stopCondition: () => CurrentMovementInput == Vector2.zero);
             }
         }
 
@@ -159,7 +159,7 @@ namespace Game.PlayerComponents {
             }
             
             if (hitWall && !_lastFrameHitWall) {
-                App.Instance.audioManager.PlaySFX(hitWallSound);
+                App.AudioManager.PlaySFX(hitWallSound);
             }
             
             _lastFrameHitWall = hitWall;

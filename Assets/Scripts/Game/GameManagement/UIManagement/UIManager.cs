@@ -19,7 +19,7 @@ namespace Game.GameManagement.UIManagement {
             PauseManagerEvents.OnGamePause += OnGamePause;
             PauseManagerEvents.OnGameResume += OnGameResume;
             
-            App.Instance.inputManager.OnCancel += OnCancelPressed;
+            App.InputManager.OnCancel += OnCancelPressed;
 
             GameManagerEvents.OnLevelStart += OnLevelStart;
         }
@@ -28,7 +28,7 @@ namespace Game.GameManagement.UIManagement {
             PauseManagerEvents.OnGamePause -= OnGamePause;
             PauseManagerEvents.OnGameResume -= OnGameResume;
 
-            App.Instance.inputManager.OnCancel += OnCancelPressed;
+            App.InputManager.OnCancel += OnCancelPressed;
             
             GameManagerEvents.OnLevelStart -= OnLevelStart;
         }
