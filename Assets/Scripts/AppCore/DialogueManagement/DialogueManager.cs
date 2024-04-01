@@ -27,14 +27,17 @@ namespace AppCore.DialogueManagement {
         }
 
         private void OnEnable() {
-            App.InputManager.OnInteract += OnContinue;
-            App.InputManager.OnClick += _ => OnContinue(); // Goofy lambda expression that lets me call it without any arguments
-            App.InputManager.OnSubmit += OnContinue;
+            App.InputManager.OnDialogueContinue += OnContinue;
+        }
+        
+        private void OnDisable() {
+            App.InputManager.OnDialogueContinue -= OnContinue;
         }
 
         // Private functions
         private IEnumerator PlayDialogue() {
             App.InputManager.LockedControlsList.Add(this);
+            App.InputManager.LockedUIList.Add(this);
             dialogueBox.SetActive(true);
             foreach (DialogueChunk currentChunk in _currentDialogue) {
                 PlayDialogueChunk(currentChunk);
@@ -44,6 +47,7 @@ namespace AppCore.DialogueManagement {
             _currentDialogue = null;
             dialogueBox.SetActive(false);
             App.InputManager.LockedControlsList.Remove(this);
+            App.InputManager.LockedUIList.Remove(this);
         }
 
         private void OnContinue() {

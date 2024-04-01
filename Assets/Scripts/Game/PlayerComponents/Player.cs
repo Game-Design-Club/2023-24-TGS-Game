@@ -6,13 +6,7 @@ namespace Game.PlayerComponents {
         
         // Unity functions
         private void Awake() {
-            if (Instance == null) {
-                Instance = this;
-            } else {
-                Debug.LogWarning("Multiple Player instances detected");
-            }
-            
-            
+            Instance = this;
         }
 
         private void OnDestroy() {

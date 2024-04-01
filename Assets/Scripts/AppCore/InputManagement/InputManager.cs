@@ -18,7 +18,14 @@ namespace AppCore.InputManagement { // This class is used to manage all player i
             }
         }
         
+        public bool LockedUI {
+            get {
+                return LockedUIList.Count > 0;
+            }
+        }
+        
         public readonly List<object> LockedControlsList = new List<object>();
+        public readonly List<object> LockedUIList = new List<object>();
         // Scripts need to log themselves to lock controls or ui, then remove themselves when they're done
         // This way multiple scripts can lock controls at the same time, and one removing it won't remove the other
         
@@ -33,6 +40,9 @@ namespace AppCore.InputManagement { // This class is used to manage all player i
         public event Action<Vector2> OnMovement;
         public event Action OnInteract;
         public event Action OnInteractCancel;
+        
+        // Special
+        public event Action OnDialogueContinue;
         
         private void Awake() {
             _inputActions = new InputActions();
@@ -119,6 +129,7 @@ namespace AppCore.InputManagement { // This class is used to manage all player i
         }
         
         private void OnInteractPerformed(InputAction.CallbackContext context) {
+            OnDialogueContinue?.Invoke();
             if (LockedControls) return;
             OnInteract?.Invoke();
         }
@@ -129,24 +140,33 @@ namespace AppCore.InputManagement { // This class is used to manage all player i
         }
 
         private void OnCancelPerformed(InputAction.CallbackContext context) {
+            if (LockedUI) return;
             OnCancel?.Invoke();
         }
 
         private void OnClickPerformed(InputAction.CallbackContext context) {
             if (!Mouse.current.leftButton.wasPressedThisFrame) return;
-            Vector2 clickPosition = Mouse.current.position.ReadValue();
-            OnClick?.Invoke(clickPosition);
             Camera cam = Camera.main;
+            Vector2 clickPosition = Mouse.current.position.ReadValue();
             if (cam.pixelRect.Contains(clickPosition)) {
+                OnDialogueContinue?.Invoke();
+                if (LockedUI) return;
+                OnClick?.Invoke(clickPosition);
                 OnClickWorld?.Invoke(cam.ScreenToWorldPoint(clickPosition));
+            } else {
+                if (LockedUI) return;
+                OnClick?.Invoke(clickPosition);
             }
         }
         
         private void OnPointPerformed(InputAction.CallbackContext context) {
+            if (LockedUI) return;
             OnPoint?.Invoke();
         }
         
         private void OnSubmitPerformed(InputAction.CallbackContext context) {
+            OnDialogueContinue?.Invoke();
+            if (LockedUI) return;
             OnSubmit?.Invoke();
         }
         
