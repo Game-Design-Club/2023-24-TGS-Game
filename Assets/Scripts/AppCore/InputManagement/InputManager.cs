@@ -1,24 +1,33 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 using Game.GameManagement;
 
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 namespace AppCore.InputManagement { // This class is used to manage all player input in the game
     public class InputManager : MonoBehaviour {
         private InputActions _inputActions;
         private Vector2 _lastMovementInput;
+
+        public bool LockedControls {
+            get {
+                return LockedControlsList.Count > 0;
+            }
+        }
         
-        public bool lockedControls;
+        public readonly List<object> LockedControlsList = new List<object>();
+        // Scripts need to log themselves to lock controls or ui, then remove themselves when they're done
+        // This way multiple scripts can lock controls at the same time, and one removing it won't remove the other
         
         // UI
         public event Action OnCancel;
         public event Action<Vector2> OnClick;
         public event Action<Vector2> OnClickWorld;
         public event Action OnPoint;
+        public event Action OnSubmit;
         
         // Player
         public event Action<Vector2> OnMovement;
@@ -47,6 +56,10 @@ namespace AppCore.InputManagement { // This class is used to manage all player i
             EnableCancel();
             EnableClicking();
             EnableMouseMovement();
+            EnableUIInteract();
+
+            return;
+            
             void EnableMovement() {
                 _inputActions.Player.Move.Enable();
                 _inputActions.Player.Move.performed += OnMovementPerformed;
@@ -68,6 +81,10 @@ namespace AppCore.InputManagement { // This class is used to manage all player i
             void EnableMouseMovement() {
                 _inputActions.UI.Point.Enable();
                 _inputActions.UI.Point.performed += OnPointPerformed;
+            }
+            void EnableUIInteract() {
+                _inputActions.UI.Submit.Enable();
+                _inputActions.UI.Submit.performed += OnSubmitPerformed;
             }
         }
         private void DisableAll() {
@@ -97,17 +114,17 @@ namespace AppCore.InputManagement { // This class is used to manage all player i
         
         private void OnMovementPerformed(InputAction.CallbackContext context) {
             _lastMovementInput = context.ReadValue<Vector2>();
-            if (lockedControls) return;
+            if (LockedControls) return;
             OnMovement?.Invoke(_lastMovementInput);
         }
         
         private void OnInteractPerformed(InputAction.CallbackContext context) {
-            if (lockedControls) return;
+            if (LockedControls) return;
             OnInteract?.Invoke();
         }
         
         private void OnInteractCancelled(InputAction.CallbackContext context) {
-            if (lockedControls) return;
+            if (LockedControls) return;
             OnInteractCancel?.Invoke();
         }
 
@@ -119,11 +136,18 @@ namespace AppCore.InputManagement { // This class is used to manage all player i
             if (!Mouse.current.leftButton.wasPressedThisFrame) return;
             Vector2 clickPosition = Mouse.current.position.ReadValue();
             OnClick?.Invoke(clickPosition);
-            OnClickWorld?.Invoke(Camera.main.ScreenToWorldPoint(clickPosition));
+            Camera cam = Camera.main;
+            if (cam.pixelRect.Contains(clickPosition)) {
+                OnClickWorld?.Invoke(cam.ScreenToWorldPoint(clickPosition));
+            }
         }
         
         private void OnPointPerformed(InputAction.CallbackContext context) {
             OnPoint?.Invoke();
+        }
+        
+        private void OnSubmitPerformed(InputAction.CallbackContext context) {
+            OnSubmit?.Invoke();
         }
         
         private void OnLevelStart() {
@@ -131,11 +155,12 @@ namespace AppCore.InputManagement { // This class is used to manage all player i
         }
         private IEnumerator UnlockControlsAfterSeconds(float seconds) {
             yield return new WaitForSecondsRealtime(seconds);
-            lockedControls = false;
+            LockedControlsList.Remove(this);
+            yield return new WaitUntil(() => !LockedControls);
             OnMovement?.Invoke(_lastMovementInput);
         }
         private void OnLevelOver() {
-            lockedControls = true;
+            LockedControlsList.Add(this);
             OnMovement?.Invoke(Vector2.zero);
         }
     }
