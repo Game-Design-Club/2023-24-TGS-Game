@@ -20,12 +20,16 @@ namespace AppCore.DialogueManagement {
         [SerializeField] private TextMeshProUGUI[] dialogueText;
         [SerializeField] private TextMeshProUGUI[] characterNameText;
         [SerializeField] private Image[] characterSpriteRenderer;
-        
+
+        [SerializeField] private int scrollSpeed = 1;
+        [SerializeField] private bool skipOnInput = true;
         [SerializeField] private SoundPackage continueSound;
         
         private Dialogue _currentDialogue;
         
         private bool _shouldContinue;
+        
+        private bool _isScrollingDialogue;
         
         // Unity functions
         private void Start() {
@@ -50,6 +54,24 @@ namespace AppCore.DialogueManagement {
             dialogueBox.SetActive(true);
             foreach (DialogueChunk currentChunk in _currentDialogue) {
                 PlayDialogueChunk(currentChunk);
+
+                if (skipOnInput) {
+                    int totalCharacters = currentChunk.text.Length;
+                    int currentCharacters = 0;
+                    while (!_shouldContinue && currentCharacters < totalCharacters) {
+                        if (currentCharacters < totalCharacters) {
+                            currentCharacters += scrollSpeed;
+                        }
+
+                        UpdateText(currentChunk.text[..currentCharacters]);
+                        yield return new WaitForFixedUpdate();
+                    }
+                }
+                
+                _shouldContinue = false;
+                
+                UpdateText(currentChunk.text);
+                
                 yield return new WaitUntil(() => _shouldContinue);
                 _shouldContinue = false;
                 App.AudioManager.PlaySFX(continueSound);
@@ -78,6 +100,10 @@ namespace AppCore.DialogueManagement {
                 leftAligned.SetActive(false);
                 rightAligned.SetActive(true);
             }
+        }
+        
+        private void UpdateText(string text) {
+            Array.ForEach(dialogueText, textGUI => textGUI.text = text);
         }
         
         // Public functions
