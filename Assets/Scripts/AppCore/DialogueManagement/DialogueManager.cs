@@ -21,7 +21,7 @@ namespace AppCore.DialogueManagement {
         [SerializeField] private TextMeshProUGUI[] characterNameText;
         [SerializeField] private Image[] characterSpriteRenderer;
 
-        [SerializeField] private int scrollSpeed = 1;
+        [SerializeField] private float scrollSpeed = 1;
         [SerializeField] private bool skipOnInput = true;
         [SerializeField] private SoundPackage continueSound;
         
@@ -57,13 +57,13 @@ namespace AppCore.DialogueManagement {
 
                 if (skipOnInput) {
                     int totalCharacters = currentChunk.text.Length;
-                    int currentCharacters = 0;
+                    float currentCharacters = 0;
                     while (!_shouldContinue && currentCharacters < totalCharacters) {
                         if (currentCharacters < totalCharacters) {
                             currentCharacters += scrollSpeed;
                         }
 
-                        UpdateText(currentChunk.text[..currentCharacters]);
+                        UpdateText(currentChunk.text[..(int)currentCharacters]);
                         yield return new WaitForFixedUpdate();
                     }
                 }

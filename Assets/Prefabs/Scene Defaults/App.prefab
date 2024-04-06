@@ -1194,6 +1194,8 @@ MonoBehaviour:
   characterSpriteRenderer:
   - {fileID: 2661759710302574098}
   - {fileID: 8919557569175833198}
+  scrollSpeed: 0.7
+  skipOnInput: 1
   continueSound: {fileID: 11400000, guid: 35c7cb9b74cd8400ca23cb5caa311c55, type: 2}
 --- !u!1 &5704624178321613029
 GameObject:
