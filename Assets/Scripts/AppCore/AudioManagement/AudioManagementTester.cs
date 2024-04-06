@@ -19,7 +19,7 @@ namespace AppCore.AudioManagement
         [ContextMenu("Play Oooga")]
         void PlayOoga()
         {
-            _audioManager.sfx.Play(oogaSFX);
+            _audioManager.PlaySFX(oogaSFX);
             DebugLog("Playing Oooga");
             
         }

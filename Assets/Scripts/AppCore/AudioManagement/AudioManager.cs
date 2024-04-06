@@ -55,7 +55,17 @@ namespace AppCore.AudioManagement
             bool randomStartPos = false,
             Vector2 position = default, Func<bool> stopCondition = null, Transform parent = null) {
             
-            sfx.Play(clip, volumeAdjustment, pitchAdjustment, randomAdjustment, spatialBlend, minDistance, maxDistance, randomStartPos, position, stopCondition, parent);
+            SoundPackage soundPackage = new SoundPackage(clip) {
+                volumeAdjustment = volumeAdjustment,
+                pitchAdjustment = pitchAdjustment,
+                pitchRandomness = randomAdjustment,
+                spatialBlend = spatialBlend,
+                minDistance = minDistance,
+                maxDistance = maxDistance,
+                randomStartPos = randomStartPos
+            };
+            
+            PlaySFX(soundPackage, position, stopCondition, parent);
         }
         
         public void PlaySFX(SoundPackage soundPackage, Vector2 position = default, Func<bool> stopCondition = null, Transform parent = null) {
