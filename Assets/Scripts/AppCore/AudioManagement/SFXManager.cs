@@ -29,29 +29,19 @@ namespace AppCore.AudioManagement
         }
 
         //****** SFX ********
-        public void Play(SoundPackage s, Vector2 position = default, System.Func<bool> stopCondition = null, Transform parent = null) {
-            Play(s.clip, s.volumeAdjustment, s.pitchAdjustment, s.pitchRandomness, 
-                s.spatialBlend, s.minDistance, s.maxDistance,
-                s.randomStartPos,
-                position, stopCondition, parent);
-        }
-        
-        public void Play(AudioClip clip, float volumeAdjustment = 0, float pitchAdjustment = 0f, float randomAdjustment = 0f,
-            float spatialBlend = 0, float minDistance = 1, float maxDistance = 500,
-            bool randomStartPos = false,
-            Vector2 position = default, System.Func<bool> stopCondition = null, Transform parent = null) {
+        internal void Play(SoundPackage s, Vector2 position = default, System.Func<bool> stopCondition = null, Transform parent = null) {
             
             GameObject soundObject = new GameObject("SFX");
             soundObject.transform.position = position;
             soundObject.transform.SetParent(parent == null ? transform : parent);
             AudioSource source = soundObject.AddComponent<AudioSource>();
-            source.clip = clip;
-            source.time = randomStartPos ? Random.Range(0, clip.length) : 0;
-            source.volume += volumeAdjustment;
-            source.pitch += pitchAdjustment + Random.Range(-randomAdjustment, randomAdjustment);
-            source.spatialBlend = spatialBlend;
-            source.minDistance = minDistance;
-            source.maxDistance = maxDistance;
+            source.clip = s.clip;
+            source.time = s.randomStartPos ? Random.Range(0, s.clip.length) : 0;
+            source.volume += s.volumeAdjustment;
+            source.pitch += s.pitchAdjustment + Random.Range(-s.pitchRandomness, s.pitchRandomness);
+            source.spatialBlend = s.spatialBlend;
+            source.minDistance = s.minDistance;
+            source.maxDistance = s.maxDistance;
             source.outputAudioMixerGroup = sfxGroup;
 
             _currentSoundEffects.AddLast(soundObject);
