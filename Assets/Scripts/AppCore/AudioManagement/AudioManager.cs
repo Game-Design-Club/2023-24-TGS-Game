@@ -55,10 +55,19 @@ namespace AppCore.AudioManagement
             bool randomStartPos = false,
             Vector2 position = default, Func<bool> stopCondition = null, Transform parent = null) {
             
+            if (clip == null) {
+                Debug.LogWarning("AudioClip is null.");
+                return;
+            }
+            
             sfx.Play(clip, volumeAdjustment, pitchAdjustment, randomAdjustment, spatialBlend, minDistance, maxDistance, randomStartPos, position, stopCondition, parent);
         }
         
         public void PlaySFX(SoundPackage soundPackage, Vector2 position = default, Func<bool> stopCondition = null, Transform parent = null) {
+            if (soundPackage == null) {
+                Debug.LogWarning("SoundPackage is null.");
+                return;
+            }
             sfx.Play(soundPackage, position, stopCondition, parent);
         }
         

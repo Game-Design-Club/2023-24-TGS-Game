@@ -1,5 +1,7 @@
 using System.Collections;
 
+using AppCore.AudioManagement;
+
 using TMPro;
 
 using UnityEngine;
@@ -13,6 +15,8 @@ namespace AppCore.DialogueManagement {
         [SerializeField] private TextMeshProUGUI dialogueText;
         [SerializeField] private TextMeshProUGUI characterNameText;
         [SerializeField] private Image characterSpriteRenderer;
+        
+        [SerializeField] private SoundPackage continueSound;
         
         private Dialogue _currentDialogue;
         
@@ -43,6 +47,7 @@ namespace AppCore.DialogueManagement {
                 PlayDialogueChunk(currentChunk);
                 yield return new WaitUntil(() => _shouldContinue);
                 _shouldContinue = false;
+                App.AudioManager.PlaySFX(continueSound);
             }
             _currentDialogue = null;
             dialogueBox.SetActive(false);

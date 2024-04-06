@@ -1,5 +1,7 @@
 using System;
 
+using AppCore;
+
 using Game.GameManagement.LevelManagement;
 
 using UnityEngine;
@@ -18,7 +20,7 @@ namespace Game.GameManagement.PauseManagement {
         }
 
         private void OnApplicationFocus(bool hasFocus) {
-            if (!hasFocus && !IsPaused) {
+            if (!hasFocus && !IsPaused && !App.InputManager.LockedControls) {
                 PauseGame();
             }
         }
