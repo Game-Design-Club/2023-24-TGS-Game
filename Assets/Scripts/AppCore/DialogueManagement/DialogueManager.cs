@@ -1,8 +1,12 @@
+using System;
 using System.Collections;
+
+using AppCore.AudioManagement;
 
 using TMPro;
 
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 namespace AppCore.DialogueManagement {
@@ -10,13 +14,22 @@ namespace AppCore.DialogueManagement {
         [SerializeField] private Dialogue testDialogue;
         
         [SerializeField] private GameObject dialogueBox;
-        [SerializeField] private TextMeshProUGUI dialogueText;
-        [SerializeField] private TextMeshProUGUI characterNameText;
-        [SerializeField] private Image characterSpriteRenderer;
+        [SerializeField] private GameObject leftAligned;
+        [SerializeField] private GameObject rightAligned;
+        
+        [SerializeField] private TextMeshProUGUI[] dialogueText;
+        [SerializeField] private TextMeshProUGUI[] characterNameText;
+        [SerializeField] private Image[] characterSpriteRenderer;
+
+        [SerializeField] private float scrollSpeed = 1;
+        [SerializeField] private bool skipOnInput = true;
+        [SerializeField] private SoundPackage continueSound;
         
         private Dialogue _currentDialogue;
         
         private bool _shouldContinue;
+        
+        private bool _isScrollingDialogue;
         
         // Unity functions
         private void Start() {
@@ -41,8 +54,27 @@ namespace AppCore.DialogueManagement {
             dialogueBox.SetActive(true);
             foreach (DialogueChunk currentChunk in _currentDialogue) {
                 PlayDialogueChunk(currentChunk);
+
+                if (skipOnInput) {
+                    int totalCharacters = currentChunk.text.Length;
+                    float currentCharacters = 0;
+                    while (!_shouldContinue && currentCharacters < totalCharacters) {
+                        if (currentCharacters < totalCharacters) {
+                            currentCharacters += scrollSpeed;
+                        }
+
+                        UpdateText(currentChunk.text[..(int)currentCharacters]);
+                        yield return new WaitForFixedUpdate();
+                    }
+                }
+                
+                _shouldContinue = false;
+                
+                UpdateText(currentChunk.text);
+                
                 yield return new WaitUntil(() => _shouldContinue);
                 _shouldContinue = false;
+                App.AudioManager.PlaySFX(continueSound);
             }
             _currentDialogue = null;
             dialogueBox.SetActive(false);
@@ -55,10 +87,23 @@ namespace AppCore.DialogueManagement {
         }
         
         private void PlayDialogueChunk(DialogueChunk chunk) {
-            characterNameText.text = chunk.character.characterName;
-            dialogueText.text = chunk.text;
-            dialogueText.color = chunk.character.textColor;
-            characterSpriteRenderer.sprite = chunk.character.characterSprite;
+            Array.ForEach(characterNameText, textGUI => textGUI.text = chunk.character.characterName);
+            Array.ForEach(dialogueText, textGUI => {
+                textGUI.text = chunk.text;
+                textGUI.color = chunk.character.textColor;
+            });
+            Array.ForEach(characterSpriteRenderer, image => image.sprite = chunk.character.characterSprite);
+            if (chunk.character.textAlignment == TextAlignment.Left) {
+                leftAligned.SetActive(true);
+                rightAligned.SetActive(false);
+            } else {
+                leftAligned.SetActive(false);
+                rightAligned.SetActive(true);
+            }
+        }
+        
+        private void UpdateText(string text) {
+            Array.ForEach(dialogueText, textGUI => textGUI.text = text);
         }
         
         // Public functions

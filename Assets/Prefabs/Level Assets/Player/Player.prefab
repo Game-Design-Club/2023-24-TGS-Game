@@ -331,26 +331,8 @@ MonoBehaviour:
   smoothMovement: 1
   snapDistance: 0.01
   updatePosDistance: 0.02
-  moveSound:
-    clip: {fileID: 8300000, guid: e86cb40c4f7c94cdf8414c264c8c336e, type: 3}
-    pitchAdjustment: 0
-    pitchRandomness: 0
-    volumeAdjustment: -0.6
-    spatialBlend: 0
-    rolloffMode: 0
-    minDistance: 1
-    maxDistance: 500
-    randomStartPos: 1
-  hitWallSound:
-    clip: {fileID: 8300000, guid: da319a9da04854c6780838bce9035ed5, type: 3}
-    pitchAdjustment: -0.4
-    pitchRandomness: 0.25
-    volumeAdjustment: -0.5
-    spatialBlend: 0
-    rolloffMode: 0
-    minDistance: 1
-    maxDistance: 500
-    randomStartPos: 0
+  moveSound: {fileID: 11400000, guid: cac2bea22e4684b13a29e097e1780be6, type: 2}
+  hitWallSound: {fileID: 11400000, guid: 4b11d97ecbf2249b7b5db650a484c238, type: 2}
 --- !u!114 &8583067967338378186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,16 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f17fdc211a694686a4450e0ee4187848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dieSound:
-    clip: {fileID: 8300000, guid: d9ca7025fc0924096abf6643e71b4999, type: 3}
-    pitchAdjustment: 0
-    pitchRandomness: 0
-    volumeAdjustment: 0
-    spatialBlend: 0
-    rolloffMode: 0
-    minDistance: 0
-    maxDistance: 0
-    randomStartPos: 0
+  dieSound: {fileID: 11400000, guid: c7f32205120284d3fa84c8f76f6e1a07, type: 2}
 --- !u!114 &857302863029227857
 MonoBehaviour:
   m_ObjectHideFlags: 0
