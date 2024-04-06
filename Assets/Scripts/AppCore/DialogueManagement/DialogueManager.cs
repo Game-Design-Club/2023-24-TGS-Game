@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 
 using AppCore.AudioManagement;
@@ -5,6 +6,7 @@ using AppCore.AudioManagement;
 using TMPro;
 
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 namespace AppCore.DialogueManagement {
@@ -12,9 +14,12 @@ namespace AppCore.DialogueManagement {
         [SerializeField] private Dialogue testDialogue;
         
         [SerializeField] private GameObject dialogueBox;
-        [SerializeField] private TextMeshProUGUI dialogueText;
-        [SerializeField] private TextMeshProUGUI characterNameText;
-        [SerializeField] private Image characterSpriteRenderer;
+        [SerializeField] private GameObject leftAligned;
+        [SerializeField] private GameObject rightAligned;
+        
+        [SerializeField] private TextMeshProUGUI[] dialogueText;
+        [SerializeField] private TextMeshProUGUI[] characterNameText;
+        [SerializeField] private Image[] characterSpriteRenderer;
         
         [SerializeField] private SoundPackage continueSound;
         
@@ -60,10 +65,19 @@ namespace AppCore.DialogueManagement {
         }
         
         private void PlayDialogueChunk(DialogueChunk chunk) {
-            characterNameText.text = chunk.character.characterName;
-            dialogueText.text = chunk.text;
-            dialogueText.color = chunk.character.textColor;
-            characterSpriteRenderer.sprite = chunk.character.characterSprite;
+            Array.ForEach(characterNameText, textGUI => textGUI.text = chunk.character.characterName);
+            Array.ForEach(dialogueText, textGUI => {
+                textGUI.text = chunk.text;
+                textGUI.color = chunk.character.textColor;
+            });
+            Array.ForEach(characterSpriteRenderer, image => image.sprite = chunk.character.characterSprite);
+            if (chunk.character.textAlignment == TextAlignment.Left) {
+                leftAligned.SetActive(true);
+                rightAligned.SetActive(false);
+            } else {
+                leftAligned.SetActive(false);
+                rightAligned.SetActive(true);
+            }
         }
         
         // Public functions
