@@ -1,23 +1,21 @@
-using System;
-
 using Tools.Constants;
 
 using UnityEngine;
 
-namespace Game.CameraShooter {
-    public class CameraShooterTrigger : MonoBehaviour {
-        [SerializeField] private CameraShooter cameraShooter;
+namespace Game.SecurityCamera {
+    public class SecurityCameraTrigger : MonoBehaviour {
+        [SerializeField] private SecurityCamera securityCamera;
         
         // Unity functions
         private void OnTriggerEnter2D(Collider2D other) {
             if (other.CompareTag(TagConstants.Player)) {
-                cameraShooter.StartShooting();
+                securityCamera.StartShooting();
             }
         }
         
         private void OnTriggerExit2D(Collider2D other) {
             if (other.CompareTag(TagConstants.Player)) {
-                cameraShooter.StopShooting();
+                securityCamera.StopShooting();
             }
         }
     }
