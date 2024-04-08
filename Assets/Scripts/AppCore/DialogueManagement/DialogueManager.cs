@@ -6,13 +6,10 @@ using AppCore.AudioManagement;
 using TMPro;
 
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 namespace AppCore.DialogueManagement {
     public class DialogueManager : MonoBehaviour {
-        [SerializeField] private Dialogue testDialogue;
-        
         [SerializeField] private GameObject dialogueBox;
         [SerializeField] private GameObject leftAligned;
         [SerializeField] private GameObject rightAligned;
@@ -34,9 +31,6 @@ namespace AppCore.DialogueManagement {
         // Unity functions
         private void Start() {
             dialogueBox.SetActive(false);
-            if (testDialogue != null) {
-                StartDialogue(testDialogue);
-            }
         }
 
         private void OnEnable() {
@@ -49,8 +43,8 @@ namespace AppCore.DialogueManagement {
 
         // Private functions
         private IEnumerator PlayDialogue() {
-            App.InputManager.LockedControlsList.Add(this);
-            App.InputManager.LockedUIList.Add(this);
+            App.InputManager.LockPlayerControls(this);
+            App.InputManager.LockUI(this);
             dialogueBox.SetActive(true);
             foreach (DialogueChunk currentChunk in _currentDialogue) {
                 PlayDialogueChunk(currentChunk);
@@ -78,8 +72,8 @@ namespace AppCore.DialogueManagement {
             }
             _currentDialogue = null;
             dialogueBox.SetActive(false);
-            App.InputManager.LockedControlsList.Remove(this);
-            App.InputManager.LockedUIList.Remove(this);
+            App.InputManager.UnlockPlayerControls(this);
+            App.InputManager.UnlockUI(this);
         }
 
         private void OnContinue() {

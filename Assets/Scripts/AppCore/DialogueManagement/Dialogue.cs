@@ -7,7 +7,7 @@ using UnityEngine;
 namespace AppCore.DialogueManagement {
     [CreateAssetMenu(fileName = "New Dialogue", menuName = "Dialogue")]
     public class Dialogue : ScriptableObject, IEnumerable<DialogueChunk> {
-        [SerializeField] private DialogueChunk[] dialogueChunks;
+        [SerializeField] internal DialogueChunk[] dialogueChunks;
         
         private int _currentChunkIndex;
         
@@ -20,5 +20,7 @@ namespace AppCore.DialogueManagement {
         IEnumerator IEnumerable.GetEnumerator() {
             return GetEnumerator();
         }
+        
+        public bool IsEmpty => dialogueChunks.Length == 0;
     }
 }

@@ -23,9 +23,9 @@ namespace AppCore.InputManagement { // This class is used to manage all player i
                 return LockedUIList.Count > 0;
             }
         }
-        
-        public readonly List<object> LockedControlsList = new List<object>();
-        public readonly List<object> LockedUIList = new List<object>();
+
+        private readonly List<object> LockedControlsList = new List<object>();
+        private readonly List<object> LockedUIList = new List<object>();
         // Scripts need to log themselves to lock controls or ui, then remove themselves when they're done
         // This way multiple scripts can lock controls at the same time, and one removing it won't remove the other
         
@@ -182,6 +182,27 @@ namespace AppCore.InputManagement { // This class is used to manage all player i
         private void OnLevelOver() {
             LockedControlsList.Add(this);
             OnMovement?.Invoke(Vector2.zero);
+        }
+        
+        // Public functions
+        public void LockPlayerControls(System.Object caller) {
+            LockedControlsList.Add(caller);
+            OnMovement?.Invoke(Vector2.zero);
+        }
+        
+        public void UnlockPlayerControls(System.Object caller) {
+            LockedControlsList.Remove(caller);
+            if (!LockedControls) {
+                OnMovement?.Invoke(_lastMovementInput);
+            }
+        }
+        
+        public void LockUI(System.Object caller) {
+            LockedUIList.Add(caller);
+        }
+        
+        public void UnlockUI(System.Object caller) {
+            LockedUIList.Remove(caller);
         }
     }
 }

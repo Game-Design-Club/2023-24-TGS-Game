@@ -1,3 +1,6 @@
+using System;
+using System.Linq;
+
 using Tools.Constants;
 
 using UnityEngine;
@@ -10,6 +13,23 @@ namespace AppCore.DialogueManagement {
         private bool _hasTriggered;
         
         // Unity functions
+        private void Awake() {
+            if (dialogue == null) {
+                Debug.LogWarning("Dialogue not set in DialogueTrigger.");
+            }
+
+            if (dialogue.IsEmpty) {
+                Debug.LogWarning("Dialogue is empty in DialogueTrigger.");
+            }
+            
+            Collider2D trigger = GetComponent<Collider2D>();
+            if (trigger == null) {
+                Debug.LogWarning("No Collider2D found on DialogueTrigger.");
+            } else if (!trigger.isTrigger) {
+                Debug.LogWarning("Collider2D on DialogueTrigger is not set to trigger.");
+            }
+        }
+
         private void OnTriggerEnter2D(Collider2D other) {
             if (other.CompareTag(TagConstants.Player)) {
                 TriggerDialogue();

@@ -878,7 +878,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4999973380438077872
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1181,7 +1181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98e605b135b243f4b360240d074af475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testDialogue: {fileID: 11400000, guid: f5e495cfa19c34a58b84b0ab173b01b5, type: 2}
+  testDialogue: {fileID: 0}
   dialogueBox: {fileID: 4918779296130150439}
   leftAligned: {fileID: 7811539350121853234}
   rightAligned: {fileID: 6906637959799881803}
