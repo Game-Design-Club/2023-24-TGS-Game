@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Security;
 
 using Game.GameManagement;
 using Game.NightLevels.Shooter;
@@ -31,7 +33,7 @@ namespace Game.SecurityCamera {
 
         private float _baseRotation;
         private float _currentRotation;
-        private int _rotateDirection;
+        private int _currentDirection;
         
         // Unity functions
         private void Start() {
@@ -39,7 +41,9 @@ namespace Game.SecurityCamera {
             shootingSignalLight.color = idleColor;
             
             rotateClockwise *= -1;
-            _rotateDirection = rotateClockwiseFirst ? -1 : 1;
+            _currentDirection = rotateClockwiseFirst ? -1 : 1;
+
+            CheckConsistancy();
         }
 
         private void OnEnable() {
@@ -71,16 +75,42 @@ namespace Game.SecurityCamera {
         private void Rotate() {
             if (!rotate) return;
 
-            float rotationThisFrame = rotationSpeed * _rotateDirection;
-            _currentRotation += rotationThisFrame;
+            
+            if (_isShooting) {
+                // Follow player instead of follow track
+                float angleToPlayer = Vector3.SignedAngle(rotationPoint.up, DirectionToPlayer, Vector3.forward);
+                if (!(Mathf.Abs(angleToPlayer) < playerLockRotationSpeed)) {
+                    _currentDirection = (angleToPlayer < 0) ? -1 : 1;
+                    _currentRotation += playerLockRotationSpeed * _currentDirection;
+                    _currentRotation = Mathf.Clamp(_currentRotation, rotateClockwise, rotateCounterClockwise);
+                    UpdateRotation();
+                } else {
+                    _currentRotation += angleToPlayer;
+                    UpdateRotation();
+                }
+            } else {
+                float rotationThisFrame = rotationSpeed * _currentDirection;
+                _currentRotation += rotationThisFrame;
 
-            if (_rotateDirection > 0 && _currentRotation > rotateCounterClockwise) {
-                _rotateDirection *= -1;
-                // Flip to clockwise
-            } else if (_rotateDirection < 0 && _currentRotation < rotateClockwise) {
-                _rotateDirection *= -1;
-                // Flip to counterclockwise
+                if (_currentDirection > 0 && _currentRotation > rotateCounterClockwise) {
+                    _currentDirection *= -1;
+                    // Flip to clockwise
+                } else if (_currentDirection < 0 && _currentRotation < rotateClockwise) {
+                    _currentDirection *= -1;
+                    // Flip to counterclockwise
+                }
+                UpdateRotation();
             }
+        }
+
+        private void CheckConsistancy() {
+            if ((int)rotateClockwise == (int)rotateCounterClockwise) {
+                Debug.LogWarning("Rotate clockwise and counter clockwise are the same. Turning rotation off");
+                rotate = false;
+            }
+        }
+
+        private void UpdateRotation() {
             rotationPoint.rotation = Quaternion.Euler(new (0,0, (_currentRotation + _baseRotation + 360) % 360));
         }
         
