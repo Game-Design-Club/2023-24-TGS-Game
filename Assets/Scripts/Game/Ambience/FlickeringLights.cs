@@ -1,5 +1,6 @@
 using System.Collections;
 
+using AppCore;
 using AppCore.AudioManagement;
 
 using UnityEngine;
@@ -44,6 +45,9 @@ namespace Game.Ambience {
                     // Single Flicker
                     float currentIntensityChange = flickerIntensity.Random();
                     ChangeLightIntensity(1 + currentIntensityChange);
+                    if (flickerSound != null) {
+                        App.AudioManager.PlaySFX(flickerSound);
+                    }
                     yield return new WaitForSeconds(flickerSustainTime.Random());
                     ChangeLightIntensity(1/(1 + currentIntensityChange));
                     yield return new WaitForSeconds(flickerSeparateTime.Random());
