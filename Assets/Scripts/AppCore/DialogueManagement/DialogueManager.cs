@@ -46,6 +46,7 @@ namespace AppCore.DialogueManagement {
             App.InputManager.LockPlayerControls(this);
             App.InputManager.LockUI(this);
             dialogueBox.SetActive(true);
+            _shouldContinue = false;
             foreach (DialogueChunk currentChunk in _currentDialogue) {
                 PlayDialogueChunk(currentChunk);
 

@@ -64,17 +64,17 @@ namespace AppCore.AudioManagement
             Vector2 position = default, Func<bool> stopCondition = null, Transform parent = null)
         {
 
-            SoundPackage soundPackage = new SoundPackage(clip)
-            {
-                volumeAdjustment = volumeAdjustment,
-                pitchAdjustment = pitchAdjustment,
-                pitchRandomness = randomAdjustment,
-                spatialBlend = spatialBlend,
-                minDistance = minDistance,
-                maxDistance = maxDistance,
-                randomStartPos = randomStartPos
-            };
+            SoundPackage soundPackage = ScriptableObject.CreateInstance<SoundPackage>();
 
+            soundPackage.clip = clip;
+            soundPackage.volumeAdjustment = volumeAdjustment;
+            soundPackage.pitchAdjustment = pitchAdjustment;
+            soundPackage.pitchRandomness = randomAdjustment;
+            soundPackage.spatialBlend = spatialBlend;
+            soundPackage.minDistance = minDistance;
+            soundPackage.maxDistance = maxDistance;
+            soundPackage.randomStartPos = randomStartPos;
+            
             PlaySFX(soundPackage, position, stopCondition, parent);
         }
 
