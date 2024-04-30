@@ -187,4 +187,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ambienceSounds:
-  - {fileID: 11400000, guid: eede4bd982c644b7abd8cbd2d66db4f7, type: 2}
+  - clip: {fileID: 8300000, guid: 64f10fd89b8f84b8cb2f587e4ce7ae05, type: 3}
+    pitchAdjustment: 0.2
+    pitchRandomness: 0
+    volumeAdjustment: -0.9
+    spatialBlend: 0
+    rolloffMode: 0
+    minDistance: 0
+    maxDistance: 0
+    randomStartPos: 0

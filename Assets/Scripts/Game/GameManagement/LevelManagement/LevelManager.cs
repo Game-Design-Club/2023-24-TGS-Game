@@ -30,7 +30,10 @@ namespace Game.GameManagement.LevelManagement {
                 Debug.LogError("No levels data assigned to the level manager");
                 return;
             }
-            StartCoroutine(LoadLevel(levelsData[App.PlayerDataManager.LastCompletedLevelIndex], false));
+
+            Level levelToLoad = levelsData[App.PlayerDataManager.LastCompletedLevelIndex];
+            if (customFirstLevel != null) levelToLoad = customFirstLevel;
+            StartCoroutine(LoadLevel(levelToLoad, false));
         }
         
         public void LoadNextLevel() {
