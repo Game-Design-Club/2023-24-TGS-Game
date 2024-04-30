@@ -19,7 +19,7 @@ namespace AppCore.AudioManagement
 
         //Volume of groups
         [Range(0f, 1f)]
-        private float musicVolume = 1f;
+        [SerializeField] private float musicVolume = 1f;
 
         //***** Unity Functions *****
         void Awake()
