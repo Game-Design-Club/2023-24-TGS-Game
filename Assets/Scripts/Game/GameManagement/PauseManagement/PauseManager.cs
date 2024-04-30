@@ -18,9 +18,12 @@ namespace Game.GameManagement.PauseManagement {
         }
 
         private void OnApplicationFocus(bool hasFocus) {
+#if !UNITY_EDITOR
             if (!hasFocus && !IsPaused) {
                 PauseGame();
             }
+#endif
+            
         }
 
         // Public functions
