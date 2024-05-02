@@ -18,6 +18,8 @@ namespace Game.PlayerComponents {
         [SerializeField] private float updatePosDistance = 0.01f;
         
         [SerializeField] private SoundPackage moveSound;
+        [SerializeField] private float movePitchFluctuation = .1f;
+        [SerializeField] private float movePitchFrequency = .01f;
         [SerializeField] private SoundPackage hitWallSound;
 
         private Vector2 _currentMovement;
@@ -63,7 +65,7 @@ namespace Game.PlayerComponents {
             CurrentMovementInput.Normalize();
             
             if (wasNotMoving && CurrentMovementInput != Vector2.zero) {
-                App.AudioManager.PlaySFX(moveSound, stopCondition: () => CurrentMovementInput == Vector2.zero);
+                App.AudioManager.PlaySFX(moveSound, stopCondition: () => CurrentMovementInput == Vector2.zero, randomPitchChange: movePitchFluctuation, randomPitchFrequency: movePitchFrequency);
             }
         }
 

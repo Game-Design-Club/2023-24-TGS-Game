@@ -649,6 +649,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 8166390087522240723, guid: f7dd0f4d07d3445a18315844fd95adef, type: 3}
+      propertyPath: ambienceSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: eede4bd982c644b7abd8cbd2d66db4f7, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

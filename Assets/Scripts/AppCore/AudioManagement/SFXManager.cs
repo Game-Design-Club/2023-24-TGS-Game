@@ -29,7 +29,7 @@ namespace AppCore.AudioManagement
         }
 
         //****** SFX ********
-        internal void Play(SoundPackage s, Vector2 position = default, System.Func<bool> stopCondition = null, Transform parent = null) {
+        internal void Play(SoundPackage s, Vector2 position = default, System.Func<bool> stopCondition = null, Transform parent = null, float randomPitchChange = 0f, float randomPitchFrequency = 0f) {
             
             GameObject soundObject = new GameObject("SFX");
             soundObject.transform.position = position;
@@ -57,7 +57,7 @@ namespace AppCore.AudioManagement
                     StartCoroutine(PlaySourceAndRemove(source, soundObject));
                 } else {
                     source.loop = true;
-                    StartCoroutine(PlaySourceRepeatingAndRemove(source, soundObject, stopCondition));
+                    StartCoroutine(PlaySourceRepeatingAndRemove(source, soundObject, stopCondition, randomPitchChange, randomPitchFrequency));
                 }
             }
         }
@@ -68,10 +68,14 @@ namespace AppCore.AudioManagement
             Destroy(soundObject, 0.1f);
         }
         
-        private IEnumerator PlaySourceRepeatingAndRemove(AudioSource source, GameObject soundObject, System.Func<bool> stopCondition) {
+        private IEnumerator PlaySourceRepeatingAndRemove(AudioSource source, GameObject soundObject, System.Func<bool> stopCondition, float pitchFluctuation, float pitchFrequency) {
             source.Play();
+            source.pitch = 1 + Random.Range(-pitchFluctuation, pitchFluctuation);
             while (!stopCondition()) {
                 yield return null;
+                if (Random.value <= pitchFrequency) {
+                    source.pitch = 1 + Random.Range(-pitchFluctuation, pitchFluctuation);
+                }
             }
             source.Stop();
             _currentSoundEffects.Remove(soundObject);
