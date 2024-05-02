@@ -620,15 +620,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7092550777980873829, guid: f31f891328f2b466ebf7d28122ba494f, type: 3}
       propertyPath: m_BackGroundColor.b
-      value: 0.4056604
+      value: 0.08627451
       objectReference: {fileID: 0}
     - target: {fileID: 7092550777980873829, guid: f31f891328f2b466ebf7d28122ba494f, type: 3}
       propertyPath: m_BackGroundColor.g
-      value: 0.38338882
+      value: 0.08627451
       objectReference: {fileID: 0}
     - target: {fileID: 7092550777980873829, guid: f31f891328f2b466ebf7d28122ba494f, type: 3}
       propertyPath: m_BackGroundColor.r
-      value: 0.35016912
+      value: 0.078431375
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7910690651486586192, guid: f31f891328f2b466ebf7d28122ba494f, type: 3}
@@ -639,37 +639,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 294537982}
   m_SourcePrefab: {fileID: 100100000, guid: f31f891328f2b466ebf7d28122ba494f, type: 3}
---- !u!1 &1635507864
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1635507865}
-  m_Layer: 0
-  m_Name: New Game Object
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1635507865
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1635507864}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2072369796
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -781,6 +750,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Global Lighting
       objectReference: {fileID: 0}
+    - target: {fileID: 1697572222538030038, guid: 76ec4a931ed2b466899049350e3c18a3, type: 3}
+      propertyPath: m_Intensity
+      value: 0.07
+      objectReference: {fileID: 0}
     - target: {fileID: 8021357033917970812, guid: 76ec4a931ed2b466899049350e3c18a3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -821,6 +794,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8037927835607358910, guid: 76ec4a931ed2b466899049350e3c18a3, type: 3}
+      propertyPath: m_Intensity
+      value: 0.12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -837,4 +814,3 @@ SceneRoots:
   - {fileID: 9058227548022102557}
   - {fileID: 249619333}
   - {fileID: 890201916}
-  - {fileID: 1635507865}
