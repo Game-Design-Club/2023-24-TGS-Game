@@ -6,6 +6,8 @@ using Game.GameManagement;
 using Game.NightLevels.Shooter;
 using Game.PlayerComponents;
 
+using Tools.Constants;
+
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -23,10 +25,6 @@ namespace Game.SecurityCamera {
         [SerializeField] private Transform rotationPoint;
         
         [SerializeField] private float shootInterval = 1f;
-        [SerializeField] private Light2D shootingSignalLight;
-        [SerializeField] private SpriteRenderer shootingSignal;
-        [SerializeField] private Color shootingColor = Color.red;
-        [SerializeField] private Color idleColor = Color.green;
         
         private Vector2 DirectionToPlayer => (Player.Instance.transform.position - transform.position).normalized;
         private bool _isShooting;
@@ -35,10 +33,15 @@ namespace Game.SecurityCamera {
         private float _currentRotation;
         private int _currentDirection;
         
+        private Animator _animator;
+        
         // Unity functions
+        private void Awake() {
+            _animator = GetComponent<Animator>();
+        }
+
         private void Start() {
-            shootingSignal.color = idleColor;
-            shootingSignalLight.color = idleColor;
+            
             
             rotateClockwise *= -1;
             _currentDirection = rotateClockwiseFirst ? -1 : 1;
@@ -116,14 +119,12 @@ namespace Game.SecurityCamera {
         
         // Internal functions
         internal void StartShooting() {
-            shootingSignal.color = shootingColor;
-            shootingSignalLight.color = shootingColor;
+            _animator.SetBool(AnimationConstants.SecurityCamera.LockedOnPlayer, true);
             _isShooting = true;
         }
         
         internal void StopShooting() {
-            shootingSignal.color = idleColor;
-            shootingSignalLight.color = idleColor;
+            _animator.SetBool(AnimationConstants.SecurityCamera.LockedOnPlayer, false);
             _isShooting = false;
         }
     }

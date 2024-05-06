@@ -61,7 +61,8 @@ namespace AppCore.AudioManagement
         public void PlaySFX(AudioClip clip, float volumeAdjustment = 0, float pitchAdjustment = 0f, float randomAdjustment = 0f,
             float spatialBlend = 0, float minDistance = 1, float maxDistance = 500,
             bool randomStartPos = false,
-            Vector2 position = default, Func<bool> stopCondition = null, Transform parent = null)
+            Vector2 position = default, Func<bool> stopCondition = null, Transform parent = null,
+            float randomPitchChange = 0f, float randomPitchFrequency = 0f)
         {
 
             SoundPackage soundPackage = ScriptableObject.CreateInstance<SoundPackage>();
@@ -75,17 +76,17 @@ namespace AppCore.AudioManagement
             soundPackage.maxDistance = maxDistance;
             soundPackage.randomStartPos = randomStartPos;
             
-            PlaySFX(soundPackage, position, stopCondition, parent);
+            PlaySFX(soundPackage, position, stopCondition, parent, randomPitchChange, randomPitchFrequency);
         }
 
-        public void PlaySFX(SoundPackage soundPackage, Vector2 position = default, Func<bool> stopCondition = null, Transform parent = null)
+        public void PlaySFX(SoundPackage soundPackage, Vector2 position = default, Func<bool> stopCondition = null, Transform parent = null, float randomPitchChange = 0f, float randomPitchFrequency = 0f)
         {
             if (soundPackage == null)
             {
                 Debug.LogWarning("SoundPackage is null.");
                 return;
             }
-            sfx.Play(soundPackage, position, stopCondition, parent);
+            sfx.Play(soundPackage, position, stopCondition, parent, randomPitchChange, randomPitchFrequency);
         }
 
         // Private functions
