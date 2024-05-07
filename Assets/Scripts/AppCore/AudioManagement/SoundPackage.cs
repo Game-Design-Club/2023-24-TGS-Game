@@ -1,8 +1,8 @@
 using UnityEngine;
 
 namespace AppCore.AudioManagement {
-    [System.Serializable]
-    public class SoundPackage {
+    [CreateAssetMenu(fileName = "Sound Package", menuName = "Sound Package")]
+    public class SoundPackage : ScriptableObject {
         [SerializeField] public AudioClip clip;
         [SerializeField] public float pitchAdjustment = 0;
         [SerializeField] public float pitchRandomness = 0;

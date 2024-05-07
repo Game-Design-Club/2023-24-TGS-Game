@@ -1,4 +1,4 @@
-using System;
+using AppCore;
 
 using Game.GameManagement.LevelManagement;
 
@@ -18,9 +18,12 @@ namespace Game.GameManagement.PauseManagement {
         }
 
         private void OnApplicationFocus(bool hasFocus) {
-            if (!hasFocus && !IsPaused) {
+#if !UNITY_EDITOR
+            if (!hasFocus && !IsPaused && !App.InputManager.LockedControls) {
                 PauseGame();
             }
+#endif
+            
         }
 
         // Public functions

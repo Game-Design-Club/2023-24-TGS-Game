@@ -1,13 +1,12 @@
 using UnityEngine;
 
 using AppCore.AudioManagement;
+using AppCore.DialogueManagement;
 using AppCore.Data_Management;
 using AppCore.InputManagement;
 using AppCore.ParticleManagement;
 using AppCore.SceneManagement;
 using AppCore.TransitionManagement;
-
-using UnityEditor;
 
 using UnityEngine.Serialization;
 
@@ -18,12 +17,13 @@ namespace AppCore {
         // (for example main menu, game, even credits, etc.)
         // Consolidates singleton patterns into one place so there aren't instance checks in every script
         private static App s_instance;
-
+        
         [SerializeField] private AudioManager audioManager;
         [SerializeField] private InputManager inputManager;
         [SerializeField] private SceneManager sceneManager;
         [FormerlySerializedAs("fadeManager")] [SerializeField] private TransitionManager transitionManager;
         [SerializeField] private PlayerDataManager playerDataManager;
+        [FormerlySerializedAs("cutsceneManager")] [SerializeField] private DialogueManager dialogueManager;
         [SerializeField] private ParticleManager particleManager;
 
         public static AudioManager AudioManager => s_instance.audioManager;
@@ -32,6 +32,7 @@ namespace AppCore {
         public static TransitionManager TransitionManager => s_instance.transitionManager;
         public static PlayerDataManager PlayerDataManager => s_instance.playerDataManager;
         public static ParticleManager ParticleManager => s_instance.particleManager;
+        public static DialogueManager DialogueManager => s_instance.dialogueManager;
         
         private void Awake() {
             // Sets up singleton pattern

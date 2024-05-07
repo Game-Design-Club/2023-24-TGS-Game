@@ -211,26 +211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef01502c1455497a800e91cd1ba3bc58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverSound:
-    clip: {fileID: 8300000, guid: 6fb3dd94fc417429684ed956f3a05152, type: 3}
-    pitchAdjustment: 1.13
-    pitchRandomness: 0
-    volumeAdjustment: 0
-    spatialBlend: 0
-    rolloffMode: 0
-    minDistance: 0
-    maxDistance: 0
-    randomStartPos: 0
-  clickSound:
-    clip: {fileID: 8300000, guid: 6fb3dd94fc417429684ed956f3a05152, type: 3}
-    pitchAdjustment: 0
-    pitchRandomness: 0
-    volumeAdjustment: 0.5
-    spatialBlend: 0
-    rolloffMode: 0
-    minDistance: 0
-    maxDistance: 0
-    randomStartPos: 0
+  hoverSound: {fileID: 11400000, guid: d44be65bba00148e7a1da989fd7dc44e, type: 2}
+  clickSound: {fileID: 11400000, guid: 35c7cb9b74cd8400ca23cb5caa311c55, type: 2}
 --- !u!114 &4331331110184148096
 MonoBehaviour:
   m_ObjectHideFlags: 0

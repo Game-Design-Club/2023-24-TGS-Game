@@ -28,5 +28,9 @@ namespace Tools.Constants {
             public const string ShowOptions = "Show Options";
             public const string HideOptions = "Show Main";
         }
+
+        public static class SecurityCamera {
+            public const string LockedOnPlayer = "Locked On Player";
+        }
     }
 }
