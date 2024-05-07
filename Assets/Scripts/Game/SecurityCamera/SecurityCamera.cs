@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Security;
 
 using Game.GameManagement;
 using Game.NightLevels.Shooter;
@@ -9,7 +7,6 @@ using Game.PlayerComponents;
 using Tools.Constants;
 
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 namespace Game.SecurityCamera {
     public class SecurityCamera : MonoBehaviour {

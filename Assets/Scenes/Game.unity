@@ -520,6 +520,52 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
+--- !u!1 &958606193
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 958606194}
+  - component: {fileID: 958606195}
+  m_Layer: 0
+  m_Name: Ambient Sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &958606194
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958606193}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &958606195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958606193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6af6765a72a61475eae1e6a38e3b7cfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ambienceSounds:
+  - {fileID: 11400000, guid: eede4bd982c644b7abd8cbd2d66db4f7, type: 2}
 --- !u!1001 &1004388677
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -571,6 +617,18 @@ PrefabInstance:
     - target: {fileID: 4333491519821276949, guid: f31f891328f2b466ebf7d28122ba494f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7092550777980873829, guid: f31f891328f2b466ebf7d28122ba494f, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.08627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 7092550777980873829, guid: f31f891328f2b466ebf7d28122ba494f, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.08627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 7092550777980873829, guid: f31f891328f2b466ebf7d28122ba494f, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.078431375
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7910690651486586192, guid: f31f891328f2b466ebf7d28122ba494f, type: 3}
@@ -649,10 +707,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 7778564107128079809, guid: f7dd0f4d07d3445a18315844fd95adef, type: 3}
-      propertyPath: customFirstLevel
-      value: 
-      objectReference: {fileID: 3097709272963436881, guid: dd0740dd95d374e4192f7cecbcda89e7, type: 3}
     - target: {fileID: 8166390087522240723, guid: f7dd0f4d07d3445a18315844fd95adef, type: 3}
       propertyPath: ambienceSounds.Array.data[0]
       value: 
@@ -696,6 +750,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Global Lighting
       objectReference: {fileID: 0}
+    - target: {fileID: 1697572222538030038, guid: 76ec4a931ed2b466899049350e3c18a3, type: 3}
+      propertyPath: m_Intensity
+      value: 0.07
+      objectReference: {fileID: 0}
     - target: {fileID: 8021357033917970812, guid: 76ec4a931ed2b466899049350e3c18a3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -736,6 +794,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8037927835607358910, guid: 76ec4a931ed2b466899049350e3c18a3, type: 3}
+      propertyPath: m_Intensity
+      value: 0.02
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -748,6 +810,7 @@ SceneRoots:
   - {fileID: 1004388677}
   - {fileID: 612358}
   - {fileID: 2072369796}
+  - {fileID: 958606194}
   - {fileID: 9058227548022102557}
   - {fileID: 249619333}
   - {fileID: 890201916}

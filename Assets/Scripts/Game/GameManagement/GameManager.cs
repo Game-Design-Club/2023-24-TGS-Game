@@ -9,7 +9,6 @@ using UnityEngine;
 
 namespace Game.GameManagement {
     public class GameManager : MonoBehaviour { // Manages the essential game functions, proxies to other managers
-        [SerializeField] private SoundPackage[] ambienceSounds;
         private LevelManager _levelManager;
 
         private static GameManager s_instance;
@@ -35,9 +34,6 @@ namespace Game.GameManagement {
         private void Start() {
             _levelManager.LoadSavedLevel();
             App.AudioManager.musicPlayer.PlayGameMusic();
-            foreach (SoundPackage soundPackage in ambienceSounds) {
-                App.AudioManager.PlaySFX(soundPackage, parent: transform);
-            }
         }
 
         private void OnDestroy() {
