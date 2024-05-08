@@ -9,18 +9,21 @@ namespace Game.Day_Levels.Robots
     public class Robot : MonoBehaviour, IComparable<Robot>
     {
         private static float _hardStopDistance = 1f;
+        [Range(0, 1)]
+        private static float _distanceImpact = 0.5f; 
         [SerializeField] private LayerMask layerMask;
         public RobotPath path;
         [HideInInspector] public float dstAlongPath = 0;
         [HideInInspector]public RobotPathPoint destination;
-        [HideInInspector]public float velocity;
-        [FormerlySerializedAs("ideaDst")] public float idealDst;
+        [HideInInspector] public float velocity;
+        public float idealDst;
 
         public float distanceUntilCollision = 0;
 
         private void OnEnable()
         {
             RobotPath.SegmentInfo currentSegment = path.GetSegment(dstAlongPath);
+            velocity = currentSegment.Speed;
             UpdatePosition(currentSegment);
         }
 
@@ -32,7 +35,15 @@ namespace Game.Day_Levels.Robots
             
             UpdatePosition(currentSegment);
             
-            velocity = distanceUntilCollision < _hardStopDistance && distanceUntilCollision < Vector2.Distance(transform.position, destination.position) ? 0 : currentSegment.Speed;
+            float idealVelocity = distanceUntilCollision < _hardStopDistance && distanceUntilCollision < Vector2.Distance(transform.position, destination.position) ? 0 : currentSegment.Speed;
+
+            float dst = idealDst - dstAlongPath;
+            float backDst = Math.Abs(path.length - Math.Abs(dst)) * (dst / Math.Abs(dst));
+            if (Mathf.Abs(backDst) < Math.Abs(dst)) dst = backDst;
+
+            idealVelocity *= VeloMult(dst);
+
+            velocity = Mathf.Lerp(velocity, idealVelocity, 0.5f);
 
             dstAlongPath = (dstAlongPath + velocity * Time.deltaTime) % path.length;
             
@@ -42,11 +53,17 @@ namespace Game.Day_Levels.Robots
 
         }
 
+        public float VeloMult(float dst)
+        {
+            return 1f / (1 + Mathf.Exp(-_distanceImpact * dst)) + 0.5f;
+        }
+
         public void UpdatePosition(RobotPath.SegmentInfo currentSegment)
         {
             float percent = (dstAlongPath - currentSegment.StartDstFromStart) / currentSegment.Length;
             transform.position = Vector2.Lerp(currentSegment.Start.position, currentSegment.End.position, percent);
             destination = currentSegment.End;
+            
         }
         
         private void CalculateDistanceTillCollision()

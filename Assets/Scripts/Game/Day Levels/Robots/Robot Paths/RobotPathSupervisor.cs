@@ -35,24 +35,58 @@ namespace Game.Day_Levels.Robots.Robot_Paths
             robots.Sort();
             idealPositions.Sort();
 
-            float distanceFromIdealAhead = 0f;
-            float distanceFromIdealBehind = 0f;
-            for (int i = 0; i < robots.Count; i++)
+            float smallestDistance = float.PositiveInfinity;
+            int smallestIndexShift = 0;
+            for (int indexShift = 0; indexShift < idealPositions.Count; indexShift++)
             {
-                distanceFromIdealAhead += Mathf.Abs(idealPositions[i] - robots[i].dstAlongPath);
-                distanceFromIdealBehind += Mathf.Abs(idealPositions[(i - 1 + idealPositions.Count) % idealPositions.Count] - robots[i].dstAlongPath);
-            }
+                float totalDistance = 0;
+                for (int robotIndex = 0; robotIndex < robots.Count; robotIndex++)
+                {
+                    float dst = Distance(robots[robotIndex].dstAlongPath,
+                        idealPositions[(robotIndex + indexShift) % idealPositions.Count]);
+                    totalDistance += Mathf.Min(dst, path.length - dst);
+                }
 
-            int indexAdjustment = distanceFromIdealAhead < distanceFromIdealBehind ? 0 : -1;
+                if (totalDistance < smallestDistance)
+                {
+                    smallestDistance = totalDistance;
+                    smallestIndexShift = indexShift;
+                }
+            }
             
             for (int i = 0; i < robots.Count; i++)
             {
                 robots[i].idealDst =
-                    idealPositions[(i + indexAdjustment + idealPositions.Count) % idealPositions.Count];
+                    idealPositions[(i + smallestIndexShift) % idealPositions.Count];
             }
+            
+            
+            
+            // float distanceFromIdealAhead = 0f;
+            // float distanceFromIdealBehind = 0f;
+            // for (int i = 0; i < robots.Count; i++)
+            // {
+            //     float distance = Distance(idealPositions[i])
+            //     distanceFromIdealAhead += Mathf.Abs(idealPositions[i] - robots[i].dstAlongPath);
+            //     distanceFromIdealBehind += Mathf.Abs(idealPositions[(i - 1 + idealPositions.Count) % idealPositions.Count] - robots[i].dstAlongPath);
+            // }
+            //
+            // int indexAdjustment = distanceFromIdealAhead < distanceFromIdealBehind ? 0 : -1;
+            //
+            // for (int i = 0; i < robots.Count; i++)
+            // {
+            //     robots[i].idealDst =
+            //         idealPositions[(i + indexAdjustment + idealPositions.Count) % idealPositions.Count];
+            // }
 
 
         }
+
+        private float Distance(float distance1, float distance2)
+        {
+            return Mathf.Abs(distance2 - distance1);
+        }
+        
 
         private void OnValidate()
         {
