@@ -137,7 +137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 267167379355769458, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 891431416452087449, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
       propertyPath: m_FirstSelected
@@ -172,6 +172,18 @@ PrefabInstance:
       value: 'Exit
 
 '
+      objectReference: {fileID: 0}
+    - target: {fileID: 4857571421127903220, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 3e6e87c8795df46af88b89f798cc6371, type: 2}
+    - target: {fileID: 4857571421127903220, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4857571421127903220, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5927670023582203067, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
       propertyPath: m_ReferenceResolution.x

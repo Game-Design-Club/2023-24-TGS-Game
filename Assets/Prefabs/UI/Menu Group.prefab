@@ -271,12 +271,16 @@ PrefabInstance:
       value: Options
       objectReference: {fileID: 0}
     - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -284,11 +288,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetTrigger
+      value: ShowOptions
       objectReference: {fileID: 0}
     - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.Animator, UnityEngine
+      value: Main_Menu.MainMenuManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
@@ -302,11 +306,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5883375144565615615, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_fontSize
-      value: 70
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 5883375144565615615, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_fontSizeBase
-      value: 70
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 5883375144565615615, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_fontColor32.rgba
@@ -414,6 +418,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: Play Button
       objectReference: {fileID: 0}
+    - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Main_Menu.MainMenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5883375144565615615, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
+      propertyPath: m_fontSize
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 5883375144565615615, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 55
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -517,7 +557,15 @@ PrefabInstance:
       value: Quit
       objectReference: {fileID: 0}
     - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
@@ -530,11 +578,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5883375144565615615, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_fontSize
-      value: 70
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 5883375144565615615, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_fontSizeBase
-      value: 70
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 5883375144565615615, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_fontColor32.rgba
@@ -643,8 +691,16 @@ PrefabInstance:
       value: Credits
       objectReference: {fileID: 0}
     - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4356895834800113740, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -658,11 +714,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5883375144565615615, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_fontSize
-      value: 70
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 5883375144565615615, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_fontSizeBase
-      value: 70
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 5883375144565615615, guid: 80baeacf9481b4a9198e9c0f97e2e4b6, type: 3}
       propertyPath: m_fontColor32.rgba
