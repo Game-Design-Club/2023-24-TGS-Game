@@ -35,7 +35,7 @@ namespace AppCore.DialogueManagement {
         
         // Public functions
         public void TriggerDialogue() {
-            if (triggerOnce && _hasTriggered) return;
+            if ((triggerOnce && _hasTriggered) || App.PlayerDataManager.HasTriggeredDialogue(dialogue)) return;
             App.DialogueManager.StartDialogue(dialogue);
             _hasTriggered = true;
         }

@@ -94,10 +94,8 @@ namespace AppCore.AudioManagement
         }
 
         //Stops and deletes all sfx
-        public void StopAll()
-        {
-            foreach (GameObject source in _currentSoundEffects)
-            {
+        public void StopAll() {
+            foreach (GameObject source in _currentSoundEffects) {
                 source.GetComponent<AudioSource>().Stop();
                 Destroy(source);
             }

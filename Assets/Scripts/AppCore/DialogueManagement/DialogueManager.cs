@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 
 using AppCore.AudioManagement;
 
@@ -71,6 +72,8 @@ namespace AppCore.DialogueManagement {
                 _shouldContinue = false;
                 App.AudioManager.PlaySFX(continueSound);
             }
+
+            App.PlayerDataManager.DialogueCompleted(_currentDialogue);
             _currentDialogue = null;
             dialogueBox.SetActive(false);
             App.InputManager.UnlockPlayerControls(this);
