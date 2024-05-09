@@ -1,3 +1,5 @@
+using System;
+
 using AppCore;
 
 using Game.GameManagement.UIManagement;
@@ -14,17 +16,27 @@ namespace Main_Menu {
         [SerializeField] private EventSystemManager eventSystemManager;
         [SerializeField] private GameObject defaultButton;
         [SerializeField] private GameObject defaultOptionsButton;
+        [SerializeField] private GameObject defaultConfirmButton;
         
         [SerializeField] private Checkbox sfxToggle;
         [SerializeField] private Checkbox musicToggle;
         
         private bool _freeze = false;
+        private CurrentMenu _currentMenu = CurrentMenu.Main;
         
         // Unity functions
         private void Start() {
             SetSFXToggle(App.PlayerDataManager.AreSFXOn);
             SetMusicToggle(App.PlayerDataManager.IsMusicOn);
             App.AudioManager.musicPlayer.PlayMainMenuMusic();
+        }
+
+        private void OnEnable() {
+            App.InputManager.OnCancel += OnCancel;
+        }
+
+        private void OnDisable() {
+            App.InputManager.OnCancel -= OnCancel;
         }
 
         // Public functions
@@ -54,12 +66,6 @@ namespace Main_Menu {
             Application.Quit();
         }
         
-        public void EraseProgress() {
-            if (_freeze) return;
-            
-            App.PlayerDataManager.EraseLevelProgress();
-        }
-        
         public void SetSFXToggle(bool value) {
             if (_freeze) return;
             
@@ -83,6 +89,8 @@ namespace Main_Menu {
             
             eventSystemManager.SetSelectedGameObject(defaultOptionsButton);
             menuAnimator.SetTrigger(AnimationConstants.MainMenu.ShowOptions);
+            
+            _currentMenu = CurrentMenu.Options;
         }
         
         public void HideOptions() {
@@ -90,6 +98,57 @@ namespace Main_Menu {
             
             eventSystemManager.SetSelectedGameObject(defaultButton);
             menuAnimator.SetTrigger(AnimationConstants.MainMenu.HideOptions);
+            
+            _currentMenu = CurrentMenu.Main;
         }
+        
+        public void ShowConfirm() {
+            if (_freeze) return;
+            
+            eventSystemManager.SetSelectedGameObject(defaultConfirmButton);
+            menuAnimator.SetTrigger(AnimationConstants.MainMenu.ShowConfirm);
+            
+            _currentMenu = CurrentMenu.Confirm;
+        }
+
+        public void HideConfirmDeleted() {
+            if (_freeze) return;
+            
+            App.PlayerDataManager.EraseLevelProgress();
+            HideConfirm();
+        }
+
+        public void HideConfirmBailed() {
+            if (_freeze) return;
+            
+            HideConfirm();
+        }
+        
+        // Private functions
+        private void HideConfirm() {
+            eventSystemManager.SetSelectedGameObject(defaultOptionsButton);
+            menuAnimator.SetTrigger(AnimationConstants.MainMenu.HideConfirm);
+            
+            _currentMenu = CurrentMenu.Options;
+        }
+
+        private void OnCancel() {
+            switch (_currentMenu) {
+                case CurrentMenu.Main:
+                    break;
+                case CurrentMenu.Options:
+                    HideOptions();
+                    break;
+                case CurrentMenu.Confirm:
+                    HideConfirm();
+                    break;
+            }
+        }
+    }
+    
+    enum CurrentMenu {
+        Main,
+        Options,
+        Confirm
     }
 }

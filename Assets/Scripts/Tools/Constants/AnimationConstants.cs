@@ -27,6 +27,8 @@ namespace Tools.Constants {
         public static class MainMenu {
             public const string ShowOptions = "Show Options";
             public const string HideOptions = "Show Main";
+            public const string ShowConfirm = "Show Confirm";
+            public const string HideConfirm = "Hide Confirm";
         }
 
         public static class SecurityCamera {
