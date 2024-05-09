@@ -1,3 +1,8 @@
+using System;
+using System.Collections.Generic;
+
+using AppCore.DialogueManagement;
+
 using UnityEngine;
 
 namespace AppCore.Data_Management {
@@ -45,7 +50,19 @@ namespace AppCore.Data_Management {
             }
         }
         
+        private HashSet<String> _dialogueKeys = new HashSet<String>();
+        
         // Public functions
+        public void DialogueCompleted(Dialogue dialogue) {
+            PlayerPrefs.SetInt(PlayerDataKeys.Dialogue + dialogue.dialogueKey, 1);
+            PlayerPrefs.Save();
+            _dialogueKeys.Add(dialogue.dialogueKey);
+        }
+        
+        public bool HasTriggeredDialogue(Dialogue dialogue) {
+            return PlayerPrefs.GetInt(PlayerDataKeys.Dialogue + dialogue.dialogueKey, 0) == 1;
+        }
+        
         public void LastLevelCompleted(int index) {
             LastCompletedLevelIndex = index;
         }
@@ -53,9 +70,13 @@ namespace AppCore.Data_Management {
         public void EraseLevelProgress() { // Only erases the level progress
             PlayerPrefs.DeleteKey(PlayerDataKeys.Levels);
             PlayerPrefs.DeleteKey(PlayerDataKeys.TutorialHasInteracted);
+            foreach (String key in _dialogueKeys) {
+                PlayerPrefs.DeleteKey(PlayerDataKeys.Dialogue + key);
+            }
             PlayerPrefs.Save();
         }
         
+        [ContextMenu("Erase All Data")]
         public void EraseAllData() { // Erases all player data
             PlayerPrefs.DeleteAll();
             PlayerPrefs.Save();

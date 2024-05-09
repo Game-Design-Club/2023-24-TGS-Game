@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -8,6 +9,7 @@ namespace AppCore.DialogueManagement {
     [CreateAssetMenu(fileName = "New Dialogue", menuName = "Dialogue")]
     public class Dialogue : ScriptableObject, IEnumerable<DialogueChunk> {
         [SerializeField] internal DialogueChunk[] dialogueChunks;
+        [SerializeField] public String dialogueKey;
         
         private int _currentChunkIndex;
         
