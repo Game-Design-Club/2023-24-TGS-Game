@@ -3,14 +3,15 @@ using System.Collections;
 using Game.GameManagement;
 
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.NightLevels.Spikes {
-    public class Spike : MonoBehaviour {
+    public class Spike : MonoBehaviour { // Spike that turns on and off periodically
         [SerializeField] private GameObject spikesOn;
         [SerializeField] private GameObject spikesOff;
         [SerializeField] private float offDuration = 1f;
         [SerializeField] private float onDuration = 1f;
-        [SerializeField] private float delay = 0f;
+        [FormerlySerializedAs("delay")] [SerializeField] private float startDelay = 0f;
 
         // Unity functions
         private void OnEnable() {
@@ -35,7 +36,8 @@ namespace Game.NightLevels.Spikes {
         private IEnumerator SpikeRoutine() {
             spikesOn.SetActive(true);
             spikesOff.SetActive(false);
-            yield return new WaitForSeconds(delay);
+            yield return new WaitForSeconds(startDelay);
+            // Main loop
             while (true) {
                 spikesOn.SetActive(true);
                 spikesOff.SetActive(false);

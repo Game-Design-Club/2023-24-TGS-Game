@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace AppCore.AudioManagement
 {
-    public class AudioManagementTester : Tester
-    {
+    public class AudioManagementTester : Tester { // This class is used to test the AudioManager and MusicManager classes
+        
         private AudioManager _audioManager;
 
         public AudioClip oogaSFX;
@@ -13,13 +13,13 @@ namespace AppCore.AudioManagement
         public Music pianoMusic;
 
         private void Awake() {
-            _audioManager = App.Instance.audioManager;
+            _audioManager = App.AudioManager;
         }
 
         [ContextMenu("Play Oooga")]
         void PlayOoga()
         {
-            _audioManager.sfx.Play(oogaSFX);
+            _audioManager.PlaySFX(oogaSFX);
             DebugLog("Playing Oooga");
             
         }

@@ -3,7 +3,10 @@ using System;
 using UnityEngine;
 
 namespace Game.GeneralGameObjects {
-    public class MatchRaycastGameobjectLength : MonoBehaviour{
+    public class MatchRaycastGameobjectLength : MonoBehaviour {
+        // Matches the length of the game objects to the raycast length
+        // Used for things like lasers or fans that need to continue until they hit a wall
+        
         [SerializeField] private float maxDistance = Single.PositiveInfinity;
         [SerializeField] private GameObject[] gameObjectsToMatchLength;
         [SerializeField] private LayerMask layerMask;

@@ -10,6 +10,9 @@ using UnityEngine;
 
 namespace Credits {
     public class CreditsScroller : MonoBehaviour {
+        // Manages the creation and scrolling of the credits, based on the CreditsAsset
+        // Automatically scrolls the credits up the screen, and displays a thank you message when the credits are done
+        
         [SerializeField] private CreditsAsset creditsAsset;
         [SerializeField] private GameObject sectionTitlePrefab;
         [SerializeField] private GameObject personNamePrefab;
@@ -25,11 +28,11 @@ namespace Credits {
 
         // Unity functions
         private void OnEnable() {
-            App.Instance.inputManager.OnCancel += OnCancelPressed;
+            App.InputManager.OnCancel += OnCancelPressed;
         }
 
         private void OnDisable() {
-            App.Instance.inputManager.OnCancel -= OnCancelPressed;
+            App.InputManager.OnCancel -= OnCancelPressed;
         }
 
         private void Start() {
@@ -49,8 +52,6 @@ namespace Credits {
 
         // Private functions
         private void SetupCredits() {
-            RectTransform parentTransform = creditsParentObject.GetComponent<RectTransform>();
-            float canvasHeight = parentTransform.rect.height;
             float currentY = 0f;
             float creditsHeight = 0f;
             
@@ -82,12 +83,12 @@ namespace Credits {
         
         private void OnCancelPressed() {
             if (_freeze) return;
-            App.Instance.sceneManager.LoadScene(SceneConstants.MainMenu, true);
+            App.SceneManager.LoadScene(SceneConstants.MainMenu, true);
             _freeze = true;
         }
 
         private void ShowThankYou() {
-            App.Instance.transitionManager.FadeOut();
+            App.TransitionManager.FadeOut();
             creditsParentObject.SetActive(false);
             thankYouObject.SetActive(true);
         }

@@ -1,3 +1,6 @@
+using AppCore;
+using AppCore.AudioManagement;
+
 using Game.GameManagement;
 using Game.NightLevels;
 
@@ -7,6 +10,10 @@ using UnityEngine;
 
 namespace Game.PlayerComponents {
     public class PlayerInteractions : MonoBehaviour {
+        // Handles interactions between player and other essential game objects
+        // Ex. things that kill player, advance level, etc.
+        [SerializeField] private SoundPackage dieSound;
+        
         private bool _interactionsOn = false;
         private PlayerAnimator _playerAnimator;
         
@@ -29,14 +36,15 @@ namespace Game.PlayerComponents {
             if (!_interactionsOn) return;
             switch (other.gameObject.tag) {
                 case TagConstants.Oucher:
-                    GameManager.PlayerDiedStatic();
+                    GameManager.PlayerDied();
                     _playerAnimator.PlayDeathAnimation();
+                    App.AudioManager.PlaySFX(dieSound);
                     if (other.TryGetComponent(out Oucher oucher)) {
                         oucher.KilledPlayer();
                     }
                     break;
                 case TagConstants.Goal:
-                    GameManager.LevelCompletedStatic();
+                    GameManager.LevelCompleted();
                     break;
             }
         }

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 687f457948424e3292d890f1d82d749e, type: 3}
+  m_Name: Test Convo
+  m_EditorClassIdentifier: 
+  dialogueChunks:
+  - character: {fileID: 11400000, guid: b0b1809ef2de3454088762d975322194, type: 2}
+    text: Hi Joe wassup bro
+  - character: {fileID: 11400000, guid: 7942a6c829fb348bbb4b5ec0d259dba9, type: 2}
+    text: ayo what u doin here bob
+  - character: {fileID: 11400000, guid: b0b1809ef2de3454088762d975322194, type: 2}
+    text: idk man just chillin
+  - character: {fileID: 11400000, guid: b0b1809ef2de3454088762d975322194, type: 2}
+    text: I got a new bike recently that's pretty cool
+  - character: {fileID: 11400000, guid: 7942a6c829fb348bbb4b5ec0d259dba9, type: 2}
+    text: omg nice job bud I'm so proud of you
+  - character: {fileID: 11400000, guid: 3936195c0f2f148f9a8246565d8c6380, type: 2}
+    text: Teehee
+  dialogueKey: Test convo

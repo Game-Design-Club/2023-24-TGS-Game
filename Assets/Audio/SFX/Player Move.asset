@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4eed14527624ceeac1d5781834121c0, type: 3}
+  m_Name: Player Move
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: e86cb40c4f7c94cdf8414c264c8c336e, type: 3}
+  pitchAdjustment: 0
+  pitchRandomness: 0
+  volumeAdjustment: -0.6
+  spatialBlend: 0
+  rolloffMode: 0
+  minDistance: 0
+  maxDistance: 0
+  randomStartPos: 0

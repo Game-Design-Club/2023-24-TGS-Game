@@ -7,7 +7,7 @@ using Tools.Constants;
 using UnityEngine;
 
 namespace Game.NightLevels.FanBlower {
-    public class FanTrigger : MonoBehaviour {
+    public class FanTrigger : MonoBehaviour { // Trigger for the fan to detect the player
         internal event Action<Player> PlayerEntered;
         internal event Action PlayerExited;
 

@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb6572a1a0874f5ab4de35ac4c1290fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstLevel: {fileID: 3721227100662698277, guid: a60fcc7bf7e0f47c3bf276a64250be44, type: 3}
+  levelsData: {fileID: 11400000, guid: 29559b07579c74ec2b6f5970979cf3c3, type: 2}
   customFirstLevel: {fileID: 0}
 --- !u!1 &6302996255836281009
 GameObject:
@@ -90,51 +90,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2fe168dd3a94d32b881d5dc398d8ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &6476541790047957813
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9000524944467884802}
-  - component: {fileID: 3246141106363863821}
-  m_Layer: 0
-  m_Name: Particle Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &9000524944467884802
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6476541790047957813}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4031011761044853873}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3246141106363863821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6476541790047957813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd4566b0548a467ea1d5bf3856466003, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particleParent: {fileID: 9000524944467884802}
 --- !u!1 &6819718020597449690
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,7 +172,6 @@ Transform:
   - {fileID: 7420374155525780646}
   - {fileID: 1810601028992395081}
   - {fileID: 3863196184692656137}
-  - {fileID: 9000524944467884802}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8166390087522240723
@@ -232,3 +186,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af89e1f77a714e3c823243aa8a7e716e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ambienceSounds:
+  - clip: {fileID: 8300000, guid: 64f10fd89b8f84b8cb2f587e4ce7ae05, type: 3}
+    pitchAdjustment: 0.2
+    pitchRandomness: 0
+    volumeAdjustment: -0.9
+    spatialBlend: 0
+    rolloffMode: 0
+    minDistance: 0
+    maxDistance: 0
+    randomStartPos: 0

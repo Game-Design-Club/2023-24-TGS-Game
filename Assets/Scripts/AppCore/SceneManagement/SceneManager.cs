@@ -1,16 +1,18 @@
+using System;
 using System.Collections;
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace AppCore.SceneManagement {
-    public class SceneManager : MonoBehaviour {
+    public class SceneManager : MonoBehaviour { // Manages scene loading and transitions
+        public Action onSceneChange;
         
-        public void ReloadScene(bool fade = true) {
+        public void ReloadScene(bool fade = true) { // Reloads the current scene
             LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex, fade);
         }
         
-        public void LoadScene(int sceneIndex, bool fade = true) {
+        public void LoadScene(int sceneIndex, bool fade = true) { // Loads a scene by index
             if (!Application.CanStreamedLevelBeLoaded(sceneIndex)) {
                 Debug.LogError("Scene " + sceneIndex + " does not exist" +
                                "\n" +
@@ -20,19 +22,20 @@ namespace AppCore.SceneManagement {
             StartCoroutine(LoadSceneWithFade(sceneIndex, fade));
         }
 
-        private IEnumerator LoadSceneWithFade(int sceneIndex, bool fade) {
+        private IEnumerator LoadSceneWithFade(int sceneIndex, bool fade) { // Coroutine to load a scene with a fade transition
             if (fade) {
-                App.Instance.transitionManager.FadeIn();
+                App.TransitionManager.FadeIn();
             }
 
             if (fade) {
-                yield return new WaitForSecondsRealtime(App.Instance.transitionManager.fadeTime);
+                yield return new WaitForSecondsRealtime(App.TransitionManager.fadeTime);
             }
             
-            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Single);
-
+            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
+            onSceneChange?.Invoke();
+            Time.timeScale = 1;
             if (fade) {
-                App.Instance.transitionManager.FadeOut();
+                App.TransitionManager.FadeOut();
             }
         }
     }

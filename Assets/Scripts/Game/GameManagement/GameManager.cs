@@ -1,6 +1,5 @@
-using System;
-
 using AppCore;
+using AppCore.AudioManagement;
 
 using Game.GameManagement.LevelManagement;
 
@@ -9,11 +8,13 @@ using Tools.Constants;
 using UnityEngine;
 
 namespace Game.GameManagement {
-    public class GameManager : MonoBehaviour{
-        
+    public class GameManager : MonoBehaviour { // Manages the essential game functions, proxies to other managers
         private LevelManager _levelManager;
 
         private static GameManager s_instance;
+        
+        private bool _freeze = false;
+        
         // Unity functions
         private void Awake() {
             if (s_instance is null) {
@@ -30,16 +31,9 @@ namespace Game.GameManagement {
             }
         }
 
-        private void OnEnable() {
-            _levelManager.OnLevelLoaded += GameStart;
-        }
-        
-        private void OnDisable() {
-            _levelManager.OnLevelLoaded -= GameStart;
-        }
-
         private void Start() {
-            _levelManager.LoadFirstLevel();
+            _levelManager.LoadSavedLevel();
+            App.AudioManager.musicPlayer.PlayGameMusic();
         }
 
         private void OnDestroy() {
@@ -48,36 +42,52 @@ namespace Game.GameManagement {
             }
         }
 
-        // Public functions
-        public void GameStart() {
-            GameManagerEvents.InvokeLevelStart();
+        private void OnEnable() {
+            GameManagerEvents.OnLevelStart += OnLevelStart;
         }
         
-        public void PlayerDied() {
+        private void OnDisable() {
+            GameManagerEvents.OnLevelStart -= OnLevelStart;
+        }
+        
+        // Private functions
+        private void InternalPlayerDied() {
             RestartLevel();
         }
         
-        public void RestartLevel() {
-            _levelManager.RestartLevel();
-            GameManagerEvents.InvokeLevelOver();
-        }
-        
-        public void LevelCompleted() {
+        private void InternalLevelCompleted() {
             _levelManager.LoadNextLevel();
             GameManagerEvents.InvokeLevelOver();
         }
         
+        // Public functions
+        
+        public void RestartLevel() {
+            if (_freeze) return;
+            _freeze = true;
+            
+            _levelManager.RestartLevel();
+            GameManagerEvents.InvokeLevelOver();
+        }
+        
         public void QuitToMainMenu() {
-            App.Instance.sceneManager.LoadScene(SceneConstants.MainMenu);
+            if (_freeze) return;
+            _freeze = true;
+            
+            App.SceneManager.LoadScene(SceneConstants.MainMenu);
+        }
+        
+        private void OnLevelStart() {
+            _freeze = false;
         }
         
         // Static functions
-        public static void PlayerDiedStatic() {
-            s_instance.PlayerDied();
+        public static void PlayerDied() {
+            s_instance.InternalPlayerDied();
         }
         
-        public static void LevelCompletedStatic() {
-            s_instance.LevelCompleted();
+        public static void LevelCompleted() {
+            s_instance.InternalLevelCompleted();
         }
     }
 }

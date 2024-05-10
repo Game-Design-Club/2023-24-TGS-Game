@@ -3,7 +3,7 @@ using Tools.Constants;
 using UnityEngine;
 
 namespace AppCore.TransitionManagement {
-    public class TransitionManager : MonoBehaviour {
+    public class TransitionManager : MonoBehaviour { // Manages transitions between scenes with fun animations
         [SerializeField] public float fadeTime = 2f;
         [SerializeField] public float wipeTime = 1.5f;
         

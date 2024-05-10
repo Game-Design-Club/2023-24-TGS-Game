@@ -4,8 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Audio;
 
-namespace AppCore.AudioManagement
-{
+namespace AppCore.AudioManagement { // This class is used to store the music objects in the game
     [CreateAssetMenu(fileName = "Music", menuName = "Music", order = 1)]
     public class Music : ScriptableObject
     {
@@ -16,6 +15,7 @@ namespace AppCore.AudioManagement
 
         private void OnValidate()
         {
+            
             //Check to make sure the music is currently activated
             if (!Application.isPlaying || !_sourcesAdded) return;
             
@@ -49,7 +49,7 @@ namespace AppCore.AudioManagement
 
                     if (found) continue;
                     
-                    AudioManager.Instance.music.RemoveSource(source);
+                    App.AudioManager.music.RemoveSource(source);
                     Sources.RemoveAt(i);
                 }
                 ReSink();
@@ -89,7 +89,7 @@ namespace AppCore.AudioManagement
         //Creates a new source and integrates track into it
         private AudioSource CreateSource(Track track)
         {
-            AudioSource source = AudioManager.Instance.music.GetNewSource();
+            AudioSource source = App.AudioManager.music.GetNewSource();
             source.playOnAwake = false;
             source.clip = track.clip;
             source.volume = track.clipVolume;
@@ -102,7 +102,7 @@ namespace AppCore.AudioManagement
         {
             foreach (AudioSource source in Sources)
             {
-                AudioManager.Instance.music.RemoveSource(source);
+                App.AudioManager.music.RemoveSource(source);
             }
 
             _sourcesAdded = false;

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3961a5128fcd946e694441aeba440c25, type: 3}
+  m_Name: Game Mix
+  m_EditorClassIdentifier: 
+  tracks:
+  - clip: {fileID: 8300000, guid: ec73e7afcf2ca446caf9251e13587fe7, type: 3}
+    clipVolume: 1
+  - clip: {fileID: 8300000, guid: d561af82c44d64f3283b9fb291776262, type: 3}
+    clipVolume: 1
+  - clip: {fileID: 8300000, guid: 30a7cf082c86c4303826719bb56ed1b7, type: 3}
+    clipVolume: 1
+  - clip: {fileID: 8300000, guid: 00a7353d23ded47a08894dd5f2314b40, type: 3}
+    clipVolume: 1
+  - clip: {fileID: 8300000, guid: e38be2c4a1c514eb3982d0198053d6aa, type: 3}
+    clipVolume: 1

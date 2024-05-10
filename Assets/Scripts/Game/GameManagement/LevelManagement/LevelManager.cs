@@ -7,46 +7,54 @@ using AppCore.TransitionManagement;
 using Tools.Constants;
 
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.GameManagement.LevelManagement {
-    public class LevelManager : MonoBehaviour {
-        [SerializeField] private Level firstLevel;
+    public class LevelManager : MonoBehaviour { // Manages the levels in the game, loading them and keeping track of the current level
+        [SerializeField] private LevelsData levelsData;
         [SerializeField] private Level customFirstLevel;
 
         private Level _currentLevel;
+        private int _currentLevelIndex;
         private GameObject _levelGameObject;
 
-        private bool _currentlySwitching;
-        
-        public event Action OnLevelLoaded;
-        
-        // Unity functions
-        private void Awake() {
-            if (customFirstLevel != null) {
-                firstLevel = customFirstLevel;
-            }
-        }
+        public static bool IsCurrentlySwitching;
 
         // Public functions
         public void LoadFirstLevel() {
-            StartCoroutine(LoadLevel(firstLevel, false));
+            StartCoroutine(LoadLevel(levelsData[0], false));
+        }
+        
+        public void LoadSavedLevel() { // Loads the last completed level from player data
+            if (levelsData == null) {
+                Debug.LogError("No levels data assigned to the level manager");
+                return;
+            }
+
+            Level levelToLoad = levelsData[App.PlayerDataManager.LastCompletedLevelIndex];
+            if (customFirstLevel != null) levelToLoad = customFirstLevel;
+            StartCoroutine(LoadLevel(levelToLoad, false));
         }
         
         public void LoadNextLevel() {
-            if (_currentLevel.nextLevel is null) {
-                Debug.LogWarning($"Next level for '{_currentLevel}' is not assigned");
-                App.Instance.sceneManager.LoadScene(SceneConstants.Credits);
+            _currentLevelIndex++;
+            if (levelsData[_currentLevelIndex] == null) {
+                // If there are no more levels, go to the credits
+                _currentLevelIndex = 0;
+                App.PlayerDataManager.LastLevelCompleted(_currentLevelIndex);
+                App.SceneManager.LoadScene(SceneConstants.Credits);
                 return;
             }
-            StartCoroutine(LoadLevel(_currentLevel.nextLevel));
+            StartCoroutine(LoadLevel(levelsData[_currentLevelIndex]));
+            App.PlayerDataManager.LastLevelCompleted(_currentLevelIndex);
         }
         
         public void RestartLevel() {
             StartCoroutine(LoadLevel(_currentLevel));
         }
         
-        public IEnumerator LoadLevel(Level level, bool fade = true) {
-            if (_currentlySwitching) {
+        public IEnumerator LoadLevel(Level level, bool fade = true) { // default fade is true
+            if (IsCurrentlySwitching) {
                 Debug.LogWarning("Tried to load level in the middle of loading another level");
                 yield break;
             }
@@ -56,16 +64,16 @@ namespace Game.GameManagement.LevelManagement {
                 yield break;
             }
             if (fade) {
-                App.Instance.transitionManager.FadeIn(TransitionType.Wipe);
-                _currentlySwitching = true;
-                yield return new WaitForSecondsRealtime(App.Instance.transitionManager.wipeTime);
-                _currentlySwitching = false;
-                App.Instance.transitionManager.FadeOut(TransitionType.Wipe);
+                App.TransitionManager.FadeIn(TransitionType.Wipe);
+                IsCurrentlySwitching = true;
+                yield return new WaitForSecondsRealtime(App.TransitionManager.wipeTime);
+                IsCurrentlySwitching = false;
+                App.TransitionManager.FadeOut(TransitionType.Wipe);
             }
             ChangeCurrentLevel(level);
         }
 
-        private void ChangeCurrentLevel(Level level) {
+        private void ChangeCurrentLevel(Level level) { // Physically changes the current level game objects
             if (_currentLevel != null) {
                 Destroy(_levelGameObject);
             }
@@ -75,7 +83,7 @@ namespace Game.GameManagement.LevelManagement {
                 _levelGameObject = Instantiate(level.gameObject);
             }
             _currentLevel = level;
-            OnLevelLoaded?.Invoke();
+            GameManagerEvents.InvokeLevelStart();
         }
     }
 }

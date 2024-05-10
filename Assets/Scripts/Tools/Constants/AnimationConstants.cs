@@ -1,5 +1,5 @@
 namespace Tools.Constants {
-    public static class AnimationConstants {
+    public static class AnimationConstants { // Animation constants to ensure spelling consistency
         public static class FadeInOut {
             public const string FadeToBlack = "FadeToBlack";
             public const string FadeFromBlack = "FadeFromBlack";
@@ -17,6 +17,22 @@ namespace Tools.Constants {
 
         public static class Player {
             public const string Die = "Die";
+        }
+
+        public static class Box {
+            public const string Grab = "Grab";
+            public const string InRange = "Hover";
+        }
+        
+        public static class MainMenu {
+            public const string ShowOptions = "Show Options";
+            public const string HideOptions = "Show Main";
+            public const string ShowConfirm = "Show Confirm";
+            public const string HideConfirm = "Hide Confirm";
+        }
+
+        public static class SecurityCamera {
+            public const string LockedOnPlayer = "Locked On Player";
         }
     }
 }

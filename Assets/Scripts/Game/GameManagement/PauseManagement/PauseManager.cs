@@ -1,8 +1,12 @@
+using AppCore;
+
+using Game.GameManagement.LevelManagement;
+
 using UnityEngine;
 
 namespace Game.GameManagement.PauseManagement {
-    public class PauseManager : MonoBehaviour{
-        private bool IsPaused { get; set; }
+    public class PauseManager : MonoBehaviour { // Manages the pause state of the game, as well as timescale manipulation
+        public static bool IsPaused { get; private set; }
         
         // Unity functions
         private void OnEnable() {
@@ -12,7 +16,16 @@ namespace Game.GameManagement.PauseManagement {
         private void OnDisable() {
             GameManagerEvents.OnLevelStart -= OnLevelStart;
         }
-        
+
+        private void OnApplicationFocus(bool hasFocus) {
+#if !UNITY_EDITOR
+            if (!hasFocus && !IsPaused && !App.InputManager.LockedControls) {
+                PauseGame();
+            }
+#endif
+            
+        }
+
         // Public functions
         public void PauseGame() {
             if (IsPaused) {
@@ -29,6 +42,7 @@ namespace Game.GameManagement.PauseManagement {
                 Debug.LogWarning("Tried to resume game while not paused.");
                 return;
             }
+            if (LevelManager.IsCurrentlySwitching) return;
             PauseManagerEvents.InvokeGameResume();
             IsPaused = false;
             Time.timeScale = 1;
