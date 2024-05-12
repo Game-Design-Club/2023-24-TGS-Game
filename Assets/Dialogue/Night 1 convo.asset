@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 687f457948424e3292d890f1d82d749e, type: 3}
   m_Name: Night 1 convo
   m_EditorClassIdentifier: 
-  dialogueChunks: []
-  dialogueKey: Night 1 convo
+  dialogueChunks:
+  - character: {fileID: 11400000, guid: b35f528c5a8d04f4488b4376ed7b4d3c, type: 2}
+    text: "Psst. Hey you\t"
+  - character: {fileID: 11400000, guid: e3d3882caa09f48c8b973b3b42568ecd, type: 2}
+    text: omg who are you aaaahhh
+  - character: {fileID: 11400000, guid: b35f528c5a8d04f4488b4376ed7b4d3c, type: 2}
+    text: I saved you and now you gotta escape wooooo
+  dialogueKey: L1C1
