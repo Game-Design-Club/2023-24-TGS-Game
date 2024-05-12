@@ -52,11 +52,29 @@ namespace AppCore.Data_Management {
         
         private HashSet<String> _dialogueKeys = new HashSet<String>();
         
+        // Unity functions
+        private void Awake() {
+            _dialogueKeys = GetDialogueKeys();
+        }
+        
+        // Private functions
+        private HashSet<String> GetDialogueKeys() {
+            String[] keys = PlayerPrefs.GetString(PlayerDataKeys.DialogueKeys, "").Split(',');
+            HashSet<String> dialogueKeys = new HashSet<String>();
+            foreach (String key in keys) {
+                if (!String.IsNullOrEmpty(key)) {
+                    dialogueKeys.Add(key);
+                }
+            }
+            return dialogueKeys;
+        }
+
         // Public functions
         public void DialogueCompleted(Dialogue dialogue) {
             PlayerPrefs.SetInt(PlayerDataKeys.Dialogue + dialogue.dialogueKey, 1);
             PlayerPrefs.Save();
             _dialogueKeys.Add(dialogue.dialogueKey);
+            PlayerPrefs.SetString(PlayerDataKeys.DialogueKeys, String.Join(",", _dialogueKeys));
         }
         
         public bool HasTriggeredDialogue(Dialogue dialogue) {
