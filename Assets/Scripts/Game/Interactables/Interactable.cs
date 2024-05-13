@@ -1,4 +1,5 @@
 using AppCore;
+using AppCore.AudioManagement;
 
 using Game.GameManagement;
 
@@ -12,6 +13,8 @@ namespace Game.Interactables {
     public class Interactable : MonoBehaviour { // Base class for all interactable objects
         [SerializeField] private UnityEvent interacted;
         [SerializeField] private bool oneTimeUse = true;
+        [SerializeField] private bool destroyOnInteract = true;
+        [SerializeField] private SoundPackage interactSound;
         
         private bool _playerInRange = false;
         private bool _interacted = false;
@@ -58,9 +61,15 @@ namespace Game.Interactables {
         
         private void Interacted() {
             interacted?.Invoke();
+            if (interactSound != null) {
+                App.AudioManager.PlaySFX(interactSound);
+            }
             if (oneTimeUse) {
                 _interacted = true;
                 InteractionsPopup.Hide();
+                if (destroyOnInteract) {
+                    gameObject.SetActive(false);
+                }
             }
         }
         
