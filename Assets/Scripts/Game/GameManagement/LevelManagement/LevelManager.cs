@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 
 using AppCore;
@@ -7,7 +6,6 @@ using AppCore.TransitionManagement;
 using Tools.Constants;
 
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Game.GameManagement.LevelManagement {
     public class LevelManager : MonoBehaviour { // Manages the levels in the game, loading them and keeping track of the current level

@@ -72,7 +72,7 @@ namespace AppCore.AudioManagement
             source.Play();
             source.pitch = 1 + Random.Range(-pitchFluctuation, pitchFluctuation);
             while (!stopCondition()) {
-                yield return null;
+                yield return new WaitForFixedUpdate();
                 if (Random.value <= pitchFrequency) {
                     source.pitch = 1 + Random.Range(-pitchFluctuation, pitchFluctuation);
                 }

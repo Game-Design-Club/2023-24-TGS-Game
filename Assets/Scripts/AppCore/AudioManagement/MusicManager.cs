@@ -3,6 +3,7 @@ using System.Collections;
 
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Serialization;
 
 namespace AppCore.AudioManagement
 {
@@ -18,8 +19,8 @@ namespace AppCore.AudioManagement
         private float[] _trackVolume;
 
         //Volume of groups
-        [Range(0f, 1f)]
-        [SerializeField] private float musicVolume = 1f;
+
+        [Range(0f, 1f)] [SerializeField] private float musicVolume;
 
         //***** Unity Functions *****
         void Awake()
@@ -197,7 +198,8 @@ namespace AppCore.AudioManagement
         //creates and returns a new AudioSource
         internal AudioSource GetNewSource()
         {
-            return gameObject.AddComponent<AudioSource>();
+            AudioSource source = gameObject.AddComponent<AudioSource>();
+            return source;
         }
         
         //Destroys the given AudioSource
