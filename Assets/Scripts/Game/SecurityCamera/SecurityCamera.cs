@@ -38,7 +38,7 @@ namespace Game.SecurityCamera {
         }
 
         private void Start() {
-            
+            _baseRotation = rotationPoint.rotation.eulerAngles.z;
             
             rotateClockwise *= -1;
             _currentDirection = rotateClockwiseFirst ? -1 : 1;
