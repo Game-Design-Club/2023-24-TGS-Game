@@ -1,7 +1,5 @@
 using AppCore;
 
-using DefaultNamespace;
-
 using Game.GameManagement.UIManagement;
 
 using Tools.Constants;
