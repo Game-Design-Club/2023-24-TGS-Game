@@ -32,6 +32,7 @@ namespace Game.GameManagement.LevelManagement {
             }
 
             Level levelToLoad = levelsData[App.PlayerDataManager.LastCompletedLevelIndex];
+            _currentLevelIndex = App.PlayerDataManager.LastCompletedLevelIndex;
             if (customFirstLevel != null) levelToLoad = customFirstLevel;
             StartCoroutine(LoadLevel(levelToLoad, false));
         }

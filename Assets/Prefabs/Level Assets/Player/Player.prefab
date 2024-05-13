@@ -98,6 +98,7 @@ MonoBehaviour:
   lights:
   - {fileID: 6279755676054226560}
   - {fileID: 9019813485840310667}
+  - {fileID: 3650243865150403071}
   batchSize:
     min: 3
     max: 7
@@ -124,7 +125,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3197257598673321837}
   - component: {fileID: 9019813485840310667}
-  - component: {fileID: 5785392805937314153}
   m_Layer: 8
   m_Name: Light Halo (wall)
   m_TagString: Untagged
@@ -197,36 +197,6 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
---- !u!114 &5785392805937314153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3714859915767342787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c3b8ca01a7d49bfb8a6d883ee061cfd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lights:
-  - {fileID: 9019813485840310667}
-  batchSize:
-    min: 2
-    max: 5
-  flickerIntensity:
-    max: 0.5
-    min: 0.8
-  flickerSustainTime:
-    max: 0.05
-    min: 0.15
-  flickerSeparateTime:
-    max: 0.05
-    min: 0.1
-  batchSeparateTime:
-    max: 5
-    min: 5
-  flickerSound: {fileID: 0}
 --- !u!1 &5508975073999545539
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,7 +291,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8717868063285332443}
   - component: {fileID: 3650243865150403071}
-  - component: {fileID: 397581219298437625}
   m_Layer: 8
   m_Name: Light Halo (game elements)
   m_TagString: Untagged
@@ -394,36 +363,6 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
---- !u!114 &397581219298437625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5873440218237557613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c3b8ca01a7d49bfb8a6d883ee061cfd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lights:
-  - {fileID: 3650243865150403071}
-  batchSize:
-    min: 2
-    max: 5
-  flickerIntensity:
-    max: 0.5
-    min: 0.8
-  flickerSustainTime:
-    max: 0.05
-    min: 0.15
-  flickerSeparateTime:
-    max: 0.05
-    min: 0.1
-  batchSeparateTime:
-    max: 5
-    min: 5
-  flickerSound: {fileID: 0}
 --- !u!1 &7305839895059457504
 GameObject:
   m_ObjectHideFlags: 0
