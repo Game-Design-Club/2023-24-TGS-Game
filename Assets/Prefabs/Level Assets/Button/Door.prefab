@@ -66,8 +66,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0022500753, y: 0.014950037, z: 0}
-    m_Extent: {x: 2.5016499, y: 5.0148497, z: 0}
+    m_Center: {x: 0.0024499893, y: 0.006000042, z: 0}
+    m_Extent: {x: 2.50235, y: 5.0039, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -79,9 +79,9 @@ MonoBehaviour:
   m_ShapeLightFalloffOffset: {x: 0, y: 0}
   m_ShapePath:
   - {x: -0.5, y: -3, z: 0}
-  - {x: 0.5010004, y: -2.9960911, z: 0}
-  - {x: 0.5, y: 3.0283208, z: 0}
-  - {x: -0.4571471, y: 3.006894, z: 0}
+  - {x: 0.5, y: -3, z: 0}
+  - {x: 0.5, y: 3, z: 0}
+  - {x: -0.5, y: 3, z: 0}
 --- !u!1 &7012310653948656042
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,7 +269,7 @@ MonoBehaviour:
   - {x: 0.5, y: -3, z: 0}
   m_ShapePathHash: -745147115
   m_Mesh: {fileID: 0}
-  m_InstanceId: 247434
+  m_InstanceId: 264560
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 3, z: 0}

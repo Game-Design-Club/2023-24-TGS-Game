@@ -1,6 +1,6 @@
-using System;
-
 using AppCore;
+
+using DefaultNamespace;
 
 using Game.GameManagement.UIManagement;
 
