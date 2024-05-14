@@ -92,8 +92,9 @@ namespace AppCore.AudioManagement
         // Private functions
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            music.Mute(!App.PlayerDataManager.IsMusicOn);
-            sfx.Mute(!App.PlayerDataManager.AreSFXOn);
+            SetMasterVolume(App.PlayerDataManager.MasterLevel);
+            music.SetVolume(App.PlayerDataManager.MusicLevel);
+            sfx.SetVolume(App.PlayerDataManager.SFXLevel);
         }
     }
 }

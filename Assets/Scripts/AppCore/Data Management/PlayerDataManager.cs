@@ -9,22 +9,32 @@ namespace AppCore.Data_Management {
     public class PlayerDataManager : MonoBehaviour { // Manages player data such as sound settings and level progress
         // All player data uses PlayerPrefs, a built-in Unity class that stores data on the user's device, also works for Unity editor
         // variables are all C# properties, which are like variables but with getter and setter functions, to make sure the data is always saved to PlayerPrefs
-        public bool AreSFXOn {
+        public float MasterLevel {
             get {
-                return PlayerPrefs.GetInt(PlayerDataKeys.SFX, 1) == 1;
+                return PlayerPrefs.GetFloat(PlayerDataKeys.Master, 1);
             }
             set {
-                PlayerPrefs.SetInt(PlayerDataKeys.SFX, value ? 1 : 0);
+                PlayerPrefs.SetFloat(PlayerDataKeys.Master, value);
                 PlayerPrefs.Save();
             }
         }
         
-        public bool IsMusicOn {
+        public float MusicLevel {
             get {
-                return PlayerPrefs.GetInt(PlayerDataKeys.Music, 1) == 1;
+                return PlayerPrefs.GetFloat(PlayerDataKeys.Music, 1);
             }
             set {
-                PlayerPrefs.SetInt(PlayerDataKeys.Music, value ? 1 : 0);
+                PlayerPrefs.SetFloat(PlayerDataKeys.Music, value);
+                PlayerPrefs.Save();
+            }
+        }
+        
+        public float SFXLevel {
+            get {
+                return PlayerPrefs.GetFloat(PlayerDataKeys.SFX, 1);
+            }
+            set {
+                PlayerPrefs.SetFloat(PlayerDataKeys.SFX, value);
                 PlayerPrefs.Save();
             }
         }
