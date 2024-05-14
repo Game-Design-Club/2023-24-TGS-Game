@@ -723,8 +723,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 7778564107128079809, guid: f7dd0f4d07d3445a18315844fd95adef, type: 3}
+      propertyPath: firstLevel
+      value: 
+      objectReference: {fileID: 6627477520897448911, guid: ec2afad7d818249719ec11270093e90b, type: 3}
+    - target: {fileID: 7778564107128079809, guid: f7dd0f4d07d3445a18315844fd95adef, type: 3}
+      propertyPath: customFirstLevel
+      value: 
+      objectReference: {fileID: 6627477520897448911, guid: ec2afad7d818249719ec11270093e90b, type: 3}
     - target: {fileID: 8166390087522240723, guid: f7dd0f4d07d3445a18315844fd95adef, type: 3}
-      propertyPath: ambienceSounds.Array.data[0]
+      propertyPath: .Array.data[0]ambienceSounds
       value: 
       objectReference: {fileID: 11400000, guid: eede4bd982c644b7abd8cbd2d66db4f7, type: 2}
     m_RemovedComponents: []
