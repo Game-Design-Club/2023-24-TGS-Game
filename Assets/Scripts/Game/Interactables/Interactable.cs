@@ -13,17 +13,19 @@ namespace Game.Interactables {
     public class Interactable : MonoBehaviour { // Base class for all interactable objects
         [SerializeField] private UnityEvent interacted;
         [SerializeField] private bool oneTimeUse = true;
-        [SerializeField] private bool destroyOnInteract = true;
         [SerializeField] private SoundPackage interactSound;
         
         private bool _playerInRange = false;
         private bool _interacted = false;
         
         private Collider2D _collider2D;
+
+        private Animator _animator;
         
         // Unity functions
         private void Awake() {
             _collider2D = GetComponent<Collider2D>();
+            _animator = GetComponent<Animator>();
             if (_collider2D.isTrigger == false) {
                 Debug.LogError("Collider2D on Interactable must be a trigger");
             }
@@ -43,14 +45,16 @@ namespace Game.Interactables {
             if (!other.CompareTag(TagConstants.Player) || !Application.isPlaying || (_interacted && oneTimeUse)) return;
 
             _playerInRange = true;
-            InteractionsPopup.Show();
+            
+            _animator.SetBool(AnimationConstants.Interactable.Hover, true);
         }
 
         private void OnTriggerExit2D(Collider2D other) {
             if (!other.CompareTag(TagConstants.Player) || !Application.isPlaying || (_interacted && oneTimeUse)) return;
 
             _playerInRange = false;
-            InteractionsPopup.Hide();
+            
+            _animator.SetBool(AnimationConstants.Interactable.Hover, false);
         }
         
         // Private functions
@@ -61,15 +65,13 @@ namespace Game.Interactables {
         
         private void Interacted() {
             interacted?.Invoke();
+            _animator.SetTrigger(AnimationConstants.Interactable.Interact);
             if (interactSound != null) {
                 App.AudioManager.PlaySFX(interactSound);
             }
             if (oneTimeUse) {
                 _interacted = true;
                 InteractionsPopup.Hide();
-                if (destroyOnInteract) {
-                    gameObject.SetActive(false);
-                }
             }
         }
         

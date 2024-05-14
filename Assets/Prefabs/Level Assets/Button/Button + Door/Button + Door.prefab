@@ -42,81 +42,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 3872921131050090787}
     m_Modifications:
     - target: {fileID: 2010012306472176082, guid: 4acd23af7e21545cd93a6936fd12d196, type: 3}
-      propertyPath: interacted.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2010012306472176082, guid: 4acd23af7e21545cd93a6936fd12d196, type: 3}
-      propertyPath: interacted.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2010012306472176082, guid: 4acd23af7e21545cd93a6936fd12d196, type: 3}
-      propertyPath: interacted.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2010012306472176082, guid: 4acd23af7e21545cd93a6936fd12d196, type: 3}
       propertyPath: interacted.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 76875400765957224}
-    - target: {fileID: 2010012306472176082, guid: 4acd23af7e21545cd93a6936fd12d196, type: 3}
-      propertyPath: interacted.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 6140224125164506299}
-    - target: {fileID: 2010012306472176082, guid: 4acd23af7e21545cd93a6936fd12d196, type: 3}
-      propertyPath: interacted.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2010012306472176082, guid: 4acd23af7e21545cd93a6936fd12d196, type: 3}
-      propertyPath: interacted.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Opened
-      objectReference: {fileID: 0}
-    - target: {fileID: 2010012306472176082, guid: 4acd23af7e21545cd93a6936fd12d196, type: 3}
-      propertyPath: interacted.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: set_sprite
-      objectReference: {fileID: 0}
-    - target: {fileID: 2010012306472176082, guid: 4acd23af7e21545cd93a6936fd12d196, type: 3}
-      propertyPath: interacted.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Game.Interactables.Door, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2010012306472176082, guid: 4acd23af7e21545cd93a6936fd12d196, type: 3}
-      propertyPath: interacted.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UnityEngine.SpriteRenderer, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 2010012306472176082, guid: 4acd23af7e21545cd93a6936fd12d196, type: 3}
-      propertyPath: interacted.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Sprite, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 2181583170377522299, guid: 4acd23af7e21545cd93a6936fd12d196, type: 3}
-      propertyPath: m_LocalBounds.m_Center.x
-      value: 0.002750039
-      objectReference: {fileID: 0}
-    - target: {fileID: 2181583170377522299, guid: 4acd23af7e21545cd93a6936fd12d196, type: 3}
-      propertyPath: m_LocalBounds.m_Center.y
-      value: -0.0040499866
-      objectReference: {fileID: 0}
-    - target: {fileID: 2181583170377522299, guid: 4acd23af7e21545cd93a6936fd12d196, type: 3}
-      propertyPath: m_LocalBounds.m_Extent.x
-      value: 1.00535
-      objectReference: {fileID: 0}
-    - target: {fileID: 2181583170377522299, guid: 4acd23af7e21545cd93a6936fd12d196, type: 3}
-      propertyPath: m_LocalBounds.m_Extent.y
-      value: 1.00155
-      objectReference: {fileID: 0}
-    - target: {fileID: 2181583170377522299, guid: 4acd23af7e21545cd93a6936fd12d196, type: 3}
-      propertyPath: m_ApplyToSortingLayers.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2181583170377522299, guid: 4acd23af7e21545cd93a6936fd12d196, type: 3}
-      propertyPath: m_ApplyToSortingLayers.Array.data[3]
-      value: 633680411
-      objectReference: {fileID: 0}
-    - target: {fileID: 2181583170377522299, guid: 4acd23af7e21545cd93a6936fd12d196, type: 3}
-      propertyPath: m_ApplyToSortingLayers.Array.data[4]
-      value: -385562217
-      objectReference: {fileID: 0}
-    - target: {fileID: 2181583170377522299, guid: 4acd23af7e21545cd93a6936fd12d196, type: 3}
-      propertyPath: m_ApplyToSortingLayers.Array.data[5]
-      value: -385562217
-      objectReference: {fileID: 0}
     - target: {fileID: 3802618176206313599, guid: 4acd23af7e21545cd93a6936fd12d196, type: 3}
       propertyPath: m_Name
       value: Button
@@ -219,37 +147,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5469253011118343807, guid: 484f3253105eb46c2bb4bd620225c14f, type: 3}
-      propertyPath: m_InstanceId
-      value: -2231056
-      objectReference: {fileID: 0}
     - target: {fileID: 7012310653948656042, guid: 484f3253105eb46c2bb4bd620225c14f, type: 3}
       propertyPath: m_Name
       value: Door
-      objectReference: {fileID: 0}
-    - target: {fileID: 8778627932880212833, guid: 484f3253105eb46c2bb4bd620225c14f, type: 3}
-      propertyPath: m_LocalBounds.m_Center.x
-      value: 0.00364995
-      objectReference: {fileID: 0}
-    - target: {fileID: 8778627932880212833, guid: 484f3253105eb46c2bb4bd620225c14f, type: 3}
-      propertyPath: m_LocalBounds.m_Center.y
-      value: -0.00040006638
-      objectReference: {fileID: 0}
-    - target: {fileID: 8778627932880212833, guid: 484f3253105eb46c2bb4bd620225c14f, type: 3}
-      propertyPath: m_LocalBounds.m_Extent.x
-      value: 2.50385
-      objectReference: {fileID: 0}
-    - target: {fileID: 8778627932880212833, guid: 484f3253105eb46c2bb4bd620225c14f, type: 3}
-      propertyPath: m_LocalBounds.m_Extent.y
-      value: 5.008
-      objectReference: {fileID: 0}
-    - target: {fileID: 8778627932880212833, guid: 484f3253105eb46c2bb4bd620225c14f, type: 3}
-      propertyPath: m_ApplyToSortingLayers.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8778627932880212833, guid: 484f3253105eb46c2bb4bd620225c14f, type: 3}
-      propertyPath: m_ApplyToSortingLayers.Array.data[4]
-      value: -1775353155
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -267,11 +167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6939b85498c12423792624496b589891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!212 &6140224125164506299 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 2431888301923647043, guid: 484f3253105eb46c2bb4bd620225c14f, type: 3}
-  m_PrefabInstance: {fileID: 8397446156256342776}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6157830920875978770 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2449037155739779818, guid: 484f3253105eb46c2bb4bd620225c14f, type: 3}

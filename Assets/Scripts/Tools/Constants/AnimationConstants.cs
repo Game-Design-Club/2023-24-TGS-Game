@@ -24,6 +24,11 @@ namespace Tools.Constants {
             public const string InRange = "Hover";
         }
         
+        public static class Interactable {
+            public const string Hover = "Hover";
+            public const string Interact = "Interact";
+        }
+        
         public static class MainMenu {
             public const string ShowOptions = "Show Options";
             public const string HideOptions = "Show Main";

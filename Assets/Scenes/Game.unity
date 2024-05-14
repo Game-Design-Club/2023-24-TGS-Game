@@ -187,7 +187,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5254328042695833105, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -30.000153
+      value: -30.000122
       objectReference: {fileID: 0}
     - target: {fileID: 5927670023582203067, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
       propertyPath: m_ReferenceResolution.x
@@ -487,6 +487,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4918779296130150439, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8257527468688489269, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
       propertyPath: m_Name
       value: App
@@ -730,7 +734,7 @@ PrefabInstance:
     - target: {fileID: 7778564107128079809, guid: f7dd0f4d07d3445a18315844fd95adef, type: 3}
       propertyPath: customFirstLevel
       value: 
-      objectReference: {fileID: 6627477520897448911, guid: ec2afad7d818249719ec11270093e90b, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 8166390087522240723, guid: f7dd0f4d07d3445a18315844fd95adef, type: 3}
       propertyPath: .Array.data[0]ambienceSounds
       value: 

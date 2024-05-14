@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Intensity: 0.3
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000c9e16d83b9bdbc0d1b32c525
+  m_ApplyToSortingLayers: 00000000c9e16d83b9bdbc0d1b32c525bd422e96
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -66,8 +66,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0024499893, y: 0.006000042, z: 0}
-    m_Extent: {x: 2.50235, y: 5.0039, z: 0}
+    m_Center: {x: -0.0026999712, y: -0.0015499592, z: 0}
+    m_Extent: {x: 2.5054002, y: 5.0022497, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -269,7 +269,7 @@ MonoBehaviour:
   - {x: 0.5, y: -3, z: 0}
   m_ShapePathHash: -745147115
   m_Mesh: {fileID: 0}
-  m_InstanceId: 264560
+  m_InstanceId: -1909386
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 3, z: 0}
@@ -288,5 +288,5 @@ MonoBehaviour:
   spriteRenderer: {fileID: 2431888301923647043}
   closedOpacity: 0.2
   shadowCaster2D: {fileID: 5469253011118343807}
-  collider2D: {fileID: 7869644583210828450}
+  collider: {fileID: 7869644583210828450}
   light2D: {fileID: 8778627932880212833}
