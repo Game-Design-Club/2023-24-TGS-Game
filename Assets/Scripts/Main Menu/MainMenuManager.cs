@@ -71,7 +71,6 @@ namespace Main_Menu {
         
         public void SetMasterLevel(float value) {
             if (_freeze) return;
-            
             App.PlayerDataManager.MasterLevel = value;
             App.AudioManager.SetMasterVolume(value);
 

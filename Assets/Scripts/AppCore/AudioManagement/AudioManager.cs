@@ -54,7 +54,7 @@ namespace AppCore.AudioManagement
 
         public void SetMasterVolume(float volume)
         {
-            masterVolume = ConvertToDecibels(volume);
+            masterVolume = volume;
             mixer.SetFloat(MixerConstants.MasterVolume, ConvertToDecibels(masterVolume));
         }
 
