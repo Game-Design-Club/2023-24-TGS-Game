@@ -235,8 +235,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0014000237, y: 0.002450049, z: 0}
-    m_Extent: {x: 1.0002, y: 1.0064499, z: 0}
+    m_Center: {x: -0.001249969, y: 0.0038999915, z: 0}
+    m_Extent: {x: 1.0065501, y: 0.9966, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -413,7 +413,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   oneTimeUse: 1
-  interactSound: {fileID: 0}
+  interactSound: {fileID: 11400000, guid: 35c7cb9b74cd8400ca23cb5caa311c55, type: 2}
 --- !u!95 &1315364677002735465
 Animator:
   serializedVersion: 5
