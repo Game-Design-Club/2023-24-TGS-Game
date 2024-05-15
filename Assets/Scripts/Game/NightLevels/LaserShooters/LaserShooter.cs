@@ -61,5 +61,22 @@ namespace Game.NightLevels.LaserShooters {
                 yield return new WaitForSeconds(betweenShotsTime);
             }
         }
+        
+        // Public functions
+        public void SetActive(bool active) {
+            switch (laserType) {
+                case LaserShooterType.Cycled:
+                    if (active) {
+                        StartCoroutine(ShootLaser());
+                    } else {
+                        StopAllCoroutines();
+                    }
+                    break;
+                case LaserShooterType.Static:
+                    warningGameObject.SetActive(active);
+                    onGameObject.SetActive(active);
+                    break;
+            }
+        }
     }
 }

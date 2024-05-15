@@ -128,7 +128,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.9}
   m_EdgeRadius: 0
 --- !u!1 &804272546221404832
 GameObject:
@@ -267,7 +267,7 @@ MonoBehaviour:
   betweenShotsTime: 3
   warningTime: 1.5
   activeTime: 2
-  startOffset: 0
+  startDelay: 0
   warningGameObject: {fileID: 804272546221404832}
   onGameObject: {fileID: 152247374082525360}
 --- !u!114 &7135471512821529451

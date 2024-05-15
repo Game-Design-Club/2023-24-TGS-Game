@@ -137,8 +137,13 @@ namespace Game.MovingObjects
             _isMoving = true;
         }
         
-        public void StopMoving() {
-            _isMoving = false;
+        // Public functions
+        public void SetActive(bool active) {
+            if (active) {
+                StartMoving();
+            } else {
+                _isMoving = false;
+            }
         }
     }
 }
