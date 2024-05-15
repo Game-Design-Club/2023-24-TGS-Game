@@ -70,7 +70,6 @@ namespace Game.Interactables {
             }
             if (oneTimeUse) {
                 _interacted = true;
-                InteractionsPopup.Hide();
                 _animator.SetTrigger(AnimationConstants.Interactable.Interact);
             }
         }

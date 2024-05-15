@@ -67,7 +67,8 @@ namespace Game.SecurityCamera {
             while (true) {
                 yield return new WaitUntil(() => _isShooting);
                 GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
-                bullet.GetComponent<Bullet>().Shoot(DirectionToPlayer, gameObject);
+                Vector2 direction = DirectionToPlayer;
+                bullet.GetComponent<Bullet>().Shoot(direction, gameObject);
                 yield return new WaitForSeconds(shootInterval);
             }
         }
