@@ -1,10 +1,8 @@
-using System;
 using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Game.Day_Levels.Robots.Robot_Paths
+using UnityEngine;
+
+namespace Game.Robots.Robot_Paths
 {
     [System.Serializable]
     public class RobotPath

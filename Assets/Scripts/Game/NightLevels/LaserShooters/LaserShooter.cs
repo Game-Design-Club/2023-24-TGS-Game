@@ -14,6 +14,9 @@ namespace Game.NightLevels.LaserShooters {
         [FormerlySerializedAs("startOffset")] [SerializeField] private float startDelay;
         [SerializeField] private GameObject warningGameObject;
         [SerializeField] private GameObject onGameObject;
+        [SerializeField] private bool activeOnStart = true;
+        
+        private bool _active;
         
         // Unity functions
         private void OnEnable() {
@@ -28,15 +31,8 @@ namespace Game.NightLevels.LaserShooters {
 
         // Private functions
         private void OnLevelStart() {
-            switch (laserType) {
-                case LaserShooterType.Cycled:
-                    StartCoroutine(ShootLaser());
-                    break;
-                case LaserShooterType.Static:
-                    warningGameObject.SetActive(false);
-                    onGameObject.SetActive(true);
-                    break;
-            }
+            _active = activeOnStart;
+            SetActive(_active);
         }
         
         private void OnLevelOver() {
@@ -77,6 +73,11 @@ namespace Game.NightLevels.LaserShooters {
                     onGameObject.SetActive(active);
                     break;
             }
+            _active = active;
+        }
+        
+        public void SwitchActive() {
+            SetActive(!_active);
         }
     }
 }

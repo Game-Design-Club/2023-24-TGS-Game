@@ -47,8 +47,6 @@ namespace Game.Interactables {
             _playerInRange = true;
             
             _animator.SetBool(AnimationConstants.Interactable.Hover, true);
-            
-            Debug.Log("Hello 1");
         }
 
         private void OnTriggerExit2D(Collider2D other) {
@@ -57,8 +55,6 @@ namespace Game.Interactables {
             _playerInRange = false;
             
             _animator.SetBool(AnimationConstants.Interactable.Hover, false);
-            
-            Debug.Log("Hello 2");
         }
         
         // Private functions
@@ -69,13 +65,13 @@ namespace Game.Interactables {
         
         private void Interacted() {
             interacted?.Invoke();
-            _animator.SetTrigger(AnimationConstants.Interactable.Interact);
             if (interactSound != null) {
                 App.AudioManager.PlaySFX(interactSound);
             }
             if (oneTimeUse) {
                 _interacted = true;
                 InteractionsPopup.Hide();
+                _animator.SetTrigger(AnimationConstants.Interactable.Interact);
             }
         }
         

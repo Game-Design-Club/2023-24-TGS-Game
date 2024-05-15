@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8726783325612404248}
   - component: {fileID: 2739736317288617803}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Triangle (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1041257042214475057}
   - component: {fileID: 4233687570406045582}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000c9e16d83bd422e961b32c52597c904e9
+  m_ApplyToSortingLayers: 00000000c9e16d83bd422e961b32c525
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -235,8 +235,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.001249969, y: 0.0038999915, z: 0}
-    m_Extent: {x: 1.0065501, y: 0.9966, z: 0}
+    m_Center: {x: -0.0026999712, y: -0.0024999976, z: 0}
+    m_Extent: {x: 0.9999, y: 1.0067, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -326,8 +326,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -385562217
-  m_SortingLayer: 2
+  m_SortingLayerID: -1775353155
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.84809047, g: 0.8584906, b: 0.5547793, a: 1}

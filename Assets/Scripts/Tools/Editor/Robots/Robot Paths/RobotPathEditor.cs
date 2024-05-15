@@ -1,9 +1,8 @@
-using System;
 using UnityEditor;
-using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Game.Day_Levels.Robots.Robot_Paths
+using UnityEngine;
+
+namespace Game.Robots.Robot_Paths
 {
     [CustomEditor(typeof(RobotPathSupervisor))]
     public class RobotPathEditor : Editor

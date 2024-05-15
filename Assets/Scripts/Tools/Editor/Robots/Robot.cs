@@ -1,10 +1,12 @@
 using System;
-using Game.Day_Levels.Robots.Robot_Paths;
-using UnityEditor;
-using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Game.Day_Levels.Robots
+using Game.Robots.Robot_Paths;
+
+using UnityEditor;
+
+using UnityEngine;
+
+namespace Game.Robots
 {
     public class Robot : MonoBehaviour, IComparable<Robot>
     {

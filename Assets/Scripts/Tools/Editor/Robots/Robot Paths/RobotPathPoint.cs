@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Game.Day_Levels.Robots.Robot_Paths
+namespace Game.Robots.Robot_Paths
 {
     [System.Serializable]
     public class RobotPathPoint

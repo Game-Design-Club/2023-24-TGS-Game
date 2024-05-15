@@ -13,7 +13,7 @@ namespace Game.MovingObjects
         [SerializeField] private float speed = 3f;
         [SerializeField] private float startDelay = 0f;
         [SerializeField] private bool showLine = true;
-    
+        [SerializeField] private bool startMovingOnStart = true;
         private int _currentPointIndex;
         private Vector2 _currentPoint;
         private Vector2 _nextPoint;
@@ -41,14 +41,18 @@ namespace Game.MovingObjects
         }
         // Private functions
         private void OnLevelStart() {
+            _isMoving = startMovingOnStart;
             StartCoroutine(StartAfterDelay());
         }
         private IEnumerator StartAfterDelay() {
-            yield return new WaitForSeconds(startDelay);
             StartMoving();
+            yield return new WaitForSeconds(startDelay);
+            SetActive(_isMoving);
         }
         private void Update() {
-            if (!_isMoving) return;
+            if (!_isMoving) {
+                _startTime += Time.deltaTime;
+            }
             float distanceCovered = (Time.time - _startTime) * speed;
             float fractionOfJourney = distanceCovered / _distance;
             if (fractionOfJourney > 1) fractionOfJourney = 1;
@@ -133,17 +137,23 @@ namespace Game.MovingObjects
                 _lineRenderer.positionCount = _points.Length;
                 _lineRenderer.SetPositions(lineRendererPoints);
             }
-            
-            _isMoving = true;
+
+            if (_lineRenderer == null) {
+                Debug.LogWarning("LineRenderer not found");
+            }
         }
         
         // Public functions
         public void SetActive(bool active) {
             if (active) {
-                StartMoving();
+                _isMoving = true;
             } else {
                 _isMoving = false;
             }
+        }
+        
+        public void SwitchActive() {
+            SetActive(!_isMoving);
         }
     }
 }

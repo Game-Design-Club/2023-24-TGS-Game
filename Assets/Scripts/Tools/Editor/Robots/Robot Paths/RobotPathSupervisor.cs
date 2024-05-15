@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEditor;
-using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Game.Day_Levels.Robots.Robot_Paths
+using UnityEditor;
+
+using UnityEngine;
+
+namespace Game.Robots.Robot_Paths
 {
     public class RobotPathSupervisor : MonoBehaviour
     {
