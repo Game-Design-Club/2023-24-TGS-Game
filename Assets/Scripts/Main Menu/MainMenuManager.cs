@@ -7,6 +7,7 @@ using Tools.Constants;
 using UI;
 
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Main_Menu {
     public class MainMenuManager : MonoBehaviour {
@@ -16,16 +17,18 @@ namespace Main_Menu {
         [SerializeField] private GameObject defaultOptionsButton;
         [SerializeField] private GameObject defaultConfirmButton;
         
-        [SerializeField] private Checkbox sfxToggle;
-        [SerializeField] private Checkbox musicToggle;
+        [SerializeField] private Slider masterSlider;
+        [SerializeField] private Slider musicSlider;
+        [SerializeField] private Slider sfxSlider;
         
         private bool _freeze = false;
         private CurrentMenu _currentMenu = CurrentMenu.Main;
         
         // Unity functions
         private void Start() {
-            SetSFXToggle(App.PlayerDataManager.AreSFXOn);
-            SetMusicToggle(App.PlayerDataManager.IsMusicOn);
+            SetMasterLevel(App.PlayerDataManager.MasterLevel);
+            SetMusicLevel(App.PlayerDataManager.MusicLevel);
+            SetSFXLevel(App.PlayerDataManager.SFXLevel);
             App.AudioManager.musicPlayer.PlayMainMenuMusic();
         }
 
@@ -64,22 +67,30 @@ namespace Main_Menu {
             Application.Quit();
         }
         
-        public void SetSFXToggle(bool value) {
+        public void SetMasterLevel(float value) {
             if (_freeze) return;
-            
-            App.AudioManager.sfx.SetVolume(value ? 1 : 0);
-            App.PlayerDataManager.AreSFXOn = value;
-            
-            sfxToggle.SetState(value);
+            App.PlayerDataManager.MasterLevel = value;
+            App.AudioManager.SetMasterVolume(value);
+
+            masterSlider.value = value;
         }
         
-        public void SetMusicToggle(bool value) {
+        public void SetMusicLevel(float value) {
             if (_freeze) return;
             
-            App.PlayerDataManager.IsMusicOn = value;
-            App.AudioManager.music.Mute(!value);
+            App.PlayerDataManager.MusicLevel = value;
+            App.AudioManager.music.SetVolume(value);
+
+            musicSlider.value = value;
+        }
+        
+        public void SetSFXLevel(float value) {
+            if (_freeze) return;
             
-            musicToggle.SetState(value);
+            App.PlayerDataManager.SFXLevel = value;
+            App.AudioManager.sfx.SetVolume(value);
+
+            sfxSlider.value = value;
         }
         
         public void ShowOptions() {
