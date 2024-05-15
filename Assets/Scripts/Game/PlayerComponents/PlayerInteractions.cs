@@ -43,9 +43,6 @@ namespace Game.PlayerComponents {
                         oucher.KilledPlayer();
                     }
                     break;
-                case TagConstants.Goal:
-                    GameManager.LevelCompleted();
-                    break;
             }
         }
         
