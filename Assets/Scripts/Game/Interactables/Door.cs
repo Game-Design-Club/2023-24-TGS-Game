@@ -9,7 +9,7 @@ using UnityEngine.Serialization;
 namespace Game.Interactables
 {
     public class Door : MonoBehaviour {
-        [SerializeField] private bool startShow = true;
+        [SerializeField] private bool startClosed = true;
 
         private Animator _animator;
         
@@ -18,10 +18,10 @@ namespace Game.Interactables
         }
 
         private void Start() {
-            if (startShow) {
-                Open();
-            } else {
+            if (startClosed) {
                 Close();
+            } else {
+                Open();
             }
         }
 
