@@ -174,16 +174,32 @@ PrefabInstance:
 '
       objectReference: {fileID: 0}
     - target: {fileID: 4857571421127903220, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
+      propertyPath: m_text
+      value: Hold space to drag
+      objectReference: {fileID: 0}
+    - target: {fileID: 4857571421127903220, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 3e6e87c8795df46af88b89f798cc6371, type: 2}
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 4857571421127903220, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
       propertyPath: m_fontStyle
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4857571421127903220, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
-      propertyPath: m_hasFontAssetChanged
+      propertyPath: m_fontColor.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4857571421127903220, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4857571421127903220, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254328042695833105, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 225
       objectReference: {fileID: 0}
     - target: {fileID: 5254328042695833105, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -309,6 +325,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 5fe3410c22b664b7784b05013eed92db, type: 3}
+    - target: {fileID: 8228568628293970022, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8228568628293970022, guid: 5464c87954b724e928b8b347f0d6d517, type: 3}
       propertyPath: m_Color.b
       value: 1

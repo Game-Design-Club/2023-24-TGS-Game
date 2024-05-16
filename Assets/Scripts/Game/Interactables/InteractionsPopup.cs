@@ -44,7 +44,7 @@ namespace Game.Interactables {
         private void InternalShow(String message) {
             if (_showing) return;
             _showing = true;
-            _text.text = (message);
+            _text.text = message;
             _animator.SetTrigger(AnimationConstants.InteractionsPopup.Show);
         }
         

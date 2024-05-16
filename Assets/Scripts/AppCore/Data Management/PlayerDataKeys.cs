@@ -4,7 +4,8 @@ namespace AppCore.Data_Management {
         public const string Music = "Music";
         public const string SFX = "SFX";
         public const string Levels = "Levels";
-        public const string TutorialHasInteracted = "Has Interacted";
+        public const string HasInteractedWithBox = "Interacted Box";
+        public const string HasInteractedWithButton = "Interacted Button";
         public const string Dialogue = "Dialogue: ";
         public const string DialogueKeys = "DialogueKeys";
     }
