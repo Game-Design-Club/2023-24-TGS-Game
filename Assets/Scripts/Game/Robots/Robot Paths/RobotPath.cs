@@ -9,6 +9,7 @@ namespace Game.Robots.Robot_Paths
     {
         public List<RobotPathPoint> points;
         [HideInInspector] public float length;
+        public float speed = 5f;
 
         public RobotPath(Vector2 center)
         {
@@ -39,7 +40,7 @@ namespace Game.Robots.Robot_Paths
                 info.End = end;
                 info.Length = dst;
                 info.StartDstFromStart = currentDst;
-                info.Speed = 5f;
+                info.Speed = speed;
                 return info;
             }
             Debug.LogWarning("Distance " + dstAlongPath + " not in path with length " + length);
