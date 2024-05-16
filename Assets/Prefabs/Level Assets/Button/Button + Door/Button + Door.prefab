@@ -45,6 +45,22 @@ PrefabInstance:
       propertyPath: interacted.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 76875400765957224}
+    - target: {fileID: 2181583170377522299, guid: 4acd23af7e21545cd93a6936fd12d196, type: 3}
+      propertyPath: m_LocalBounds.m_Center.x
+      value: 0.00029999018
+      objectReference: {fileID: 0}
+    - target: {fileID: 2181583170377522299, guid: 4acd23af7e21545cd93a6936fd12d196, type: 3}
+      propertyPath: m_LocalBounds.m_Center.y
+      value: 0.000050008297
+      objectReference: {fileID: 0}
+    - target: {fileID: 2181583170377522299, guid: 4acd23af7e21545cd93a6936fd12d196, type: 3}
+      propertyPath: m_LocalBounds.m_Extent.x
+      value: 1.0079999
+      objectReference: {fileID: 0}
+    - target: {fileID: 2181583170377522299, guid: 4acd23af7e21545cd93a6936fd12d196, type: 3}
+      propertyPath: m_LocalBounds.m_Extent.y
+      value: 1.0090499
+      objectReference: {fileID: 0}
     - target: {fileID: 3802618176206313599, guid: 4acd23af7e21545cd93a6936fd12d196, type: 3}
       propertyPath: m_Name
       value: Button
