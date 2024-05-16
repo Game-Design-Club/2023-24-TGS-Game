@@ -1,14 +1,15 @@
 using System.Collections.Generic;
 
-using UnityEditor;
+using Tools.Editor.Robots;
+using Tools.Editor.Robots.Robot_Paths;
 
 using UnityEngine;
 
-namespace Game.Robots.Robot_Paths
+namespace Game
 {
     public class RobotPathSupervisor : MonoBehaviour
     {
-        [SerializeField] private GameObject robotPrefab;
+        [SerializeField] public GameObject robotPrefab;
         public RobotPath path = null;
         public List<Robot> robots = new List<Robot>();
         public List<float> idealPositions;
@@ -61,22 +62,20 @@ namespace Game.Robots.Robot_Paths
             
             
             
-            // float distanceFromIdealAhead = 0f;
-            // float distanceFromIdealBehind = 0f;
-            // for (int i = 0; i < robots.Count; i++)
-            // {
-            //     float distance = Distance(idealPositions[i])
-            //     distanceFromIdealAhead += Mathf.Abs(idealPositions[i] - robots[i].dstAlongPath);
-            //     distanceFromIdealBehind += Mathf.Abs(idealPositions[(i - 1 + idealPositions.Count) % idealPositions.Count] - robots[i].dstAlongPath);
-            // }
-            //
-            // int indexAdjustment = distanceFromIdealAhead < distanceFromIdealBehind ? 0 : -1;
-            //
-            // for (int i = 0; i < robots.Count; i++)
-            // {
-            //     robots[i].idealDst =
-            //         idealPositions[(i + indexAdjustment + idealPositions.Count) % idealPositions.Count];
-            // }
+            float distanceFromIdealAhead = 0f;
+            float distanceFromIdealBehind = 0f;
+            for (int i = 0; i < robots.Count; i++) {
+                distanceFromIdealAhead += Mathf.Abs(idealPositions[i] - robots[i].dstAlongPath);
+                distanceFromIdealBehind += Mathf.Abs(idealPositions[(i - 1 + idealPositions.Count) % idealPositions.Count] - robots[i].dstAlongPath);
+            }
+            
+            int indexAdjustment = distanceFromIdealAhead < distanceFromIdealBehind ? 0 : -1;
+            
+            for (int i = 0; i < robots.Count; i++)
+            {
+                robots[i].idealDst =
+                    idealPositions[(i + indexAdjustment + idealPositions.Count) % idealPositions.Count];
+            }
 
 
         }
@@ -119,16 +118,6 @@ namespace Game.Robots.Robot_Paths
                     robots.Add(robot);
                 }
             }
-        }
-
-        public void AddRobot()
-        {
-            GameObject robotObject = PrefabUtility.InstantiatePrefab(robotPrefab, transform) as GameObject;
-            robotObject.transform.position = path.points[0].position;
-            
-            Robot robot = robotObject.GetComponent<Robot>();
-            robot.path = path;
-            robots.Add(robot);
         }
     }
 }

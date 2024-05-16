@@ -1,3 +1,5 @@
+using System;
+
 using AppCore;
 using AppCore.AudioManagement;
 using AppCore.ParticleManagement;
@@ -17,9 +19,20 @@ namespace Game.NightLevels.Shooter {
         // Unity functions
         private void OnTriggerEnter2D(Collider2D other) {
             // check if ignoreObject is in any of the parents of the collider (not just the object itself)
+            if (gameObject == null) {
+                return;
+            }
             if (other.gameObject == _ignoreObject || other.transform.IsChildOf(_ignoreObject.transform)) return;
             
             DestroyBullet();
+        }
+
+        private void OnEnable() {
+            GameManagerEvents.OnLevelStart += DestroyBullet;
+        }
+        
+        private void OnDisable() {
+            GameManagerEvents.OnLevelStart -= DestroyBullet;
         }
 
         // Private functions

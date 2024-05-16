@@ -1,11 +1,14 @@
+using Game;
+using Game.Robots.Robot_Paths;
+
 using UnityEditor;
 
 using UnityEngine;
 
-namespace Game.Robots.Robot_Paths
+namespace Tools.Editor.Robots.Robot_Paths
 {
     [CustomEditor(typeof(RobotPathSupervisor))]
-    public class RobotPathEditor : Editor
+    public class RobotPathEditor : UnityEditor.Editor
     {
         public RobotPathSupervisor pathSupervisor;
         private int lastKnownChildCount = 0;
@@ -21,7 +24,7 @@ namespace Game.Robots.Robot_Paths
             base.OnInspectorGUI();
             if (GUILayout.Button("Add Robot"))
             {
-                pathSupervisor.AddRobot();
+                AddRobot();
             }
         }
 
@@ -88,6 +91,15 @@ namespace Game.Robots.Robot_Paths
                  Handles.color = Color.yellow;
                  Handles.DrawLine(position, robot.transform.position);
              }
+        }
+        
+        public void AddRobot() {
+            GameObject robotObject = PrefabUtility.InstantiatePrefab(pathSupervisor.robotPrefab, pathSupervisor.transform) as GameObject;
+            robotObject.transform.position = pathSupervisor.path.points[0].position;
+            
+            Robot robot = robotObject.GetComponent<Robot>();
+            robot.path = pathSupervisor.path;
+            pathSupervisor.robots.Add(robot);
         }
     }
 }
