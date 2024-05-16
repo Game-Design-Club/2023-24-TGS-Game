@@ -10,6 +10,7 @@ namespace Game.GeneralGameObjects {
         [SerializeField] private float maxDistance = Single.PositiveInfinity;
         [SerializeField] private GameObject[] gameObjectsToMatchLength;
         [SerializeField] private LayerMask layerMask;
+        [SerializeField] private float width = .25f;
         
         private float _lastDistance = 0;
 
@@ -21,32 +22,38 @@ namespace Game.GeneralGameObjects {
         // Private functions
         private void CalculateLength() {
             Transform thisTransform = transform;
-            RaycastHit2D hit = Physics2D.Raycast(
-                thisTransform.position,
+            RaycastHit2D hit1 = Physics2D.Raycast(
+                thisTransform.position - thisTransform.up * width,
                 thisTransform.right,
                 Mathf.Infinity,
                 layerMask);
-            if (hit.collider is null) {
+            RaycastHit2D hit2 = Physics2D.Raycast(
+                thisTransform.position + thisTransform.up * width,
+                thisTransform.right,
+                Mathf.Infinity,
+                layerMask);
+            if (hit1.collider is null || hit2.collider is null) {
                 Debug.LogWarning("Laser hit nothing.", this);
                 return;
             }
-
-            float distance = hit.distance;
-            if (Math.Abs(distance - _lastDistance) < .0001) return;
-            ChangeLengths(distance, hit);
+            
+            RaycastHit2D hit = hit2.distance < hit1.distance ? hit2 : hit1;
+            
+            if (Math.Abs(hit.distance - _lastDistance) < .0001) return;
+            ChangeLengths(hit);
         }
 
-        private void ChangeLengths(float distance, RaycastHit2D hit) {
-            _lastDistance = distance;
-            if (distance > maxDistance) {
-                distance = maxDistance;
+        private void ChangeLengths(RaycastHit2D hit) {
+            _lastDistance = hit.distance;
+            if (hit.distance > maxDistance) {
+                hit.distance = maxDistance;
             }
 
             foreach (GameObject currentComponent in gameObjectsToMatchLength) {
                 Vector3 currentScale = currentComponent.transform.localScale;
-                currentComponent.transform.localScale = new Vector3(distance, currentScale.y, currentScale.z);
+                currentComponent.transform.localScale = new Vector3(hit.distance, currentScale.y, currentScale.z);
                 Vector3 startPoint = transform.position;
-                Vector3 endPoint = hit.point;
+                Vector3 endPoint = transform.position + transform.right * hit.distance;
                 currentComponent.transform.position = (startPoint + endPoint) / 2;
                 currentComponent.transform.right = endPoint - startPoint;
             }

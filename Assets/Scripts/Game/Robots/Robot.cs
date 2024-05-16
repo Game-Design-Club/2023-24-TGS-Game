@@ -86,9 +86,6 @@ namespace Game.Robots
                 Mathf.Infinity,
                 layerMask);
             if (hit.collider is null) {
-                Debug.Log(startingPosition);
-                Debug.Log(direction);
-                Debug.LogWarning("Robot collider hit nothing.", this);
                 distanceUntilCollision = float.PositiveInfinity;
             }
             return hit.distance;
