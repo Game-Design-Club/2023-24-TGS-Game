@@ -33,6 +33,11 @@ namespace Game.Interactables
         public void Close() {
             _animator.SetBool(AnimationConstants.Door.Open, false);
         }
+
+        public void SwitchState()
+        {
+            _animator.SetBool(AnimationConstants.Door.Open, !_animator.GetBool(AnimationConstants.Door.Open));
+        }
         
         
         // [SerializeField] private SpriteRenderer spriteRenderer;
