@@ -638,6 +638,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5698935452028652705, guid: f31f891328f2b466ebf7d28122ba494f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5698935452028652705, guid: f31f891328f2b466ebf7d28122ba494f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5698935452028652705, guid: f31f891328f2b466ebf7d28122ba494f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6220992701788443699, guid: f31f891328f2b466ebf7d28122ba494f, type: 3}
+      propertyPath: m_CustomBlends
+      value: 
+      objectReference: {fileID: 11400000, guid: b6cfa476f2fcc479aa9c303791c7b086, type: 2}
+    - target: {fileID: 7092550777980873829, guid: f31f891328f2b466ebf7d28122ba494f, type: 3}
+      propertyPath: orthographic size
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7092550777980873829, guid: f31f891328f2b466ebf7d28122ba494f, type: 3}
       propertyPath: m_BackGroundColor.b
       value: 0.08627451
