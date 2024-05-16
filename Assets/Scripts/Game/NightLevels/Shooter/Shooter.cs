@@ -1,5 +1,7 @@
 using System.Collections;
 
+using AppCore;
+
 using Game.GameManagement;
 
 using UnityEngine;
@@ -27,8 +29,9 @@ namespace Game.NightLevels.Shooter {
         private IEnumerator SpawnBullets() {
             yield return new WaitForSeconds(startDelay);
             while (true) {
-                GameObject bullet = Instantiate(bulletPrefab, shootTransform.position, Quaternion.identity, transform);
+                GameObject bullet = Instantiate(bulletPrefab, shootTransform.position, Quaternion.identity);
                 bullet.GetComponent<Bullet>().Shoot(transform.right, gameObject);
+                App.ParticleManager.AddObject(bullet);
                 yield return new WaitForSeconds(shootFrequency);
             }
         }

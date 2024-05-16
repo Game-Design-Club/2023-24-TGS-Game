@@ -16,6 +16,7 @@ namespace Game.Interactables {
         [SerializeField] private UnityEvent interacted;
         [SerializeField] private bool oneTimeUse = true;
         [SerializeField] private SoundPackage interactSound;
+        [SerializeField] private bool playSound = true;
         
         private bool _playerInRange = false;
         private bool _interacted = false;
@@ -82,12 +83,11 @@ namespace Game.Interactables {
         
         private void Interacted() {
             interacted?.Invoke();
-            if (interactSound != null) {
+            if (interactSound != null && playSound) {
                 App.AudioManager.PlaySFX(interactSound);
             }
             if (oneTimeUse) {
                 _interacted = true;
-                InteractionsPopup.Hide();
                 _animator.SetTrigger(AnimationConstants.Interactable.Interact);
             }
         }

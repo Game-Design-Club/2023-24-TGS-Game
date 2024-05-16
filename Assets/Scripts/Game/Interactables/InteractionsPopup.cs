@@ -55,7 +55,7 @@ namespace Game.Interactables {
         }
         
         // Public functions
-        public static void Show(String message) {
+        public static void Show(String message = "Press Space to Interact") {
             if (!s_instance) return;
             s_instance.InternalShow(message);
         }

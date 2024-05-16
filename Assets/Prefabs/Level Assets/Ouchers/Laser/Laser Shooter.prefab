@@ -270,6 +270,7 @@ MonoBehaviour:
   startDelay: 0
   warningGameObject: {fileID: 804272546221404832}
   onGameObject: {fileID: 152247374082525360}
+  activeOnStart: 1
 --- !u!114 &7135471512821529451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,6 +288,7 @@ MonoBehaviour:
   speed: 3
   startDelay: 0
   showLine: 1
+  startMovingOnStart: 1
 --- !u!114 &6105333931572537259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,7 +307,8 @@ MonoBehaviour:
   - {fileID: 152247374082525360}
   layerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 576
+  width: 0.25
 --- !u!1 &6073559887977246917
 GameObject:
   m_ObjectHideFlags: 0
