@@ -85,12 +85,9 @@ namespace Game.PlayerComponents {
                 actualMovement = newPosition - _rigidbody2D.position;
             }
             
-            if (_rigidbody2D.position == _expectedPositionNextFrame) {
-                Debug.Log("Yaayay");
-            } else {
+            if (_rigidbody2D.position != _expectedPositionNextFrame) {
                 Vector2 positionDifference = _expectedPositionNextFrame - _rigidbody2D.position;
                 OnPlayerMoved?.Invoke(-positionDifference, true);
-                Debug.Log("Nayay: " + positionDifference);
             }
             
             _rigidbody2D.position = newPosition;
