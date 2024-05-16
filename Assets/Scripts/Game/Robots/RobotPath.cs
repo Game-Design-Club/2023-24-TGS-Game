@@ -1,10 +1,8 @@
 using System.Collections.Generic;
 
-using Game.Robots.Robot_Paths;
-
 using UnityEngine;
 
-namespace Tools.Editor.Robots.Robot_Paths
+namespace Game.Robots
 {
     [System.Serializable]
     public class RobotPath

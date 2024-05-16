@@ -1,5 +1,5 @@
 using Game;
-using Game.Robots.Robot_Paths;
+using Game.Robots;
 
 using UnityEditor;
 

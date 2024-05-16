@@ -1,12 +1,8 @@
 using System;
 
-using Game.Robots.Robot_Paths;
-
-using Tools.Editor.Robots.Robot_Paths;
-
 using UnityEngine;
 
-namespace Tools.Editor.Robots
+namespace Game.Robots
 {
     public class Robot : MonoBehaviour, IComparable<Robot>
     {
