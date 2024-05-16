@@ -122,15 +122,15 @@ namespace Game.PlayerComponents {
         }
 
         private IEnumerator HandleTutorialPopup() {
-            if (App.PlayerDataManager.HasInteracted) yield break;
+            if (App.PlayerDataManager.HasInteractedWithRobot) yield break;
             
-            InteractionsPopup.Show();
+            InteractionsPopup.Show("Hold space to drag");
             
             yield return new WaitUntil(() => 
                 (IsGrabbingBox && _playerMovement.CurrentMovementInput != Vector2.zero));
             
             InteractionsPopup.Hide();
-            App.PlayerDataManager.HasInteracted = true;
+            App.PlayerDataManager.HasInteractedWithRobot = true;
         }
         
         // Internal functions

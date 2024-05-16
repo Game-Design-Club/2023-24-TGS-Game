@@ -41,10 +41,10 @@ namespace Game.Interactables {
             }
         }
         
-        private void InternalShow(String button) {
+        private void InternalShow(String message) {
             if (_showing) return;
             _showing = true;
-            _text.text = (button + " to interact");
+            _text.text = message;
             _animator.SetTrigger(AnimationConstants.InteractionsPopup.Show);
         }
         
@@ -55,9 +55,9 @@ namespace Game.Interactables {
         }
         
         // Public functions
-        public static void Show(String button = "F") {
+        public static void Show(String message) {
             if (!s_instance) return;
-            s_instance.InternalShow(button);
+            s_instance.InternalShow(message);
         }
         
         public static void Hide() {

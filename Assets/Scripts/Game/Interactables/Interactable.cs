@@ -1,5 +1,7 @@
 using AppCore;
 using AppCore.AudioManagement;
+using System.Collections;
+using System.Collections.Generic;
 
 using Game.GameManagement;
 
@@ -41,13 +43,28 @@ namespace Game.Interactables {
             GameManagerEvents.OnLevelStart -= OnLevelStart;
         }
         
+        private IEnumerator HandleTutorialPopup() {
+            if (App.PlayerDataManager.HasInteractedWithButton) yield break;
+            
+            InteractionsPopup.Show("Press space to interact");
+            
+            yield return new WaitUntil(() => 
+                _interacted);
+            
+            InteractionsPopup.Hide();
+            App.PlayerDataManager.HasInteractedWithButton = true;
+        }
+        
         private void OnTriggerEnter2D(Collider2D other) {
             if (!other.CompareTag(TagConstants.Player) || !Application.isPlaying || (_interacted && oneTimeUse)) return;
-
+            
             _playerInRange = true;
             
             _animator.SetBool(AnimationConstants.Interactable.Hover, true);
+            StartCoroutine(HandleTutorialPopup());
         }
+        
+        
 
         private void OnTriggerExit2D(Collider2D other) {
             if (!other.CompareTag(TagConstants.Player) || !Application.isPlaying || (_interacted && oneTimeUse)) return;
