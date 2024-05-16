@@ -33,9 +33,5 @@ namespace AppCore.ParticleManagement {
         public void PlayParticleEffect(ParticleSystem particles, Vector3 position, Quaternion rotation) {
             Instantiate(particles, position, rotation, transform);
         }
-
-        public void AddObject(GameObject obj) {
-            obj.transform.parent = transform;
-        }
     }
 }

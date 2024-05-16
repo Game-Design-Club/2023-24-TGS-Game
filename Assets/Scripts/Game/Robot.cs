@@ -2,11 +2,11 @@ using System;
 
 using Game.Robots.Robot_Paths;
 
-using UnityEditor;
+using Tools.Editor.Robots.Robot_Paths;
 
 using UnityEngine;
 
-namespace Game.Robots
+namespace Tools.Editor.Robots
 {
     public class Robot : MonoBehaviour, IComparable<Robot>
     {
@@ -109,7 +109,7 @@ namespace Game.Robots
             {
                 Vector2 start = path.points[i].position;
                 Vector2 end = path.points[(i + 1) % numPoints].position;
-                float dst = HandleUtility.DistancePointLine(referencePoint, start, end);
+                float dst = DistancePointLine(referencePoint, start, end);
                 if (dst < smallestDstFromLine)
                 {
                     smallestDstFromLine = dst;
@@ -122,7 +122,7 @@ namespace Game.Robots
             Vector2 shortestStart = path.points[indexOfSmallest].position;
             Vector2 shortestEnd = path.points[(indexOfSmallest + 1) % numPoints].position;
             
-            Vector2 newPos = (Vector2)HandleUtility.ProjectPointLine(referencePoint,shortestStart, shortestEnd);            
+            Vector2 newPos = ProjectPointLine(referencePoint,shortestStart, shortestEnd);            
             transform.position = newPos;
             
             float subSegLength = Vector2.Distance(shortestStart, newPos);
@@ -133,5 +133,25 @@ namespace Game.Robots
         {
             return dstAlongPath.CompareTo(other.dstAlongPath);
         }
+        
+        private float DistancePointLine(Vector2 point, Vector2 start, Vector2 end) {
+            float lineLength = Vector2.Distance(start, end);
+            float t = Vector2.Dot(point - start, end - start) / (lineLength * lineLength);
+            t = Mathf.Clamp01(t);
+            Vector2 closestPoint = start + t * (end - start);
+            return Vector2.Distance(point, closestPoint);
+        }
+
+        private Vector3 ProjectPointLine(Vector3 point, Vector3 lineStart, Vector3 lineEnd) {
+            Vector3 rhs = point - lineStart;
+            Vector3 vector3 = lineEnd - lineStart;
+            float magnitude = vector3.magnitude;
+            Vector3 lhs = vector3;
+            if ((double) magnitude > 9.999999974752427E-07)
+                lhs /= magnitude;
+            float num = Mathf.Clamp(Vector3.Dot(lhs, rhs), 0.0f, magnitude);
+            return lineStart + lhs * num;
+        }
+
     }
 }

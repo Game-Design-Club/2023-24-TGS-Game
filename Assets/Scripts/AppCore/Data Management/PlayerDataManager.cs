@@ -50,12 +50,22 @@ namespace AppCore.Data_Management {
             }
         }
 
-        public bool HasInteracted {
+        public bool HasInteractedWithRobot {
             get {
-                return PlayerPrefs.GetInt(PlayerDataKeys.TutorialHasInteracted, 0) == 1;
+                return PlayerPrefs.GetInt(PlayerDataKeys.HasInteractedWithBox, 0) == 1;
             }
             set {
-                PlayerPrefs.SetInt(PlayerDataKeys.TutorialHasInteracted, value ? 1 : 0);
+                PlayerPrefs.SetInt(PlayerDataKeys.HasInteractedWithBox, value ? 1 : 0);
+                PlayerPrefs.Save();
+            }
+        }
+
+        public bool HasInteractedWithButton {
+            get {
+                return PlayerPrefs.GetInt(PlayerDataKeys.HasInteractedWithButton, 0) == 1;
+            }
+            set {
+                PlayerPrefs.SetInt(PlayerDataKeys.HasInteractedWithButton, value ? 1 : 0);
                 PlayerPrefs.Save();
             }
         }
@@ -97,7 +107,8 @@ namespace AppCore.Data_Management {
         
         public void EraseLevelProgress() { // Only erases the level progress
             PlayerPrefs.DeleteKey(PlayerDataKeys.Levels);
-            PlayerPrefs.DeleteKey(PlayerDataKeys.TutorialHasInteracted);
+            PlayerPrefs.DeleteKey(PlayerDataKeys.HasInteractedWithBox);
+            PlayerPrefs.DeleteKey(PlayerDataKeys.HasInteractedWithButton);
             foreach (String key in _dialogueKeys) {
                 PlayerPrefs.DeleteKey(PlayerDataKeys.Dialogue + key);
             }

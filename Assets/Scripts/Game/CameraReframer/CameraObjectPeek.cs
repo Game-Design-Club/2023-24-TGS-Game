@@ -2,7 +2,6 @@ using System.Collections;
 
 using AppCore;
 using AppCore.AudioManagement;
-using AppCore.InputManagement;
 
 using Cinemachine;
 
@@ -13,6 +12,7 @@ namespace Game.CameraReframer {
     public class CameraObjectPeek : MonoBehaviour {
         [SerializeField] private Transform objectToPeek;
         [SerializeField] private float moveTime = 1f;
+        [SerializeField] private float waitTime = 1.5f;
         [SerializeField] private UnityEvent onMiddlePeek;
         [SerializeField] private SoundPackage middlePeekSound;
         [SerializeField] private bool freezePlayer = true;
@@ -52,9 +52,11 @@ namespace Game.CameraReframer {
             onMiddlePeek?.Invoke();
             App.AudioManager.PlaySFX(middlePeekSound);
             
-            yield return new WaitForSeconds(moveTime);
+            yield return new WaitForSeconds(waitTime);
             
             _camera.Priority = -1;
+
+            yield return new WaitForSeconds(moveTime);
 
             if (freezePlayer) {
                 App.InputManager.UnlockPlayerControls(this);
