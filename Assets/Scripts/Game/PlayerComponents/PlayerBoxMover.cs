@@ -82,12 +82,19 @@ namespace Game.PlayerComponents {
         }
 
         // Private functions
-        private void OnPlayerMoved(Vector2 rawMovement) {
+        private void OnPlayerMoved(Vector2 rawMovement, bool extra = false) {
             if (IsGrabbingBox) {
                 foreach (Rigidbody2D box in BoxChain) {
                     box.position += rawMovement;
                 }
-                BoxChain.Clear();
+
+                if (BoxChain.Count == 0 && extra) {
+                    BoxRb.position += rawMovement;
+                }
+                
+                if (!extra) {
+                    BoxChain.Clear();
+                }
             }
         }
         
@@ -124,7 +131,7 @@ namespace Game.PlayerComponents {
         private IEnumerator HandleTutorialPopup() {
             if (App.PlayerDataManager.HasInteractedWithRobot) yield break;
             
-            InteractionsPopup.Show("Hold space to drag");
+            InteractionsPopup.Show("Hold space to push/pull");
             
             yield return new WaitUntil(() => 
                 (IsGrabbingBox && _playerMovement.CurrentMovementInput != Vector2.zero));
