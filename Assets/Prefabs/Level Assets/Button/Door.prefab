@@ -66,8 +66,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0037499666, y: -0.003000021, z: 0}
-    m_Extent: {x: 2.5057502, y: 5.0045996, z: 0}
+    m_Center: {x: -0.0072499514, y: -0.0076999664, z: 0}
+    m_Extent: {x: 2.50065, y: 5.0005, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -270,7 +270,7 @@ MonoBehaviour:
   - {x: 0.5, y: -3, z: 0}
   m_ShapePathHash: -745147115
   m_Mesh: {fileID: 0}
-  m_InstanceId: 73616
+  m_InstanceId: 286122
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 3, z: 0}
@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6939b85498c12423792624496b589891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startShow: 1
+  startClosed: 1
 --- !u!95 &3085779599478954443
 Animator:
   serializedVersion: 5
