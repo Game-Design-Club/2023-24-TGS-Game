@@ -731,6 +731,69 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Level 1"",
+                    ""type"": ""Button"",
+                    ""id"": ""305f3d05-9825-4243-958c-0c400491240c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Level 2"",
+                    ""type"": ""Button"",
+                    ""id"": ""b6aded7b-1707-4f76-8290-a8d947333deb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Level 3"",
+                    ""type"": ""Button"",
+                    ""id"": ""b312995b-c76d-46c2-888b-67648d5ff1f1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Level 4"",
+                    ""type"": ""Button"",
+                    ""id"": ""687e7d50-4cb7-4b9c-a64e-d1e079f0860e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Level 5"",
+                    ""type"": ""Button"",
+                    ""id"": ""8971f566-a01f-42b0-bb82-e3159d6d621b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Level 5.2"",
+                    ""type"": ""Button"",
+                    ""id"": ""d67d438e-b46e-4b9d-8385-fe2b8671ea6d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Level 6"",
+                    ""type"": ""Button"",
+                    ""id"": ""99935128-3494-4e9b-833b-6e1f55ead2a4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -742,6 +805,83 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cfc0afeb-cbfc-481e-90f7-3c8734f864f2"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Level 1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4bfbd728-1c1e-4382-a7ef-1f1ebf8478e4"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Level 2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8c4113ed-1c70-4cc4-89d3-8eb56bc7158c"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Level 3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""db1df42b-d28c-4315-913b-af45fb4c6222"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Level 4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c9c3ae78-cff4-450e-b332-3cade81a324a"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Level 5"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a30407c1-8f19-4634-af28-d0be411da677"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Level 5.2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f0389690-29b5-494f-b5c6-d4c3c5ba03ba"",
+                    ""path"": ""<Keyboard>/7"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Level 6"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -830,6 +970,13 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         // Debug
         m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
         m_Debug_Click = m_Debug.FindAction("Click", throwIfNotFound: true);
+        m_Debug_Level1 = m_Debug.FindAction("Level 1", throwIfNotFound: true);
+        m_Debug_Level2 = m_Debug.FindAction("Level 2", throwIfNotFound: true);
+        m_Debug_Level3 = m_Debug.FindAction("Level 3", throwIfNotFound: true);
+        m_Debug_Level4 = m_Debug.FindAction("Level 4", throwIfNotFound: true);
+        m_Debug_Level5 = m_Debug.FindAction("Level 5", throwIfNotFound: true);
+        m_Debug_Level52 = m_Debug.FindAction("Level 5.2", throwIfNotFound: true);
+        m_Debug_Level6 = m_Debug.FindAction("Level 6", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1064,11 +1211,25 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Debug;
     private List<IDebugActions> m_DebugActionsCallbackInterfaces = new List<IDebugActions>();
     private readonly InputAction m_Debug_Click;
+    private readonly InputAction m_Debug_Level1;
+    private readonly InputAction m_Debug_Level2;
+    private readonly InputAction m_Debug_Level3;
+    private readonly InputAction m_Debug_Level4;
+    private readonly InputAction m_Debug_Level5;
+    private readonly InputAction m_Debug_Level52;
+    private readonly InputAction m_Debug_Level6;
     public struct DebugActions
     {
         private @InputActions m_Wrapper;
         public DebugActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Click => m_Wrapper.m_Debug_Click;
+        public InputAction @Level1 => m_Wrapper.m_Debug_Level1;
+        public InputAction @Level2 => m_Wrapper.m_Debug_Level2;
+        public InputAction @Level3 => m_Wrapper.m_Debug_Level3;
+        public InputAction @Level4 => m_Wrapper.m_Debug_Level4;
+        public InputAction @Level5 => m_Wrapper.m_Debug_Level5;
+        public InputAction @Level52 => m_Wrapper.m_Debug_Level52;
+        public InputAction @Level6 => m_Wrapper.m_Debug_Level6;
         public InputActionMap Get() { return m_Wrapper.m_Debug; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1081,6 +1242,27 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Click.started += instance.OnClick;
             @Click.performed += instance.OnClick;
             @Click.canceled += instance.OnClick;
+            @Level1.started += instance.OnLevel1;
+            @Level1.performed += instance.OnLevel1;
+            @Level1.canceled += instance.OnLevel1;
+            @Level2.started += instance.OnLevel2;
+            @Level2.performed += instance.OnLevel2;
+            @Level2.canceled += instance.OnLevel2;
+            @Level3.started += instance.OnLevel3;
+            @Level3.performed += instance.OnLevel3;
+            @Level3.canceled += instance.OnLevel3;
+            @Level4.started += instance.OnLevel4;
+            @Level4.performed += instance.OnLevel4;
+            @Level4.canceled += instance.OnLevel4;
+            @Level5.started += instance.OnLevel5;
+            @Level5.performed += instance.OnLevel5;
+            @Level5.canceled += instance.OnLevel5;
+            @Level52.started += instance.OnLevel52;
+            @Level52.performed += instance.OnLevel52;
+            @Level52.canceled += instance.OnLevel52;
+            @Level6.started += instance.OnLevel6;
+            @Level6.performed += instance.OnLevel6;
+            @Level6.canceled += instance.OnLevel6;
         }
 
         private void UnregisterCallbacks(IDebugActions instance)
@@ -1088,6 +1270,27 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Click.started -= instance.OnClick;
             @Click.performed -= instance.OnClick;
             @Click.canceled -= instance.OnClick;
+            @Level1.started -= instance.OnLevel1;
+            @Level1.performed -= instance.OnLevel1;
+            @Level1.canceled -= instance.OnLevel1;
+            @Level2.started -= instance.OnLevel2;
+            @Level2.performed -= instance.OnLevel2;
+            @Level2.canceled -= instance.OnLevel2;
+            @Level3.started -= instance.OnLevel3;
+            @Level3.performed -= instance.OnLevel3;
+            @Level3.canceled -= instance.OnLevel3;
+            @Level4.started -= instance.OnLevel4;
+            @Level4.performed -= instance.OnLevel4;
+            @Level4.canceled -= instance.OnLevel4;
+            @Level5.started -= instance.OnLevel5;
+            @Level5.performed -= instance.OnLevel5;
+            @Level5.canceled -= instance.OnLevel5;
+            @Level52.started -= instance.OnLevel52;
+            @Level52.performed -= instance.OnLevel52;
+            @Level52.canceled -= instance.OnLevel52;
+            @Level6.started -= instance.OnLevel6;
+            @Level6.performed -= instance.OnLevel6;
+            @Level6.canceled -= instance.OnLevel6;
         }
 
         public void RemoveCallbacks(IDebugActions instance)
@@ -1171,5 +1374,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     public interface IDebugActions
     {
         void OnClick(InputAction.CallbackContext context);
+        void OnLevel1(InputAction.CallbackContext context);
+        void OnLevel2(InputAction.CallbackContext context);
+        void OnLevel3(InputAction.CallbackContext context);
+        void OnLevel4(InputAction.CallbackContext context);
+        void OnLevel5(InputAction.CallbackContext context);
+        void OnLevel52(InputAction.CallbackContext context);
+        void OnLevel6(InputAction.CallbackContext context);
     }
 }
