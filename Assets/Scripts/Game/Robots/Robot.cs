@@ -9,6 +9,7 @@ namespace Game.Robots
         [Range(0, 1)]
         private static float _distanceImpact = 0.5f; 
         [SerializeField] private LayerMask layerMask;
+        [SerializeField] private Collider2D collider2D;
         public RobotPath path;
         [HideInInspector] public float dstAlongPath = 0;
         [HideInInspector]public RobotPathPoint destination;
@@ -43,7 +44,8 @@ namespace Game.Robots
             velocity = Mathf.Lerp(velocity, idealVelocity, 0.5f);
 
             dstAlongPath = (dstAlongPath + velocity * Time.deltaTime) % path.length;
-
+            collider2D.enabled = velocity > 0.1f;
+            Debug.Log(collider2D.enabled);
         }
 
         public float VeloMult(float dst)
