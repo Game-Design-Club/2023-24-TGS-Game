@@ -8,6 +8,7 @@ namespace Game.Robots
     public class RobotPathSupervisor : MonoBehaviour
     {
         [SerializeField] public GameObject robotPrefab;
+        [SerializeField] private bool showPath = true;
         public RobotPath path = null;
         public List<Robot> robots = new List<Robot>();
         public List<float> idealPositions;
@@ -29,7 +30,9 @@ namespace Game.Robots
         }
 
         private void Start() {
-            CreatePath();
+            if (showPath) {
+                CreatePath();
+            }
         }
 
         private void Update()

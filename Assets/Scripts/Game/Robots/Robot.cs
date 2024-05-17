@@ -45,7 +45,6 @@ namespace Game.Robots
 
             dstAlongPath = (dstAlongPath + velocity * Time.deltaTime) % path.length;
             collider2D.enabled = velocity > 0.1f;
-            Debug.Log(collider2D.enabled);
         }
 
         public float VeloMult(float dst)
