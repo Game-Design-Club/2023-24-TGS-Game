@@ -82,12 +82,19 @@ namespace Game.PlayerComponents {
         }
 
         // Private functions
-        private void OnPlayerMoved(Vector2 rawMovement) {
+        private void OnPlayerMoved(Vector2 rawMovement, bool extra = false) {
             if (IsGrabbingBox) {
                 foreach (Rigidbody2D box in BoxChain) {
                     box.position += rawMovement;
                 }
-                BoxChain.Clear();
+
+                if (BoxChain.Count == 0 && extra) {
+                    BoxRb.position += rawMovement;
+                }
+                
+                if (!extra) {
+                    BoxChain.Clear();
+                }
             }
         }
         
