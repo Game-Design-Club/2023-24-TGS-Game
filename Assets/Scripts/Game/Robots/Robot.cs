@@ -1,16 +1,12 @@
 using System;
 
-using Game.Robots.Robot_Paths;
-
-using Tools.Editor.Robots.Robot_Paths;
-
 using UnityEngine;
 
-namespace Tools.Editor.Robots
+namespace Game.Robots
 {
     public class Robot : MonoBehaviour, IComparable<Robot>
     {
-        private static float _hardStopDistance = 1f;
+        private static float hardStopDistance = 1f;
         [Range(0, 1)]
         private static float _distanceImpact = 0.5f; 
         [SerializeField] private LayerMask layerMask;
@@ -37,7 +33,7 @@ namespace Tools.Editor.Robots
             
             UpdatePosition(currentSegment);
             
-            float idealVelocity = distanceUntilCollision < _hardStopDistance && distanceUntilCollision < Vector2.Distance(transform.position, destination.position) ? 0 : currentSegment.Speed;
+            float idealVelocity = distanceUntilCollision < hardStopDistance && distanceUntilCollision < Vector2.Distance(transform.position, destination.position) + 0.49f ? 0 : currentSegment.Speed;
 
             float dst = idealDst - dstAlongPath;
             float backDst = Math.Abs(path.length - Math.Abs(dst)) * (dst / Math.Abs(dst));

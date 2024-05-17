@@ -44,5 +44,9 @@ namespace Tools.Constants {
         public static class SecurityCamera {
             public const string LockedOnPlayer = "Locked On Player";
         }
+
+        public static class Door {
+            public const string Open = "Open";
+        }
     }
 }

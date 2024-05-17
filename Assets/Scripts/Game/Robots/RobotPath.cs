@@ -1,16 +1,15 @@
 using System.Collections.Generic;
 
-using Game.Robots.Robot_Paths;
-
 using UnityEngine;
 
-namespace Tools.Editor.Robots.Robot_Paths
+namespace Game.Robots
 {
     [System.Serializable]
     public class RobotPath
     {
         public List<RobotPathPoint> points;
         [HideInInspector] public float length;
+        public float speed = 5f;
 
         public RobotPath(Vector2 center)
         {
@@ -41,7 +40,7 @@ namespace Tools.Editor.Robots.Robot_Paths
                 info.End = end;
                 info.Length = dst;
                 info.StartDstFromStart = currentDst;
-                info.Speed = 5f;
+                info.Speed = speed;
                 return info;
             }
             Debug.LogWarning("Distance " + dstAlongPath + " not in path with length " + length);
@@ -56,7 +55,7 @@ namespace Tools.Editor.Robots.Robot_Paths
 
         public void MovePoint(int index, Vector2 position)
         {
-            points[index].position = new Vector2(Mathf.RoundToInt(position.x), Mathf.RoundToInt(position.y));
+            points[index].position = new Vector2(Mathf.RoundToInt(position.x * 2) / 2f, Mathf.RoundToInt(position.y * 2) / 2f);
             CalculateLength();
         }
 
