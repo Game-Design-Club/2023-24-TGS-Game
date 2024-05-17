@@ -66,8 +66,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0072499514, y: -0.0076999664, z: 0}
-    m_Extent: {x: 2.50065, y: 5.0005, z: 0}
+    m_Center: {x: -0.0014499426, y: -0.0034000874, z: 0}
+    m_Extent: {x: 2.50465, y: 5.0009003, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -215,7 +215,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.98, y: 6}
+  m_Size: {x: 1, y: 6}
   m_EdgeRadius: 0
 --- !u!50 &5076828517426471849
 Rigidbody2D:
@@ -270,7 +270,7 @@ MonoBehaviour:
   - {x: 0.5, y: -3, z: 0}
   m_ShapePathHash: -745147115
   m_Mesh: {fileID: 0}
-  m_InstanceId: 286122
+  m_InstanceId: 175254
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 3, z: 0}
