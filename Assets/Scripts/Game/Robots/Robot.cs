@@ -33,7 +33,7 @@ namespace Game.Robots
             
             UpdatePosition(currentSegment);
             
-            float idealVelocity = distanceUntilCollision < hardStopDistance && distanceUntilCollision < Vector2.Distance(transform.position, destination.position) ? 0 : currentSegment.Speed;
+            float idealVelocity = distanceUntilCollision < hardStopDistance && distanceUntilCollision < Vector2.Distance(transform.position, destination.position) + 0.49f ? 0 : currentSegment.Speed;
 
             float dst = idealDst - dstAlongPath;
             float backDst = Math.Abs(path.length - Math.Abs(dst)) * (dst / Math.Abs(dst));
