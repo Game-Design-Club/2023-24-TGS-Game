@@ -1,14 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-using Game.Robots.Robot_Paths;
-
-using Tools.Editor.Robots;
-using Tools.Editor.Robots.Robot_Paths;
-
 using UnityEngine;
 
-namespace Game
+namespace Game.Robots
 {
     public class RobotPathSupervisor : MonoBehaviour
     {
