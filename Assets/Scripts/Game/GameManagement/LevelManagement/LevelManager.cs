@@ -52,6 +52,14 @@ namespace Game.GameManagement.LevelManagement {
             StartCoroutine(LoadLevel(_currentLevel));
         }
         
+        public void LoadLevel(int levelIndex) {
+            if (levelsData[levelIndex] == null) {
+                Debug.LogWarning($"Tried to load level {levelIndex} but it doesn't exist");
+                return;
+            }
+            StartCoroutine(LoadLevel(levelsData[levelIndex]));
+        }
+        
         public IEnumerator LoadLevel(Level level, bool fade = true) { // default fade is true
             if (IsCurrentlySwitching) {
                 Debug.LogWarning("Tried to load level in the middle of loading another level");

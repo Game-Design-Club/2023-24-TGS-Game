@@ -44,6 +44,9 @@ namespace AppCore.InputManagement { // This class is used to manage all player i
         // Special
         public event Action OnDialogueContinue;
         
+        // Levels
+        public event Action<int> OnLevelSelect;
+        
         private void Awake() {
             _inputActions = new InputActions();
         }
@@ -67,6 +70,7 @@ namespace AppCore.InputManagement { // This class is used to manage all player i
             EnableClicking();
             EnableMouseMovement();
             EnableUIInteract();
+            EnableLevelSelect();
 
             return;
             
@@ -96,12 +100,29 @@ namespace AppCore.InputManagement { // This class is used to manage all player i
                 _inputActions.UI.Submit.Enable();
                 _inputActions.UI.Submit.performed += OnSubmitPerformed;
             }
+            void EnableLevelSelect() {
+                _inputActions.Debug.Level1.Enable();
+                _inputActions.Debug.Level1.performed += LevelSelect(0);
+                _inputActions.Debug.Level2.Enable();
+                _inputActions.Debug.Level2.performed += LevelSelect(1);
+                _inputActions.Debug.Level3.Enable();
+                _inputActions.Debug.Level3.performed += LevelSelect(2);
+                _inputActions.Debug.Level4.Enable();
+                _inputActions.Debug.Level4.performed += LevelSelect(3);
+                _inputActions.Debug.Level5.Enable();
+                _inputActions.Debug.Level5.performed += LevelSelect(4);
+                _inputActions.Debug.Level52.Enable();
+                _inputActions.Debug.Level52.performed += LevelSelect(5);
+                _inputActions.Debug.Level6.Enable();
+                _inputActions.Debug.Level6.performed += LevelSelect(6);
+            }
         }
         private void DisableAll() {
             DisableMovement();
             DisableInteract();
             DisableCancel();
             DisableClicking();
+            DisableLevelSelect();
             void DisableMovement() {
                 _inputActions.Player.Move.Enable();
                 _inputActions.Player.Move.performed -= OnMovementPerformed;
@@ -119,6 +140,23 @@ namespace AppCore.InputManagement { // This class is used to manage all player i
             void DisableClicking() {
                 _inputActions.UI.Click.Disable();
                 _inputActions.UI.Click.performed -= OnClickPerformed;
+            }
+
+            void DisableLevelSelect() {
+                _inputActions.Debug.Level1.Disable();
+                _inputActions.Debug.Level1.performed -= LevelSelect(0);
+                _inputActions.Debug.Level2.Disable();
+                _inputActions.Debug.Level2.performed -= LevelSelect(1);
+                _inputActions.Debug.Level3.Disable();
+                _inputActions.Debug.Level3.performed -= LevelSelect(2);
+                _inputActions.Debug.Level4.Disable();
+                _inputActions.Debug.Level4.performed -= LevelSelect(3);
+                _inputActions.Debug.Level5.Disable();
+                _inputActions.Debug.Level5.performed -= LevelSelect(4);
+                _inputActions.Debug.Level52.Disable();
+                _inputActions.Debug.Level52.performed -= LevelSelect(5);
+                _inputActions.Debug.Level6.Disable();
+                _inputActions.Debug.Level6.performed -= LevelSelect(6);
             }
         }
         
@@ -157,6 +195,13 @@ namespace AppCore.InputManagement { // This class is used to manage all player i
                 if (LockedUI) return;
                 OnClick?.Invoke(clickPosition);
             }
+        }
+        
+        private Action<InputAction.CallbackContext> LevelSelect(int level) {
+            return (context) => {
+                if (LockedUI) return;
+                OnLevelSelect?.Invoke(level);
+            };
         }
         
         private void OnPointPerformed(InputAction.CallbackContext context) {
