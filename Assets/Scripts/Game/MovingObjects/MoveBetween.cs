@@ -130,11 +130,10 @@ namespace Game.MovingObjects
                 if (loop == LoopType.Cyclical && _points.Length > 2) { // If there are only 2 points, it's a straight line
                     _lineRenderer.loop = true;
                 }
-                Vector3[] lineRendererPoints = new Vector3[_points.Length];
+                Vector3[] lineRendererPoints = new Vector3[_points.Length + 1];
                 for (int i = 0; i < _points.Length; i++) {
                     lineRendererPoints[i] = new Vector3(_points[i].x, _points[i].y, 0);
                 }
-                _lineRenderer.positionCount = _points.Length;
                 _lineRenderer.SetPositions(lineRendererPoints);
             }
 

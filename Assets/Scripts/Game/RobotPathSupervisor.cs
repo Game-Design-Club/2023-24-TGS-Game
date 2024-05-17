@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+
+using Game.Robots.Robot_Paths;
 
 using Tools.Editor.Robots;
 using Tools.Editor.Robots.Robot_Paths;
@@ -14,6 +17,8 @@ namespace Game
         public List<Robot> robots = new List<Robot>();
         public List<float> idealPositions;
 
+        private LineRenderer _lineRenderer;
+        
         private void OnEnable()
         {
             robots.Sort();
@@ -22,6 +27,14 @@ namespace Game
             {
                 idealPositions.Add(robot.dstAlongPath);
             }
+        }
+
+        private void Awake() {
+            _lineRenderer = GetComponent<LineRenderer>();
+        }
+
+        private void Start() {
+            CreatePath();
         }
 
         private void Update()
@@ -118,6 +131,17 @@ namespace Game
                     robots.Add(robot);
                 }
             }
+        }
+        
+        // Private functions
+        private void CreatePath() {
+            Vector3[] lineRendererPoints = new Vector3[path.points.Count + 1];
+            for (int i = 0; i < path.points.Count; i++) {
+                lineRendererPoints[i] = new Vector3(path.points[i].position.x, path.points[i].position.y, 0);
+            }
+            lineRendererPoints[path.points.Count] = new Vector3(path.points[0].position.x, path.points[0].position.y, 0);
+            _lineRenderer.positionCount = path.points.Count + 1;
+            _lineRenderer.SetPositions(lineRendererPoints);
         }
     }
 }
