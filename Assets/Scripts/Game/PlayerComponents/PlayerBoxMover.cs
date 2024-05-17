@@ -131,7 +131,7 @@ namespace Game.PlayerComponents {
         private IEnumerator HandleTutorialPopup() {
             if (App.PlayerDataManager.HasInteractedWithRobot) yield break;
             
-            InteractionsPopup.Show("Hold space to drag");
+            InteractionsPopup.Show("Hold space to push/pull");
             
             yield return new WaitUntil(() => 
                 (IsGrabbingBox && _playerMovement.CurrentMovementInput != Vector2.zero));
