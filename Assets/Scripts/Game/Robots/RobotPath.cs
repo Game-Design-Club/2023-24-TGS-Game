@@ -55,7 +55,7 @@ namespace Game.Robots
 
         public void MovePoint(int index, Vector2 position)
         {
-            points[index].position = new Vector2(Mathf.RoundToInt(position.x * 2) / 2, Mathf.RoundToInt(position.y * 2) / 2);
+            points[index].position = new Vector2(Mathf.RoundToInt(position.x * 2) / 2f, Mathf.RoundToInt(position.y * 2) / 2f);
             CalculateLength();
         }
 
