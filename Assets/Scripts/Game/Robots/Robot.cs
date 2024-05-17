@@ -1,5 +1,4 @@
 using System;
-
 using UnityEngine;
 
 namespace Game.Robots
@@ -44,10 +43,6 @@ namespace Game.Robots
             velocity = Mathf.Lerp(velocity, idealVelocity, 0.5f);
 
             dstAlongPath = (dstAlongPath + velocity * Time.deltaTime) % path.length;
-            
-            // Quaternion newRotation = Quaternion.LookRotation(GetDirection());
-            // Quaternion newRotation2D = Quaternion.Euler(0f, 0f, newRotation.eulerAngles.y);
-            // transform.rotation = newRotation2D;
 
         }
 
@@ -59,9 +54,17 @@ namespace Game.Robots
         public void UpdatePosition(RobotPath.SegmentInfo currentSegment)
         {
             float percent = (dstAlongPath - currentSegment.StartDstFromStart) / currentSegment.Length;
+            Vector2 previousPosition = transform.position;
             transform.position = Vector2.Lerp(currentSegment.Start.position, currentSegment.End.position, percent);
             destination = currentSegment.End;
             
+            // Calculate the direction and rotation
+            Vector2 direction = (Vector2)transform.position - previousPosition;
+            if (direction != Vector2.zero)
+            {
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Euler(0f, 0f, angle);
+            }
         }
         
         private void CalculateDistanceTillCollision()

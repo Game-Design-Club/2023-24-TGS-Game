@@ -25,8 +25,9 @@ namespace Game.PlayerComponents {
         private Vector2 _currentMovement;
         private float _currentMovementSpeed;
         private Rigidbody2D _rigidbody2D;
-        private BoxCollider2D _boxCollider;
+        private Collider2D _boxCollider;
         private PlayerBoxMover _boxPusher;
+        private PlayerAnimator _playerAnimator;
 
         private Vector2 _expectedPositionNextFrame;
         
@@ -48,7 +49,7 @@ namespace Game.PlayerComponents {
         private void Awake() {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _boxPusher = GetComponent<PlayerBoxMover>();
-            _boxCollider = GetComponent<BoxCollider2D>();
+            _boxCollider = GetComponent<Collider2D>();
         }
 
         private void Start() {
@@ -101,7 +102,7 @@ namespace Game.PlayerComponents {
         private Vector2 SmoothMovement(Vector2 movement) {
             Vector2 newPosition = _rigidbody2D.position + movement;
     
-            Vector2 size = _boxCollider.size * transform.localScale;
+            Vector2 size = (Vector2)_boxCollider.bounds.size * transform.localScale;
             
             bool hitWall = false;
             

@@ -4,7 +4,6 @@ using Tools.Constants;
 
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.Serialization;
 
 namespace Game.Interactables
 {
