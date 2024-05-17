@@ -17,6 +17,11 @@ namespace Tools.Constants {
 
         public static class Player {
             public const string Die = "Die";
+            public const string Direction = "Direction";
+            public const int Right = 0;
+            public const int Down = 1;
+            public const int Left = 3;
+            public const int Up = 2;
         }
 
         public static class Box {
@@ -38,6 +43,10 @@ namespace Tools.Constants {
 
         public static class SecurityCamera {
             public const string LockedOnPlayer = "Locked On Player";
+        }
+
+        public static class Door {
+            public const string Open = "Open";
         }
     }
 }

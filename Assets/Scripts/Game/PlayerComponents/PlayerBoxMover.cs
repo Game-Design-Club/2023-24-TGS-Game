@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -8,6 +9,7 @@ using Game.Interactables;
 using Game.NightLevels.Box;
 using Tools.Constants;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.PlayerComponents {
     public class PlayerBoxMover : MonoBehaviour {
@@ -28,6 +30,8 @@ namespace Game.PlayerComponents {
         internal Vector2 AttachDirection => BoxTriggers.Count > 0 ? BoxTriggers[0].AttachDirection : Vector2.zero;
 
         public static List<Rigidbody2D> BoxChain = new();
+        
+        public Action<bool> onBoxGrabbed;
         
         // Unity functions
         private void OnEnable() {
@@ -114,12 +118,14 @@ namespace Game.PlayerComponents {
             IsGrabbingBox = true;
             _playerMovement.SetMovementSpeed(boxMoveSpeed);
             BoxBox.GrabbedBox();
+            onBoxGrabbed?.Invoke(true);
         }
         
         private void ReleaseBox() {
             IsGrabbingBox = false;
             _playerMovement.ResetMovementSpeed();
             BoxBox.ReleasedBox();
+            onBoxGrabbed?.Invoke(false);
         }
         
         private void OnLevelOver() {
@@ -131,7 +137,7 @@ namespace Game.PlayerComponents {
         private IEnumerator HandleTutorialPopup() {
             if (App.PlayerDataManager.HasInteractedWithRobot) yield break;
             
-            InteractionsPopup.Show("Hold space to drag");
+            InteractionsPopup.Show("Hold space to push/pull");
             
             yield return new WaitUntil(() => 
                 (IsGrabbingBox && _playerMovement.CurrentMovementInput != Vector2.zero));

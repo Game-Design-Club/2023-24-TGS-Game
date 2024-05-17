@@ -507,6 +507,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 92633838598556293, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
+      propertyPath: gameMusic
+      value: 
+      objectReference: {fileID: 11400000, guid: f61a35828e4334156ac612b0e721f150, type: 2}
+    - target: {fileID: 92633838598556293, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
+      propertyPath: mainMenuMusic
+      value: 
+      objectReference: {fileID: 11400000, guid: 0d07ed2588eec49549360bb18506f31f, type: 2}
     - target: {fileID: 4918779296130150439, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -786,7 +794,7 @@ PrefabInstance:
     - target: {fileID: 7778564107128079809, guid: f7dd0f4d07d3445a18315844fd95adef, type: 3}
       propertyPath: customFirstLevel
       value: 
-      objectReference: {fileID: 3721227100662698277, guid: 1e38a1285555c4a249bec86c84419415, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 8166390087522240723, guid: f7dd0f4d07d3445a18315844fd95adef, type: 3}
       propertyPath: .Array.data[0]ambienceSounds
       value: 
