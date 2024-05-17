@@ -27,7 +27,6 @@ namespace Game.Interactables
 
         public void Open() {
             _animator.SetBool(AnimationConstants.Door.Open, true);
-            Debug.Log("opening");
         }
 
         public void Close() {
