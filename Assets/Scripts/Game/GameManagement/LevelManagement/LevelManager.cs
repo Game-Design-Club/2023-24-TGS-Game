@@ -41,7 +41,7 @@ namespace Game.GameManagement.LevelManagement {
                 // If there are no more levels, go to the credits
                 _currentLevelIndex = 0;
                 App.PlayerDataManager.LastLevelCompleted(_currentLevelIndex);
-                App.SceneManager.LoadScene(SceneConstants.Credits);
+                App.SceneManager.LoadScene(SceneConstants.ClosingDialogue);
                 return;
             }
             StartCoroutine(LoadLevel(levelsData[_currentLevelIndex]));
