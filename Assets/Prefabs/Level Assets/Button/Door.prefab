@@ -48,7 +48,7 @@ MonoBehaviour:
   m_LightType: 1
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.7
-  m_Color: {r: 0.9337096, g: 1, b: 0.4575472, a: 1}
+  m_Color: {r: 0.84705883, g: 0.85882354, b: 0.5529412, a: 1}
   m_Intensity: 0.3
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
@@ -66,8 +66,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0014499426, y: -0.0034000874, z: 0}
-    m_Extent: {x: 2.50465, y: 5.0009003, z: 0}
+    m_Center: {x: 0.00065004826, y: 0.0024499893, z: 0}
+    m_Extent: {x: 2.49645, y: 4.99745, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -215,7 +215,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 6}
+  m_Size: {x: 0.98, y: 6}
   m_EdgeRadius: 0
 --- !u!50 &5076828517426471849
 Rigidbody2D:
@@ -270,7 +270,7 @@ MonoBehaviour:
   - {x: 0.5, y: -3, z: 0}
   m_ShapePathHash: -745147115
   m_Mesh: {fileID: 0}
-  m_InstanceId: 175254
+  m_InstanceId: 155884
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 3, z: 0}

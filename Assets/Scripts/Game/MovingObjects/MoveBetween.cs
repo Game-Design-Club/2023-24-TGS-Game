@@ -1,13 +1,11 @@
 using System.Collections;
-
 using Game.GameManagement;
 using Game.NightLevels.LaserShooters;
-
 using UnityEngine;
 
 namespace Game.MovingObjects
 {
-    public class MoveBetween : MonoBehaviour { // Moves an object between points, super abstract
+    public class MoveBetween : MonoBehaviour {
         [SerializeField] private GameObject pointsParent;
         [SerializeField] private LoopType loop = LoopType.Cyclical;
         [SerializeField] private float speed = 3f;
@@ -19,6 +17,7 @@ namespace Game.MovingObjects
         private Vector2 _nextPoint;
         private float _distance;
         private float _startTime;
+        private float _elapsedTime;
 
         private bool _movingBackwards = false;
         private bool _isMoving = false;
@@ -27,7 +26,6 @@ namespace Game.MovingObjects
         
         private LineRenderer _lineRenderer;
     
-        // Unity functions
         private void OnEnable() {
             GameManagerEvents.OnLevelStart += OnLevelStart;
         }
@@ -39,77 +37,67 @@ namespace Game.MovingObjects
         private void Awake() {
             _lineRenderer = pointsParent.GetComponent<LineRenderer>();
         }
-        // Private functions
+
         private void OnLevelStart() {
             _isMoving = startMovingOnStart;
             StartCoroutine(StartAfterDelay());
         }
+        
         private IEnumerator StartAfterDelay() {
             StartMoving();
             yield return new WaitForSeconds(startDelay);
             SetActive(_isMoving);
         }
+
         private void Update() {
-            if (!_isMoving) {
-                _startTime += Time.deltaTime;
-            }
-            float distanceCovered = (Time.time - _startTime) * speed;
+            if (!_isMoving) return;
+
+            _elapsedTime += Time.deltaTime;
+            float distanceCovered = _elapsedTime * speed;
             float fractionOfJourney = distanceCovered / _distance;
-            if (fractionOfJourney > 1) fractionOfJourney = 1;
+
             transform.position = Vector2.Lerp(_currentPoint, _nextPoint, fractionOfJourney);
-            if ((Vector2)transform.position != _nextPoint) { return; }
-            // Reached the next point
+
+            if ((Vector2)transform.position != _nextPoint) return;
+
             if (_currentPointIndex >= _points.Length - 1) {
-                // Reached the last point
                 switch (loop) {
                     case LoopType.None:
                         _isMoving = false;
                         return;
                     case LoopType.Cyclical:
-                        // Move back to the first point
                         _currentPoint = _nextPoint;
                         _currentPointIndex = 0;
                         _nextPoint = _points[_currentPointIndex];
                         break;
                     case LoopType.Linear:
-                        // Snap to the first point (no movement between them, but move after that)
                         transform.position = _points[0];
                         _currentPoint = _points[0];
                         _currentPointIndex = 0;
                         _nextPoint = _points[_currentPointIndex += 1];
                         break;
                     case LoopType.PingPong:
-                        // Start moving backwards
                         _movingBackwards = true;
                         _currentPoint = _nextPoint;
                         _currentPointIndex -= 1;
                         _nextPoint = _points[_currentPointIndex];
                         break;
-                    
                 }
-            } else if (LoopType.PingPong == loop && _currentPointIndex <= 0) {
-                // Reached the first point
-                // Start moving forwards
+            } else if (loop == LoopType.PingPong && _currentPointIndex <= 0) {
                 _movingBackwards = false;
                 _currentPoint = _nextPoint;
                 _currentPointIndex += 1;
                 _nextPoint = _points[_currentPointIndex];
             } else {
-                // Move to the next point
                 _currentPoint = _nextPoint;
-                if (_movingBackwards) {
-                    _currentPointIndex -= 1;
-                } else {
-                    _currentPointIndex += 1;
-                }
+                _currentPointIndex += _movingBackwards ? -1 : 1;
                 _nextPoint = _points[_currentPointIndex];
             }
-            
+
             _distance = Vector2.Distance(_currentPoint, _nextPoint);
-            _startTime = Time.time;
+            _elapsedTime = 0;
         }
         
-        // Public functions
         public void StartMoving() {
             _points = new Vector2[pointsParent.transform.childCount];
             for (int i = 0; i < _points.Length; i++) {
@@ -124,10 +112,10 @@ namespace Game.MovingObjects
             _nextPoint = _points[_currentPointIndex += 1];
             _distance = Vector2.Distance(_currentPoint, _nextPoint);
             _startTime = Time.time;
-
+            _elapsedTime = 0;
 
             if (showLine && _lineRenderer != null) {
-                if (loop == LoopType.Cyclical && _points.Length > 2) { // If there are only 2 points, it's a straight line
+                if (loop == LoopType.Cyclical && _points.Length > 2) {
                     _lineRenderer.loop = true;
                 }
                 Vector3[] lineRendererPoints = new Vector3[_points.Length];
@@ -143,43 +131,23 @@ namespace Game.MovingObjects
             }
         }
         
-        // Public functions
         public void SetActive(bool active) {
-            if (active) {
-                _isMoving = true;
-            } else {
-                _isMoving = false;
-            }
+            _isMoving = active;
         }
         
         public void SwitchActive() {
             SetActive(!_isMoving);
         }
+
+        public void ChangeSpeed(float newSpeed) {
+            if (newSpeed <= 0) return;
+
+            float fractionOfJourney = _elapsedTime * speed / _distance;
+            _currentPoint = Vector2.Lerp(_currentPoint, _nextPoint, fractionOfJourney);
+
+            speed = newSpeed;
+            _distance = Vector2.Distance(_currentPoint, _nextPoint);
+            _elapsedTime = 0;
+        }
     }
 }
-
-
-
-/*
- * POINT (1, 5) [0]
- * POINT (10, 50) [1]
- * POINT (100, 500) [2]
- *
- * CURRENT INDEX: 0
- *
- * WHEN REACHED:
- * CURRENT POINT: LAST NEXT POINT (if first 0)
- * NEXT POINT: CURRENT INDEX += 1
- *
- * WHEN REACHED:
- * CURRENT POINT: LAST NEXT POINT
- * NEXT POINT: CURRENT INDEX += 1
- *
- * WHEN REACHED:
- * CURRENT POINT: LAST NEXT POINT
- * NEXT POINT: CURRENT INDEX += 1
- *
- * WHEN REACHED:
- * CURRENT POINT: LAST NEXT POINT
- * NEXT POINT: (IF LAST, CURRENT INDEX = -1) CURRENT INDEX += 1
- */
