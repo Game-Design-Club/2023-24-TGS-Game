@@ -49,6 +49,7 @@ namespace AppCore.DialogueManagement {
             App.InputManager.LockUI(this);
             dialogueBox.SetActive(true);
             _shouldContinue = false;
+            
             foreach (DialogueChunk currentChunk in _currentDialogue) {
                 PlayDialogueChunk(currentChunk);
 
@@ -65,6 +66,7 @@ namespace AppCore.DialogueManagement {
                     }
                 }
                 _shouldContinue = false;
+
                 
                 UpdateText(currentChunk.text);
                 
@@ -87,7 +89,7 @@ namespace AppCore.DialogueManagement {
         }
         
         private void PlayDialogueChunk(DialogueChunk chunk) {
-            Array.ForEach(characterNameText, textGUI => textGUI.text = chunk.character.characterName);
+            Array.ForEach(characterNameText, textGUI => textGUI.text = "");
             Array.ForEach(dialogueText, textGUI => {
                 textGUI.text = chunk.text;
                 textGUI.color = chunk.character.textColor;
