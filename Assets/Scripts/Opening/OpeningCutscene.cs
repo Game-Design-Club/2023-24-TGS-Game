@@ -1,3 +1,5 @@
+using System.Collections;
+
 using AppCore;
 using AppCore.DialogueManagement;
 
@@ -9,6 +11,7 @@ namespace Opening
 {
     public class OpeningCutscene : MonoBehaviour {
         [SerializeField] private Dialogue _dialogue;
+        [SerializeField] private float waitTime = 1f;
         private void Start() {
             App.DialogueManager.StartDialogue(_dialogue);
             App.DialogueManager.OnDialogueEnd += OnDialogueEnd;
@@ -16,8 +19,12 @@ namespace Opening
     
         private void OnDialogueEnd() {
             App.DialogueManager.OnDialogueEnd -= OnDialogueEnd;
-            App.SceneManager.LoadScene(SceneConstants.Game);
-            App.PlayerDataManager.HasPlayedOpeningDialogue = true;
+            StartCoroutine(WaitToLeave());
+        }
+        
+        private IEnumerator WaitToLeave() {
+            yield return new WaitForSeconds(waitTime);
+            App.SceneManager.LoadScene(SceneConstants.MainMenu);
         }
     }
 }
