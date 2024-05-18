@@ -3,6 +3,7 @@ namespace Tools.Constants {
         public const int MainMenu = 1;
         public const int OpeningDialogue = 2;
         public const int Game = 3;
-        public const int Credits = 4;
+        public const int ClosingDialogue = 4;
+        public const int Credits = 5;
     }
 }
