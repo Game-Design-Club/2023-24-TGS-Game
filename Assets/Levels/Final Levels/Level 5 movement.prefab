@@ -272,6 +272,50 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   onlyPlayer: 1
+--- !u!1 &2325780364241888995
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9169528777619872385}
+  - component: {fileID: 6716695114874948517}
+  m_Layer: 0
+  m_Name: cm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9169528777619872385
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2325780364241888995}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6858263793805244839}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6716695114874948517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2325780364241888995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2352426291525836614
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,6 +448,127 @@ Transform:
   - {fileID: 3975780046277324934}
   m_Father: {fileID: 5992678604795684819}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3729101108056348303
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6858263793805244839}
+  - component: {fileID: 4986170147480488915}
+  - component: {fileID: 8842309189441703339}
+  - component: {fileID: 5683417514157246886}
+  m_Layer: 0
+  m_Name: Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6858263793805244839
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3729101108056348303}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1, y: 2.75, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 9169528777619872385}
+  m_Father: {fileID: 487321608189685845}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4986170147480488915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3729101108056348303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ExcludedPropertiesInInspector:
+  - m_Script
+  m_LockStageInInspector: 
+  m_StreamingVersion: 20170927
+  m_Priority: -1
+  m_StandbyUpdate: 2
+  m_LookAt: {fileID: 0}
+  m_Follow: {fileID: 0}
+  m_Lens:
+    FieldOfView: 100
+    OrthographicSize: 12
+    NearClipPlane: 0.01
+    FarClipPlane: 5000
+    Dutch: 0
+    ModeOverride: 0
+    LensShift: {x: 0, y: 0}
+    GateFit: 2
+    FocusDistance: 10
+    m_SensorSize: {x: 1, y: 1}
+  m_Transitions:
+    m_BlendHint: 0
+    m_InheritPosition: 0
+    m_OnCameraLive:
+      m_PersistentCalls:
+        m_Calls: []
+  m_LegacyBlendHint: 0
+  m_ComponentOwner: {fileID: 9169528777619872385}
+--- !u!114 &8842309189441703339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3729101108056348303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05c5dcbf8f7e491fbdf8a4f5b656853e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToPeek: {fileID: 3195829481423995673}
+  moveTime: 2
+  waitTime: 1.5
+  onMiddlePeek:
+    m_PersistentCalls:
+      m_Calls: []
+  middlePeekSound: {fileID: 11400000, guid: 35c7cb9b74cd8400ca23cb5caa311c55, type: 2}
+  freezePlayer: 1
+--- !u!114 &5683417514157246886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3729101108056348303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3eda460c56d41d4952a5b08700e4ca8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8842309189441703339}
+        m_TargetAssemblyTypeName: Game.CameraReframer.CameraObjectPeek, Assembly-CSharp
+        m_MethodName: Peek
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4018095086522360867
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,6 +646,7 @@ Transform:
   - {fileID: 6847397801594188121}
   - {fileID: 1102058824249276559}
   - {fileID: 4822391040293958416}
+  - {fileID: 487321608189685845}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3721227100662698277
@@ -516,7 +682,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000c9e16d8397c904e9bd422e96b9bdbc0d1b32c525
+  m_ApplyToSortingLayers: 00000000c9e16d8397c904e9bd422e96b9bdbc0d1b32c52501417341
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -583,6 +749,70 @@ Transform:
   - {fileID: 3290003642369385426}
   - {fileID: 1782819080327961838}
   - {fileID: 7441925241312879086}
+  m_Father: {fileID: 5992678604795684819}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5857859553953835731
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3195829481423995673}
+  m_Layer: 0
+  m_Name: Peek Location
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3195829481423995673
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5857859553953835731}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -27.5, y: 0, z: -21.12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 487321608189685845}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8041772748664486407
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 487321608189685845}
+  m_Layer: 0
+  m_Name: Virtual Cameras
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &487321608189685845
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8041772748664486407}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6858263793805244839}
+  - {fileID: 3195829481423995673}
   m_Father: {fileID: 5992678604795684819}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8348551052799810363
@@ -676,7 +906,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_InstanceId
-      value: -2752848
+      value: -3726198
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[5]
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 7012310653948656042, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_Name
@@ -700,6 +938,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 160.61002
@@ -743,6 +989,14 @@ PrefabInstance:
     - target: {fileID: 3293653605129579528, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_Name
       value: Security Camera (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -812,7 +1066,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_InstanceId
-      value: -2751968
+      value: -3727048
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[5]
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 7012310653948656042, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_Name
@@ -836,6 +1098,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 154.61
@@ -879,6 +1149,14 @@ PrefabInstance:
     - target: {fileID: 3293653605129579528, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_Name
       value: Security Camera (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1059,6 +1337,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 144.61
@@ -1102,6 +1388,14 @@ PrefabInstance:
     - target: {fileID: 3293653605129579528, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_Name
       value: Security Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1279,6 +1573,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8031832407060360465, guid: a8bc9ac9184c248619fb6db3a976a341, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8031832407060360465, guid: a8bc9ac9184c248619fb6db3a976a341, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[3]
+      value: 1098072321
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1308,6 +1610,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 152.61
@@ -1351,6 +1661,14 @@ PrefabInstance:
     - target: {fileID: 3293653605129579528, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_Name
       value: Security Camera (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1438,7 +1756,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2449037155739779818, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -26.5
+      value: -36
       objectReference: {fileID: 0}
     - target: {fileID: 2449037155739779818, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1478,7 +1796,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_InstanceId
-      value: -2752130
+      value: -3725582
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[5]
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 7012310653948656042, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_Name
@@ -1502,6 +1828,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 153.61
@@ -1545,6 +1879,14 @@ PrefabInstance:
     - target: {fileID: 3293653605129579528, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_Name
       value: Security Camera (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1614,7 +1956,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_InstanceId
-      value: -2751498
+      value: -3726914
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[5]
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 7012310653948656042, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_Name
@@ -1638,6 +1988,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 119.6
@@ -1682,6 +2040,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Security Camera (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1700,6 +2066,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 151.61
@@ -1743,6 +2117,14 @@ PrefabInstance:
     - target: {fileID: 3293653605129579528, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_Name
       value: Security Camera (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1812,7 +2194,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_InstanceId
-      value: -2752358
+      value: -3725538
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[5]
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 7012310653948656042, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_Name
@@ -1836,6 +2226,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 157.61002
@@ -1879,6 +2277,14 @@ PrefabInstance:
     - target: {fileID: 3293653605129579528, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_Name
       value: Security Camera (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2100,6 +2506,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 138.61
@@ -2144,6 +2558,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Security Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2162,6 +2584,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 155.61
@@ -2206,6 +2636,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Security Camera (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2224,6 +2662,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 158.61002
@@ -2267,6 +2713,14 @@ PrefabInstance:
     - target: {fileID: 3293653605129579528, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_Name
       value: Security Camera (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2414,7 +2868,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_InstanceId
-      value: -2752262
+      value: -3727916
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[5]
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 7012310653948656042, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_Name
@@ -2484,7 +2946,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_InstanceId
-      value: -2753998
+      value: -3724716
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[5]
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 7012310653948656042, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_Name
@@ -2514,11 +2984,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2449037155739779818, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_LocalScale.y
-      value: 19.999802
+      value: 28.999714
       objectReference: {fileID: 0}
     - target: {fileID: 2449037155739779818, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.5
+      value: -21
       objectReference: {fileID: 0}
     - target: {fileID: 2449037155739779818, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2558,7 +3028,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_InstanceId
-      value: -2753862
+      value: -3727858
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[5]
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 7012310653948656042, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_Name
@@ -2665,6 +3143,14 @@ PrefabInstance:
     - target: {fileID: 6397056206615549875, guid: a8bc9ac9184c248619fb6db3a976a341, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8031832407060360465, guid: a8bc9ac9184c248619fb6db3a976a341, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8031832407060360465, guid: a8bc9ac9184c248619fb6db3a976a341, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[3]
+      value: 1098072321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2779,6 +3265,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8031832407060360465, guid: a8bc9ac9184c248619fb6db3a976a341, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8031832407060360465, guid: a8bc9ac9184c248619fb6db3a976a341, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[3]
+      value: 1098072321
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2808,6 +3302,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -2860,6 +3362,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Security Camera (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2896,19 +3406,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 962164284320997785, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: m_LocalBounds.m_Center.x
-      value: -0.00395
+      value: 0.0013999939
       objectReference: {fileID: 0}
     - target: {fileID: 962164284320997785, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: m_LocalBounds.m_Center.y
-      value: 0.0005002022
+      value: -0.0034499168
       objectReference: {fileID: 0}
     - target: {fileID: 962164284320997785, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: m_LocalBounds.m_Extent.x
-      value: 2.5026498
+      value: 2.5077
       objectReference: {fileID: 0}
     - target: {fileID: 962164284320997785, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: m_LocalBounds.m_Extent.y
-      value: 5.0049
+      value: 4.99955
+      objectReference: {fileID: 0}
+    - target: {fileID: 962164284320997785, guid: c78088aee91ff42b8988a9405524f063, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 962164284320997785, guid: c78088aee91ff42b8988a9405524f063, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[5]
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 3872921131050090787, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2952,7 +3470,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4570881404578116743, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: m_InstanceId
-      value: -2751172
+      value: -3724918
+      objectReference: {fileID: 0}
+    - target: {fileID: 4570881404578116743, guid: c78088aee91ff42b8988a9405524f063, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4570881404578116743, guid: c78088aee91ff42b8988a9405524f063, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[5]
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 4949190861809189725, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: m_LocalBounds.m_Center.x
@@ -3055,7 +3581,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_InstanceId
-      value: -2750674
+      value: -3726796
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[5]
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 7012310653948656042, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_Name
@@ -3289,6 +3823,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 158.61002
@@ -3332,6 +3874,14 @@ PrefabInstance:
     - target: {fileID: 3293653605129579528, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_Name
       value: Security Camera (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3401,7 +3951,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_InstanceId
-      value: -2749958
+      value: -3724962
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[5]
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 7012310653948656042, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_Name
@@ -3431,11 +3989,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2449037155739779818, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_LocalScale.y
-      value: 20
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 2449037155739779818, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.5
+      value: -21
       objectReference: {fileID: 0}
     - target: {fileID: 2449037155739779818, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3475,7 +4033,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_InstanceId
-      value: -2751958
+      value: -3725812
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[5]
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 7012310653948656042, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_Name
@@ -3505,7 +4071,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 962164284320997785, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: m_LocalBounds.m_Center.x
-      value: -0.0026500225
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 962164284320997785, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: m_LocalBounds.m_Center.y
@@ -3513,11 +4079,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 962164284320997785, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: m_LocalBounds.m_Extent.x
-      value: 2.50495
+      value: 2.5078
       objectReference: {fileID: 0}
     - target: {fileID: 962164284320997785, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: m_LocalBounds.m_Extent.y
-      value: 4.99905
+      value: 5.00665
+      objectReference: {fileID: 0}
+    - target: {fileID: 962164284320997785, guid: c78088aee91ff42b8988a9405524f063, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 962164284320997785, guid: c78088aee91ff42b8988a9405524f063, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[5]
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 1711863369551214221, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3569,7 +4143,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4570881404578116743, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: m_InstanceId
-      value: -2752184
+      value: -3725422
+      objectReference: {fileID: 0}
+    - target: {fileID: 4570881404578116743, guid: c78088aee91ff42b8988a9405524f063, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4570881404578116743, guid: c78088aee91ff42b8988a9405524f063, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[5]
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 4687538041128851188, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: interacted.m_PersistentCalls.m_Calls.Array.size
@@ -3605,19 +4187,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4949190861809189725, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: m_LocalBounds.m_Center.x
-      value: 0.003450036
+      value: 0.00049996376
       objectReference: {fileID: 0}
     - target: {fileID: 4949190861809189725, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: m_LocalBounds.m_Center.y
-      value: -0.0018999875
+      value: 0.0020999908
       objectReference: {fileID: 0}
     - target: {fileID: 4949190861809189725, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: m_LocalBounds.m_Extent.x
-      value: 1.00385
+      value: 1.0092
       objectReference: {fileID: 0}
     - target: {fileID: 4949190861809189725, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: m_LocalBounds.m_Extent.y
-      value: 0.99740005
+      value: 1.0046
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949190861809189725, guid: c78088aee91ff42b8988a9405524f063, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949190861809189725, guid: c78088aee91ff42b8988a9405524f063, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 6157830920875978770, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: m_LocalScale.y
@@ -3665,6 +4255,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -3717,6 +4315,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Security Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3735,6 +4341,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 156.61
@@ -3779,6 +4393,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Security Camera (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3797,6 +4419,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 101.6
@@ -3841,6 +4471,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Security Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3859,6 +4497,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 160.61002
@@ -3902,6 +4548,14 @@ PrefabInstance:
     - target: {fileID: 3293653605129579528, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_Name
       value: Security Camera (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3961,6 +4615,22 @@ PrefabInstance:
       propertyPath: flickerSeparateTime.min
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3650243865150403071, guid: 8871bfbb6204744afafa510030da51be, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3650243865150403071, guid: 8871bfbb6204744afafa510030da51be, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
+      objectReference: {fileID: 0}
+    - target: {fileID: 6279755676054226560, guid: 8871bfbb6204744afafa510030da51be, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6279755676054226560, guid: 8871bfbb6204744afafa510030da51be, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 7305839895059457504, guid: 8871bfbb6204744afafa510030da51be, type: 3}
       propertyPath: m_Name
       value: Player
@@ -4012,6 +4682,14 @@ PrefabInstance:
     - target: {fileID: 8811131551778112143, guid: 8871bfbb6204744afafa510030da51be, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9019813485840310667, guid: 8871bfbb6204744afafa510030da51be, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9019813485840310667, guid: 8871bfbb6204744afafa510030da51be, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4081,7 +4759,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_InstanceId
-      value: -2752608
+      value: -3724550
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[5]
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 7012310653948656042, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_Name
@@ -4189,6 +4875,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8031832407060360465, guid: a8bc9ac9184c248619fb6db3a976a341, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8031832407060360465, guid: a8bc9ac9184c248619fb6db3a976a341, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[3]
+      value: 1098072321
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4218,6 +4912,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 157.61002
@@ -4261,6 +4963,14 @@ PrefabInstance:
     - target: {fileID: 3293653605129579528, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_Name
       value: Security Camera (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4422,6 +5132,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8031832407060360465, guid: a8bc9ac9184c248619fb6db3a976a341, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8031832407060360465, guid: a8bc9ac9184c248619fb6db3a976a341, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[3]
+      value: 1098072321
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4501,19 +5219,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2898514630886687576, guid: f073a5746f0144c1a92d5103aa9fd7bc, type: 3}
       propertyPath: m_LocalBounds.m_Center.x
-      value: -0.0020999908
+      value: 0.00054997206
       objectReference: {fileID: 0}
     - target: {fileID: 2898514630886687576, guid: f073a5746f0144c1a92d5103aa9fd7bc, type: 3}
       propertyPath: m_LocalBounds.m_Center.y
-      value: -0.00034999847
+      value: -0.0012999773
       objectReference: {fileID: 0}
     - target: {fileID: 2898514630886687576, guid: f073a5746f0144c1a92d5103aa9fd7bc, type: 3}
       propertyPath: m_LocalBounds.m_Extent.x
-      value: 1.0076
+      value: 1.00365
       objectReference: {fileID: 0}
     - target: {fileID: 2898514630886687576, guid: f073a5746f0144c1a92d5103aa9fd7bc, type: 3}
       propertyPath: m_LocalBounds.m_Extent.y
-      value: 1.00715
+      value: 1.0084
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898514630886687576, guid: f073a5746f0144c1a92d5103aa9fd7bc, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898514630886687576, guid: f073a5746f0144c1a92d5103aa9fd7bc, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[5]
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 7679898714360777290, guid: f073a5746f0144c1a92d5103aa9fd7bc, type: 3}
       propertyPath: m_Name
@@ -4611,6 +5337,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 148.61
@@ -4654,6 +5388,14 @@ PrefabInstance:
     - target: {fileID: 3293653605129579528, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_Name
       value: Security Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4803,19 +5545,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 962164284320997785, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: m_LocalBounds.m_Center.x
-      value: 0.0022499561
+      value: -0.0017000437
       objectReference: {fileID: 0}
     - target: {fileID: 962164284320997785, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: m_LocalBounds.m_Center.y
-      value: -0.007000208
+      value: -0.0025501251
       objectReference: {fileID: 0}
     - target: {fileID: 962164284320997785, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: m_LocalBounds.m_Extent.x
-      value: 2.50735
+      value: 2.5026002
       objectReference: {fileID: 0}
     - target: {fileID: 962164284320997785, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: m_LocalBounds.m_Extent.y
-      value: 5.0030003
+      value: 5.00495
+      objectReference: {fileID: 0}
+    - target: {fileID: 962164284320997785, guid: c78088aee91ff42b8988a9405524f063, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 962164284320997785, guid: c78088aee91ff42b8988a9405524f063, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[5]
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 1711863369551214221, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4867,7 +5617,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4570881404578116743, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: m_InstanceId
-      value: -2753630
+      value: -3725520
+      objectReference: {fileID: 0}
+    - target: {fileID: 4570881404578116743, guid: c78088aee91ff42b8988a9405524f063, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4570881404578116743, guid: c78088aee91ff42b8988a9405524f063, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[5]
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 4687538041128851188, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: interacted.m_PersistentCalls.m_Calls.Array.size
@@ -4923,19 +5681,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4949190861809189725, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: m_LocalBounds.m_Center.x
-      value: -0.0020499825
+      value: -0.0049000382
       objectReference: {fileID: 0}
     - target: {fileID: 4949190861809189725, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: m_LocalBounds.m_Center.y
-      value: 0.0022499561
+      value: 0.00050002337
       objectReference: {fileID: 0}
     - target: {fileID: 4949190861809189725, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: m_LocalBounds.m_Extent.x
-      value: 1.0078499
+      value: 1.0019
       objectReference: {fileID: 0}
     - target: {fileID: 4949190861809189725, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: m_LocalBounds.m_Extent.y
-      value: 1.00395
+      value: 1.0037999
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949190861809189725, guid: c78088aee91ff42b8988a9405524f063, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949190861809189725, guid: c78088aee91ff42b8988a9405524f063, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 6157830920875978770, guid: c78088aee91ff42b8988a9405524f063, type: 3}
       propertyPath: m_LocalScale.y
@@ -5040,7 +5806,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_InstanceId
-      value: -2750392
+      value: -3725698
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[5]
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 7012310653948656042, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_Name
@@ -5064,6 +5838,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 147.61
@@ -5108,6 +5890,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Security Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5126,6 +5916,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 146.61
@@ -5169,6 +5967,14 @@ PrefabInstance:
     - target: {fileID: 3293653605129579528, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_Name
       value: Security Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5350,6 +6156,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8031832407060360465, guid: a8bc9ac9184c248619fb6db3a976a341, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8031832407060360465, guid: a8bc9ac9184c248619fb6db3a976a341, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[3]
+      value: 1098072321
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5379,6 +6193,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 151.61
@@ -5422,6 +6244,14 @@ PrefabInstance:
     - target: {fileID: 3293653605129579528, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_Name
       value: Security Camera (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5524,6 +6354,14 @@ PrefabInstance:
     - target: {fileID: 6397056206615549875, guid: a8bc9ac9184c248619fb6db3a976a341, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8031832407060360465, guid: a8bc9ac9184c248619fb6db3a976a341, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8031832407060360465, guid: a8bc9ac9184c248619fb6db3a976a341, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[3]
+      value: 1098072321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5631,6 +6469,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 149.61
@@ -5674,6 +6520,14 @@ PrefabInstance:
     - target: {fileID: 3293653605129579528, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_Name
       value: Security Camera (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5743,7 +6597,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_InstanceId
-      value: -2752348
+      value: -3726278
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[5]
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 7012310653948656042, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_Name
@@ -5767,6 +6629,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 153.61
@@ -5811,6 +6681,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Security Camera (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5829,6 +6707,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 159.61002
@@ -5872,6 +6758,14 @@ PrefabInstance:
     - target: {fileID: 3293653605129579528, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_Name
       value: Security Camera (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6015,7 +6909,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_InstanceId
-      value: -2752140
+      value: -3726734
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[5]
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 7012310653948656042, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_Name
@@ -6123,6 +7025,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8031832407060360465, guid: a8bc9ac9184c248619fb6db3a976a341, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8031832407060360465, guid: a8bc9ac9184c248619fb6db3a976a341, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[3]
+      value: 1098072321
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6214,6 +7124,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 93.6
@@ -6258,6 +7176,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Security Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6276,6 +7202,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 149.61
@@ -6320,6 +7254,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Security Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6338,6 +7280,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 150.61
@@ -6382,6 +7332,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Security Camera (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6400,6 +7358,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -6452,6 +7418,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Security Camera (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6470,6 +7444,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 156.61
@@ -6514,6 +7496,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Security Camera (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6532,6 +7522,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 154.61
@@ -6575,6 +7573,14 @@ PrefabInstance:
     - target: {fileID: 3293653605129579528, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_Name
       value: Security Camera (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6640,7 +7646,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_InstanceId
-      value: -2753084
+      value: -3727714
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[5]
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 7012310653948656042, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_Name
@@ -6748,6 +7762,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8031832407060360465, guid: a8bc9ac9184c248619fb6db3a976a341, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8031832407060360465, guid: a8bc9ac9184c248619fb6db3a976a341, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[3]
+      value: 1098072321
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6777,6 +7799,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 159.61002
@@ -6820,6 +7850,14 @@ PrefabInstance:
     - target: {fileID: 3293653605129579528, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_Name
       value: Security Camera (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6901,6 +7939,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 141.61
@@ -6944,6 +7990,14 @@ PrefabInstance:
     - target: {fileID: 3293653605129579528, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_Name
       value: Security Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7013,7 +8067,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_InstanceId
-      value: -2751364
+      value: -3725572
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[5]
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 7012310653948656042, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_Name
@@ -7087,7 +8149,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_InstanceId
-      value: -2751640
+      value: -3725188
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[5]
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 7012310653948656042, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_Name
@@ -7257,6 +8327,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8031832407060360465, guid: a8bc9ac9184c248619fb6db3a976a341, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8031832407060360465, guid: a8bc9ac9184c248619fb6db3a976a341, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[3]
+      value: 1098072321
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7286,6 +8364,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 111.6
@@ -7329,6 +8415,14 @@ PrefabInstance:
     - target: {fileID: 3293653605129579528, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_Name
       value: Security Camera (24)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7425,6 +8519,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 150.61
@@ -7468,6 +8570,14 @@ PrefabInstance:
     - target: {fileID: 3293653605129579528, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_Name
       value: Security Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7833,7 +8943,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_InstanceId
-      value: -2752964
+      value: -3725822
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[5]
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 7012310653948656042, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_Name
@@ -7859,11 +8977,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7111272173504282745, guid: c1bb97ce637a840ef9f62dc388a4a91b, type: 3}
       propertyPath: m_SortingLayer
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7111272173504282745, guid: c1bb97ce637a840ef9f62dc388a4a91b, type: 3}
       propertyPath: m_SortingLayerID
-      value: 633680411
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 7667345647242202033, guid: c1bb97ce637a840ef9f62dc388a4a91b, type: 3}
       propertyPath: m_Name
@@ -7879,7 +8997,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9081984931333354115, guid: c1bb97ce637a840ef9f62dc388a4a91b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -36.5
+      value: -46.5
       objectReference: {fileID: 0}
     - target: {fileID: 9081984931333354115, guid: c1bb97ce637a840ef9f62dc388a4a91b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7953,7 +9071,7 @@ MonoBehaviour:
   pointsParent: {fileID: 2688368148725995991}
   loop: 1
   speed: 2.5
-  startDelay: 0
+  startDelay: 1
   showLine: 0
   startMovingOnStart: 1
 --- !u!1001 &8198136371969092863
@@ -8042,6 +9160,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 155.61
@@ -8085,6 +9211,14 @@ PrefabInstance:
     - target: {fileID: 3293653605129579528, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_Name
       value: Security Camera (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8212,7 +9346,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_InstanceId
-      value: -2751354
+      value: -3724540
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[5]
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 7012310653948656042, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_Name
@@ -8484,7 +9626,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_InstanceId
-      value: -2750664
+      value: -3727110
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469253011118343807, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[5]
+      value: 1098072321
       objectReference: {fileID: 0}
     - target: {fileID: 7012310653948656042, guid: 4ccb476da6a9a4b508b187f23fa72b81, type: 3}
       propertyPath: m_Name
@@ -8510,7 +9660,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1971252061496230447, guid: 7272772659dc54a33915bc5189116586, type: 3}
       propertyPath: m_Size.x
-      value: 200.00002
+      value: 210
       objectReference: {fileID: 0}
     - target: {fileID: 1971252061496230447, guid: 7272772659dc54a33915bc5189116586, type: 3}
       propertyPath: m_Size.y
@@ -8518,7 +9668,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2901426653689837848, guid: 7272772659dc54a33915bc5189116586, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 74
+      value: 69.00001
       objectReference: {fileID: 0}
     - target: {fileID: 2901426653689837848, guid: 7272772659dc54a33915bc5189116586, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8578,6 +9728,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 97.6
@@ -8621,6 +9779,14 @@ PrefabInstance:
     - target: {fileID: 3293653605129579528, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_Name
       value: Security Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8702,6 +9868,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6847397801594188121}
     m_Modifications:
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 565195099864406062, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 1098072321
+      objectReference: {fileID: 0}
     - target: {fileID: 3200110521941567628, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 152.61
@@ -8745,6 +9919,14 @@ PrefabInstance:
     - target: {fileID: 3293653605129579528, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
       propertyPath: m_Name
       value: Security Camera (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048931218105801129, guid: c84a305c0e63747298cde1d487e9ba92, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1098072321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
