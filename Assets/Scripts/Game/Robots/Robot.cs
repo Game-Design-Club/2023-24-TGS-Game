@@ -44,7 +44,7 @@ namespace Game.Robots
             velocity = Mathf.Lerp(velocity, idealVelocity, 0.5f);
 
             dstAlongPath = (dstAlongPath + velocity * Time.deltaTime) % path.length;
-            collider2D.enabled = velocity > 0.1f;
+            // collider2D.enabled = velocity > 0.1f;
         }
 
         public float VeloMult(float dst)
