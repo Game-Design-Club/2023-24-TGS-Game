@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 2
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 0.5811636, g: 0.20069422, b: 0.7735849, a: 1}
+  m_Color: {r: 0.4272516, g: 0.3952919, b: 0.4433962, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -159,7 +159,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 0.79119533, g: 0.42114633, b: 0.9811321, a: 1}
+  m_Color: {r: 0.6838596, g: 0.5996351, b: 0.7264151, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -235,8 +235,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0013499856, y: 0.0033999681, z: 0}
-    m_Extent: {x: 1.00595, y: 1.0063, z: 0}
+    m_Center: {x: 0.004799992, y: 0.00024998188, z: 0}
+    m_Extent: {x: 1.0038, y: 1.00515, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -414,6 +414,7 @@ MonoBehaviour:
         m_CallState: 2
   oneTimeUse: 1
   interactSound: {fileID: 11400000, guid: 35c7cb9b74cd8400ca23cb5caa311c55, type: 2}
+  playSound: 1
 --- !u!95 &1315364677002735465
 Animator:
   serializedVersion: 5
