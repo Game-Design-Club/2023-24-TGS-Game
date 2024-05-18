@@ -48,5 +48,9 @@ namespace Tools.Constants {
         public static class Door {
             public const string Open = "Open";
         }
+        
+        public static class ClosingCutscene {
+            public const string Play = "Go";
+        }
     }
 }

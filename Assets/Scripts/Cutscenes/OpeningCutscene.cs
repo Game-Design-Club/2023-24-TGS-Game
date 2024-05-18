@@ -7,7 +7,7 @@ using Tools.Constants;
 
 using UnityEngine;
 
-namespace Opening
+namespace Cutscenes
 {
     public class OpeningCutscene : MonoBehaviour {
         [SerializeField] private Dialogue _dialogue;
@@ -24,7 +24,7 @@ namespace Opening
         
         private IEnumerator WaitToLeave() {
             yield return new WaitForSeconds(waitTime);
-            App.SceneManager.LoadScene(SceneConstants.MainMenu);
+            App.SceneManager.LoadScene(SceneConstants.Game);
         }
     }
 }
