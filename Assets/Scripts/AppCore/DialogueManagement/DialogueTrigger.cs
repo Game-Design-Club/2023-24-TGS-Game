@@ -1,11 +1,13 @@
 using Tools.Constants;
 
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace AppCore.DialogueManagement {
     public class DialogueTrigger : MonoBehaviour { // Allows a trigger collider or another class to begin dialogue
         [SerializeField] public Dialogue dialogue;
         [SerializeField] private bool triggerOnce = true;
+        [SerializeField] private UnityEvent onDialogueFinish;
         
         private bool _hasTriggered;
         
@@ -35,9 +37,20 @@ namespace AppCore.DialogueManagement {
         
         // Public functions
         public void TriggerDialogue() {
-            if ((triggerOnce && _hasTriggered) || App.PlayerDataManager.HasTriggeredDialogue(dialogue)) return;
+            if ((triggerOnce && _hasTriggered)) return;
+            if (App.PlayerDataManager.HasTriggeredDialogue(dialogue)) {
+                onDialogueFinish.Invoke();
+                return;
+            }
             App.DialogueManager.StartDialogue(dialogue);
+            App.DialogueManager.OnDialogueEnd += OnDialogueEnd;
             _hasTriggered = true;
+        }
+        
+        // Private functions
+        private void OnDialogueEnd() {
+            App.DialogueManager.OnDialogueEnd -= OnDialogueEnd;
+            onDialogueFinish.Invoke();
         }
     }
 }
