@@ -47,7 +47,10 @@ namespace Game.CameraReframer {
                 App.InputManager.LockUI(this);
             }
             
+            _camera.m_Lens.NearClipPlane = -1f;
+            
             yield return new WaitForSeconds(moveTime);
+
             
             onMiddlePeek?.Invoke();
             App.AudioManager.PlaySFX(middlePeekSound);

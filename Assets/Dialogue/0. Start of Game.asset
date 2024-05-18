@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 687f457948424e3292d890f1d82d749e, type: 3}
+  m_Name: 0. Start of Game
+  m_EditorClassIdentifier: 
+  dialogueChunks:
+  - character: {fileID: 11400000, guid: b35f528c5a8d04f4488b4376ed7b4d3c, type: 2}
+    text: I have to do this quickly. I don't have much time.
+  - character: {fileID: 11400000, guid: 483bce55dcfff4809bbda28a755b282c, type: 2}
+    text: ...
+  - character: {fileID: 11400000, guid: b35f528c5a8d04f4488b4376ed7b4d3c, type: 2}
+    text: Come on, hurry! This might be your only chance!
+  - character: {fileID: 11400000, guid: b35f528c5a8d04f4488b4376ed7b4d3c, type: 2}
+    text: ...
+  - character: {fileID: 11400000, guid: b35f528c5a8d04f4488b4376ed7b4d3c, type: 2}
+    text: They should be free now...
+  - character: {fileID: 11400000, guid: 483bce55dcfff4809bbda28a755b282c, type: 2}
+    text: Good luck, little robot. You're our only hope.
+  dialogueKey: 0
