@@ -16,7 +16,7 @@ namespace Cutscenes
         private Animator _animator;
     
         private void Awake() {
-            _animator = GetComponent<Animator>();
+            _animator = GetComponentInParent<Animator>();
         }
 
         private void Start() {
@@ -31,7 +31,7 @@ namespace Cutscenes
     
         private IEnumerator WaitToLeave() {
             _animator.SetTrigger(AnimationConstants.ClosingCutscene.Play);
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSecondsRealtime(waitTime);
             App.SceneManager.LoadScene(SceneConstants.Credits);
         }
     }
