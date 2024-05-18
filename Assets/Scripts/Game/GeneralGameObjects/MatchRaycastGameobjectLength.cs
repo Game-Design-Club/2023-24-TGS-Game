@@ -1,6 +1,7 @@
 using System;
 
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace Game.GeneralGameObjects {
     public class MatchRaycastGameobjectLength : MonoBehaviour {
@@ -8,7 +9,9 @@ namespace Game.GeneralGameObjects {
         // Used for things like lasers or fans that need to continue until they hit a wall
         
         [SerializeField] private float maxDistance = Single.PositiveInfinity;
-        [SerializeField] private GameObject[] gameObjectsToMatchLength;
+        [SerializeField] private GameObject[] objectsToAdjustPosition;
+        [SerializeField] private BoxCollider2D[] boxColliderToMatchLength;
+        [SerializeField] private Light2D[] lightsToMatchLength;
         [SerializeField] private LayerMask layerMask;
         [SerializeField] private float width = .25f;
         
@@ -49,13 +52,43 @@ namespace Game.GeneralGameObjects {
                 hit.distance = maxDistance;
             }
 
-            foreach (GameObject currentComponent in gameObjectsToMatchLength) {
-                Vector3 currentScale = currentComponent.transform.localScale;
-                currentComponent.transform.localScale = new Vector3(hit.distance, currentScale.y, currentScale.z);
-                Vector3 startPoint = transform.position;
-                Vector3 endPoint = transform.position + transform.right * hit.distance;
-                currentComponent.transform.position = (startPoint + endPoint) / 2;
-                currentComponent.transform.right = endPoint - startPoint;
+            float height = .5f;
+            float depth = 0;
+            float width = hit.distance - 0.5f;
+            Vector3 startPoint = transform.position;
+            Vector3 endPoint = transform.position + transform.right * hit.distance;
+            Vector3 midPoint = (startPoint + endPoint) / 2 + transform.right * .25f;
+            Vector3 rightPoint = endPoint - startPoint;
+            
+            
+            // Vector3 currentScale = currentComponent.transform.localScale;
+            // currentComponent.transform.localScale = new Vector3(hit.distance, currentScale.y, currentScale.z);
+            // Vector3 startPoint = transform.position;
+            // Vector3 endPoint = transform.position + transform.right * hit.distance;
+            // currentComponent.transform.position = (startPoint + endPoint) / 2;
+            // currentComponent.transform.right = endPoint - startPoint;
+            
+            foreach (GameObject currentObject in objectsToAdjustPosition)
+            {
+                currentObject.transform.position = midPoint;
+                currentObject.transform.right = rightPoint;
+            }
+
+            foreach (BoxCollider2D currentBox in boxColliderToMatchLength)
+            {
+                currentBox.size = new Vector2(width, height);
+            }
+
+            Vector3[] freeformPoints = new Vector3[]
+            {
+                new Vector3(width / 2f, height / 4f, 0f),
+                new Vector3(-width / 2f, height / 4f, 0f),
+                new Vector3(-width / 2f, -height / 4f, 0f),
+                new Vector3(width / 2f, -height / 4f, 0f)
+            };
+            foreach (Light2D currentLight in lightsToMatchLength)
+            {
+                currentLight.SetShapePath(freeformPoints);;
             }
         }
     }

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using Game.GameManagement;
+using Game.PlayerComponents;
 
 using Tools.Constants;
 
@@ -57,7 +58,7 @@ namespace Game.Interactables {
         }
         
         private void OnTriggerEnter2D(Collider2D other) {
-            if (!other.CompareTag(TagConstants.Player) || !Application.isPlaying || (_interacted && oneTimeUse)) return;
+            if (!other.CompareTag(TagConstants.Player) || !Application.isPlaying || (_interacted && oneTimeUse) || Player.Instance.GetComponent<PlayerBoxMover>().IsGrabbingBox) return;
             
             _playerInRange = true;
             
@@ -68,7 +69,7 @@ namespace Game.Interactables {
         
 
         private void OnTriggerExit2D(Collider2D other) {
-            if (!other.CompareTag(TagConstants.Player) || !Application.isPlaying || (_interacted && oneTimeUse)) return;
+            if (!other.CompareTag(TagConstants.Player) || !Application.isPlaying || (_interacted && oneTimeUse) || Player.Instance.GetComponent<PlayerBoxMover>().IsGrabbingBox) return;
 
             _playerInRange = false;
             
