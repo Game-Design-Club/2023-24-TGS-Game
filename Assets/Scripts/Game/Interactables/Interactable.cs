@@ -87,7 +87,7 @@ namespace Game.Interactables {
             if (interactSound != null && playSound) {
                 App.AudioManager.PlaySFX(interactSound);
             }
-            if (oneTimeUse) {
+            if (oneTimeUse && !_interacted) {
                 _interacted = true;
                 _animator.SetTrigger(AnimationConstants.Interactable.Interact);
             }
