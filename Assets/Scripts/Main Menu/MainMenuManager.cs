@@ -44,7 +44,11 @@ namespace Main_Menu {
         public void StartGame() {
             if (_freeze) return;
             _freeze = true;
-            App.SceneManager.LoadScene(SceneConstants.Game);
+            if (App.PlayerDataManager.HasPlayedOpeningDialogue) {
+                App.SceneManager.LoadScene(SceneConstants.Game);
+            } else {
+                App.SceneManager.LoadScene(SceneConstants.OpeningDialogue);
+            }
         }
 
         public void ShowCredits() { 

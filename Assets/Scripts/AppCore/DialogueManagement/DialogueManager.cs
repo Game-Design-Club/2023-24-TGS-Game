@@ -28,8 +28,10 @@ namespace AppCore.DialogueManagement {
         
         private bool _isScrollingDialogue;
         
+        public Action OnDialogueEnd;
+        
         // Unity functions
-        private void Start() {
+        private void Awake() {
             dialogueBox.SetActive(false);
         }
 
@@ -62,7 +64,6 @@ namespace AppCore.DialogueManagement {
                         yield return new WaitForFixedUpdate();
                     }
                 }
-                
                 _shouldContinue = false;
                 
                 UpdateText(currentChunk.text);
@@ -77,6 +78,8 @@ namespace AppCore.DialogueManagement {
             dialogueBox.SetActive(false);
             App.InputManager.UnlockPlayerControls(this);
             App.InputManager.UnlockUI(this);
+            
+            OnDialogueEnd?.Invoke();
         }
 
         private void OnContinue() {

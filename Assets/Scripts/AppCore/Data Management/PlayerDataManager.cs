@@ -70,6 +70,16 @@ namespace AppCore.Data_Management {
             }
         }
         
+        public bool HasPlayedOpeningDialogue {
+            get {
+                return PlayerPrefs.GetInt(PlayerDataKeys.HasPlayedOpeningDialogue, 0) == 1;
+            }
+            set {
+                PlayerPrefs.SetInt(PlayerDataKeys.HasPlayedOpeningDialogue, value ? 1 : 0);
+                PlayerPrefs.Save();
+            }
+        }
+        
         private HashSet<String> _dialogueKeys = new HashSet<String>();
         
         // Unity functions
@@ -109,6 +119,7 @@ namespace AppCore.Data_Management {
             PlayerPrefs.DeleteKey(PlayerDataKeys.Levels);
             PlayerPrefs.DeleteKey(PlayerDataKeys.HasInteractedWithBox);
             PlayerPrefs.DeleteKey(PlayerDataKeys.HasInteractedWithButton);
+            PlayerPrefs.DeleteKey(PlayerDataKeys.HasPlayedOpeningDialogue);
             foreach (String key in _dialogueKeys) {
                 PlayerPrefs.DeleteKey(PlayerDataKeys.Dialogue + key);
             }

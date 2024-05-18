@@ -6,6 +6,7 @@ namespace AppCore.Data_Management {
         public const string Levels = "Levels";
         public const string HasInteractedWithBox = "Interacted Box";
         public const string HasInteractedWithButton = "Interacted Button";
+        public const string HasPlayedOpeningDialogue = "Interacted Robot";
         public const string Dialogue = "Dialogue: ";
         public const string DialogueKeys = "DialogueKeys";
     }
