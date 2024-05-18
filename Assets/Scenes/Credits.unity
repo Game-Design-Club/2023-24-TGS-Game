@@ -492,8 +492,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 394.6746, y: 233.74016}
-  m_SizeDelta: {x: 623.5895, y: 467.69}
+  m_AnchoredPosition: {x: 411, y: 250.39}
+  m_SizeDelta: {x: 715.8954, y: 536.9197}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &516742321
 MonoBehaviour:
@@ -726,6 +726,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6048844266714619699, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
+      propertyPath: m_text
+      value: 'Woooo talking goes here, woah that''s a lot of yapping
+
+        !!!!!'
+      objectReference: {fileID: 0}
     - target: {fileID: 8257527468688489269, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
       propertyPath: m_Name
       value: App
