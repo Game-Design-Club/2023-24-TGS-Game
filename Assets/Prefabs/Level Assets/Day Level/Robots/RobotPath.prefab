@@ -46,11 +46,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   robotPrefab: {fileID: 2354338020392594987, guid: a8bc9ac9184c248619fb6db3a976a341, type: 3}
+  showPath: 1
   path:
     points:
     - position: {x: 2, y: 0}
     - position: {x: 0, y: 0}
     length: 4
+    speed: 0
   robots: []
   idealPositions: []
 --- !u!120 &3588664602876209756
@@ -74,7 +76,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -92,9 +94,9 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -385562217
-  m_SortingLayer: 2
-  m_SortingOrder: -20
+  m_SortingLayerID: -2089950775
+  m_SortingLayer: 1
+  m_SortingOrder: 20
   m_Positions: []
   m_Parameters:
     serializedVersion: 3
@@ -116,8 +118,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.26415092, g: 0.22303309, b: 0.22303309, a: 1}
-      key1: {r: 0.26415092, g: 0.22303309, b: 0.22303309, a: 1}
+      key0: {r: 0.41568628, g: 0.41568628, b: 0.41568628, a: 1}
+      key1: {r: 0.41568628, g: 0.41568628, b: 0.41568628, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
