@@ -1308,7 +1308,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2948343892658476334, guid: 2cf9926c8376c40f49f8b80fdb0d5214, type: 3}
       propertyPath: m_text
-      value: Reset
+      value: erase progress
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948343892658476334, guid: 2cf9926c8376c40f49f8b80fdb0d5214, type: 3}
+      propertyPath: m_fontSize
+      value: 39.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948343892658476334, guid: 2cf9926c8376c40f49f8b80fdb0d5214, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 39.49
       objectReference: {fileID: 0}
     - target: {fileID: 2948343892658476334, guid: 2cf9926c8376c40f49f8b80fdb0d5214, type: 3}
       propertyPath: m_hasFontAssetChanged
