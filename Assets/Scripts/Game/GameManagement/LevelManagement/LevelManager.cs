@@ -58,6 +58,7 @@ namespace Game.GameManagement.LevelManagement {
                 return;
             }
             StartCoroutine(LoadLevel(levelsData[levelIndex]));
+            _currentLevelIndex = levelIndex;
         }
         
         public IEnumerator LoadLevel(Level level, bool fade = true) { // default fade is true
