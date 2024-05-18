@@ -89,7 +89,7 @@ namespace AppCore.DialogueManagement {
         }
         
         private void PlayDialogueChunk(DialogueChunk chunk) {
-            Array.ForEach(characterNameText, textGUI => textGUI.text = chunk.character.characterName);
+            Array.ForEach(characterNameText, textGUI => textGUI.text = "");
             Array.ForEach(dialogueText, textGUI => {
                 textGUI.text = chunk.text;
                 textGUI.color = chunk.character.textColor;
