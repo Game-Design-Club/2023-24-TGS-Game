@@ -76,9 +76,7 @@ namespace Game.SecurityCamera {
         private void Rotate() {
             if (!rotate) return;
 
-            
             if (_isShooting) {
-                // Follow player instead of follow track
                 float angleToPlayer = Vector3.SignedAngle(rotationPoint.up, DirectionToPlayer, Vector3.forward);
                 if (!(Mathf.Abs(angleToPlayer) < playerLockRotationSpeed)) {
                     _currentDirection = (angleToPlayer < 0) ? -1 : 1;
@@ -95,15 +93,13 @@ namespace Game.SecurityCamera {
 
                 if (_currentDirection > 0 && _currentRotation > rotateCounterClockwise) {
                     _currentDirection *= -1;
-                    // Flip to clockwise
                 } else if (_currentDirection < 0 && _currentRotation < rotateClockwise) {
                     _currentDirection *= -1;
-                    // Flip to counterclockwise
                 }
                 UpdateRotation();
             }
         }
-
+        
         private void CheckConsistancy() {
             if ((int)rotateClockwise == (int)rotateCounterClockwise) {
                 Debug.LogWarning("Rotate clockwise and counter clockwise are the same. Turning rotation off");

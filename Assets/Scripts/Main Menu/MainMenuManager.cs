@@ -33,6 +33,7 @@ namespace Main_Menu {
             SetMusicLevel(App.PlayerDataManager.MusicLevel);
             SetSFXLevel(App.PlayerDataManager.SFXLevel);
             App.AudioManager.musicPlayer.PlayMusic(menuMusic);
+            App.TimerManager.HideTimer();
         }
 
         private void OnEnable() {

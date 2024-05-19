@@ -85,6 +85,7 @@ namespace Credits {
             if (_freeze) return;
             App.SceneManager.LoadScene(SceneConstants.MainMenu, true);
             _freeze = true;
+            App.TimerManager.ResetTimer();
         }
 
         private void ShowThankYou() {
