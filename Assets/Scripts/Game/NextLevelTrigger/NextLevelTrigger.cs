@@ -6,11 +6,10 @@ using UnityEngine;
 
 namespace Game.NextLevelTrigger {
     public class NextLevelTrigger : MonoBehaviour {
-        private void Awake() {
-            
-        }
-
+        bool _triggered = false;
         public void NextLevel() {
+            if (_triggered) return;
+            _triggered = true;
             GameManager.LevelCompleted();
         }
     }
