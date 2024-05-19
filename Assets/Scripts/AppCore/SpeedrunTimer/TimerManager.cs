@@ -55,6 +55,7 @@ namespace AppCore.SpeedrunTimer {
         }
         
         private void UpdateShowState() {
+            timerText.UpdateText(_currentTime);
             timerText.Show(App.PlayerDataManager.ShowTimer);
         }
     }
