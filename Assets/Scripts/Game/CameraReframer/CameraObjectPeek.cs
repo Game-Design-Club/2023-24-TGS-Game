@@ -16,6 +16,7 @@ namespace Game.CameraReframer {
         [SerializeField] private UnityEvent onMiddlePeek;
         [SerializeField] private SoundPackage middlePeekSound;
         [SerializeField] private bool freezePlayer = true;
+        [SerializeField] private int peekCamPriority = 100;
         
         private CinemachineVirtualCamera _camera;
         
@@ -40,7 +41,7 @@ namespace Game.CameraReframer {
             Vector2 position = objectToPeek.position;
             _camera.ForceCameraPosition(position, Quaternion.identity);
 
-            _camera.Priority = 50;
+            _camera.Priority = peekCamPriority;
             
             if (freezePlayer) {
                 App.InputManager.LockPlayerControls(this);

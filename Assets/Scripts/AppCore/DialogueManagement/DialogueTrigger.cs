@@ -40,7 +40,6 @@ namespace AppCore.DialogueManagement {
             if ((triggerOnce && _hasTriggered)) return;
             if (App.PlayerDataManager.HasTriggeredDialogue(dialogue)) {
                 onDialogueFinish.Invoke();
-                Debug.Log("Triggering dialogue event");
                 return;
             }
             App.DialogueManager.StartDialogue(dialogue);
@@ -52,7 +51,6 @@ namespace AppCore.DialogueManagement {
         private void OnDialogueEnd() {
             App.DialogueManager.OnDialogueEnd -= OnDialogueEnd;
             onDialogueFinish.Invoke();
-            Debug.Log("Triggering dialogue event 2");
         }
     }
 }
