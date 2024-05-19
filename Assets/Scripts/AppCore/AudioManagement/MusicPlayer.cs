@@ -20,7 +20,6 @@ namespace AppCore.AudioManagement {
             }
             
             if (currentMusic == newMusic) {
-                Debug.LogWarning("Tried to play music that is already playing");
                 return;
             }
             

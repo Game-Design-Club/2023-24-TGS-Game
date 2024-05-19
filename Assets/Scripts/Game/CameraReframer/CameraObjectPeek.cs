@@ -54,7 +54,10 @@ namespace Game.CameraReframer {
 
             
             onMiddlePeek?.Invoke();
-            App.AudioManager.PlaySFX(middlePeekSound);
+
+            if (middlePeekSound != null) {
+                App.AudioManager.PlaySFX(middlePeekSound);
+            }
             
             yield return new WaitForSeconds(waitTime);
             
