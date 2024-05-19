@@ -3,46 +3,34 @@ using UnityEngine.Serialization;
 
 namespace AppCore.AudioManagement {
     public class MusicPlayer : MonoBehaviour { // This class is used to consolidate the music playing in the game, as well as further control over adaptive music
-        [SerializeField] private Music mainMenuMusic;
-        [SerializeField] private Music gameMusic;
         [SerializeField] private float fadeTime = 1f;
         
-        [SerializeField] private Music currentMusic;
+        private Music currentMusic;
         
         private void Awake() {
-            if (mainMenuMusic == null) {
-                Debug.LogWarning("Main menu music is not set");
-            }
-            if (gameMusic == null) {
-                Debug.LogWarning("Game music is not set");
+            if (App.AudioManager == null || App.AudioManager.music == null) {
+                Debug.LogWarning("AudioManager or AudioManager.music is not set");
             }
         }
         
-        public void PlayMainMenuMusic() {
-            if (currentMusic == mainMenuMusic) {
-                Debug.LogWarning("Tried to play main menu music while it was already playing");
+        public void PlayMusic(Music newMusic) {
+            if (newMusic == null) {
+                Debug.LogWarning("Tried to play music, but new music is not set");
                 return;
             }
-            if (currentMusic == null) {
-                App.AudioManager.music.FadeIn(mainMenuMusic, fadeTime);
-            } else {
-                App.AudioManager.music.FadeIntoCurrentTime(currentMusic, mainMenuMusic, fadeTime);
-            }
-            currentMusic = mainMenuMusic;
-        }
-        
-        public void PlayGameMusic() {
-            if (currentMusic == gameMusic) {
-                Debug.LogWarning("Tried to play game music while it was already playing");
+            
+            if (currentMusic == newMusic) {
+                Debug.LogWarning("Tried to play music that is already playing");
                 return;
             }
             
             if (currentMusic == null) {
-                App.AudioManager.music.FadeIn(gameMusic, fadeTime);
+                App.AudioManager.music.FadeIn(newMusic, fadeTime);
+                Debug.Log("Playing music for the first time");
             } else {
-                App.AudioManager.music.FadeIntoCurrentTime(currentMusic, gameMusic, fadeTime);
+                App.AudioManager.music.FadeIntoCurrentTime(currentMusic, newMusic, fadeTime);
             }
-            currentMusic = gameMusic;
+            currentMusic = newMusic;
         }
     }
 }

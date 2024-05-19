@@ -2011,6 +2011,7 @@ MonoBehaviour:
         m_CallState: 2
   middlePeekSound: {fileID: 11400000, guid: 35c7cb9b74cd8400ca23cb5caa311c55, type: 2}
   freezePlayer: 1
+  peekCamPriority: 100
 --- !u!1 &4494031342849162378
 GameObject:
   m_ObjectHideFlags: 0
@@ -2498,6 +2499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: Night 1
+  levelMusic: {fileID: 11400000, guid: 87f86b229d27049ca8e62dac35f1b649, type: 2}
 --- !u!114 &2321274699606178167
 MonoBehaviour:
   m_ObjectHideFlags: 0

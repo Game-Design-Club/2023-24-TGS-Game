@@ -1,4 +1,5 @@
 using AppCore;
+using AppCore.AudioManagement;
 
 using Game.GameManagement.UIManagement;
 
@@ -20,6 +21,8 @@ namespace Main_Menu {
         [SerializeField] private Slider masterSlider;
         [SerializeField] private Slider musicSlider;
         [SerializeField] private Slider sfxSlider;
+
+        [SerializeField] private Music menuMusic;
         
         private bool _freeze = false;
         private CurrentMenu _currentMenu = CurrentMenu.Main;
@@ -29,7 +32,7 @@ namespace Main_Menu {
             SetMasterLevel(App.PlayerDataManager.MasterLevel);
             SetMusicLevel(App.PlayerDataManager.MusicLevel);
             SetSFXLevel(App.PlayerDataManager.SFXLevel);
-            App.AudioManager.musicPlayer.PlayMainMenuMusic();
+            App.AudioManager.musicPlayer.PlayMusic(menuMusic);
         }
 
         private void OnEnable() {

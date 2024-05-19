@@ -9,6 +9,8 @@ using UnityEngine;
 
 namespace Game.GameManagement {
     public class GameManager : MonoBehaviour { // Manages the essential game functions, proxies to other managers
+        [SerializeField] private Music defaultGameMusic;
+        
         private LevelManager _levelManager;
 
         private static GameManager s_instance;
@@ -33,7 +35,7 @@ namespace Game.GameManagement {
 
         private void Start() {
             _levelManager.LoadSavedLevel();
-            App.AudioManager.musicPlayer.PlayGameMusic();
+            App.AudioManager.musicPlayer.PlayMusic(defaultGameMusic);
         }
 
         private void OnDestroy() {

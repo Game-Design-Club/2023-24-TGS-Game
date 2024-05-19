@@ -7,9 +7,8 @@ namespace Game.Robots
     {
         private static float hardStopDistance = 1f;
         [Range(0, 1)]
-        private static float _distanceImpact = 0.5f; 
+        private static float distanceImpact = 0.5f; 
         [SerializeField] private LayerMask layerMask;
-        [SerializeField] private Collider2D collider2D;
         public RobotPath path;
         [HideInInspector] public float dstAlongPath = 0;
         [HideInInspector]public RobotPathPoint destination;
@@ -49,7 +48,7 @@ namespace Game.Robots
 
         public float VeloMult(float dst)
         {
-            return 1f / (1 + Mathf.Exp(-_distanceImpact * dst)) + 0.5f;
+            return 1f / (1 + Mathf.Exp(-distanceImpact * dst)) + 0.5f;
         }
 
         public void UpdatePosition(RobotPath.SegmentInfo currentSegment)
