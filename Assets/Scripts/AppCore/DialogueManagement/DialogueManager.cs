@@ -50,6 +50,8 @@ namespace AppCore.DialogueManagement {
             dialogueBox.SetActive(true);
             _shouldContinue = false;
             
+            Time.timeScale = 0;
+            
             foreach (DialogueChunk currentChunk in _currentDialogue) {
                 PlayDialogueChunk(currentChunk);
 
@@ -62,15 +64,15 @@ namespace AppCore.DialogueManagement {
                         }
 
                         UpdateText(currentChunk.text[..(int)currentCharacters]);
-                        yield return new WaitForFixedUpdate();
+                        yield return new WaitForSecondsRealtime(1/50);
                     }
                 }
                 _shouldContinue = false;
-
                 
                 UpdateText(currentChunk.text);
                 
                 yield return new WaitUntil(() => _shouldContinue);
+                
                 _shouldContinue = false;
                 App.AudioManager.PlaySFX(continueSound);
             }
@@ -81,6 +83,7 @@ namespace AppCore.DialogueManagement {
             App.InputManager.UnlockPlayerControls(this);
             App.InputManager.UnlockUI(this);
             
+            Time.timeScale = 1;
             OnDialogueEnd?.Invoke();
         }
 

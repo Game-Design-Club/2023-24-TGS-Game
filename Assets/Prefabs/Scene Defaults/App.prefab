@@ -1712,7 +1712,7 @@ MonoBehaviour:
   characterSpriteRenderer:
   - {fileID: 1655407424254187589}
   - {fileID: 2661759710302574098}
-  scrollSpeed: 0.7
+  scrollSpeed: 0.05
   skipOnInput: 1
   continueSound: {fileID: 11400000, guid: 35c7cb9b74cd8400ca23cb5caa311c55, type: 2}
 --- !u!1 &5704624178321613029
@@ -2110,10 +2110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8ff1124ba124f19b1a16ee4d649ce86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenuMusic: {fileID: 11400000, guid: 0d07ed2588eec49549360bb18506f31f, type: 2}
-  gameMusic: {fileID: 11400000, guid: f61a35828e4334156ac612b0e721f150, type: 2}
   fadeTime: 1
-  currentMusic: {fileID: 0}
 --- !u!1 &8935271412098736719
 GameObject:
   m_ObjectHideFlags: 0
