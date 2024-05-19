@@ -15,6 +15,7 @@ namespace AppCore.SpeedrunTimer {
         public void StartTimer() {
             timerText.Show(App.PlayerDataManager.ShowTimer);
             _currentTime = App.PlayerDataManager.SpeedrunTime;
+            UpdateShowState();
         }
 
         private void OnEnable() {
