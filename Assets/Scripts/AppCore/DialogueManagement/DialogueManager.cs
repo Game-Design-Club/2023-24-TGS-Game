@@ -60,11 +60,11 @@ namespace AppCore.DialogueManagement {
                     float currentCharacters = 0;
                     while (!_shouldContinue && currentCharacters < totalCharacters) {
                         if (currentCharacters < totalCharacters) {
-                            currentCharacters += scrollSpeed;
+                            currentCharacters += scrollSpeed * Time.unscaledDeltaTime;
                         }
 
                         UpdateText(currentChunk.text[..(int)currentCharacters]);
-                        yield return new WaitForSecondsRealtime(1/50);
+                        yield return null;
                     }
                 }
                 _shouldContinue = false;
