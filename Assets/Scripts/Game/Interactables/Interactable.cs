@@ -89,7 +89,6 @@ namespace Game.Interactables {
             }
             if (oneTimeUse && !_interacted) {
                 _interacted = true;
-                _animator.SetTrigger(AnimationConstants.Interactable.Interact);
             }
         }
         

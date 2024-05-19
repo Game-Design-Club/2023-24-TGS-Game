@@ -15,7 +15,6 @@ namespace AppCore.AudioManagement {
         
         public void PlayMusic(Music newMusic) {
             if (newMusic == null) {
-                Debug.LogWarning("Tried to play music, but new music is not set");
                 return;
             }
             
