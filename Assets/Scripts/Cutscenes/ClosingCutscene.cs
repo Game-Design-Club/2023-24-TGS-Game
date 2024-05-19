@@ -33,6 +33,7 @@ namespace Cutscenes
             _animator.SetTrigger(AnimationConstants.ClosingCutscene.Play);
             yield return new WaitForSecondsRealtime(waitTime);
             App.SceneManager.LoadScene(SceneConstants.Credits);
+            App.TimerManager.ResetTimer();
         }
     }
 }

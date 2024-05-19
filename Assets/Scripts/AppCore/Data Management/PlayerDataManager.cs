@@ -79,6 +79,26 @@ namespace AppCore.Data_Management {
                 PlayerPrefs.Save();
             }
         }
+
+        public float SpeedrunTime {
+            get {
+                return PlayerPrefs.GetFloat(PlayerDataKeys.SpeedrunTime, 0);
+            }
+            set {
+                PlayerPrefs.SetFloat(PlayerDataKeys.SpeedrunTime, value);
+                PlayerPrefs.Save();
+            }
+        }
+        
+        public bool ShowTimer {
+            get {
+                return PlayerPrefs.GetInt(PlayerDataKeys.ShowTimer, 0) == 1;
+            }
+            set {
+                PlayerPrefs.SetInt(PlayerDataKeys.ShowTimer, value ? 1 : 0);
+                PlayerPrefs.Save();
+            }
+        }
         
         private HashSet<String> _dialogueKeys = new HashSet<String>();
         
@@ -120,6 +140,8 @@ namespace AppCore.Data_Management {
             PlayerPrefs.DeleteKey(PlayerDataKeys.HasInteractedWithBox);
             PlayerPrefs.DeleteKey(PlayerDataKeys.HasInteractedWithButton);
             PlayerPrefs.DeleteKey(PlayerDataKeys.HasPlayedOpeningDialogue);
+            PlayerPrefs.DeleteKey(PlayerDataKeys.SpeedrunTime);
+            PlayerPrefs.Save();
             foreach (String key in _dialogueKeys) {
                 PlayerPrefs.DeleteKey(PlayerDataKeys.Dialogue + key);
             }

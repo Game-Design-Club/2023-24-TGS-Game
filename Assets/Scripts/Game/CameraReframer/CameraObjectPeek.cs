@@ -49,7 +49,7 @@ namespace Game.CameraReframer {
             }
             
             _camera.m_Lens.NearClipPlane = -1f;
-            
+            _camera.Priority = peekCamPriority;
             yield return new WaitForSeconds(moveTime);
 
             

@@ -9,5 +9,7 @@ namespace AppCore.Data_Management {
         public const string HasPlayedOpeningDialogue = "Interacted Robot";
         public const string Dialogue = "Dialogue: ";
         public const string DialogueKeys = "DialogueKeys";
+        public const string SpeedrunTime = "SpeedrunTime";
+        public const string ShowTimer = "ShowTimer";
     }
 }
