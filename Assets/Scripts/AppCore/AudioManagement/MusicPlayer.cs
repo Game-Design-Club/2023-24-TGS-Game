@@ -26,7 +26,6 @@ namespace AppCore.AudioManagement {
             
             if (currentMusic == null) {
                 App.AudioManager.music.FadeIn(newMusic, fadeTime);
-                Debug.Log("Playing music for the first time");
             } else {
                 App.AudioManager.music.FadeIntoCurrentTime(currentMusic, newMusic, fadeTime);
             }
