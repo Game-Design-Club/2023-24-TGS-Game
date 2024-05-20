@@ -1,17 +1,21 @@
 using System;
-
+using System.Collections;
+using System.Collections.Generic;
 using Game.GameManagement;
 using Game.GameManagement.PauseManagement;
-
+using UI;
 using UnityEngine;
 
 namespace AppCore.SpeedrunTimer {
     public class TimerManager : MonoBehaviour {
         [SerializeField] private TimerText timerText;
+        [SerializeField] private GameObject splitGroup;
+        [SerializeField] private GameObject splitPrefab;
         
         private float _currentTime = 0;
         private bool _shouldUpdate = false;
-        private float _currentLevelTime = 0;
+        private List<float> _levelCompleteTimes = new List<float>();
+        private SplitText _currentSplitText;
         
         
         public void StartTimer() {
@@ -21,16 +25,17 @@ namespace AppCore.SpeedrunTimer {
         }
 
         private void OnEnable() {
-            GameManagerEvents.OnLevelStart += LevelStart;
-            GameManagerEvents.OnLevelOver += LevelEnd;
+            GameManagerEvents.OnLevelStart += UpdateShowState;
+            GameManagerEvents.OnNextLevel += LevelEnd;
             App.InputManager.OnPlayerStartMovement += OnTimerResume;
             GameManagerEvents.OnLevelOver += OnTimerPause;
             PauseManagerEvents.OnGamePause += OnTimerPause;
             PauseManagerEvents.OnGameResume += OnTimerResume;
+            CreateSplit();
         }
 
         private void OnDisable() {
-            GameManagerEvents.OnLevelStart -= LevelStart;
+            GameManagerEvents.OnLevelStart -= UpdateShowState;
             GameManagerEvents.OnLevelOver -= LevelEnd;
             App.InputManager.OnPlayerStartMovement -= OnTimerResume;
             GameManagerEvents.OnLevelOver -= OnTimerPause;
@@ -41,8 +46,8 @@ namespace AppCore.SpeedrunTimer {
         private void Update() {
             if (!_shouldUpdate) return;
             _currentTime += Time.deltaTime;
-            _currentLevelTime += Time.deltaTime;
             timerText.UpdateText(_currentTime);
+            _currentSplitText.UpdateSplitText(GetCurrentSplit());
         }
 
         public void OnTimerResume() {
@@ -57,6 +62,7 @@ namespace AppCore.SpeedrunTimer {
         public void ResetTimer() {
             App.PlayerDataManager.SpeedrunTime = 0;
             _currentTime = 0;
+            _levelCompleteTimes.Clear();
             timerText.UpdateText(_currentTime);
         }
         
@@ -66,18 +72,26 @@ namespace AppCore.SpeedrunTimer {
         
         private void UpdateShowState() {
             timerText.UpdateText(_currentTime);
+            _currentSplitText.UpdateSplitText(GetCurrentSplit());
             timerText.Show(App.PlayerDataManager.ShowTimer);
-        }
-
-        private void LevelStart()
-        {
-            UpdateShowState();
-            _currentLevelTime = 0;
         }
 
         private void LevelEnd()
         {
-            // App.SceneManager.
+            CreateSplit();
+        }
+
+        private void CreateSplit()
+        {
+            _levelCompleteTimes.Add(_currentTime);
+            GameObject newSplit = Instantiate(splitPrefab, splitGroup.transform);
+            _currentSplitText = newSplit.GetComponent<SplitText>();
+            _currentSplitText.UpdateLevelText(_levelCompleteTimes.Count);
+        }
+
+        private float GetCurrentSplit()
+        {
+            return _levelCompleteTimes.Count == 0 ? 0 : _currentTime - _levelCompleteTimes[^1];
         }
     }
 }
