@@ -11,5 +11,7 @@ namespace AppCore.Data_Management {
         public const string DialogueKeys = "DialogueKeys";
         public const string SpeedrunTime = "SpeedrunTime";
         public const string ShowTimer = "ShowTimer";
+        public const string ShowSplit = "ShowSplit";
+        public const string SplitTimes = "SplitTimes";
     }
 }

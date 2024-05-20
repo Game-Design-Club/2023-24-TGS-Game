@@ -100,8 +100,45 @@ namespace AppCore.Data_Management {
             }
         }
         
-        private HashSet<String> _dialogueKeys = new HashSet<String>();
+        public bool ShowSplit {
+            get {
+                return PlayerPrefs.GetInt(PlayerDataKeys.ShowSplit, 0) == 1;
+            }
+            set {
+                PlayerPrefs.SetInt(PlayerDataKeys.ShowSplit, value ? 1 : 0);
+                PlayerPrefs.Save();
+            }
+        }
         
+        private HashSet<String> _dialogueKeys = new HashSet<String>();
+
+        public List<float> SplitTimes
+        {
+            get
+            {
+                String[] timesString = PlayerPrefs.GetString(PlayerDataKeys.SplitTimes, "").Split(',');
+                List<float> times = new List<float>();
+                foreach (String time in timesString)
+                {
+                    if (!String.IsNullOrEmpty(time))
+                    {
+                        times.Add(float.Parse(time));
+                    }
+                }
+                return times;
+            }
+            set
+            {
+                if (value == null || value.Count == 0)
+                {
+                    PlayerPrefs.SetString(PlayerDataKeys.DialogueKeys, string.Empty);;
+                    return;
+                }
+
+                PlayerPrefs.SetString(PlayerDataKeys.DialogueKeys, String.Join(",", value));
+            }
+        }
+
         // Unity functions
         private void Awake() {
             _dialogueKeys = GetDialogueKeys();

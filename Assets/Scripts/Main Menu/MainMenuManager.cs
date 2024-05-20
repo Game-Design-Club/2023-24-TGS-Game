@@ -22,6 +22,7 @@ namespace Main_Menu {
         [SerializeField] private Slider musicSlider;
         [SerializeField] private Slider sfxSlider;
         [SerializeField] private Checkbox timerCheckbox;
+        [SerializeField] private Checkbox splitCheckbox;
         
         [SerializeField] private Music menuMusic;
         
@@ -34,6 +35,7 @@ namespace Main_Menu {
             SetMusicLevel(App.PlayerDataManager.MusicLevel);
             SetSFXLevel(App.PlayerDataManager.SFXLevel);
             timerCheckbox.SetState(App.PlayerDataManager.ShowTimer);
+            splitCheckbox.SetState(App.PlayerDataManager.ShowSplit);
             App.AudioManager.musicPlayer.PlayMusic(menuMusic);
             App.TimerManager.HideTimer();
         }
@@ -107,6 +109,12 @@ namespace Main_Menu {
             if (_freeze) return;
             
             App.PlayerDataManager.ShowTimer = value;
+        }
+        
+        public void SetSplit(bool value) {
+            if (_freeze) return;
+            
+            App.PlayerDataManager.ShowSplit = value;
         }
         
         public void ShowOptions() {
