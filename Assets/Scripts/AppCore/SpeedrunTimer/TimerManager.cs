@@ -11,6 +11,8 @@ namespace AppCore.SpeedrunTimer {
         
         private float _currentTime = 0;
         private bool _shouldUpdate = false;
+        private float _currentLevelTime = 0;
+        
         
         public void StartTimer() {
             timerText.Show(App.PlayerDataManager.ShowTimer);
@@ -19,7 +21,8 @@ namespace AppCore.SpeedrunTimer {
         }
 
         private void OnEnable() {
-            GameManagerEvents.OnLevelStart += UpdateShowState;
+            GameManagerEvents.OnLevelStart += LevelStart;
+            GameManagerEvents.OnLevelOver += LevelEnd;
             App.InputManager.OnPlayerStartMovement += OnTimerResume;
             GameManagerEvents.OnLevelOver += OnTimerPause;
             PauseManagerEvents.OnGamePause += OnTimerPause;
@@ -27,7 +30,8 @@ namespace AppCore.SpeedrunTimer {
         }
 
         private void OnDisable() {
-            GameManagerEvents.OnLevelStart += UpdateShowState;
+            GameManagerEvents.OnLevelStart -= LevelStart;
+            GameManagerEvents.OnLevelOver -= LevelEnd;
             App.InputManager.OnPlayerStartMovement -= OnTimerResume;
             GameManagerEvents.OnLevelOver -= OnTimerPause;
             PauseManagerEvents.OnGamePause -= OnTimerPause;
@@ -37,6 +41,7 @@ namespace AppCore.SpeedrunTimer {
         private void Update() {
             if (!_shouldUpdate) return;
             _currentTime += Time.deltaTime;
+            _currentLevelTime += Time.deltaTime;
             timerText.UpdateText(_currentTime);
         }
 
@@ -62,6 +67,17 @@ namespace AppCore.SpeedrunTimer {
         private void UpdateShowState() {
             timerText.UpdateText(_currentTime);
             timerText.Show(App.PlayerDataManager.ShowTimer);
+        }
+
+        private void LevelStart()
+        {
+            UpdateShowState();
+            _currentLevelTime = 0;
+        }
+
+        private void LevelEnd()
+        {
+            // App.SceneManager.
         }
     }
 }
