@@ -13,7 +13,7 @@ namespace AppCore.SpeedrunTimer {
 
         internal void UpdateText(float time) {
             TimeSpan timeSpan = TimeSpan.FromSeconds(time);
-            string formattedTime = string.Format("{0:D2}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds);
+            string formattedTime = $"{timeSpan.Minutes:00}:{timeSpan.Seconds:00}.{timeSpan.Milliseconds / 10:00}";
             _text.text = formattedTime;
         }
         

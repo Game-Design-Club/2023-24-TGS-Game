@@ -63,7 +63,8 @@ namespace AppCore.DialogueManagement {
                             currentCharacters += scrollSpeed * Time.unscaledDeltaTime;
                         }
 
-                        UpdateText(currentChunk.text[..(int)currentCharacters]);
+                        int charactersToShow = Mathf.Clamp((int)currentCharacters, 0, totalCharacters);
+                        UpdateText(currentChunk.text.Substring(0, charactersToShow));
                         yield return null;
                     }
                 }
