@@ -1,6 +1,5 @@
 using System.Collections;
 using Game.GameManagement;
-using Game.NightLevels.LaserShooters;
 using UnityEngine;
 
 namespace Game.MovingObjects
@@ -12,6 +11,7 @@ namespace Game.MovingObjects
         [SerializeField] private float startDelay = 0f;
         [SerializeField] private bool showLine = true;
         [SerializeField] private bool startMovingOnStart = true;
+        [SerializeField] private float smoothTime = 7f;
         private int _currentPointIndex;
         private Vector2 _currentPoint;
         private Vector2 _nextPoint;
@@ -23,17 +23,17 @@ namespace Game.MovingObjects
         private bool _isMoving = false;
 
         private Vector2[] _points;
-        
+
         private LineRenderer _lineRenderer;
-    
+
         private void OnEnable() {
             GameManagerEvents.OnLevelStart += OnLevelStart;
         }
-    
+
         private void OnDisable() {
             GameManagerEvents.OnLevelStart -= OnLevelStart;
         }
-        
+
         private void Awake() {
             _lineRenderer = pointsParent.GetComponent<LineRenderer>();
         }
@@ -42,7 +42,7 @@ namespace Game.MovingObjects
             _isMoving = startMovingOnStart;
             StartCoroutine(StartAfterDelay());
         }
-        
+
         private IEnumerator StartAfterDelay() {
             StartMoving();
             yield return new WaitForSeconds(startDelay);
@@ -97,16 +97,18 @@ namespace Game.MovingObjects
             _distance = Vector2.Distance(_currentPoint, _nextPoint);
             _elapsedTime = 0;
         }
-        
+
         public void StartMoving() {
             _points = new Vector2[pointsParent.transform.childCount];
             for (int i = 0; i < _points.Length; i++) {
                 _points[i] = pointsParent.transform.GetChild(i).transform.position;
             }
+
             if (_points.Length <= 1) {
                 enabled = false;
                 return;
             }
+
             _currentPointIndex = 0;
             _currentPoint = _points[_currentPointIndex];
             _nextPoint = _points[_currentPointIndex += 1];
@@ -118,10 +120,12 @@ namespace Game.MovingObjects
                 if (loop == LoopType.Cyclical && _points.Length > 2) {
                     _lineRenderer.loop = true;
                 }
+
                 Vector3[] lineRendererPoints = new Vector3[_points.Length];
                 for (int i = 0; i < _points.Length; i++) {
                     lineRendererPoints[i] = new Vector3(_points[i].x, _points[i].y, 0);
                 }
+
                 _lineRenderer.positionCount = _points.Length;
                 _lineRenderer.SetPositions(lineRendererPoints);
             }
@@ -130,18 +134,28 @@ namespace Game.MovingObjects
                 Debug.LogWarning("LineRenderer not found");
             }
         }
-        
+
         public void SetActive(bool active) {
             _isMoving = active;
         }
-        
+
         public void SwitchActive() {
             SetActive(!_isMoving);
         }
 
         public void ChangeSpeed(float newSpeed) {
             if (newSpeed <= 0) return;
+            StartCoroutine(ChangeSpeedOverTime(newSpeed, smoothTime));
+        }
 
+        public IEnumerator ChangeSpeedOverTime(float newSpeed, float time) {
+            for (float t = 0; t < time; t += Time.deltaTime) {
+                SwitchSpeed(Mathf.Lerp(speed, newSpeed, t / time));
+                yield return null;
+            }
+        }
+
+        private void SwitchSpeed(float newSpeed) {
             float fractionOfJourney = _elapsedTime * speed / _distance;
             _currentPoint = Vector2.Lerp(_currentPoint, _nextPoint, fractionOfJourney);
 
@@ -149,5 +163,5 @@ namespace Game.MovingObjects
             _distance = Vector2.Distance(_currentPoint, _nextPoint);
             _elapsedTime = 0;
         }
-    }
+}
 }
