@@ -88,6 +88,7 @@ namespace AppCore.SpeedrunTimer {
             _currentTime = 0;
             _splitTimes.Clear();
             timerText.UpdateText(_currentTime);
+            _currentSplitText.UpdateSplitText(0);
             _currentSplitText.UpdateSplitText(GetCurrentSplit());
         }
         
