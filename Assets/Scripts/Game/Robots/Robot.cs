@@ -24,7 +24,7 @@ namespace Game.Robots
             UpdatePosition(currentSegment);
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             CalculateDistanceTillCollision();
 
