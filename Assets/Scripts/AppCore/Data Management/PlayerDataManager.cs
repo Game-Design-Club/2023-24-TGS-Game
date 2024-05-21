@@ -131,11 +131,12 @@ namespace AppCore.Data_Management {
             {
                 if (value == null || value.Count == 0)
                 {
-                    PlayerPrefs.SetString(PlayerDataKeys.DialogueKeys, string.Empty);;
+                    PlayerPrefs.SetString(PlayerDataKeys.SplitTimes, string.Empty);;
                     return;
                 }
 
-                PlayerPrefs.SetString(PlayerDataKeys.DialogueKeys, String.Join(",", value));
+                PlayerPrefs.SetString(PlayerDataKeys.SplitTimes, String.Join(",", value));
+                
             }
         }
 
@@ -178,6 +179,7 @@ namespace AppCore.Data_Management {
             PlayerPrefs.DeleteKey(PlayerDataKeys.HasInteractedWithButton);
             PlayerPrefs.DeleteKey(PlayerDataKeys.HasPlayedOpeningDialogue);
             PlayerPrefs.DeleteKey(PlayerDataKeys.SpeedrunTime);
+            PlayerPrefs.DeleteKey(PlayerDataKeys.SplitTimes);
             PlayerPrefs.Save();
             foreach (String key in _dialogueKeys) {
                 PlayerPrefs.DeleteKey(PlayerDataKeys.Dialogue + key);

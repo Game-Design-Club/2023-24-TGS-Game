@@ -32,7 +32,7 @@ namespace AppCore.SpeedrunTimer {
 
         private void OnEnable() {
             GameManagerEvents.OnLevelStart += UpdateShowState;
-            GameManagerEvents.OnNextLevel += LevelEnd;
+            GameManagerEvents.OnNextLevel += SaveSplit;
             App.InputManager.OnPlayerStartMovement += OnTimerResume;
             GameManagerEvents.OnLevelOver += OnTimerPause;
             PauseManagerEvents.OnGamePause += OnTimerPause;
@@ -41,7 +41,7 @@ namespace AppCore.SpeedrunTimer {
 
         private void OnDisable() {
             GameManagerEvents.OnLevelStart -= UpdateShowState;
-            GameManagerEvents.OnLevelOver -= LevelEnd;
+            GameManagerEvents.OnLevelOver -= SaveSplit;
             App.InputManager.OnPlayerStartMovement -= OnTimerResume;
             GameManagerEvents.OnLevelOver -= OnTimerPause;
             PauseManagerEvents.OnGamePause -= OnTimerPause;
@@ -57,18 +57,20 @@ namespace AppCore.SpeedrunTimer {
 
         private void EnableSplits()
         {
+            DestroyChildren();
             _splitTimes = App.PlayerDataManager.SplitTimes;
-            int lastLevel = 0;
-            foreach (float time in _splitTimes)
+            
+            for (int i = 0 ; i < _splitTimes.Count ; i++)
             {
-                CreateSplit(time);
-                lastLevel++;
+                float time = _splitTimes[i];
+                if (i > 0) time -= _splitTimes[i - 1];
+                
+                Debug.Log("Loop");
+                CreateSplit( i + 1, time);
             }
 
-            if (lastLevel == App.PlayerDataManager.LastCompletedLevelIndex)
-            {
-                CreateSplit();
-            }
+            Debug.Log("Exit");
+            CreateSplit(_splitTimes.Count + 1);
         }
 
         public void OnTimerResume() {
@@ -82,6 +84,9 @@ namespace AppCore.SpeedrunTimer {
 
         public void ResetTimer() {
             App.PlayerDataManager.SpeedrunTime = 0;
+            _splitTimes = new List<float>();
+            App.PlayerDataManager.SplitTimes = _splitTimes;
+            EnableSplits();
             _currentTime = 0;
             _splitTimes.Clear();
             timerText.UpdateText(_currentTime);
@@ -95,28 +100,40 @@ namespace AppCore.SpeedrunTimer {
         
         private void UpdateShowState() {
             timerText.UpdateText(_currentTime);
-            _currentSplitText.UpdateSplitText(GetCurrentSplit());
+            EnableSplits();
             timerText.Show(App.PlayerDataManager.ShowTimer);
             splitGroup.SetActive(App.PlayerDataManager.ShowTimer && App.PlayerDataManager.ShowSplit);
         }
-
-        private void LevelEnd()
+        
+        private void SaveSplit()
         {
-            CreateSplit();
+            _splitTimes.Add(_currentTime);
             App.PlayerDataManager.SplitTimes = _splitTimes;
+            
+            Debug.Log("Save");
+            CreateSplit(_splitTimes.Count);
         }
 
-        private void CreateSplit(float time = float.NaN)
+        private void CreateSplit(int level, float displayTime = 0)
         {
-            _splitTimes.Add(time.Equals(float.NaN) ? _currentTime : time);
             GameObject newSplit = Instantiate(splitPrefab, splitGroup.transform);
             _currentSplitText = newSplit.GetComponent<SplitText>();
-            _currentSplitText.UpdateLevelText(_splitTimes.Count);
+            _currentSplitText.UpdateSplitText(displayTime);
+            _currentSplitText.UpdateLevelText(level);
         }
 
         private float GetCurrentSplit()
         {
             return _splitTimes.Count == 0 ? _currentTime : _currentTime - _splitTimes[^1];
+        }
+
+
+        private void DestroyChildren()
+        {
+            int children = splitGroup.transform.childCount;
+            for (int i = 0 ; i < children; i++){
+                Destroy(splitGroup.transform.GetChild(0).gameObject);
+            }
         }
     }
 }
