@@ -17,7 +17,7 @@ namespace UI
 
         internal void UpdateLevelText(int level)
         {
-            string text = "Level " + level;
+            string text = "   Level " + level;
             levelText.text = text;
         }
     }

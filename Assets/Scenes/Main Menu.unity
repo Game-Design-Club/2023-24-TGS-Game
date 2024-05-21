@@ -1875,6 +1875,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5545394331577433488, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5545394331577433488, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5545394331577433488, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5545394331577433488, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520850963215495447, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520850963215495447, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520850963215495447, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520850963215495447, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8257527468688489269, guid: 145ed210d55304d9da604ac2395c66e3, type: 3}
       propertyPath: m_Name
       value: App
@@ -4062,7 +4094,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 813, y: 371.86987}
+  m_AnchoredPosition: {x: 813, y: 433}
   m_SizeDelta: {x: 1880.6096, y: 1253.7397}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1687285843

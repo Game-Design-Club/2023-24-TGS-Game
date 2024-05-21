@@ -65,11 +65,9 @@ namespace AppCore.SpeedrunTimer {
                 float time = _splitTimes[i];
                 if (i > 0) time -= _splitTimes[i - 1];
                 
-                Debug.Log("Loop");
                 CreateSplit( i + 1, time);
             }
 
-            Debug.Log("Exit");
             CreateSplit(_splitTimes.Count + 1);
         }
 
@@ -110,7 +108,6 @@ namespace AppCore.SpeedrunTimer {
             _splitTimes.Add(_currentTime);
             App.PlayerDataManager.SplitTimes = _splitTimes;
             
-            Debug.Log("Save");
             CreateSplit(_splitTimes.Count);
         }
 
@@ -132,7 +129,7 @@ namespace AppCore.SpeedrunTimer {
         {
             int children = splitGroup.transform.childCount;
             for (int i = 0 ; i < children; i++){
-                Destroy(splitGroup.transform.GetChild(0).gameObject);
+                Destroy(splitGroup.transform.GetChild(i).gameObject);
             }
         }
     }

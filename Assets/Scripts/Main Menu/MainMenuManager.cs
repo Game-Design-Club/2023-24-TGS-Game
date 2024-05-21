@@ -115,6 +115,7 @@ namespace Main_Menu {
             if (_freeze) return;
             
             App.PlayerDataManager.ShowSplit = value;
+            Debug.Log("Split: " + value);
         }
         
         public void ShowOptions() {
