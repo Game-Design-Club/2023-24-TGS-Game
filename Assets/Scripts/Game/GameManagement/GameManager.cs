@@ -33,6 +33,7 @@ namespace Game.GameManagement {
 
         private void Start() {
             _levelManager.LoadSavedLevel();
+            App.TimerManager.StartTimer();
         }
 
         private void OnDestroy() {

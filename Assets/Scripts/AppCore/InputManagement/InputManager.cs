@@ -43,6 +43,7 @@ namespace AppCore.InputManagement { // This class is used to manage all player i
         
         // Special
         public event Action OnDialogueContinue;
+        public event Action OnPlayerStartMovement;
         
         // Levels
         public event Action<int> OnLevelSelect;
@@ -71,7 +72,6 @@ namespace AppCore.InputManagement { // This class is used to manage all player i
             EnableMouseMovement();
             EnableUIInteract();
             EnableLevelSelect();
-
             return;
             
             void EnableMovement() {
@@ -221,6 +221,7 @@ namespace AppCore.InputManagement { // This class is used to manage all player i
         private IEnumerator UnlockControlsAfterSeconds(float seconds) {
             yield return new WaitForSecondsRealtime(seconds);
             LockedControlsList.Remove(this);
+            OnPlayerStartMovement?.Invoke();
             yield return new WaitUntil(() => !LockedControls);
             OnMovement?.Invoke(_lastMovementInput);
         }

@@ -25,6 +25,7 @@ namespace Cutscenes
         private IEnumerator WaitToLeave() {
             yield return new WaitForSeconds(waitTime);
             App.SceneManager.LoadScene(SceneConstants.Game);
+            App.PlayerDataManager.HasPlayedOpeningDialogue = true;
         }
     }
 }

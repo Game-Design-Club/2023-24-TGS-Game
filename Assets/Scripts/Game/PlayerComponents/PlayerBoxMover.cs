@@ -33,6 +33,8 @@ namespace Game.PlayerComponents {
         
         public Action<bool> onBoxGrabbed;
         
+        private bool _isHoldingInteract;
+        
         // Unity functions
         private void OnEnable() {
             _playerMovement.OnPlayerMoved += OnPlayerMoved;
@@ -62,6 +64,10 @@ namespace Game.PlayerComponents {
                 BoxBox.EnteredTrigger();
 
                 StartCoroutine(HandleTutorialPopup());
+                
+                if (_isHoldingInteract) {
+                    GrabBox();
+                }
             }
         }
         
@@ -106,12 +112,14 @@ namespace Game.PlayerComponents {
             if (BoxTriggers.Count > 0 && !IsGrabbingBox) {
                 GrabBox();
             }
+            _isHoldingInteract = true;
         }
         
         private void OnInteractCancel() {
             if (IsGrabbingBox) {
                 ReleaseBox();
             }
+            _isHoldingInteract = false;
         }
         
         private void GrabBox() {

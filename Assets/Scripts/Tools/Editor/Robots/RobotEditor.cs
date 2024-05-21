@@ -36,8 +36,11 @@ namespace Game.Robots
             Vector2 direction = robot.GetDirection();
             Vector3 start = robot.transform.position;
             Vector3 end = start + (Vector3)direction * robot.distanceUntilCollision;
+            Vector3 perp = Vector2.Perpendicular(direction) * 0.5f;
             Handles.color = Color.green;
             Handles.DrawLine(start, end, 5f);
+            Handles.DrawLine(start + perp, end + perp, 5f);
+            Handles.DrawLine(start - perp, end - perp, 5f);
         }
     }
 }

@@ -50,6 +50,9 @@ namespace Game.GameManagement.LevelManagement {
         
         public void RestartLevel() {
             StartCoroutine(LoadLevel(_currentLevel));
+            if (_currentLevelIndex == 0) {
+                App.TimerManager.ResetTimer();
+            }
         }
         
         public void LoadLevel(int levelIndex) {

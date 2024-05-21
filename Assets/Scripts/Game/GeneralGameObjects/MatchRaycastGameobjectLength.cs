@@ -53,7 +53,6 @@ namespace Game.GeneralGameObjects {
             }
 
             float height = .5f;
-            float depth = 0;
             float width = hit.distance - 0.5f;
             Vector3 startPoint = transform.position;
             Vector3 endPoint = transform.position + transform.right * hit.distance;

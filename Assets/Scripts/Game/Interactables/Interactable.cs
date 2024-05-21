@@ -83,13 +83,15 @@ namespace Game.Interactables {
         }
         
         private void Interacted() {
+            if (oneTimeUse && _interacted) return;
             interacted?.Invoke();
             if (interactSound != null && playSound) {
                 App.AudioManager.PlaySFX(interactSound);
             }
-            if (oneTimeUse && !_interacted) {
-                _interacted = true;
+            if (oneTimeUse) {
+                _animator.SetTrigger(AnimationConstants.Interactable.Interact);
             }
+            _interacted = true;
         }
         
         private void OnLevelStart() {

@@ -6,6 +6,7 @@ using AppCore.Data_Management;
 using AppCore.InputManagement;
 using AppCore.ParticleManagement;
 using AppCore.SceneManagement;
+using AppCore.SpeedrunTimer;
 using AppCore.TransitionManagement;
 
 using UnityEngine.Serialization;
@@ -25,6 +26,7 @@ namespace AppCore {
         [SerializeField] private PlayerDataManager playerDataManager;
         [FormerlySerializedAs("cutsceneManager")] [SerializeField] private DialogueManager dialogueManager;
         [SerializeField] private ParticleManager particleManager;
+        [SerializeField] private TimerManager timerManager;
 
         public static AudioManager AudioManager => s_instance.audioManager;
         public static InputManager InputManager => s_instance.inputManager;
@@ -33,6 +35,7 @@ namespace AppCore {
         public static PlayerDataManager PlayerDataManager => s_instance.playerDataManager;
         public static ParticleManager ParticleManager => s_instance.particleManager;
         public static DialogueManager DialogueManager => s_instance.dialogueManager;
+        public static TimerManager TimerManager => s_instance.timerManager;
         
         private void Awake() {
             // Sets up singleton pattern

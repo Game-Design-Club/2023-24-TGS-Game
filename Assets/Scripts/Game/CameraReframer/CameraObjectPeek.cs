@@ -46,10 +46,11 @@ namespace Game.CameraReframer {
             if (freezePlayer) {
                 App.InputManager.LockPlayerControls(this);
                 App.InputManager.LockUI(this);
+                App.TimerManager.OnTimerPause();
             }
             
             _camera.m_Lens.NearClipPlane = -1f;
-            
+            _camera.Priority = peekCamPriority;
             yield return new WaitForSeconds(moveTime);
 
             
@@ -68,6 +69,7 @@ namespace Game.CameraReframer {
             if (freezePlayer) {
                 App.InputManager.UnlockPlayerControls(this);
                 App.InputManager.UnlockUI(this);
+                App.TimerManager.OnTimerResume();
             }
         }
     }
