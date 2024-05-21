@@ -24,7 +24,7 @@ namespace Tools.Debug_Tools {
             if (allowLevelSwitch!) return;
             LevelManager lm = FindObjectOfType<LevelManager>();
             if (lm != null) {
-                lm.LoadLevel(level);
+                // lm.LoadLevel(level);
             }
         }
     }
