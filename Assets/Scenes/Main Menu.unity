@@ -2545,7 +2545,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5883375144565615615, guid: 99265d26c8e8f42739f3eb510e69bde7, type: 3}
       propertyPath: m_text
-      value: Show Split
+      value: Level timers
       objectReference: {fileID: 0}
     - target: {fileID: 5883375144565615615, guid: 99265d26c8e8f42739f3eb510e69bde7, type: 3}
       propertyPath: m_fontSize
@@ -2570,6 +2570,14 @@ PrefabInstance:
     - target: {fileID: 5883375144565615615, guid: 99265d26c8e8f42739f3eb510e69bde7, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6213113899291130127, guid: 99265d26c8e8f42739f3eb510e69bde7, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -80.186844
+      objectReference: {fileID: 0}
+    - target: {fileID: 6213113899291130127, guid: 99265d26c8e8f42739f3eb510e69bde7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -24.90658
       objectReference: {fileID: 0}
     - target: {fileID: 7472058850077444941, guid: 99265d26c8e8f42739f3eb510e69bde7, type: 3}
       propertyPath: m_Sprite
