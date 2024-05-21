@@ -21,6 +21,8 @@ namespace Game.Interactables {
         
         private bool _playerInRange = false;
         private bool _interacted = false;
+
+        private bool _inAnimation = false;
         
         private Collider2D _collider2D;
 
@@ -83,15 +85,25 @@ namespace Game.Interactables {
         }
         
         private void Interacted() {
+            if (_inAnimation) return;
             if (oneTimeUse && _interacted) return;
             interacted?.Invoke();
             if (interactSound != null && playSound) {
                 App.AudioManager.PlaySFX(interactSound);
             }
-            if (oneTimeUse) {
-                _animator.SetTrigger(AnimationConstants.Interactable.Interact);
-            }
+
+            _animator.SetTrigger(oneTimeUse
+                ? AnimationConstants.Interactable.Interact
+                : AnimationConstants.Interactable.Click);
             _interacted = true;
+        }
+
+        private void PlayingAnimation() {
+            _inAnimation = true;
+        }
+        
+        private void AnimationEnded() {
+            _inAnimation = false;
         }
         
         private void OnLevelStart() {
