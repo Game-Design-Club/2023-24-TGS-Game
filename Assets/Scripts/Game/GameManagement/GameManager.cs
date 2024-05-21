@@ -58,6 +58,7 @@ namespace Game.GameManagement {
         private void InternalLevelCompleted() {
             _levelManager.LoadNextLevel();
             GameManagerEvents.InvokeLevelOver();
+            GameManagerEvents.InvokeNextLevel();
         }
         
         // Public functions
