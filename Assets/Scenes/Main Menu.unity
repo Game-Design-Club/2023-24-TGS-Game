@@ -497,7 +497,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2496202579164776881, guid: 99265d26c8e8f42739f3eb510e69bde7, type: 3}
       propertyPath: OnToggle.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2496202579164776881, guid: 99265d26c8e8f42739f3eb510e69bde7, type: 3}
       propertyPath: OnToggle.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -578,6 +578,10 @@ PrefabInstance:
     - target: {fileID: 7656945819125263827, guid: 99265d26c8e8f42739f3eb510e69bde7, type: 3}
       propertyPath: m_SizeDelta.y
       value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7656945819125263827, guid: 99265d26c8e8f42739f3eb510e69bde7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 120
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2509,7 +2513,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2496202579164776881, guid: 99265d26c8e8f42739f3eb510e69bde7, type: 3}
       propertyPath: OnToggle.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2496202579164776881, guid: 99265d26c8e8f42739f3eb510e69bde7, type: 3}
       propertyPath: OnToggle.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2529,7 +2533,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2496202579164776881, guid: 99265d26c8e8f42739f3eb510e69bde7, type: 3}
       propertyPath: OnToggle.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2496202579164776881, guid: 99265d26c8e8f42739f3eb510e69bde7, type: 3}
       propertyPath: OnToggle.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -2590,6 +2594,10 @@ PrefabInstance:
     - target: {fileID: 7656945819125263827, guid: 99265d26c8e8f42739f3eb510e69bde7, type: 3}
       propertyPath: m_SizeDelta.y
       value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7656945819125263827, guid: 99265d26c8e8f42739f3eb510e69bde7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 120
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
