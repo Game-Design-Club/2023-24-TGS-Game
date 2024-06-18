@@ -21,7 +21,6 @@ namespace Game.MovingObjects {
             if (final < _minSpeed) {
                 final = _minSpeed;
             }
-            Debug.Log($"Distance: {distance}, Extra: {extra}, Final: {final}");
             return final;
         }
         
