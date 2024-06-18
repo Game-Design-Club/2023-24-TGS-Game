@@ -21,11 +21,13 @@ namespace Tools.Debug_Tools {
         
         // Private functions
         private void OnLevelSelect(int level) {
+#if UNITY_EDITOR
             if (allowLevelSwitch!) return;
             LevelManager lm = FindObjectOfType<LevelManager>();
             if (lm != null) {
-                // lm.LoadLevel(level);
+                lm.LoadLevel(level);
             }
+#endif
         }
     }
 }

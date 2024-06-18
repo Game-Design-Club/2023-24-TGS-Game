@@ -31,7 +31,9 @@ namespace Game.GameManagement.LevelManagement {
 
             Level levelToLoad = levelsData[App.PlayerDataManager.LastCompletedLevelIndex];
             _currentLevelIndex = App.PlayerDataManager.LastCompletedLevelIndex;
+#if UNITY_EDITOR
             if (customFirstLevel != null) levelToLoad = customFirstLevel;
+#endif
             StartCoroutine(LoadLevel(levelToLoad, false));
         }
         

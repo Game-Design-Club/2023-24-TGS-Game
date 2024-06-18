@@ -25,14 +25,13 @@ namespace Tools.Debug_Tools {
         private void OnClickWorld(Vector2 clickPosition) {
             if (!canTeleport) return;
             if (PauseManager.IsPaused) return;
+#if UNITY_EDITOR
             _player.transform.position = clickPosition;
+#endif
         }
         
         private void OnLevelStart() {
             _player = Player.Instance;
         }
-        
-        
-
     }
 }
